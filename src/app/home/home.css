@@ -1,0 +1,31 @@
+.home-row-title {
+  /* border: 2px solid var(--primary-color);  */
+  /* color: var(--secondary-color); */
+  font: italic;
+}
+.home-row {
+  display: flex;
+  overflow: auto;
+  white-space: nowrap;
+  /* grid-template-columns: repeat(auto-fill, minmax(400px, 400px)); */
+  padding: 5px;
+  justify-content: space-around;
+  border: 2px solid var(--primary-color);
+  border-radius: 1px 1px 15px 15px;
+}
+
+input[type="text"] {
+  border: solid 1px var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 4px;
+  display: inline-block;
+  width: 30%;
+}
+button {
+  padding: 10px;
+  border: solid 1px var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+}
