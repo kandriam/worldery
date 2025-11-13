@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import { WorldLocationInfo } from '../worldlocation';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class WorldLocationService {
+  url = 'http://localhost:3000/worldlocations';
+
+  async getAllWorldLocations(): Promise<WorldLocationInfo[]> {
+    const data = await fetch(this.url);
+    return await data.json() ?? [];
+  }
+
+  async getWorldLocationById(id: number): Promise<WorldLocationInfo | undefined> {
+    const data = await fetch(`${this.url}?id=${id}`);
+    const locationJson = await data.json();
+    return locationJson[0] ?? {};
+  }
+
+  updateWorldLocation(locationID: number, locationName: string, locationDescription: string, locationTags: string[]) {
+    console.log(
+      `Location edited:
+      locationID: ${locationID},
+      locationName: ${locationName},
+      locationDescription: ${locationDescription},
+      locationTags: ${locationTags}.`,
+    );
+    fetch(`${this.url}/${locationID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: locationID,
+        name: locationName,
+        description: locationDescription,
+        tags: locationTags,
+      }),
+    });
+  }
+}

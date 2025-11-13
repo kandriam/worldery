@@ -128,5 +128,73 @@
         "Jayara"
       ]
     }
+  ],
+  "worldlocations": [
+    {
+      "id": "1",
+      "name": "Jayara Apartment",
+      "description": "A cozy apartment located in the heart of St Paul, Minnesota.",
+      "characters": [
+        "Kiara Ravao",
+        "Judy Han"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "tags": []
+    },
+    {
+      "id": "2",
+      "name": "Sunday Brunch",
+      "description": "Cafe which serves as a front for the Soldiers of Rebellion.",
+      "characters": [
+        "Rudy Edwards",
+        "Cassandra Edwards",
+        "Judy Han"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "tags": ["cafe", "food", "Soldiers of Rebellion"]
+    },
+    {
+      "id": "3",
+      "name": "SafeHouse",
+      "description": "A hidden safehouse in Minnesota.",
+      "characters": [
+        "Cassandra Edwards",
+        "Judy Han",
+        "William Hardin"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "tags": ["Soldiers of Rebellion"]
+    },
+    {
+      "id": "4",
+      "name": "Rivera-Anderson Family House",
+      "description": "The family home of the Rivera-Andersons located in Minnesota.",
+      "characters": [
+        "Willow Rivera-Anderson",
+        "Matthew Rivera-Anderson"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "tags": []
+    },
+    {
+      "id": "5",
+      "name": "Cat's Tea",
+      "description": "A quaint tea shop owned by the Deng family.",
+      "characters": [
+        "Leo Deng"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "tags": ["tea"]
+    }
   ]
 }
