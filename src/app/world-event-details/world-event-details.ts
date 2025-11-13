@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WorldEventService } from '../world-event.service';
+import { WorldEventService } from '../services/world-event.service';
 import { WorldEventInfo } from '../worldevent';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
@@ -41,7 +41,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
             <label for="event-tags">Event Tags</label>
             <input id="event-tags" type="text" formControlName="eventTags" />
           </div>
-          <button type="submit" class="primary">Apply now</button>
+          <button type="submit" class="primary">Save Details</button>
         </form>
       </section>
     </article>
@@ -81,14 +81,17 @@ export class WorldEventDetails {
   }
 
   submitApplication() {
-    this.worldEventService.submitApplication(
-      this.applyForm.value.eventTitle ?? '',
-      this.applyForm.value.eventDate ?? '',
-      this.applyForm.value.eventDescription ?? '',
-      this.applyForm.value.eventLocation ?? '',
-      this.applyForm.value.eventCharacters ?? '',
-      this.applyForm.value.eventStories ?? '',
-      this.applyForm.value.eventTags?.split(', ') ?? [],
-    );
+    if (this.worldEvent?.id !== undefined) {
+      this.worldEventService.updateWorldEvent(
+        this.worldEvent.id,
+        this.applyForm.value.eventTitle ?? '',
+        this.applyForm.value.eventDate ?? '',
+        this.applyForm.value.eventDescription ?? '',
+        this.applyForm.value.eventLocation ?? '',
+        this.applyForm.value.eventCharacters ?? '',
+        this.applyForm.value.eventStories ?? '',
+        this.applyForm.value.eventTags?.split(', ') ?? [],
+      );
+    }
   }
 }

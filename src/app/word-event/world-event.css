@@ -14,7 +14,7 @@
   color: var(--primary-color);
 }
 
-.event-date, .event-location, .event-characters, .event-stories, .event-description {
+.event-date, .event-location, .event-characters, .event-stories, .event-description, .event-tags {
   font-size: x-small;
 }
 .event-date {
@@ -34,5 +34,9 @@
 }
 
 .event-stories {
+  font-style: italic;
+}
+
+.event-tags {
   font-style: italic;
 }

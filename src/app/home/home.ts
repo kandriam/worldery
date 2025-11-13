@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {WorldEvent} from '../word-event/world-event';
 import {WorldEventInfo} from '../worldevent';
-import {WorldEventService} from '../world-event.service';
+import {WorldEventService} from '../services/world-event.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +21,29 @@ import {WorldEventService} from '../world-event.service';
         <app-world-event [worldEvent]="worldEvent"></app-world-event>
       }
     </div>
+
+    <div class="home-row-title">
+      <h2>World</h2>
+    </div>
+    <div class="home-row">
+      <!-- World components would go here -->
+    </div> 
+
+    <div class="home-row-title">
+      <h2>Characters</h2>
+    </div>
+    <div class="home-row">
+      <!-- Character components would go here -->
+    </div>
+
+    <div class="home-row-title">
+      <h2>Stories</h2>
+    </div>
+    <div class="home-row">
+      <!-- Story components would go here -->
+    </div>
+
+    
   `,
   styleUrls: ['./home.css', '../../styles.css'],
 })

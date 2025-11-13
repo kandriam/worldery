@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {WorldEventInfo} from './worldevent';
+import {WorldEventInfo} from '../worldevent';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,9 +17,10 @@ export class WorldEventService {
       return locationJson[0] ?? {};
     }
 
-  submitApplication(eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string, eventCharacters: string, eventStories: string, eventTags: string[]) {
+  updateWorldEvent(eventID: number, eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string, eventCharacters: string, eventStories: string, eventTags: string[]) {
     console.log(
       `Event edited:
+      eventID: ${eventID},
       eventTitle: ${eventTitle},
       eventDate: ${eventDate},
       eventDescription: ${eventDescription},
@@ -28,5 +29,21 @@ export class WorldEventService {
       eventStories: ${eventStories},
       eventTags: ${eventTags}.`,
     );
+    fetch(`${this.url}/${eventID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: eventID,
+        name: eventTitle,
+        date: eventDate,
+        description: eventDescription,
+        location: eventLocation.split(', '),
+        characters: eventCharacters.split(', '),
+        stories: eventStories.split(', '),
+        tags: eventTags,
+      }),
+    });
   }
 }

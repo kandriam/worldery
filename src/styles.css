@@ -44,3 +44,74 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+.details-button {
+  background: var(--accent-color);
+  color: var(--secondary-color);
+  font-size: x-small;
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  transition: box-shadow 0.5s ease-in-out, background 0.5s ease-in-out, color 0.5s ease-in-out;
+  /* cursor: pointer; */
+}
+
+.details-button:hover {
+  color: var(--primary-color);
+  background: var(--shadow-color);
+  box-shadow: 3px 3px 10px var(--shadow-color);
+}
+/* Icons */
+
+.event-location::before {
+  content: '📍';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.event-characters::before {
+  content: '👥';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.event-stories::before {
+  content: '📖';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.event-tags::before {
+  content: '🏷️';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.event-date::before {
+  content: '📅';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.event-tags::before {
+  content: '🏷️';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
