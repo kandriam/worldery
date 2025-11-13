@@ -16,25 +16,33 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
         <h2 class="section-heading">Basic Details</h2>
         <form [formGroup]="applyForm" (submit)="submitApplication()">
           <div>
-            <label for="character-name">Character Name</label>
+            <label for="character-name">Name</label>
             <input id="character-name" type="text" formControlName="characterName" />
           </div>
           <div>
-            <label for="character-alt-names">Character Alternate Names</label>
+            <label for="character-alt-names">Alternate Names</label>
             <input id="character-alt-names" type="text" formControlName="characterAltNames" />
-            <label for="character-pronouns">Character Pronouns</label>
+            <label for="character-pronouns">Pronouns</label>
             <input id="character-pronouns" type="text" formControlName="characterPronouns" />
-            <label for="character-birthdate">Character Birthdate</label>
+            <label for="character-birthdate">Birthdate</label>
             <input id="character-birthdate" type="text" formControlName="characterBirthdate" />
           </div>
           <div>
-            <label for="character-description">Character Description</label>
+            <label for="character-description">Description</label>
             <textarea id="character-description" formControlName="characterDescription"></textarea>
           </div>
           <div>
-            <label for="character-stories">Character Stories</label>
+            <label for="roles">Roles</label>
+            <input id="roles" type="text" formControlName="characterRoles" />
+            <label for="character-relationships">Relationships</label>
+            <input id="character-relationships" type="text" formControlName="characterRelationships" />
+          </div>
+          <div>
+            <label for="character-affiliations">Affiliations</label>
+            <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
+            <label for="character-stories">Stories</label>
             <input id="character-stories" type="text" formControlName="characterStories" />
-            <label for="character-tags">Character Tags</label>
+            <label for="character-tags">Tags</label>
             <input id="character-tags" type="text" formControlName="characterTags" />
           </div>
           <button type="submit" class="primary">Save Details</button>
@@ -55,6 +63,9 @@ export class WorldCharacterDetails {
     characterAltNames: new FormControl(''),
     characterPronouns: new FormControl(''),
     characterBirthdate: new FormControl(''),
+    characterRoles: new FormControl(''),
+    characterAffiliations: new FormControl(''),
+    characterRelationships: new FormControl(''),
     characterDescription: new FormControl(''),
     characterStories: new FormControl(''),
     characterTags: new FormControl(''),
@@ -69,6 +80,9 @@ export class WorldCharacterDetails {
         characterName: worldCharacter?.name || '',
         characterAltNames: worldCharacter?.altNames?.join(', ') || '',
         characterPronouns: worldCharacter?.pronouns || '',
+        characterRoles: worldCharacter?.roles?.join(', ') || '',
+        characterAffiliations: worldCharacter?.affiliations?.join(', ') || '',
+        characterRelationships: worldCharacter?.relationships?.join(', ') || '',
         characterBirthdate: worldCharacter?.birthdate || '',
         characterDescription: worldCharacter?.description || '',
         characterStories: worldCharacter?.stories?.join(', ') || '',
@@ -85,6 +99,9 @@ export class WorldCharacterDetails {
         this.applyForm.value.characterAltNames?.split(', ') ?? [],
         this.applyForm.value.characterPronouns ?? '',
         this.applyForm.value.characterBirthdate ?? '',
+        this.applyForm.value.characterRoles?.split(', ') ?? [],
+        this.applyForm.value.characterAffiliations?.split(', ') ?? [],
+        this.applyForm.value.characterRelationships?.split(', ') ?? [],
         this.applyForm.value.characterDescription ?? '',
         this.applyForm.value.characterStories?.split(', ') ?? [],
         this.applyForm.value.characterTags?.split(', ') ?? [],

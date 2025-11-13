@@ -17,7 +17,7 @@ export class WorldCharacterService {
       return characterJson[0] ?? {};
     }
 
-  updateWorldCharacter(characterID: number, characterName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterDescription: string, characterStories: string[], characterTags: string[]) {
+  updateWorldCharacter(characterID: number, characterName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: string[], characterDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
@@ -25,6 +25,9 @@ export class WorldCharacterService {
       characterAltNames: ${characterAltNames},
       characterBirthdate: ${characterBirthdate},
       characterPronouns: ${characterPronouns},
+      characterRoles: ${characterRoles},
+      characterAffiliations: ${characterAffiliations},
+      characterRelationships: ${characterRelationships},
       characterDescription: ${characterDescription},
       characterStories: ${characterStories},
       characterTags: ${characterTags}.`,
@@ -40,6 +43,9 @@ export class WorldCharacterService {
         altNames: characterAltNames,
         birthdate: characterBirthdate,
         pronouns: characterPronouns,
+        roles: characterRoles,
+        affiliations: characterAffiliations,
+        relationships: characterRelationships,
         description: characterDescription,
         stories: characterStories,
         tags: characterTags,

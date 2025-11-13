@@ -9,25 +9,25 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
   imports: [ReactiveFormsModule],
   template: `
     <article>
-      <section class="event-heading">
-        <h2 class="event-title">{{ worldLocation?.name }}</h2>
+      <section class="location-heading">
+        <h2 class="location-title">{{ worldLocation?.name }}</h2>
       </section>
-      <section class="edit-event-form">
+      <section class="edit-location-form">
         <h2 class="section-heading">Basic Details</h2>
         <form [formGroup]="applyForm" (submit)="submitApplication()">
           <div>
-            <label for="event-title">Event Title</label>
-            <input id="event-title" type="text" formControlName="eventTitle" />
+            <label for="location-title">Location Title</label>
+            <input id="location-title" type="text" formControlName="locationTitle" />
           </div>
-          <label for="event-description">Event Description</label>
-          <textarea id="event-description" formControlName="eventDescription"></textarea>
+          <label for="location-description">Location Description</label>
+          <textarea id="location-description" formControlName="locationDescription"></textarea>
           <div>
-            <label for="event-characters">Event Characters</label>
-            <input id="event-characters" type="text" formControlName="eventCharacters" />
-            <label for="event-stories">Event Stories</label>
-            <input id="event-stories" type="text" formControlName="eventStories" />
-            <label for="event-tags">Event Tags</label>
-            <input id="event-tags" type="text" formControlName="eventTags" />
+            <label for="location-characters">Location Characters</label>
+            <input id="location-characters" type="text" formControlName="locationCharacters" />
+            <label for="location-stories">Location Stories</label>
+            <input id="location-stories" type="text" formControlName="locationStories" />
+            <label for="location-tags">Location Tags</label>
+            <input id="location-tags" type="text" formControlName="locationTags" />
           </div>
           <button type="submit" class="primary">Save Details</button>
         </form>
@@ -43,13 +43,13 @@ export class WorldLocationDetails {
   worldLocation: WorldLocationInfo | undefined;
 
   applyForm = new FormGroup({
-    eventTitle: new FormControl(''),
-    eventDate: new FormControl(''),
-    eventDescription: new FormControl(''),
-    eventLocation: new FormControl(''),
-    eventCharacters: new FormControl(''),
-    eventStories: new FormControl(''),
-    eventTags: new FormControl(''),
+    locationTitle: new FormControl(''),
+    locationDate: new FormControl(''),
+    locationDescription: new FormControl(''),
+    locationLocation: new FormControl(''),
+    locationCharacters: new FormControl(''),
+    locationStories: new FormControl(''),
+    locationTags: new FormControl(''),
   });
 
   constructor() {
@@ -57,11 +57,11 @@ export class WorldLocationDetails {
     this.worldLocationService.getWorldLocationById(worldLocationId).then((worldLocation) => {
       this.worldLocation = worldLocation;
       this.applyForm.patchValue({
-        eventTitle: worldLocation?.name || '',
-        eventDescription: worldLocation?.description || '',
-        eventCharacters: worldLocation?.characters?.join(', ') || '',
-        eventStories: worldLocation?.stories?.join(', ') || '',
-        eventTags: worldLocation?.tags?.join(', ') || '',
+        locationTitle: worldLocation?.name || '',
+        locationDescription: worldLocation?.description || '',
+        locationCharacters: worldLocation?.characters?.join(', ') || '',
+        locationStories: worldLocation?.stories?.join(', ') || '',
+        locationTags: worldLocation?.tags?.join(', ') || '',
       });
     });
   }
@@ -70,11 +70,11 @@ export class WorldLocationDetails {
     if (this.worldLocation?.id !== undefined) {
       this.worldLocationService.updateWorldLocation(
         this.worldLocation.id,
-        this.applyForm.value.eventTitle ?? '',
-        this.applyForm.value.eventDescription ?? '',
-        this.applyForm.value.eventCharacters?.split(', ') ?? [],
-        this.applyForm.value.eventStories?.split(', ') ?? [] ,
-        this.applyForm.value.eventTags?.split(', ') ?? [],
+        this.applyForm.value.locationTitle ?? '',
+        this.applyForm.value.locationDescription ?? '',
+        this.applyForm.value.locationCharacters?.split(', ') ?? [],
+        this.applyForm.value.locationStories?.split(', ') ?? [] ,
+        this.applyForm.value.locationTags?.split(', ') ?? [],
       );
     }
   }

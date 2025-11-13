@@ -211,79 +211,150 @@
     {
       "id": "1",
       "name": "Kiara Ravao",
-      "altNames": ["Phoenix", "Ki"],
+      "altNames": [
+        "Phoenix",
+        "Ki"
+      ],
+      "birthdate": "she/they",
+      "pronouns": "2203-07-11",
+      "roles": [
+        "Protagonist",
+        "Superhero",
+        "Student"
+      ],
+      "affiliations": [
+        "Team Phoenix (Book 1)",
+        "SafeHouse (Book 2)"
+      ],
+      "relationships": [
+        "Judy Han (Romantic Partner)",
+        "Willow Rivera-Anderson (Best Friend)"
+      ],
       "description": "pyrokinetic abilities.",
-      "pronouns": "she/they",
-      "birthdate": "2203-07-11",
-      "roles": ["Protagonist", "Superhero", "Student"],
-      "affiliations": ["Team Phoenix (Book 1)", "SafeHouse (Book 2)"],
-      "relationships": ["Judy Han (Romantic Partner)", "Willow Rivera-Anderson (Best Friend)"],
-      "stories": ["Fire & Ice"],
-      "tags": []
+      "stories": [
+        "Fire & Ice"
+      ],
+      "tags": [
+        ""
+      ]
     },
     {
       "id": "2",
       "name": "Judy Han",
-      "altNames": ["Jay"],
+      "altNames": [
+        "Jay"
+      ],
       "description": "cryokinetic abilities.",
       "pronouns": "she/they",
       "birthdate": "2201-12-26",
-      "roles": ["Protagonist", "Vigilante"],
-      "affiliations": ["Soldiers of Rebellion (Book 1)", "SafeHouse (Book 2)"],
-      "relationships": ["Kiara Ravao (Romantic Partner)"],
-      "stories": ["Fire & Ice"],
+      "roles": [
+        "Protagonist",
+        "Vigilante"
+      ],
+      "affiliations": [
+        "Soldiers of Rebellion (Book 1)",
+        "SafeHouse (Book 2)"
+      ],
+      "relationships": [
+        "Kiara Ravao (Romantic Partner)"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
       "tags": []
     },
     {
       "id": "3",
       "name": "Cassandra Edwards",
-      "altNames": ["Cassie"],
+      "altNames": [
+        "Cassie"
+      ],
       "description": "illusionist abilities.",
       "pronouns": "she/her",
       "birthdate": "2200-06-01",
-      "roles": ["Vigilante"],
-      "affiliations": ["Soldiers of Rebellion"],
-      "relationships": ["Rudy Edwards (Twin)"],
-      "stories": ["Fire & Ice"],
+      "roles": [
+        "Vigilante"
+      ],
+      "affiliations": [
+        "Soldiers of Rebellion"
+      ],
+      "relationships": [
+        "Rudy Edwards (Twin)"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
       "tags": []
     },
     {
       "id": "4",
       "name": "Rudy Edwards",
-      "altNames": ["Rue"],
+      "altNames": [
+        "Rue"
+      ],
       "description": "telepathic abilities.",
       "pronouns": "she/her",
       "birthdate": "2200-06-01",
-      "roles": ["Vigilante"],
-      "affiliations": ["Soldiers of Rebellion"],
-      "relationships": ["Cassandra Edwards (Twin)"],
-      "stories": ["Fire & Ice"],
+      "roles": [
+        "Vigilante"
+      ],
+      "affiliations": [
+        "Soldiers of Rebellion"
+      ],
+      "relationships": [
+        "Cassandra Edwards (Twin)"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
       "tags": []
     },
     {
       "id": "5",
       "name": "Willow Rivera-Anderson",
-      "altNames": ["Will"],
+      "altNames": [
+        "Will"
+      ],
       "description": "no Gift.",
       "pronouns": "she/they",
       "birthdate": "2202-04-02",
-      "roles": ["Support Character"],
-      "affiliations": ["Team Phoenix"],
-      "relationships": ["Matthew Rivera-Anderson (Sibling)", "Leo Deng (Romantic Partner)", "Kiara Ravao (Best Friend)"],
-      "stories": ["Fire & Ice"],
+      "roles": [
+        "Support Character"
+      ],
+      "affiliations": [
+        "Team Phoenix"
+      ],
+      "relationships": [
+        "Matthew Rivera-Anderson (Sibling)",
+        "Leo Deng (Romantic Partner)",
+        "Kiara Ravao (Best Friend)"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
       "tags": []
     },
     {
       "id": "6",
       "name": "Matthew Rivera-Anderson",
-      "altNames": ["Matt"],
+      "altNames": [
+        "Matt"
+      ],
       "description": "invisibility abilities.",
       "pronouns": "he/him",
       "birthdate": "2201-04-16",
-      "roles": ["Support Character"],
-      "affiliations": ["Team Phoenix"],
-      "relationships": ["Willow Rivera-Anderson (Sibling)"],
-      "stories": ["Fire & Ice"],
+      "roles": [
+        "Support Character"
+      ],
+      "affiliations": [
+        "Team Phoenix"
+      ],
+      "relationships": [
+        "Willow Rivera-Anderson (Sibling)"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
       "tags": []
     },
     {
@@ -293,10 +364,17 @@
       "description": "super strength and hyposensitivity.",
       "pronouns": "she/her",
       "birthdate": "2199-11-30",
-      "roles": ["Support Character", "Cafe Owner"],
+      "roles": [
+        "Support Character",
+        "Cafe Owner"
+      ],
       "affiliations": [],
-      "relationships": ["Willow Rivera-Anderson (Romantic Partner)"],
-      "stories": ["Fire & Ice"],
+      "relationships": [
+        "Willow Rivera-Anderson (Romantic Partner)"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
       "tags": []
     }
   ]
