@@ -6,7 +6,7 @@ import {RouterLink, RouterOutlet } from '@angular/router';
   selector: 'app-world-event',
   imports: [RouterLink, RouterOutlet],
   template: `
-    <div class="event-container">
+    <div class="event-container" [routerLink]="['/event-details', worldEvent().id]">
       <h4 class="event-heading">{{ worldEvent().name }}</h4>
       <p class="event-date">{{ worldEvent().date }}</p>
       <p class="event-description">{{ worldEvent().description }}</p>

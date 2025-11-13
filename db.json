@@ -141,7 +141,9 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Jayara"
+      ]
     },
     {
       "id": "2",
@@ -155,7 +157,11 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": ["cafe", "food", "Soldiers of Rebellion"]
+      "tags": [
+        "cafe",
+        "food",
+        "Soldiers of Rebellion"
+      ]
     },
     {
       "id": "3",
@@ -169,7 +175,9 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": ["Soldiers of Rebellion"]
+      "tags": [
+        "Soldiers of Rebellion"
+      ]
     },
     {
       "id": "4",
@@ -194,7 +202,9 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": ["tea"]
+      "tags": [
+        "tea"
+      ]
     }
   ]
 }

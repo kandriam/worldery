@@ -18,7 +18,7 @@ export class WorldLocationService {
     return locationJson[0] ?? {};
   }
 
-  updateWorldLocation(locationID: number, locationName: string, locationDescription: string, locationTags: string[]) {
+  updateWorldLocation(locationID: number, locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationTags: string[]) {
     console.log(
       `Location edited:
       locationID: ${locationID},
@@ -35,6 +35,8 @@ export class WorldLocationService {
         id: locationID,
         name: locationName,
         description: locationDescription,
+        characters: locationCharacters,
+        stories: locationStories,
         tags: locationTags,
       }),
     });
