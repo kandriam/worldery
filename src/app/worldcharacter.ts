@@ -1,0 +1,16 @@
+export interface WorldCharacterInfo {
+    id: number;
+    name: string;
+    altNames: string[];
+    description: string;
+
+    pronouns: string;
+    birthdate: string;
+    roles: string[];
+    affiliations: string[];
+    relationships: string[];
+    // events: string[];
+    // locations: string[];
+    stories: string[];
+    tags: string[];
+}

@@ -12,14 +12,6 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
       <section class="event-heading">
         <h2 class="event-title">{{ worldLocation?.name }}</h2>
       </section>
-      <!-- <div class="event-main event-details">
-        <ul>
-          <li>Date: {{ worldEvent?.date }}</li>
-          <li>Locations: {{ worldEvent?.location?.join(', ') }}</li>
-          <li>Characters: {{ worldEvent?.characters?.join(', ') }}</li>
-          <li>Stories: {{ worldEvent?.stories?.join(', ') }}</li>
-        </ul>
-      </div> -->
       <section class="edit-event-form">
         <h2 class="section-heading">Basic Details</h2>
         <form [formGroup]="applyForm" (submit)="submitApplication()">

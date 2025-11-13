@@ -1,0 +1,39 @@
+.character-container {
+  background: var(--accent-color);
+  border-radius: 30px;
+  margin: 5px;
+  padding: 10px;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.character-container:hover {
+  box-shadow: 5px 5px 15px var(--shadow-color);
+}
+
+.character-heading {
+  color: var(--primary-color);
+}
+
+.character-date, .character-alt-names, .character-pronouns, .character-stories, .character-description, .character-tags {
+  font-size: x-small;
+}
+
+.character-alt-names {
+  font-style: italic;
+}
+
+.character-pronouns {
+  font-style: italic;
+}
+
+.character-description {
+  font-style: italic;
+}
+
+.character-stories {
+  font-style: italic;
+}
+
+.character-tags {
+  font-style: italic;
+}

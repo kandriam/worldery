@@ -7,13 +7,17 @@ import { WorldLocation } from "../world-location/world-location";
 import { WorldLocationInfo } from '../worldlocation';
 import { WorldLocationService } from '../services/world-location.service';
 
+import { WorldCharacter } from '../world-character/world-character';
+import { WorldCharacterInfo } from '../worldcharacter';
+import { WorldCharacterService } from '../services/world-character.service';
+
 @Component({
   selector: 'app-home',
-  imports: [WorldEvent, WorldLocation],
+  imports: [WorldEvent, WorldLocation, WorldCharacter],
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Filter by city" #filter (change)="filterResults(filter.value)"/>
+        <input type="text" placeholder="Filter by city" #filter (input)="filterResults(filter.value)"/>
         <!-- <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button> -->
       </form>
     </section>
@@ -40,6 +44,9 @@ import { WorldLocationService } from '../services/world-location.service';
     </div>
     <div class="home-row">
       <!-- Character components would go here -->
+     @for(worldCharacter of filteredCharacterList; track $index) {
+        <app-world-character [worldCharacter]="worldCharacter"></app-world-character>
+      }
     </div>
 
     <div class="home-row-title">
@@ -58,9 +65,14 @@ export class Home {
   worldEvent: WorldEventService = inject(WorldEventService);
   filteredEventList: WorldEventInfo[] = [];
   worldEventList: WorldEventInfo[] = [];
+
   worldLocation: WorldLocationService = inject(WorldLocationService);
   filteredLocationList: WorldLocationInfo[] = [];
   worldLocationList: WorldLocationInfo[] = [];
+
+  worldCharacter: WorldCharacterService = inject(WorldCharacterService);
+  filteredCharacterList: WorldCharacterInfo[] = []
+  worldCharacterList: WorldCharacterInfo[] = [];
 
   constructor() {
     this.worldEvent
@@ -76,19 +88,36 @@ export class Home {
         this.worldLocationList = worldLocationList;
         this.filteredLocationList = worldLocationList;
       });
+    
+      this.worldCharacter
+      .getAllWorldCharacters()
+      .then((worldCharacterList: WorldCharacterInfo[]) => {
+        this.worldCharacterList = worldCharacterList;
+        this.filteredCharacterList = worldCharacterList;
+      });
   }
 
   filterResults(text: string) {
     if (!text) {
       this.filteredEventList = this.worldEventList;
       this.filteredLocationList = this.worldLocationList;
+      this.filteredCharacterList = this.worldCharacterList;
       return;
     }
     this.filteredEventList = this.worldEventList.filter((worldEvent) =>
-      worldEvent?.tags.join(' ').toLowerCase().includes(text.toLowerCase()),
+      worldEvent?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
+      worldEvent?.name.toLowerCase().includes(text.toLowerCase()) ||
+      worldEvent?.description.toLowerCase().includes(text.toLowerCase()),
     );
     this.filteredLocationList = this.worldLocationList.filter((worldLocation) =>
-      worldLocation?.tags.join(' ').toLowerCase().includes(text.toLowerCase()),
+      worldLocation?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
+      worldLocation?.name.toLowerCase().includes(text.toLowerCase()) ||
+      worldLocation?.description.toLowerCase().includes(text.toLowerCase()) ,
+    );
+    this.filteredCharacterList = this.worldCharacterList.filter((worldCharacter) =>
+      worldCharacter?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
+      worldCharacter?.name.toLowerCase().includes(text.toLowerCase()) ||
+      worldCharacter?.description.toLowerCase().includes(text.toLowerCase()),
     );
   }
 }

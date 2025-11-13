@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "Kiara's Birthday",
-      "date": "2103-07-11",
+      "date": "2203-07-11",
       "description": "Kiara is born",
       "location": [
         "Minnesota"
@@ -21,7 +21,7 @@
     {
       "id": "2",
       "name": "Jay's Birthday",
-      "date": "2101-12-26",
+      "date": "2201-12-26",
       "characters": [
         "Judy Han"
       ],
@@ -39,7 +39,7 @@
     {
       "id": "3",
       "name": "Cassandra's Birthday",
-      "date": "2100-06-01",
+      "date": "2200-06-01",
       "characters": [
         "Cassandra Edwards"
       ],
@@ -57,7 +57,7 @@
     {
       "id": "4",
       "name": "Rudy's Birthday",
-      "date": "2100-06-01",
+      "date": "2200-06-01",
       "characters": [
         "Rudy Edwards"
       ],
@@ -75,7 +75,7 @@
     {
       "id": "5",
       "name": "Willow's Birthday",
-      "date": "2102-04-02",
+      "date": "2202-04-02",
       "characters": [
         "Willow Rivera-Anderson"
       ],
@@ -93,7 +93,7 @@
     {
       "id": "6",
       "name": "Matthew's Birthday",
-      "date": "2101-04-16",
+      "date": "2201-04-16",
       "characters": [
         "Matthew Rivera-Anderson"
       ],
@@ -148,7 +148,7 @@
     {
       "id": "2",
       "name": "Sunday Brunch",
-      "description": "Cafe which serves as a front for the Soldiers of Rebellion.",
+      "description": "Cafe which serves as a front for the Soldiers of Rebellion. Owned by Cassandra and Rudy Edwards.",
       "characters": [
         "Rudy Edwards",
         "Cassandra Edwards",
@@ -205,6 +205,99 @@
       "tags": [
         "tea"
       ]
+    }
+  ],
+  "worldcharacters": [
+    {
+      "id": "1",
+      "name": "Kiara Ravao",
+      "altNames": ["Phoenix", "Ki"],
+      "description": "pyrokinetic abilities.",
+      "pronouns": "she/they",
+      "birthdate": "2203-07-11",
+      "roles": ["Protagonist", "Superhero", "Student"],
+      "affiliations": ["Team Phoenix (Book 1)", "SafeHouse (Book 2)"],
+      "relationships": ["Judy Han (Romantic Partner)", "Willow Rivera-Anderson (Best Friend)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
+    },
+    {
+      "id": "2",
+      "name": "Judy Han",
+      "altNames": ["Jay"],
+      "description": "cryokinetic abilities.",
+      "pronouns": "she/they",
+      "birthdate": "2201-12-26",
+      "roles": ["Protagonist", "Vigilante"],
+      "affiliations": ["Soldiers of Rebellion (Book 1)", "SafeHouse (Book 2)"],
+      "relationships": ["Kiara Ravao (Romantic Partner)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
+    },
+    {
+      "id": "3",
+      "name": "Cassandra Edwards",
+      "altNames": ["Cassie"],
+      "description": "illusionist abilities.",
+      "pronouns": "she/her",
+      "birthdate": "2200-06-01",
+      "roles": ["Vigilante"],
+      "affiliations": ["Soldiers of Rebellion"],
+      "relationships": ["Rudy Edwards (Twin)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
+    },
+    {
+      "id": "4",
+      "name": "Rudy Edwards",
+      "altNames": ["Rue"],
+      "description": "telepathic abilities.",
+      "pronouns": "she/her",
+      "birthdate": "2200-06-01",
+      "roles": ["Vigilante"],
+      "affiliations": ["Soldiers of Rebellion"],
+      "relationships": ["Cassandra Edwards (Twin)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
+    },
+    {
+      "id": "5",
+      "name": "Willow Rivera-Anderson",
+      "altNames": ["Will"],
+      "description": "no Gift.",
+      "pronouns": "she/they",
+      "birthdate": "2202-04-02",
+      "roles": ["Support Character"],
+      "affiliations": ["Team Phoenix"],
+      "relationships": ["Matthew Rivera-Anderson (Sibling)", "Leo Deng (Romantic Partner)", "Kiara Ravao (Best Friend)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
+    },
+    {
+      "id": "6",
+      "name": "Matthew Rivera-Anderson",
+      "altNames": ["Matt"],
+      "description": "invisibility abilities.",
+      "pronouns": "he/him",
+      "birthdate": "2201-04-16",
+      "roles": ["Support Character"],
+      "affiliations": ["Team Phoenix"],
+      "relationships": ["Willow Rivera-Anderson (Sibling)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
+    },
+    {
+      "id": "7",
+      "name": "Leo Deng",
+      "altNames": [],
+      "description": "super strength and hyposensitivity.",
+      "pronouns": "she/her",
+      "birthdate": "2199-11-30",
+      "roles": ["Support Character", "Cafe Owner"],
+      "affiliations": [],
+      "relationships": ["Willow Rivera-Anderson (Romantic Partner)"],
+      "stories": ["Fire & Ice"],
+      "tags": []
     }
   ]
 }

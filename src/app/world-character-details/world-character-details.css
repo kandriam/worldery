@@ -1,0 +1,47 @@
+
+.character-heading {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.character-description {
+  margin-bottom: 25px;
+}
+
+.character-details {
+  border: 1px solid var(--primary-color);
+}
+
+
+.character-location {
+  font-size: 24pt;
+  margin-bottom: 15px;
+}
+label, input {
+  display: block;
+}
+label {
+  color: var(--secondary-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12pt;
+}
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 400px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid .3px;
+}
+textarea {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 400px;
+  height: fit-content;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid .3px;
+}
