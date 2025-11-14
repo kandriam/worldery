@@ -12,9 +12,10 @@ import {RouterLink, RouterOutlet } from '@angular/router';
       <p class="event-description">{{ worldEvent().description }}</p>
       <!-- <p class="event-location">{{ worldEvent().location.join(', ') }}</p>
       <p class="event-characters">{{ worldEvent().characters.join(', ') }}</p>
-      <p class="event-stories">{{ worldEvent().stories.join(', ') }}</p>
-      <p class="event-tags">{{ worldEvent().tags.join(', ') }}</p> -->
-      <a [routerLink]="['/event-details', worldEvent().id]" class="details-button">Learn More</a>
+      <p class="event-stories">{{ worldEvent().stories.join(', ') }}</p> -->
+      @for (tag of worldEvent().tags; track tag) {
+        <span class="home-tags">{{ tag }}</span>
+      }
     </div>
   `,
   styleUrls: ['./world-event.css', '../../styles.css'],

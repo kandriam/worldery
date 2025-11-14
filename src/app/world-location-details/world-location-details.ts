@@ -13,7 +13,6 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
         <h2 class="location-title">{{ worldLocation?.name }}</h2>
       </section>
       <section class="edit-location-form">
-        <h2 class="section-heading">Basic Details</h2>
         <form [formGroup]="applyForm" (submit)="submitApplication()">
           <div>
             <label for="location-title">Location Title</label>

@@ -11,13 +11,17 @@ import { WorldCharacter } from '../world-character/world-character';
 import { WorldCharacterInfo } from '../worldcharacter';
 import { WorldCharacterService } from '../services/world-character.service';
 
+import { WorldStory } from '../world-story/world-story';
+import { WorldStoryInfo } from '../worldstory';
+import { WorldStoryService } from '../services/world-story.service';
+
 @Component({
   selector: 'app-home',
-  imports: [WorldEvent, WorldLocation, WorldCharacter],
+  imports: [WorldEvent, WorldLocation, WorldCharacter, WorldStory],
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Filter by city" #filter (input)="filterResults(filter.value)"/>
+        <input type="text" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
         <!-- <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button> -->
       </form>
     </section>
@@ -54,6 +58,9 @@ import { WorldCharacterService } from '../services/world-character.service';
     </div>
     <div class="home-row">
       <!-- Story components would go here -->
+      @for(worldStory of filteredStoryList; track $index) {
+        <app-world-story [worldStory]="worldStory"></app-world-story>
+      }
     </div>
 
     
@@ -73,6 +80,10 @@ export class Home {
   worldCharacter: WorldCharacterService = inject(WorldCharacterService);
   filteredCharacterList: WorldCharacterInfo[] = []
   worldCharacterList: WorldCharacterInfo[] = [];
+
+  worldStory: WorldStoryService = inject(WorldStoryService);
+  worldStoryList: WorldStoryInfo[] = [];
+  filteredStoryList: WorldStoryInfo[] = [];
 
   constructor() {
     this.worldEvent
@@ -95,6 +106,13 @@ export class Home {
         this.worldCharacterList = worldCharacterList;
         this.filteredCharacterList = worldCharacterList;
       });
+
+    this.worldStory
+      .getAllWorldStories()
+      .then((worldStoryList: WorldStoryInfo[]) => {
+        this.worldStoryList = worldStoryList;
+        this.filteredStoryList = worldStoryList;
+      });
   }
 
   filterResults(text: string) {
@@ -116,8 +134,13 @@ export class Home {
     );
     this.filteredCharacterList = this.worldCharacterList.filter((worldCharacter) =>
       worldCharacter?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.name.toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.description.toLowerCase().includes(text.toLowerCase()),
+      worldCharacter?.firstName.toLowerCase().includes(text.toLowerCase()) ||
+      worldCharacter?.lastName.toLowerCase().includes(text.toLowerCase())
     );
+    this.filteredStoryList = this.worldStoryList.filter((worldStory) =>
+      worldStory?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
+      worldStory?.title.toLowerCase().includes(text.toLowerCase()) ||
+      worldStory?.description.toLowerCase().includes(text.toLowerCase()),
+    ); 
   }
 }

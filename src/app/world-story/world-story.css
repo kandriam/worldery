@@ -1,0 +1,39 @@
+.story-container {
+  background: var(--accent-color);
+  border-radius: 30px;
+  margin: 5px;
+  padding: 10px;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.story-container:hover {
+  box-shadow: 5px 5px 15px var(--shadow-color);
+}
+
+.story-heading {
+  color: var(--primary-color);
+}
+
+.story-date, .story-alt-names, .story-pronouns, .story-stories, .story-description, .story-tags {
+  font-size: x-small;
+}
+
+.story-alt-names {
+  font-style: italic;
+}
+
+.story-pronouns {
+  font-style: italic;
+}
+
+.story-description {
+  font-style: italic;
+}
+
+.story-stories {
+  font-style: italic;
+}
+
+.story-tags {
+  font-style: italic;
+}

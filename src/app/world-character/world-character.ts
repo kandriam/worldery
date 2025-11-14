@@ -7,11 +7,12 @@ import {RouterLink, RouterOutlet } from '@angular/router';
   imports: [RouterLink, RouterOutlet],
   template: `
     <div class="character-container" [routerLink]="['/character-details', worldCharacter().id]">
-      <h4 class="character-heading">{{ worldCharacter().name }}</h4>
+      <h4 class="character-heading">{{ worldCharacter().firstName }} {{ worldCharacter().lastName }} </h4>
       <p class="character-alt-names">{{ worldCharacter().altNames.join(', ') }}</p>
       <p class="character-pronouns">{{ worldCharacter().pronouns }}</p>
-      <p class="character-description">{{ worldCharacter().description }}</p>
-      <a [routerLink]="['/character-details', worldCharacter().id]" class="details-button">Learn More</a>
+      @for (tag of worldCharacter().tags; track tag) {
+        <span class="home-tags">{{ tag }}</span>
+      }
     </div>
   `,
   styleUrls: ['./world-character.css', '../../styles.css'],

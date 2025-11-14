@@ -210,13 +210,14 @@
   "worldcharacters": [
     {
       "id": "1",
-      "name": "Kiara Ravao",
+      "firstName": "Kiara",
+      "lastName": "Ravao",
       "altNames": [
         "Phoenix",
         "Ki"
       ],
-      "birthdate": "she/they",
-      "pronouns": "2203-07-11",
+      "birthdate": "2203-07-11",
+      "pronouns": "she/they",
       "roles": [
         "Protagonist",
         "Superhero",
@@ -230,21 +231,25 @@
         "Judy Han (Romantic Partner)",
         "Willow Rivera-Anderson (Best Friend)"
       ],
-      "description": "pyrokinetic abilities.",
+      "physicalDescription": "Curly black hair, brown eyes, Malagasy",
+      "nonPhysicalDescription": "pyrokinetic abilities.",
       "stories": [
         "Fire & Ice"
       ],
       "tags": [
-        ""
+        "Gifted"
       ]
     },
     {
       "id": "2",
-      "name": "Judy Han",
+      "firstName": "Judy",
+      "lastName": "Han",
       "altNames": [
+        "Frostbite",
         "Jay"
       ],
-      "description": "cryokinetic abilities.",
+      "physicalDescription":"Straight, white hair, gray eyes, Korean-American",
+      "nonPhysicalDescription": "cryokinetic abilities.",
       "pronouns": "she/they",
       "birthdate": "2201-12-26",
       "roles": [
@@ -261,15 +266,19 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Gifted"
+      ]
     },
     {
       "id": "3",
-      "name": "Cassandra Edwards",
+      "firstName": "Cassandra",
+      "lastName": "Edwards",
       "altNames": [
         "Cassie"
       ],
-      "description": "illusionist abilities.",
+      "physicalDescription": "Purple hair, gray eyes, Caucasian",
+      "nonPhysicalDescription": "illusionist abilities.",
       "pronouns": "she/her",
       "birthdate": "2200-06-01",
       "roles": [
@@ -284,15 +293,19 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Gifted"
+      ]
     },
     {
       "id": "4",
-      "name": "Rudy Edwards",
+      "firstName": "Rudy",
+      "lastName": "Edwards",
       "altNames": [
         "Rue"
       ],
-      "description": "telepathic abilities.",
+      "physicalDescription": "Purple hair, gray eyes, Caucasian",
+      "nonPhysicalDescription": "telepathic abilities.",
       "pronouns": "she/her",
       "birthdate": "2200-06-01",
       "roles": [
@@ -307,15 +320,19 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Gifted"
+      ]
     },
     {
       "id": "5",
-      "name": "Willow Rivera-Anderson",
+      "firstName": "Willow",
+      "lastName": "Rivera-Anderson",
       "altNames": [
         "Will"
       ],
-      "description": "no Gift.",
+      "physicalDescription": "Red hair, green eyes, mixed white and Latina",
+      "nonPhysicalDescription": "Non-Gift.",
       "pronouns": "she/they",
       "birthdate": "2202-04-02",
       "roles": [
@@ -332,15 +349,19 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Non-Gifted"
+      ]
     },
     {
       "id": "6",
-      "name": "Matthew Rivera-Anderson",
+      "firstName": "Matthew",
+      "lastName": "Rivera-Anderson",
       "altNames": [
         "Matt"
       ],
-      "description": "invisibility abilities.",
+      "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
+      "nonPhysicalDescription": "invisibility abilities.",
       "pronouns": "he/him",
       "birthdate": "2201-04-16",
       "roles": [
@@ -355,13 +376,17 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Gifted"
+      ]
     },
     {
       "id": "7",
-      "name": "Leo Deng",
+      "firstName": "Leo",
+      "lastName": "Deng",
       "altNames": [],
-      "description": "super strength and hyposensitivity.",
+      "physicalDescription": "Black hair, brown eyes, Asian-American",
+      "nonPhysicalDescription": "super strength and hyposensitivity.",
       "pronouns": "she/her",
       "birthdate": "2199-11-30",
       "roles": [
@@ -375,7 +400,51 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "Gifted"
+      ]
+    }
+  ],
+  "worldstories": [
+    {
+      "id": "1",
+      "title": "Fire & Ice",
+      "description": "In a near-future world where individuals possess extraordinary abilities known as 'Gifts,",
+      "characters": [
+        "Kiara Ravao",
+        "Judy Han",
+        "Cassandra Edwards",
+        "Rudy Edwards",
+        "Willow Rivera-Anderson",
+        "Matthew Rivera-Anderson",
+        "Leo Deng"
+      ],
+      "locations": [
+        "Jayara Apartment",
+        "Sunday Brunch",
+        "SafeHouse",
+        "Rivera-Anderson Family House",
+        "Cat's Tea"
+      ],
+      "tags": [
+        "Fire & Ice",
+        "Book 1",
+        "Dystopian",
+        "Superheroes"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Blood & Water",
+      "description": "",
+      "characters": [],
+      "locations": [],
+      "tags": [
+        "Fire & Ice",
+        "Book 2",
+        "Dystopian",
+        "Superheroes"
+      ]
     }
   ]
 }

@@ -8,11 +8,23 @@ body {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
 :root {
-  --primary-color: #283618;
-  --secondary-color: #606c38;
-  --background-color: #fefae0;
-  --accent-color: #dda15e;
-  --shadow-color: #bc6c25;
+  --b1-color: #582f0e;
+  --b2-color: #7f4f24;
+  --b3-color: #936639;
+  --b4-color: #a68a64;
+  --b5-color: #b6ad90;
+  
+  --g1-color: #333d29;
+  --g2-color: #414833;
+  --g3-color: #656d4a;
+  --g4-color: #a4ac86;
+  --g5-color: #c2c5aa;
+  
+  --primary-color: var(--g1-color);
+  --secondary-color: var(--b2-color);
+  --background-color: var(--b5-color);
+  --accent-color: var(--g4-color);
+  --shadow-color: var(--b1-color);
 }
 
 button.primary {
@@ -28,11 +40,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
 }
 
+.app-title {
+  font-size: 3rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-decoration: underline var(--g4-color);
+}
+
 h1 {
   font-size: 2.5rem;
   text-decoration: none;
-  color: var(--secondary-color);
-  text-decoration: underline var(--shadow-color);
 }
 
 h2 {
@@ -114,4 +132,35 @@ a {
   height: 16px;
   margin-right: 5px;
   vertical-align: middle;
+}
+
+.details-section {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 2px solid;
+  border-top: 2px solid;
+  border-radius: 5px;
+}
+
+.details-subsection {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 2px solid;
+  border-top: 2px solid ;
+  border-radius: 5px;
+}
+
+.home-tags {
+  margin: 10px;
+  padding: 5px;
+  font-size: x-small;
+  color: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.home-tags:hover {
+  background: var(--accent-color);
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }

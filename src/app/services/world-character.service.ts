@@ -17,18 +17,20 @@ export class WorldCharacterService {
       return characterJson[0] ?? {};
     }
 
-  updateWorldCharacter(characterID: number, characterName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: string[], characterDescription: string, characterStories: string[], characterTags: string[]) {
+  updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: string[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
-      characterName: ${characterName},
+      characterFirstName: ${characterFirstName},
+      characterLastName: ${characterLastName},
       characterAltNames: ${characterAltNames},
       characterBirthdate: ${characterBirthdate},
       characterPronouns: ${characterPronouns},
       characterRoles: ${characterRoles},
       characterAffiliations: ${characterAffiliations},
       characterRelationships: ${characterRelationships},
-      characterDescription: ${characterDescription},
+      characterPhysicalDescription: ${characterPhysicalDescription},
+      characterNonPhysicalDescription: ${characterNonPhysicalDescription},
       characterStories: ${characterStories},
       characterTags: ${characterTags}.`,
     );
@@ -39,14 +41,16 @@ export class WorldCharacterService {
       },
       body: JSON.stringify({
         id: characterID,
-        name: characterName,
+        firstName: characterFirstName,
+        lastName: characterLastName,
         altNames: characterAltNames,
         birthdate: characterBirthdate,
         pronouns: characterPronouns,
         roles: characterRoles,
         affiliations: characterAffiliations,
         relationships: characterRelationships,
-        description: characterDescription,
+        physicalDescription: characterPhysicalDescription,
+        nonPhysicalDescription: characterNonPhysicalDescription,
         stories: characterStories,
         tags: characterTags,
       }),

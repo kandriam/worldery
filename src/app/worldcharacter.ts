@@ -1,8 +1,11 @@
 export interface WorldCharacterInfo {
     id: number;
-    name: string;
+    // name: string;
+    firstName: string;
+    lastName: string;
     altNames: string[];
-    description: string;
+    physicalDescription: string;
+    nonPhysicalDescription: string;
 
     pronouns: string;
     birthdate: string;

@@ -21,7 +21,6 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
         </ul>
       </div> -->
       <section class="edit-event-form">
-        <h2 class="section-heading">Event</h2>
         <form [formGroup]="applyForm" (submit)="submitApplication()">
           <div>
             <label for="event-title">Event Title</label>

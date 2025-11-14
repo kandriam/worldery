@@ -11,9 +11,10 @@ import {RouterLink, RouterOutlet } from '@angular/router';
       <p class="world-description">{{ worldLocation().description }}</p>
       <!-- <p class="world-location">{{ worldLocation().location.join(', ') }}</p>
       <p class="world-characters">{{ worldLocation().characters.join(', ') }}</p>
-      <p class="world-stories">{{ worldLocation().stories.join(', ') }}</p>
-      <p class="world-tags">{{ worldLocation().tags.join(', ') }}</p> -->
-      <a [routerLink]="['/location-details', worldLocation().id]" class="details-button">Learn More</a>
+      <p class="world-stories">{{ worldLocation().stories.join(', ') }}</p> -->
+      @for (tag of worldLocation().tags; track tag) {
+        <span class="home-tags">{{ tag }}</span>
+      }
     </div>
   `,
   styleUrls: ['./world-location.css', '../../styles.css']
