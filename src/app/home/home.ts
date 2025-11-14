@@ -27,6 +27,7 @@ import { WorldStoryService } from '../services/world-story.service';
     </section>
     <div class="home-row-title">
       <h2>Timeline</h2>
+      <button class="primary">Add Event</button>
     </div>
     <div class="home-row">
       @for(worldEvent of filteredEventList; track $index) {

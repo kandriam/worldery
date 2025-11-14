@@ -89,6 +89,13 @@ button.primary {
   border-radius: 8px;
 }
 
+.home-row button.primary {
+  margin-right: 4px;
+  display: inline-block;
+  width: auto;
+  background-color: pink;
+}
+
 .details-button {
   background: var(--accent-color);
   color: var(--secondary-color);
@@ -269,15 +276,14 @@ textarea {
   padding: 10px;
   border-bottom: 2px solid;
   border-top: 2px solid;
-  border-color: var(--g3-color);
   border-radius: 5px;
 }
 
-.details-subsection {
-  margin: 10px;
-  padding: 10px;
-  border-bottom: 2px solid;
-  border-top: 2px solid ;
+.primary-section {
+  border-color: var(--g3-color);
+
+}
+
+.secondary-section {
   border-color: var(--g4-color);
-  border-radius: 5px;
 }

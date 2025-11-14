@@ -7,44 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'app-details',
   imports: [ReactiveFormsModule],
-  template: `
-    <article>
-      <section class="details-heading">
-        <h2 class="event-title">{{ worldEvent?.name }}</h2>
-      </section>
-      <!-- <div class="event-main event-details">
-        <ul>
-          <li>Date: {{ worldEvent?.date }}</li>
-          <li>Locations: {{ worldEvent?.location?.join(', ') }}</li>
-          <li>Characters: {{ worldEvent?.characters?.join(', ') }}</li>
-          <li>Stories: {{ worldEvent?.stories?.join(', ') }}</li>
-        </ul>
-      </div> -->
-      <section class="edit-event-form">
-        <form [formGroup]="applyForm" (submit)="submitApplication()">
-          <div>
-            <label for="event-title">Event Title</label>
-            <input id="event-title" type="text" formControlName="eventTitle" />
-            <label for="event-date">Event Date</label>
-            <input id="event-date" type="text" formControlName="eventDate" />
-          </div>
-          <label for="event-description">Event Description</label>
-          <textarea id="event-description" formControlName="eventDescription"></textarea>
-          <div>
-            <label for="event-location">Event Location</label>
-            <input id="event-location" type="text" formControlName="eventLocation" />
-            <label for="event-characters">Event Characters</label>
-            <input id="event-characters" type="text" formControlName="eventCharacters" />
-            <label for="event-stories">Event Stories</label>
-            <input id="event-stories" type="text" formControlName="eventStories" />
-            <label for="event-tags">Event Tags</label>
-            <input id="event-tags" type="text" formControlName="eventTags" />
-          </div>
-          <button type="submit" class="primary">Save Details</button>
-        </form>
-      </section>
-    </article>
-  `,
+  templateUrl: 'event-details.html',
   styleUrls: ["./event-details.css", "../../styles.css"],
 })
 

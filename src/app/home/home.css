@@ -2,6 +2,9 @@
   /* border: 2px solid var(--primary-color);  */
   /* color: var(--secondary-color); */
   font: italic;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .home-row {
   display: flex;

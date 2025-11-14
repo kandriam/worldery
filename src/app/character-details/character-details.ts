@@ -7,53 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'app-details',
   imports: [ReactiveFormsModule],
-  template: `
-    <article>
-      <section class="details-heading">
-        <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
-        <h3>( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
-      </section>
-      <section class="edit-character-form">
-        <form [formGroup]="applyForm" (submit)="submitApplication()">
-          <div class="details-subsection">
-            <label for="character-first-name">Name</label>
-            <input id="character-first-name" type="text" formControlName="characterFirstName" />
-            <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Firstname"/>
-            
-            <label for="character-alt-names">Alternate Names</label>
-            <input id="character-alt-names" type="text" formControlName="characterAltNames" />
-            
-            <label for="character-pronouns">Pronouns</label>
-            <input id="character-pronouns" type="text" formControlName="characterPronouns" />
-            
-            <label for="character-birthdate">Birthdate</label>
-            <input id="character-birthdate" type="text" formControlName="characterBirthdate" />
-          </div>
-          <div class="details-section">
-            <label for="character-physical-description">Physical Description</label>
-            <textarea id="character-physical-description" formControlName="characterPhysicalDescription"></textarea>
-            <label for="character-non-physical-description">Non-Physical Description</label>
-            <textarea id="character-non-physical-description" formControlName="characterNonPhysicalDescription"></textarea>
-          </div>
-          <div class="details-subsection">
-            <label for="roles">Roles</label>
-            <input id="roles" type="text" formControlName="characterRoles" />
-            <label for="character-relationships">Relationships</label>
-            <input id="character-relationships" type="text" formControlName="characterRelationships" />
-          </div>
-          <div class="details-section">
-            <label for="character-affiliations">Affiliations</label>
-            <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
-            <label for="character-stories">Stories</label>
-            <input id="character-stories" type="text" formControlName="characterStories" />
-            <label for="character-tags">Tags</label>
-            <input id="character-tags" type="text" formControlName="characterTags" />
-          </div>
-          <button type="submit" class="primary">Save Details</button>
-        </form>
-      </section>
-    </article>
-  `,
+  templateUrl: "character-details.html",
   styleUrls: ["./character-details.css", "../../styles.css"],
 })
 
