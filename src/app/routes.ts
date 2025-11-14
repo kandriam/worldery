@@ -1,9 +1,9 @@
 import {Routes} from '@angular/router';
 import {Home} from './home/home';
-import {WorldEventDetails} from './world-event-details/world-event-details';
-import { WorldLocationDetails } from './world-location-details/world-location-details';
-import { WorldCharacterDetails } from './world-character-details/world-character-details';
-import { WorldStoryDetails } from './world-story-details/world-story-details';
+import {WorldEventDetails} from './event-details/event-details';
+import { WorldLocationDetails } from './location-details/location-details';
+import { WorldCharacterDetails } from './character-details/character-details';
+import { WorldStoryDetails } from './story-details/story-details';
 
 const routeConfig: Routes = [
   {

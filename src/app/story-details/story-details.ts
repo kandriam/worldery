@@ -33,7 +33,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
       </section>
     </article>
   `,
-  styleUrls: ["./world-story-details.css", "../../styles.css"],
+  styleUrls: ["./story-details.css", "../../styles.css"],
 })
 
 export class WorldStoryDetails {

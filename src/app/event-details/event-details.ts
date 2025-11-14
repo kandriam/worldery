@@ -45,7 +45,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
       </section>
     </article>
   `,
-  styleUrls: ["./world-event-details.css", "../../styles.css"],
+  styleUrls: ["./event-details.css", "../../styles.css"],
 })
 
 export class WorldEventDetails {
