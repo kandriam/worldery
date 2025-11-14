@@ -18,54 +18,7 @@ import { WorldStoryService } from '../services/world-story.service';
 @Component({
   selector: 'app-home',
   imports: [WorldEvent, WorldLocation, WorldCharacter, WorldStory],
-  template: `
-    <section>
-      <form>
-        <input type="text" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-        <!-- <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button> -->
-      </form>
-    </section>
-    <div class="home-row-title">
-      <h2>Timeline</h2>
-      <button class="primary">Add Event</button>
-    </div>
-    <div class="home-row">
-      @for(worldEvent of filteredEventList; track $index) {
-        <app-world-event [worldEvent]="worldEvent"></app-world-event>
-      }
-    </div>
-
-    <div class="home-row-title">
-      <h2>World</h2>
-    </div>
-    <div class="home-row">
-      @for(worldLocation of filteredLocationList; track $index) {
-        <app-world-location [worldLocation]="worldLocation"></app-world-location>
-      }
-    </div> 
-
-    <div class="home-row-title">
-      <h2>Characters</h2>
-    </div>
-    <div class="home-row">
-      <!-- Character components would go here -->
-     @for(worldCharacter of filteredCharacterList; track $index) {
-        <app-world-character [worldCharacter]="worldCharacter"></app-world-character>
-      }
-    </div>
-
-    <div class="home-row-title">
-      <h2>Stories</h2>
-    </div>
-    <div class="home-row">
-      <!-- Story components would go here -->
-      @for(worldStory of filteredStoryList; track $index) {
-        <app-world-story [worldStory]="worldStory"></app-world-story>
-      }
-    </div>
-
-    
-  `,
+  templateUrl: 'home.html',
   styleUrls: ['./home.css', '../../styles.css'],
 })
 
