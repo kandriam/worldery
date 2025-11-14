@@ -89,8 +89,8 @@ export class Home {
     this.worldEvent
       .getAllWorldEvents()
       .then((worldEventList: WorldEventInfo[]) => {
-        this.worldEventList = worldEventList;
-        this.filteredEventList = worldEventList;
+        this.worldEventList = worldEventList.sort((a, b) => (a.date > b.date ? 1 : -1));
+        this.filteredEventList = this.worldEventList;
       });
 
     this.worldLocation

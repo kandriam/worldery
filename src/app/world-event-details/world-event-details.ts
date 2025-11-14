@@ -9,7 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
   imports: [ReactiveFormsModule],
   template: `
     <article>
-      <section class="event-heading">
+      <section class="details-heading">
         <h2 class="event-title">{{ worldEvent?.name }}</h2>
       </section>
       <!-- <div class="event-main event-details">

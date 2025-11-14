@@ -9,7 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
   imports: [ReactiveFormsModule],
   template: `
     <article>
-      <section class="character-heading">
+      <section class="details-heading">
         <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
         <h3>( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
       </section>
@@ -18,11 +18,14 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
           <div class="details-subsection">
             <label for="character-first-name">Name</label>
             <input id="character-first-name" type="text" formControlName="characterFirstName" />
-            <input id="character-last-name" type="text" formControlName="characterLastName" />
+            <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Firstname"/>
+            
             <label for="character-alt-names">Alternate Names</label>
             <input id="character-alt-names" type="text" formControlName="characterAltNames" />
+            
             <label for="character-pronouns">Pronouns</label>
             <input id="character-pronouns" type="text" formControlName="characterPronouns" />
+            
             <label for="character-birthdate">Birthdate</label>
             <input id="character-birthdate" type="text" formControlName="characterBirthdate" />
           </div>

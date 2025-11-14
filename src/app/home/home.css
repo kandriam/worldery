@@ -7,11 +7,10 @@
   display: flex;
   overflow: auto;
   white-space: nowrap;
-  /* grid-template-columns: repeat(auto-fill, minmax(400px, 400px)); */
   padding: 5px;
   justify-content: space-around;
   border: 2px solid var(--primary-color);
-  border-radius: 1px 1px 15px 15px;
+  border-radius: 1px 1px 10px 10px;
 }
 
 input[type="text"] {

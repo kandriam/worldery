@@ -6,13 +6,15 @@ import {RouterLink, RouterOutlet } from '@angular/router';
   selector: 'app-world-character',
   imports: [RouterLink, RouterOutlet],
   template: `
-    <div class="character-container" [routerLink]="['/character-details', worldCharacter().id]">
-      <h4 class="character-heading">{{ worldCharacter().firstName }} {{ worldCharacter().lastName }} </h4>
-      <p class="character-alt-names">{{ worldCharacter().altNames.join(', ') }}</p>
-      <p class="character-pronouns">{{ worldCharacter().pronouns }}</p>
-      @for (tag of worldCharacter().tags; track tag) {
-        <span class="home-tags">{{ tag }}</span>
-      }
+    <div class="character-thumbnail world-thumbnail" [routerLink]="['/character-details', worldCharacter().id]">
+      <h4 class="thumbnail-title">{{ worldCharacter().firstName }} {{ worldCharacter().lastName }} </h4>
+      <p class="thumbnail-alt-names">{{ worldCharacter().altNames.join(', ') }}</p>
+      <p class="thumbnail-pronouns">{{ worldCharacter().pronouns }}</p>
+      <div class="thumbnail-tag-container">
+        @for (tag of worldCharacter().tags; track tag) {
+          <div class="world-tags">{{ tag }}</div>
+        }
+      </div>
     </div>
   `,
   styleUrls: ['./world-character.css', '../../styles.css'],

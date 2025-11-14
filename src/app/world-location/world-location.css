@@ -1,42 +1,5 @@
-.world-container {
-  background: var(--accent-color);
-  border-radius: 30px;
-  margin: 5px;
-  padding: 10px;
-  transition: box-shadow 0.5s ease-in-out;
-}
-
-.world-container:hover {
-  box-shadow: 5px 5px 15px var(--shadow-color);
-}
-
-.world-heading {
-  color: var(--primary-color);
-}
-
-.world-date, .world-location, .world-characters, .world-stories, .world-description, .world-tags {
-  font-size: x-small;
-}
-.world-date {
-  font-style: italic;
-}
-
-.world-location {
-  font-style: italic;
-}
-
-.world-characters {
-  font-style: italic;
-}
-
-.world-description {
-  font-style: italic;
-}
-
-.world-stories {
-  font-style: italic;
-}
-
-.world-tags {
-  font-style: italic;
+.location-thumbnail {
+  /* width: fit-content; */
+  width: 20rem;
+  height: 8rem;
 }

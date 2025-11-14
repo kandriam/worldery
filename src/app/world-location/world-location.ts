@@ -6,15 +6,17 @@ import {RouterLink, RouterOutlet } from '@angular/router';
   selector: 'app-world-location',
   imports: [RouterLink, RouterOutlet],
   template: `
-    <div class="world-container" [routerLink]="['/location-details', worldLocation().id]">
-      <h4 class="world-heading">{{ worldLocation().name }}</h4>
-      <p class="world-description">{{ worldLocation().description }}</p>
+    <div class="location-thumbnail world-thumbnail" [routerLink]="['/location-details', worldLocation().id]">
+      <h4 class="thumbnail-title">{{ worldLocation().name }}</h4>
+      <div class="world-description">{{ worldLocation().description }}</div>
       <!-- <p class="world-location">{{ worldLocation().location.join(', ') }}</p>
       <p class="world-characters">{{ worldLocation().characters.join(', ') }}</p>
       <p class="world-stories">{{ worldLocation().stories.join(', ') }}</p> -->
-      @for (tag of worldLocation().tags; track tag) {
-        <span class="home-tags">{{ tag }}</span>
-      }
+      <div class="thumbnail-tag-container">
+        @for (tag of worldLocation().tags; track tag) {
+          <div class="world-tags">{{ tag }}</div>
+        }
+      </div>
     </div>
   `,
   styleUrls: ['./world-location.css', '../../styles.css']

@@ -1,25 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-* {
-  margin: 0;
-  padding: 0;
-}
+/* ============================================================================
+   WORLDERY - Global Styles
+   Global styles and CSS custom properties for the Worldery application
+   ============================================================================ */
 
-body {
-  font-family: 'Be Vietnam Pro', sans-serif;
-}
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (Variables)
+   ============================================================================ */
 :root {
+  /* Brown Color Palette */
   --b1-color: #582f0e;
   --b2-color: #7f4f24;
   --b3-color: #936639;
   --b4-color: #a68a64;
   --b5-color: #b6ad90;
   
+  /* Green Color Palette */
   --g1-color: #333d29;
   --g2-color: #414833;
   --g3-color: #656d4a;
   --g4-color: #a4ac86;
   --g5-color: #c2c5aa;
   
+  /* Semantic Color Variables */
   --primary-color: var(--g1-color);
   --secondary-color: var(--b2-color);
   --background-color: var(--b5-color);
@@ -27,25 +29,30 @@ body {
   --shadow-color: var(--b1-color);
 }
 
-button.primary {
-  padding: 10px;
-  border: solid 1px var(--primary-color);
-  background: var(--primary-color);
-  color: white;
-  border-radius: 8px;
+/* ============================================================================
+   GLOBAL RESET & BASE STYLES
+   ============================================================================ */
+* {
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: var(--g5-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Be Vietnam Pro', sans-serif;
   color: var(--primary-color);
-}
-
-.app-title {
-  font-size: 3rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-weight: bold;
-  color: var(--secondary-color);
-  text-decoration: underline var(--g4-color);
 }
 
 h1 {
@@ -58,9 +65,28 @@ h2 {
   /* margin-bottom: 10px; */
 }
 
-a {
-  color: inherit;
-  text-decoration: inherit;
+.app-title {
+  font-size: 3rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-decoration: underline var(--g4-color);
+  transition: text-shadow 0.5s ease-in-out;
+}
+
+.app-title:hover {
+  text-shadow: var(--b3-color) 2px 2px 5px;
+}
+
+/* ============================================================================
+   BUTTON STYLES
+   ============================================================================ */
+button.primary {
+  padding: 10px;
+  border: solid 1px var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 8px;
 }
 
 .details-button {
@@ -80,78 +106,122 @@ a {
   background: var(--shadow-color);
   box-shadow: 3px 3px 10px var(--shadow-color);
 }
-/* Icons */
 
-.event-location::before {
+/* ============================================================================
+   FORM ELEMENTS
+   ============================================================================ */
+label, input, textarea {
+  display: block;
+}
+
+label {
+  color: var(--secondary-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12pt;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 400px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid .3px;
+  background-color: inherit;
+}
+
+textarea {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 400px;
+  height: fit-content;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid .3px;
+  background-color: inherit;
+  resize: none;
+}
+
+/* ============================================================================
+   SCROLLBAR STYLES
+   ============================================================================ */
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 15px;
+}
+
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: var(--b4-color);
+  border-radius: 15px;
+}
+
+/* Scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--b3-color);
+}
+
+/* ============================================================================
+   ICON STYLES (Before Pseudo-elements)
+   ============================================================================ */
+.world-location::before {
   content: '📍';
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin-right: 5px;
+  margin-right: 2px;
   vertical-align: middle;
 }
 
-.event-characters::before {
+.world-characters::before {
   content: '👥';
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin-right: 5px;
+  margin-right: 2px;
   vertical-align: middle;
 }
 
-.event-stories::before {
+.world-stories::before {
   content: '📖';
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin-right: 5px;
+  margin-right: 2px;
   vertical-align: middle;
 }
 
-.event-tags::before {
-  content: '🏷️';
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
-  vertical-align: middle;
-}
-.event-date::before {
+.world-date::before {
   content: '📅';
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
   vertical-align: middle;
 }
-.event-tags::before {
+
+.world-tags::before {
   content: '🏷️';
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin-right: 5px;
+  margin-right: 2px;
   vertical-align: middle;
 }
 
-.details-section {
-  margin: 10px;
-  padding: 10px;
-  border-bottom: 2px solid;
-  border-top: 2px solid;
-  border-radius: 5px;
-}
-
-.details-subsection {
-  margin: 10px;
-  padding: 10px;
-  border-bottom: 2px solid;
-  border-top: 2px solid ;
-  border-radius: 5px;
-}
-
-.home-tags {
-  margin: 10px;
+/* ============================================================================
+   CONTENT COMPONENTS
+   ============================================================================ */
+.world-tags {
+  width: fit-content;
+  margin: 3px;
   padding: 5px;
   font-size: x-small;
   color: var(--secondary-color);
@@ -160,7 +230,54 @@ a {
   transition: box-shadow 0.5s ease-in-out;
 }
 
-.home-tags:hover {
+.world-tags:hover {
   background: var(--accent-color);
   box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.world-description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: small;
+  color: var(--g1-color);
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.world-thumbnail {
+  background: var(--g4-color);
+  border-radius: 30px;
+  margin: 5px;
+  padding: 10px;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.world-thumbnail:hover {
+  box-shadow: 2px 2px 15px var(--shadow-color);
+}
+
+.thumbnail-tag-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ============================================================================
+   LAYOUT SECTIONS
+   ============================================================================ */
+.details-section {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 2px solid;
+  border-top: 2px solid;
+  border-color: var(--g3-color);
+  border-radius: 5px;
+}
+
+.details-subsection {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 2px solid;
+  border-top: 2px solid ;
+  border-color: var(--g4-color);
+  border-radius: 5px;
 }

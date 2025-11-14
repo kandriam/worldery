@@ -9,7 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
   imports: [ReactiveFormsModule],
   template: `
     <article>
-      <section class="location-heading">
+      <section class="details-heading">
         <h2 class="location-title">{{ worldLocation?.name }}</h2>
       </section>
       <section class="edit-location-form">
