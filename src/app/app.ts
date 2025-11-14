@@ -9,7 +9,7 @@ import {RouterModule} from '@angular/router';
     <main>
       <a [routerLink]="['/']">
         <header class="brand-name">
-          <h1>Worldery</h1>
+          <h1 class="app-title">Worldery</h1>
         </header>
       </a>
       <section class="content">
