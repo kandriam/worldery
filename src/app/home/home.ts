@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {WorldEvent} from '../word-event/world-event';
+import {WorldEvent} from '../world-event/world-event';
 import {WorldEventInfo} from '../worldevent';
 import {WorldEventService} from '../services/world-event.service';
 
@@ -23,45 +23,45 @@ import { WorldStoryService } from '../services/world-story.service';
 })
 
 export class Home {
-  worldEvent: WorldEventService = inject(WorldEventService);
+  eventService: WorldEventService = inject(WorldEventService);
   filteredEventList: WorldEventInfo[] = [];
   worldEventList: WorldEventInfo[] = [];
 
-  worldLocation: WorldLocationService = inject(WorldLocationService);
+  locationService: WorldLocationService = inject(WorldLocationService);
   filteredLocationList: WorldLocationInfo[] = [];
   worldLocationList: WorldLocationInfo[] = [];
 
-  worldCharacter: WorldCharacterService = inject(WorldCharacterService);
+  characterService: WorldCharacterService = inject(WorldCharacterService);
   filteredCharacterList: WorldCharacterInfo[] = []
   worldCharacterList: WorldCharacterInfo[] = [];
 
-  worldStory: WorldStoryService = inject(WorldStoryService);
+  storyService: WorldStoryService = inject(WorldStoryService);
   worldStoryList: WorldStoryInfo[] = [];
   filteredStoryList: WorldStoryInfo[] = [];
 
   constructor() {
-    this.worldEvent
+    this.eventService
       .getAllWorldEvents()
       .then((worldEventList: WorldEventInfo[]) => {
         this.worldEventList = worldEventList.sort((a, b) => (a.date > b.date ? 1 : -1));
         this.filteredEventList = this.worldEventList;
       });
 
-    this.worldLocation
+    this.locationService
       .getAllWorldLocations()
       .then((worldLocationList: WorldLocationInfo[]) => {
         this.worldLocationList = worldLocationList;
         this.filteredLocationList = worldLocationList;
       });
     
-      this.worldCharacter
+      this.characterService
       .getAllWorldCharacters()
       .then((worldCharacterList: WorldCharacterInfo[]) => {
         this.worldCharacterList = worldCharacterList;
         this.filteredCharacterList = worldCharacterList;
       });
 
-    this.worldStory
+    this.storyService
       .getAllWorldStories()
       .then((worldStoryList: WorldStoryInfo[]) => {
         this.worldStoryList = worldStoryList;
@@ -70,6 +70,10 @@ export class Home {
   }
 
   filterResults(text: string) {
+    let searchItems = text.split(' ').map(item => item.trim()).filter(item => item.length > 0);
+    for (let item of searchItems) {
+      console.log('Searching for:', item);
+    }
     if (!text) {
       this.filteredEventList = this.worldEventList;
       this.filteredLocationList = this.worldLocationList;
@@ -89,12 +93,38 @@ export class Home {
     this.filteredCharacterList = this.worldCharacterList.filter((worldCharacter) =>
       worldCharacter?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
       worldCharacter?.firstName.toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.lastName.toLowerCase().includes(text.toLowerCase())
+      worldCharacter?.lastName.toLowerCase().includes(text.toLowerCase()) ||
+      worldCharacter?.altNames.join(' ').toLowerCase().includes(text.toLowerCase())
     );
     this.filteredStoryList = this.worldStoryList.filter((worldStory) =>
       worldStory?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
       worldStory?.title.toLowerCase().includes(text.toLowerCase()) ||
       worldStory?.description.toLowerCase().includes(text.toLowerCase()),
     ); 
+    
+  }
+
+  addWorldElement(elementType: string) {
+    console.log('Add world element clicked:', elementType);
+    if (elementType === 'event') {
+      console.log('Adding new event');
+      this.eventService.createWorldEvent('New Event', '', '', '', '', '', []);
+    }
+    else if (elementType === 'location') {
+      console.log('Adding new location');
+      // Logic to add a new location
+      this.locationService.createWorldLocation('New Location', '', [], [], []);
+    }
+    else if (elementType === 'character') {
+      console.log('Adding new character');
+      // Logic to add a new character
+      this.characterService.createWorldCharacter('New Character', '', [], '', '', [], [], [], '', '', [], []);
+    }
+    else if (elementType === 'story') {
+      console.log('Adding new story');
+      // Logic to add a new story
+      this.storyService.createWorldStory('New Story', '', [], [], []);
+    }
+    // window.location.reload();
   }
 }

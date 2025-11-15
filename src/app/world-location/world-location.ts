@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { WorldLocationInfo } from '../worldlocation';
 import {RouterLink, RouterOutlet } from '@angular/router';
-
+import { WorldLocationService } from '../services/world-location.service';
 @Component({
   selector: 'app-world-location',
   imports: [RouterLink, RouterOutlet],
@@ -9,6 +9,12 @@ import {RouterLink, RouterOutlet } from '@angular/router';
   styleUrls: ['./world-location.css', '../../styles.css']
 })
 export class WorldLocation {
-    worldLocation = input.required<WorldLocationInfo>();
+  locationService = inject(WorldLocationService);
+  worldLocation = input.required<WorldLocationInfo>();
 
+  deleteLocation(id: number, event: Event) {
+    event.stopPropagation();
+    console.log(`Delete location with ID: ${id}`);
+    this.locationService.deleteWorldLocation(id);
+  }
 }

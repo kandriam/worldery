@@ -1,6 +1,7 @@
-import {Component, input} from '@angular/core';
+import {Component, input, inject} from '@angular/core';
 import {WorldCharacterInfo} from '../worldcharacter';
 import {RouterLink, RouterOutlet } from '@angular/router';
+import { WorldCharacterService } from '../services/world-character.service';
 
 @Component({
   selector: 'app-world-character',
@@ -10,5 +11,12 @@ import {RouterLink, RouterOutlet } from '@angular/router';
 })
 
 export class WorldCharacter {
+  characterService = inject(WorldCharacterService);
   worldCharacter = input.required<WorldCharacterInfo>();
+
+  deleteCharacter(id: number, event: Event) {
+    event.stopPropagation();
+    console.log(`Delete location with ID: ${id}`);
+    this.characterService.deleteWorldCharacter(id);
+  }
 }
