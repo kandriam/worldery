@@ -2,16 +2,10 @@
   font-weight: bold;
   margin-bottom: 15px;
 }
-.character-description {
-  margin-bottom: 25px;
-}
 
-.character-details {
-  border: 1px solid var(--primary-color);
-}
-
-
-.character-location {
-  font-size: 24pt;
-  margin-bottom: 15px;
+.character-page-body {
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  display: flex;
+  flex-wrap: wrap;
 }

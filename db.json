@@ -166,7 +166,7 @@
     {
       "id": "3",
       "name": "SafeHouse",
-      "description": "A hidden safehouse in Minnesota.",
+      "description": "A hidden safehouse in Hampton, Minnesota.",
       "characters": [
         "Cassandra Edwards",
         "Judy Han",
@@ -216,8 +216,8 @@
         "Phoenix",
         "Ki"
       ],
-      "birthdate": "2203-07-11",
-      "pronouns": "she/they",
+      "birthdate": "she/they",
+      "pronouns": "2203-07-11",
       "roles": [
         "Protagonist",
         "Superhero",
@@ -232,7 +232,7 @@
         "Willow Rivera-Anderson (Best Friend)"
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
-      "nonPhysicalDescription": "pyrokinetic abilities.",
+      "nonPhysicalDescription": "Pyrokinetic abilities.",
       "stories": [
         "Fire & Ice"
       ],

@@ -1,17 +1,17 @@
 import {Component, inject} from '@angular/core';
-import {WorldEvent} from '../world-event/world-event';
+import {WorldEvent} from './world-event/world-event';
 import {WorldEventInfo} from '../worldevent';
 import {WorldEventService} from '../services/world-event.service';
 
-import { WorldLocation } from "../world-location/world-location";
+import { WorldLocation } from "./world-location/world-location";
 import { WorldLocationInfo } from '../worldlocation';
 import { WorldLocationService } from '../services/world-location.service';
 
-import { WorldCharacter } from '../world-character/world-character';
+import { WorldCharacter } from './world-character/world-character';
 import { WorldCharacterInfo } from '../worldcharacter';
 import { WorldCharacterService } from '../services/world-character.service';
 
-import { WorldStory } from '../world-story/world-story';
+import { WorldStory } from './world-story/world-story';
 import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
 
@@ -71,15 +71,18 @@ export class Home {
 
   filterResults(text: string) {
     let searchItems = text.split(' ').map(item => item.trim()).filter(item => item.length > 0);
-    for (let item of searchItems) {
-      console.log('Searching for:', item);
-    }
+    
     if (!text) {
       this.filteredEventList = this.worldEventList;
       this.filteredLocationList = this.worldLocationList;
       this.filteredCharacterList = this.worldCharacterList;
       return;
     }
+
+    for (let item of searchItems) {
+      console.log('Searching for:', item);
+    }
+    
     this.filteredEventList = this.worldEventList.filter((worldEvent) =>
       worldEvent?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
       worldEvent?.name.toLowerCase().includes(text.toLowerCase()) ||

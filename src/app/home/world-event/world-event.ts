@@ -1,13 +1,13 @@
 import {Component, inject, input} from '@angular/core';
-import {WorldEventInfo} from '../worldevent';
+import {WorldEventInfo} from '../../worldevent';
 import {RouterLink, RouterOutlet } from '@angular/router';
-import { WorldEventService } from '../services/world-event.service';
+import { WorldEventService } from '../../services/world-event.service';
 
 @Component({
   selector: 'app-world-event',
   imports: [RouterLink, RouterOutlet],
   templateUrl: 'world-event.html',
-  styleUrls: ['./world-event.css', '../../styles.css'],
+  styleUrls: ['./world-event.css', '../../../styles.css'],
 })
 
 export class WorldEvent {

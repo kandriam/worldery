@@ -1,13 +1,13 @@
 import {Component, inject, input} from '@angular/core';
-import {WorldStoryInfo} from '../worldstory';
+import {WorldStoryInfo} from '../../worldstory';
 import {RouterLink, RouterOutlet } from '@angular/router';
-import { WorldStoryService } from '../services/world-story.service';
+import { WorldStoryService } from '../../services/world-story.service';
 
 @Component({
   selector: 'app-world-story',
   imports: [RouterLink, RouterOutlet],
   templateUrl: 'world-story.html',
-  styleUrls: ['./world-story.css', '../../styles.css'],
+  styleUrls: ['./world-story.css', '../../../styles.css'],
 })
 
 export class WorldStory {

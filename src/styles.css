@@ -149,12 +149,14 @@ textarea {
   margin-bottom: 15px;
   padding: 10px;
   width: 400px;
+  min-height: 100px;
   height: fit-content;
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: solid .3px;
   background-color: inherit;
+  /* border-top: solid .3px; */
+  border-bottom: solid .3px;
   resize: none;
 }
 
@@ -304,6 +306,7 @@ textarea {
   border-bottom: 2px solid;
   border-top: 2px solid;
   border-radius: 5px;
+  width: fit-content;
 }
 
 .primary-section {
@@ -313,4 +316,9 @@ textarea {
 
 .secondary-section {
   border-color: var(--g4-color);
+}
+
+.horizontal-section {
+  display: flex;
+  gap: 20px;
 }

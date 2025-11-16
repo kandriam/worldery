@@ -12,10 +12,15 @@ export class WorldCharacterService {
   }
 
   async getWorldCharacterById(id: number): Promise<WorldCharacterInfo | undefined> {
-      const data = await fetch(`${this.url}?id=${id}`);
-      const characterJson = await data.json();
-      return characterJson[0] ?? {};
-    }
+    const data = await fetch(`${this.url}?id=${id}`);
+    const characterJson = await data.json();
+    return characterJson[0] ?? {};
+  }
+
+  async getWorldCharactersByName(firstName: string, lastName: string): Promise<WorldCharacterInfo[]> {
+    const data = await fetch(`${this.url}?firstName=${firstName}&lastName=${lastName}`);
+    return await data.json() ?? [];
+  }
 
   updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: string[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
