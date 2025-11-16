@@ -25,24 +25,58 @@
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label for="character-physical-description">Physical Description</label>
-                    <textarea id="character-physical-description" formControlName="characterPhysicalDescription"></textarea>
+                    <textarea id="character-physical-description" class="large-textarea" formControlName="characterPhysicalDescription"></textarea>
                 </div>
                 <div class="details-section secondary-section">
                     <label for="character-non-physical-description">Non-Physical Description</label>
-                    <textarea id="character-non-physical-description" formControlName="characterNonPhysicalDescription"></textarea>
+                    <textarea id="character-non-physical-description" class="large-textarea" formControlName="characterNonPhysicalDescription"></textarea>
                 </div>
             </div>
             <div class="details-section primary-section">
-                <label for="roles">Roles</label>
-                <input id="roles" type="text" formControlName="characterRoles" />
-                <label for="character-relationships">Relationships</label>
-                <input id="character-relationships" type="text" formControlName="characterRelationships" />
-                <label for="character-affiliations">Affiliations</label>
-                <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
-                <label for="character-stories">Stories</label>
-                <input id="character-stories" type="text" formControlName="characterStories" />
-                <label for="character-tags">Tags</label>
-                <input id="character-tags" type="text" formControlName="characterTags" />
+                <div class="details-section secondary-section">
+                    <label for="roles">Roles</label>
+                    <input id="roles" type="text" formControlName="characterRoles" />
+                </div>
+                <div class="details-section secondary-section">
+                    <label for="character-affiliations">Affiliations</label>
+                    <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
+                </div>
+            </div>
+            <div class="details-section primary-section">
+                <div class="details-section secondary-section">
+                    <label for="character-relationships">Relationships</label>
+                    <input id="character-relationships" type="text" formControlName="characterRelationships" />
+                    <div>
+                        @for(character of characterList; track character) {
+                            @if(worldCharacter?.id !== character.id) {
+                                <div>
+                                    <div class="form-field">
+                                        <input type="checkbox" [value]="character.id" (change)="onRelationshipChange($event, character.id)" />
+                                        <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
+                                    </div>
+                                    <textarea class="small-textarea" placeholder="Describe relationship...">{{ (character.firstName) }}</textarea>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                
+                <div class="details-section secondary-section">
+                    <label for="character-stories">Stories</label>
+                    <input id="character-stories" type="text" formControlName="characterStories" />
+                    <div class="wrap-section">
+                        @for(story of storyList; track story) {
+                            <div class="form-field">
+                                <input type="checkbox" [value]="story.id" (change)="onStoryChange($event, story.id)" />
+                                <label class="secondary-label">{{ story.title }}</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="details-section secondary-section">
+                    <label for="character-tags">Tags</label>
+                    <input id="character-tags" type="text" formControlName="characterTags" />
+                </div>
             </div>
         </section>
         <button type="submit" class="primary">Save Details</button>

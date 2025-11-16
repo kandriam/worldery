@@ -17,3 +17,10 @@ export interface WorldCharacterInfo {
     stories: string[];
     tags: string[];
 }
+
+export interface worldCharacterRelationship {
+    characterId: number;
+    relatedCharacterId: number;
+    relationshipType: string[];
+    relationshipDescription: string;
+}

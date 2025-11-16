@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { WorldCharacterService } from '../services/world-character.service';
 import { WorldCharacterInfo } from '../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { WorldStoryInfo } from '../worldstory';
+import { WorldStoryService } from '../services/world-story.service';
 
 @Component({
   selector: 'app-details',
@@ -15,6 +17,9 @@ export class WorldCharacterDetails {
   route: ActivatedRoute = inject(ActivatedRoute);
   worldCharacterService = inject(WorldCharacterService);
   worldCharacter: WorldCharacterInfo | undefined;
+  characterList = Array<WorldCharacterInfo>();
+  worldStoryService = inject(WorldStoryService);
+  storyList = Array<WorldStoryInfo>();
 
   applyForm = new FormGroup({
     characterFirstName: new FormControl(''),
@@ -50,6 +55,33 @@ export class WorldCharacterDetails {
         characterStories: worldCharacter?.stories?.join(', ') || '',
         characterTags: worldCharacter?.tags?.join(', ') || '',
       });
+    });
+
+    this.worldCharacterService.getAllWorldCharacters().then((characters) => {
+      this.characterList = characters;
+    });
+
+    this.worldStoryService.getAllWorldStories().then((stories) => {
+      this.storyList = stories;
+    });
+  }
+
+  onRelationshipChange(event: Event, characterId: number) {
+    // Implement the logic to handle relationship checkbox changes
+    this.worldCharacterService.getWorldCharacterById(characterId).then((character) => {
+      if (character) {
+        console.log(`Relationship toggled for character: ${character.firstName} ${character.lastName}`);
+        // Additional logic to update relationships can be added here
+      }
+    });
+  }
+
+  onStoryChange(event: Event, storyId: number) {
+    this.worldStoryService.getWorldStoryById(storyId).then((story) => {
+      if (story) {
+        console.log(`Story toggled: ${story.title}`);
+        // Additional logic to update stories can be added here
+      }
     });
   }
 
