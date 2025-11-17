@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {WorldCharacterInfo} from '../worldcharacter';
+import {WorldCharacterInfo, worldCharacterRelationship } from '../worldcharacter';
 @Injectable({
   providedIn: 'root',
 })
@@ -114,5 +114,18 @@ export class WorldCharacterService {
       method: 'DELETE',
     });
     window.location.reload();
+  }
+  
+  updateCharacterRelationships(characterID: number, relatedCharacterName: string, relationships: worldCharacterRelationship[]) {
+    console.log(`Updating relationships for character ID: ${characterID} with relationships: ${JSON.stringify(relationships)}`);
+    fetch(`${this.url}/${characterID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        relationships: relationships,
+      }),
+    });
   }
 }

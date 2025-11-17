@@ -228,8 +228,18 @@
         "SafeHouse (Book 2)"
       ],
       "relationships": [
-        "Judy Han (Romantic Partner)",
-        "Willow Rivera-Anderson (Best Friend)"
+        {
+          "relatedCharacterName": "Judy Han",
+          "hasRelationship": true,
+          "relationshipType": ["Romantic Partner"],
+          "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
+        },
+        {
+          "relatedCharacterName": "Willow Rivera-Anderson",
+          "hasRelationship": true,
+          "relationshipType": ["Best Friend"],
+          "relationshipDescription": "Kiara and Willow have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
+        }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
       "nonPhysicalDescription": "Pyrokinetic abilities.",
@@ -261,7 +271,12 @@
         "SafeHouse (Book 2)"
       ],
       "relationships": [
-        "Kiara Ravao (Romantic Partner)"
+        {
+          "relatedCharacterName": "Kiara Ravao",
+          "hasRelationship": true,
+          "relationshipType": ["Romantic Partner"],
+          "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
+        }
       ],
       "stories": [
         "Fire & Ice"
@@ -288,7 +303,12 @@
         "Soldiers of Rebellion"
       ],
       "relationships": [
-        "Rudy Edwards (Twin)"
+        {
+          "relatedCharacterName": "Rudy Edwards",
+          "hasRelationship": true,
+          "relationshipType": ["Twin Sister"],
+          "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
+        }
       ],
       "stories": [
         "Fire & Ice"
@@ -315,7 +335,12 @@
         "Soldiers of Rebellion"
       ],
       "relationships": [
-        "Cassandra Edwards (Twin)"
+        {
+          "relatedCharacterName": "Cassandra Edwards",
+          "hasRelationship": true,
+          "relationshipType": ["Twin Sister"],
+          "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
+        }
       ],
       "stories": [
         "Fire & Ice"
@@ -342,9 +367,24 @@
         "Team Phoenix"
       ],
       "relationships": [
-        "Matthew Rivera-Anderson (Sibling)",
-        "Leo Deng (Romantic Partner)",
-        "Kiara Ravao (Best Friend)"
+        {
+          "relatedCharacterName": "Matthew Rivera-Anderson",
+          "hasRelationship": true,
+          "relationshipType": ["Sibling"],
+          "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
+        },
+        {
+          "relatedCharacterName": "Leo Deng",
+          "hasRelationship": true,
+          "relationshipType": ["Romantic Partner"],
+          "relationshipDescription": "Willow and Leo have been in a romantic relationship, supporting each other through their challenges and adventures."
+        },
+        {
+          "relatedCharacterName": "Kiara Ravao",
+          "hasRelationship": true,
+          "relationshipType": ["Best Friend"],
+          "relationshipDescription": "Willow and Kiara have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
+        }
       ],
       "stories": [
         "Fire & Ice"
@@ -371,7 +411,12 @@
         "Team Phoenix"
       ],
       "relationships": [
-        "Willow Rivera-Anderson (Sibling)"
+        {
+          "relatedCharacterName": "Willow Rivera-Anderson",
+          "hasRelationship": true,
+          "relationshipType": ["Sibling"],
+          "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
+        }
       ],
       "stories": [
         "Fire & Ice"
@@ -395,7 +440,12 @@
       ],
       "affiliations": [],
       "relationships": [
-        "Willow Rivera-Anderson (Romantic Partner)"
+        {
+          "relatedCharacterName": "Willow Rivera-Anderson",
+          "hasRelationship": true,
+          "relationshipType": ["Romantic Partner"],
+          "relationshipDescription": "Willow and Leo met at Cat's Tea."
+        }
       ],
       "stories": [
         "Fire & Ice"

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorldCharacterService } from '../services/world-character.service';
-import { WorldCharacterInfo } from '../worldcharacter';
+import { WorldCharacterInfo, worldCharacterRelationship } from '../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
@@ -66,12 +66,33 @@ export class WorldCharacterDetails {
     });
   }
 
+  hasRelationship(characterName: string): boolean {
+    // let r = this.worldCharacter?.relationships?.some(r => r.relatedCharacterName === characterName) ?? false;
+    // this.getRelationship(characterName);
+    let r = this.getRelationship(characterName)?.hasRelationship ?? false;
+    console.log(`Relation to ${characterName}?: ${r}`);
+    return r;
+  }
+
+  getRelationship(characterName: string): worldCharacterRelationship | undefined {
+    let relationship = this.worldCharacter?.relationships?.find(r => r.relatedCharacterName === characterName);
+    // console.log(`Getting relationship for ${characterName}: ${relationship}`);
+    return relationship;
+  }
+
   onRelationshipChange(event: Event, characterId: number) {
-    // Implement the logic to handle relationship checkbox changes
     this.worldCharacterService.getWorldCharacterById(characterId).then((character) => {
-      if (character) {
-        console.log(`Relationship toggled for character: ${character.firstName} ${character.lastName}`);
-        // Additional logic to update relationships can be added here
+      if (event.target instanceof HTMLInputElement) {
+        const isChecked = event.target.checked;
+        console.log(`Checkbox is now: ${isChecked}`);
+        if (isChecked) {
+          console.log(`Adding relationship to: ${character?.firstName} ${character?.lastName}`);
+          // Additional logic to add relationship can be added here
+          // this.worldCharacterService.updateCharacterRelationship()
+        } else {
+          console.log(`Removing relationship to: ${character?.firstName} ${character?.lastName}`);
+          // Additional logic to remove relationship can be added here
+        }
       }
     });
   }

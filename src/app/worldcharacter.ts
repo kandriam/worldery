@@ -11,7 +11,7 @@ export interface WorldCharacterInfo {
     birthdate: string;
     roles: string[];
     affiliations: string[];
-    relationships: string[];
+    relationships: worldCharacterRelationship[];
     // events: string[];
     // locations: string[];
     stories: string[];
@@ -19,8 +19,8 @@ export interface WorldCharacterInfo {
 }
 
 export interface worldCharacterRelationship {
-    characterId: number;
-    relatedCharacterId: number;
+    relatedCharacterName: string;
+    hasRelationship: boolean;
     relationshipType: string[];
     relationshipDescription: string;
 }

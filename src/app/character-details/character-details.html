@@ -45,16 +45,16 @@
             <div class="details-section primary-section">
                 <div class="details-section secondary-section">
                     <label for="character-relationships">Relationships</label>
-                    <input id="character-relationships" type="text" formControlName="characterRelationships" />
+                    <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
                     <div>
                         @for(character of characterList; track character) {
                             @if(worldCharacter?.id !== character.id) {
                                 <div>
                                     <div class="form-field">
-                                        <input type="checkbox" [value]="character.id" (change)="onRelationshipChange($event, character.id)" />
+                                        <input type="checkbox" [value]="character.id" (change)="onRelationshipChange($event, character.id)" [checked]="hasRelationship(character.firstName + ' ' + character.lastName)"/>
                                         <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
                                     </div>
-                                    <textarea class="small-textarea" placeholder="Describe relationship...">{{ (character.firstName) }}</textarea>
+                                    <textarea class="small-textarea" placeholder="Describe relationship...">{{ getRelationship(character.firstName + ' ' + character.lastName)?.relationshipDescription }}</textarea>
                                 </div>
                             }
                         }
