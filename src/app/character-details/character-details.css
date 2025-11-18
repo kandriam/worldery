@@ -9,3 +9,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.relationship-section {
+  margin-bottom: 10px;
+}

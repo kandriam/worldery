@@ -19,7 +19,7 @@ export interface WorldCharacterInfo {
 }
 
 export interface worldCharacterRelationship {
-    relatedCharacterName: string;
+    relatedCharacterID: string;
     hasRelationship: boolean;
     relationshipType: string[];
     relationshipDescription: string;

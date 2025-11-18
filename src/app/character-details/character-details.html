@@ -32,7 +32,7 @@
                     <textarea id="character-non-physical-description" class="large-textarea" formControlName="characterNonPhysicalDescription"></textarea>
                 </div>
             </div>
-            <div class="details-section primary-section">
+            <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label for="roles">Roles</label>
                     <input id="roles" type="text" formControlName="characterRoles" />
@@ -48,13 +48,14 @@
                     <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
                     <div>
                         @for(character of characterList; track character) {
+                            <!-- If not the current character -->
                             @if(worldCharacter?.id !== character.id) {
-                                <div>
+                                <div  class="relationship-section">
                                     <div class="form-field">
-                                        <input type="checkbox" [value]="character.id" (change)="onRelationshipChange($event, character.id)" [checked]="hasRelationship(character.firstName + ' ' + character.lastName)"/>
+                                        <input type="checkbox" [value]="character.id" (change)="onRelationshipChange($event, character.id)" [checked]="hasRelationship(character.id)"/>
                                         <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
                                     </div>
-                                    <textarea class="small-textarea" placeholder="Describe relationship...">{{ getRelationship(character.firstName + ' ' + character.lastName)?.relationshipDescription }}</textarea>
+                                    <textarea class="large-textarea" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
                                 </div>
                             }
                         }

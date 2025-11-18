@@ -66,18 +66,12 @@ export class WorldCharacterDetails {
     });
   }
 
-  hasRelationship(characterName: string): boolean {
-    // let r = this.worldCharacter?.relationships?.some(r => r.relatedCharacterName === characterName) ?? false;
-    // this.getRelationship(characterName);
-    let r = this.getRelationship(characterName)?.hasRelationship ?? false;
-    console.log(`Relation to ${characterName}?: ${r}`);
-    return r;
+  hasRelationship(characterID: number): boolean {
+    return this.worldCharacter?.relationships?.some(r => r.relatedCharacterID === characterID.toString() && r.hasRelationship) ?? false;
   }
 
-  getRelationship(characterName: string): worldCharacterRelationship | undefined {
-    let relationship = this.worldCharacter?.relationships?.find(r => r.relatedCharacterName === characterName);
-    // console.log(`Getting relationship for ${characterName}: ${relationship}`);
-    return relationship;
+  getRelationship(characterID: number): worldCharacterRelationship | undefined {
+    return this.worldCharacter?.relationships?.find(r => r.relatedCharacterID === characterID.toString());
   }
 
   onRelationshipChange(event: Event, characterId: number) {

@@ -229,13 +229,13 @@
       ],
       "relationships": [
         {
-          "relatedCharacterName": "Judy Han",
+          "relatedCharacterID": "2",
           "hasRelationship": true,
           "relationshipType": ["Romantic Partner"],
           "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
         },
         {
-          "relatedCharacterName": "Willow Rivera-Anderson",
+          "relatedCharacterID": "5",
           "hasRelationship": true,
           "relationshipType": ["Best Friend"],
           "relationshipDescription": "Kiara and Willow have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
@@ -272,7 +272,7 @@
       ],
       "relationships": [
         {
-          "relatedCharacterName": "Kiara Ravao",
+          "relatedCharacterID": "1",
           "hasRelationship": true,
           "relationshipType": ["Romantic Partner"],
           "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
@@ -304,7 +304,7 @@
       ],
       "relationships": [
         {
-          "relatedCharacterName": "Rudy Edwards",
+          "relatedCharacterID": "4",
           "hasRelationship": true,
           "relationshipType": ["Twin Sister"],
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
@@ -336,7 +336,7 @@
       ],
       "relationships": [
         {
-          "relatedCharacterName": "Cassandra Edwards",
+          "relatedCharacterID": "3",
           "hasRelationship": true,
           "relationshipType": ["Twin Sister"],
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
@@ -368,19 +368,19 @@
       ],
       "relationships": [
         {
-          "relatedCharacterName": "Matthew Rivera-Anderson",
+          "relatedCharacterID": "6",
           "hasRelationship": true,
           "relationshipType": ["Sibling"],
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
         },
         {
-          "relatedCharacterName": "Leo Deng",
+          "relatedCharacterID": "7",
           "hasRelationship": true,
           "relationshipType": ["Romantic Partner"],
           "relationshipDescription": "Willow and Leo have been in a romantic relationship, supporting each other through their challenges and adventures."
         },
         {
-          "relatedCharacterName": "Kiara Ravao",
+          "relatedCharacterID": "1",
           "hasRelationship": true,
           "relationshipType": ["Best Friend"],
           "relationshipDescription": "Willow and Kiara have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
@@ -412,7 +412,7 @@
       ],
       "relationships": [
         {
-          "relatedCharacterName": "Willow Rivera-Anderson",
+          "relatedCharacterID": "5",
           "hasRelationship": true,
           "relationshipType": ["Sibling"],
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
@@ -441,7 +441,7 @@
       "affiliations": [],
       "relationships": [
         {
-          "relatedCharacterName": "Willow Rivera-Anderson",
+          "relatedCharacterID": "5",
           "hasRelationship": true,
           "relationshipType": ["Romantic Partner"],
           "relationshipDescription": "Willow and Leo met at Cat's Tea."
