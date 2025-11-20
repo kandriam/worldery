@@ -11,5 +11,21 @@
 }
 
 .relationship-section {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
+}
+
+.relationship-textarea {
+  display: block;
+  margin-top: 5px;
+  flex-grow: 1;
+}
+
+.relationship-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 11pt;
 }

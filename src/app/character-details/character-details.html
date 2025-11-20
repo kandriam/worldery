@@ -1,69 +1,76 @@
 <article>
     <section class="details-heading">
     <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
-    <h3>( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
+    <h3 class="subtitle">( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
     </section>
     <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-character-form character-page-body">
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
-                    <label for="character-first-name">Name</label>
+                    <label class="primary-label" for="character-first-name">Name</label>
                     <input id="character-first-name" type="text" formControlName="characterFirstName" />
                     <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Firstname"/>
                     
-                    <label for="character-alt-names">Alternate Names</label>
+                    <label class="primary-label" for="character-alt-names">Alternate Names</label>
                     <input id="character-alt-names" type="text" formControlName="characterAltNames" />
                 </div>
                 <div class="details-section secondary-section">
-                    <label for="character-pronouns">Pronouns</label>
+                    <label class="primary-label" for="character-pronouns">Pronouns</label>
                     <input id="character-pronouns" type="text" formControlName="characterPronouns" />
                     
-                    <label for="character-birthdate">Birthdate</label>
+                    <label class="primary-label" for="character-birthdate">Birthdate</label>
                     <input id="character-birthdate" type="text" formControlName="characterBirthdate" />
                 </div>
             </div>
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
-                    <label for="character-physical-description">Physical Description</label>
+                    <label class="primary-label" for="character-physical-description">Physical Description</label>
                     <textarea id="character-physical-description" class="large-textarea" formControlName="characterPhysicalDescription"></textarea>
                 </div>
                 <div class="details-section secondary-section">
-                    <label for="character-non-physical-description">Non-Physical Description</label>
+                    <label class="primary-label" for="character-non-physical-description">Non-Physical Description</label>
                     <textarea id="character-non-physical-description" class="large-textarea" formControlName="characterNonPhysicalDescription"></textarea>
                 </div>
             </div>
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
-                    <label for="roles">Roles</label>
+                    <label class="primary-label" for="roles">Roles</label>
                     <input id="roles" type="text" formControlName="characterRoles" />
                 </div>
                 <div class="details-section secondary-section">
-                    <label for="character-affiliations">Affiliations</label>
+                    <label class="primary-label" for="character-affiliations">Affiliations</label>
                     <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
                 </div>
             </div>
             <div class="details-section primary-section">
+                <label class="primary-label" for="character-relationships">Relationships</label>
+                <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
                 <div class="details-section secondary-section">
-                    <label for="character-relationships">Relationships</label>
-                    <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
-                    <div>
-                        @for(character of characterList; track character) {
-                            <!-- If not the current character -->
-                            @if(worldCharacter?.id !== character.id) {
-                                <div  class="relationship-section">
-                                    <div class="form-field">
-                                        <input type="checkbox" [value]="character.id" (change)="onRelationshipChange($event, character.id)" [checked]="hasRelationship(character.id)"/>
-                                        <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
+                    @for(character of characterList; track character) {
+                        <!-- If not the current character -->
+                        @if(worldCharacter?.id !== character.id) {
+                            <div class="relationship-section" id="relationship-{{character.id}}">
+                                <div class="relationship-header">
+                                    <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
+                                    <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
                                     </div>
-                                    <textarea class="large-textarea" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
-                                </div>
-                            }
+                                    @if(character.altNames && character.altNames.length > 0) {           
+                                        <p class="subtitle">( {{ character.altNames?.join(', ') }} )</p>
+                                    }
+                                @if (getRelationship(character.id)?.hasRelationship) {
+                                    <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
+                                    <textarea class="large-textarea relationship-textarea" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+                                } @else {
+                                    <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
+                                    <textarea class="large-textarea relationship-textarea hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+                                }
+                            </div>
                         }
-                    </div>
+                    }
                 </div>
                 
                 <div class="details-section secondary-section">
-                    <label for="character-stories">Stories</label>
+                    <label class="primary-label" for="character-stories">Stories</label>
                     <input id="character-stories" type="text" formControlName="characterStories" />
                     <div class="wrap-section">
                         @for(story of storyList; track story) {
@@ -75,7 +82,7 @@
                     </div>
                 </div>
                 <div class="details-section secondary-section">
-                    <label for="character-tags">Tags</label>
+                    <label class="primary-label" for="character-tags">Tags</label>
                     <input id="character-tags" type="text" formControlName="characterTags" />
                 </div>
             </div>

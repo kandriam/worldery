@@ -22,7 +22,7 @@ export class WorldCharacterService {
     return await data.json() ?? [];
   }
 
-  updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: string[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
@@ -62,7 +62,7 @@ export class WorldCharacterService {
     });
   }
 
-  createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: string[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character created:
       characterFirstName: ${characterFirstName},

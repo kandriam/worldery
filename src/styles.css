@@ -78,6 +78,13 @@ h2 {
   text-shadow: var(--b3-color) 2px 2px 5px;
 }
 
+.subtitle {
+  /* font-size: 1.2rem; */
+  font-style: italic;
+  color: var(--g3-color);
+  margin-bottom: 15px;
+}
+
 /* ============================================================================
    BUTTON STYLES
    ============================================================================ */
@@ -128,16 +135,20 @@ input, textarea {
 
 label {
   color: var(--secondary-color);
-  font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 12pt;
 }
 
+.primary-label {
+  color: var(--secondary-color);
+  font-size: 12pt;
+  margin-bottom: 5px;
+}
+
 .secondary-label {
-  color: var(--primary-color);
+  color: var(--g3-color);
   text-transform: capitalize;
-  font-weight: bold;
-  font-size: 10pt;
+  font-size: 11pt;
   margin-bottom: 5px;
 }
 
@@ -356,3 +367,12 @@ textarea {
 }
 /* grid-template-columns: 1px 1px; */
 /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+
+/* ===========================================================================
+   UTILITY CLASSES
+   ============================================================================
+ */
+
+.hidden {
+  display: none;
+}

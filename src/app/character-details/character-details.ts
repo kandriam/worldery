@@ -59,15 +59,37 @@ export class WorldCharacterDetails {
 
     this.worldCharacterService.getAllWorldCharacters().then((characters) => {
       this.characterList = characters;
+      for (let character of this.characterList) {
+        if (this.getRelationship(character.id)?.hasRelationship == true) {
+          let element = document.getElementById(`relationship-description-${character.id}`) as HTMLElement;
+          console.log(element);
+          // element.classList.remove('hidden');
+          // console.log(`Relationship between ${this.worldCharacter?.firstName} and ${character.firstName}:`, this.getRelationship(character.id));
+        }
+      }
     });
 
     this.worldStoryService.getAllWorldStories().then((stories) => {
       this.storyList = stories;
     });
+
+    console.log("Character Relationships Initialized:");
+    
   }
 
-  hasRelationship(characterID: number): boolean {
-    return this.worldCharacter?.relationships?.some(r => r.relatedCharacterID === characterID.toString() && r.hasRelationship) ?? false;
+  toggleRelationship(event: Event, characterId: number) {
+    console.log(`Toggling relationship for character ID: ${characterId}`);
+    if (event.target instanceof HTMLInputElement) {
+      const isChecked = event.target.checked;
+      console.log(`Checkbox is now: ${isChecked}`);
+      let relationshipDescription = document.getElementById(`relationship-description-${characterId}`) as HTMLTextAreaElement;
+      if (isChecked) {
+        relationshipDescription.classList.remove('hidden');
+    }
+    else {
+        relationshipDescription.classList.add('hidden');
+      }
+    }
   }
 
   getRelationship(characterID: number): worldCharacterRelationship | undefined {
@@ -91,6 +113,22 @@ export class WorldCharacterDetails {
     });
   }
 
+  getFormRelationship(characterID: number): worldCharacterRelationship | undefined {
+    let relationshipCheckbox = document.getElementById(`relationship-checkbox-${characterID}`) as HTMLInputElement;
+    let isChecked = relationshipCheckbox.checked;
+    let relationshipTypeInput = document.getElementById(`relationship-type-${characterID}`) as HTMLInputElement;
+    let relationshipTypes = relationshipTypeInput.value.split(',').map(type => type.trim());
+    let relationshipDescription = document.getElementById(`relationship-description-${characterID}`) as HTMLTextAreaElement;
+    let descriptionText = relationshipDescription.value;
+    console.log(`RelatedCharacterID: ${characterID}, HasRelationship: ${isChecked}, RelationshipDescription: ${descriptionText}`);
+    return {
+      relatedCharacterID: characterID.toString(),
+      relationshipType: relationshipTypes,
+      hasRelationship: isChecked,
+      relationshipDescription: descriptionText
+    };
+  }
+
   onStoryChange(event: Event, storyId: number) {
     this.worldStoryService.getWorldStoryById(storyId).then((story) => {
       if (story) {
@@ -101,6 +139,15 @@ export class WorldCharacterDetails {
   }
 
   submitApplication() {
+    let relationships: worldCharacterRelationship[] = [];
+    for (let character of this.characterList) {
+      if (character.id !== this.worldCharacter?.id) {
+        let updatedRelationship = this.getFormRelationship(character.id);
+        if (updatedRelationship) {
+          relationships.push(updatedRelationship);
+        }
+      }
+    }
     if (this.worldCharacter?.id !== undefined) {
       this.worldCharacterService.updateWorldCharacter(
         this.worldCharacter.id,
@@ -111,7 +158,7 @@ export class WorldCharacterDetails {
         this.applyForm.value.characterBirthdate ?? '',
         this.applyForm.value.characterRoles?.split(', ') ?? [],
         this.applyForm.value.characterAffiliations?.split(', ') ?? [],
-        this.applyForm.value.characterRelationships?.split(', ') ?? [],
+        relationships,
         this.applyForm.value.characterPhysicalDescription ?? '',
         this.applyForm.value.characterNonPhysicalDescription ?? '',
         this.applyForm.value.characterStories?.split(', ') ?? [],

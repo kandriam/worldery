@@ -230,15 +230,52 @@
       "relationships": [
         {
           "relatedCharacterID": "2",
+          "relationshipType": [
+            "Roommate",
+            "Partner"
+          ],
           "hasRelationship": true,
-          "relationshipType": ["Romantic Partner"],
-          "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
+          "relationshipDescription": "Judy and Kiara started as roommates, before they began dating"
+        },
+        {
+          "relatedCharacterID": "3",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "4",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
         },
         {
           "relatedCharacterID": "5",
+          "relationshipType": [
+            "Best Friend"
+          ],
           "hasRelationship": true,
-          "relationshipType": ["Best Friend"],
           "relationshipDescription": "Kiara and Willow have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            "Friend"
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": "Kiara and Matthew have been friends since childhood"
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": "Kiara met Leo at Cat's Tea, where Leo worked."
         }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
@@ -274,7 +311,9 @@
         {
           "relatedCharacterID": "1",
           "hasRelationship": true,
-          "relationshipType": ["Romantic Partner"],
+          "relationshipType": [
+            "Romantic Partner"
+          ],
           "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
         }
       ],
@@ -306,7 +345,9 @@
         {
           "relatedCharacterID": "4",
           "hasRelationship": true,
-          "relationshipType": ["Twin Sister"],
+          "relationshipType": [
+            "Twin Sister"
+          ],
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
         }
       ],
@@ -338,7 +379,9 @@
         {
           "relatedCharacterID": "3",
           "hasRelationship": true,
-          "relationshipType": ["Twin Sister"],
+          "relationshipType": [
+            "Twin Sister"
+          ],
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
         }
       ],
@@ -370,19 +413,25 @@
         {
           "relatedCharacterID": "6",
           "hasRelationship": true,
-          "relationshipType": ["Sibling"],
+          "relationshipType": [
+            "Sibling"
+          ],
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
         },
         {
           "relatedCharacterID": "7",
           "hasRelationship": true,
-          "relationshipType": ["Romantic Partner"],
+          "relationshipType": [
+            "Romantic Partner"
+          ],
           "relationshipDescription": "Willow and Leo have been in a romantic relationship, supporting each other through their challenges and adventures."
         },
         {
           "relatedCharacterID": "1",
           "hasRelationship": true,
-          "relationshipType": ["Best Friend"],
+          "relationshipType": [
+            "Best Friend"
+          ],
           "relationshipDescription": "Willow and Kiara have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
         }
       ],
@@ -414,7 +463,9 @@
         {
           "relatedCharacterID": "5",
           "hasRelationship": true,
-          "relationshipType": ["Sibling"],
+          "relationshipType": [
+            "Sibling"
+          ],
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
         }
       ],
@@ -443,7 +494,9 @@
         {
           "relatedCharacterID": "5",
           "hasRelationship": true,
-          "relationshipType": ["Romantic Partner"],
+          "relationshipType": [
+            "Romantic Partner"
+          ],
           "relationshipDescription": "Willow and Leo met at Cat's Tea."
         }
       ],
