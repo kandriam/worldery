@@ -65,19 +65,6 @@ h2 {
   /* margin-bottom: 10px; */
 }
 
-.app-title {
-  font-size: 3rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-weight: bold;
-  color: var(--secondary-color);
-  text-decoration: underline var(--g4-color);
-  transition: text-shadow 0.5s ease-in-out;
-}
-
-.app-title:hover {
-  text-shadow: var(--b3-color) 2px 2px 5px;
-}
-
 .subtitle {
   /* font-size: 1.2rem; */
   font-style: italic;
@@ -135,20 +122,16 @@ input, textarea {
 
 label {
   color: var(--secondary-color);
-  text-transform: capitalize;
+  font-weight: bold;
+  text-transform: uppercase;
   font-size: 12pt;
-}
-
-.primary-label {
-  color: var(--secondary-color);
-  font-size: 12pt;
-  margin-bottom: 5px;
 }
 
 .secondary-label {
-  color: var(--g3-color);
+  color: var(--primary-color);
   text-transform: capitalize;
-  font-size: 11pt;
+  font-weight: bold;
+  font-size: 10pt;
   margin-bottom: 5px;
 }
 
@@ -226,6 +209,7 @@ textarea {
 /* ============================================================================
    ICON STYLES (Before Pseudo-elements)
    ============================================================================ */
+
 .world-location::before {
   content: '📍';
   display: inline-block;
@@ -335,6 +319,33 @@ textarea {
   flex-wrap: wrap;
 }
 
+.save-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out;
+/* Floating */
+  position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it stays on top */
+/* end floating */
+  &:hover {
+    box-shadow: var(--shadow-color) 2px 2px 10px;
+    background-color: var(--g3-color);
+  }
+} 
+
 /* ============================================================================
    LAYOUT SECTIONS
    ============================================================================ */
@@ -349,7 +360,7 @@ textarea {
 
 .primary-section {
   border-color: var(--g3-color);
-
+  /* display: inline-flex; */
 }
 
 .secondary-section {
@@ -365,6 +376,19 @@ textarea {
   display: flex;
   flex-wrap: wrap;
 }
+
+.spanning-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
 /* grid-template-columns: 1px 1px; */
 /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
 

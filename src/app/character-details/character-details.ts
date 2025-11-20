@@ -46,10 +46,10 @@ export class WorldCharacterDetails {
         characterLastName: worldCharacter?.lastName || '',
         characterAltNames: worldCharacter?.altNames?.join(', ') || '',
         characterPronouns: worldCharacter?.pronouns || '',
+        characterBirthdate: worldCharacter?.birthdate || '',
         characterRoles: worldCharacter?.roles?.join(', ') || '',
         characterAffiliations: worldCharacter?.affiliations?.join(', ') || '',
         characterRelationships: worldCharacter?.relationships?.join(', ') || '',
-        characterBirthdate: worldCharacter?.birthdate || '',
         characterPhysicalDescription: worldCharacter?.physicalDescription || '',
         characterNonPhysicalDescription: worldCharacter?.nonPhysicalDescription || '',
         characterStories: worldCharacter?.stories?.join(', ') || '',
@@ -83,11 +83,14 @@ export class WorldCharacterDetails {
       const isChecked = event.target.checked;
       console.log(`Checkbox is now: ${isChecked}`);
       let relationshipDescription = document.getElementById(`relationship-description-${characterId}`) as HTMLTextAreaElement;
+      let relationshipType = document.getElementById(`relationship-type-${characterId}`) as HTMLInputElement;
       if (isChecked) {
         relationshipDescription.classList.remove('hidden');
+        relationshipType.classList.remove('hidden');
     }
     else {
         relationshipDescription.classList.add('hidden');
+        relationshipType.classList.add('hidden');
       }
     }
   }
@@ -154,8 +157,8 @@ export class WorldCharacterDetails {
         this.applyForm.value.characterFirstName ?? '',
         this.applyForm.value.characterLastName ?? '',
         this.applyForm.value.characterAltNames?.split(', ') ?? [],
-        this.applyForm.value.characterPronouns ?? '',
         this.applyForm.value.characterBirthdate ?? '',
+        this.applyForm.value.characterPronouns ?? '',
         this.applyForm.value.characterRoles?.split(', ') ?? [],
         this.applyForm.value.characterAffiliations?.split(', ') ?? [],
         relationships,

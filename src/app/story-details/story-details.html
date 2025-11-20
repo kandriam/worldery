@@ -5,20 +5,20 @@
     <section class="edit-story-form">
     <form [formGroup]="applyForm" (submit)="submitApplication()">
         <div>
-        <label for="story-title">Story Title</label>
-        <input id="story-title" type="text" formControlName="storyTitle" />
+            <label for="story-title">Story Title</label>
+            <input id="story-title" type="text" formControlName="storyTitle" />
         </div>
-        <label for="story-description">Story Description</label>
-        <textarea id="story-description" formControlName="storyDescription"></textarea>
+            <label for="story-description">Story Description</label>
+            <textarea id="story-description" formControlName="storyDescription"></textarea>
         <div>
-        <label for="story-characters">Story Characters</label>
-        <input id="story-characters" type="text" formControlName="storyCharacters" />
-        <label for="story-locations">Story Locations</label>
-        <input id="story-locations" type="text" formControlName="storyLocations" />
-        <label for="story-tags">Story Tags</label>
-        <input id="story-tags" type="text" formControlName="storyTags" />
+            <label for="story-characters">Story Characters</label>
+            <input id="story-characters" type="text" formControlName="storyCharacters" />
+            <label for="story-locations">Story Locations</label>
+            <input id="story-locations" type="text" formControlName="storyLocations" />
+            <label for="story-tags">Story Tags</label>
+            <input id="story-tags" type="text" formControlName="storyTags" />
         </div>
-        <button type="submit" class="primary">Save Details</button>
+        <button type="submit" class="save-button primary">Save</button>
     </form>
     </section>
 </article>

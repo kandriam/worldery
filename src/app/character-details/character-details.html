@@ -42,10 +42,10 @@
                     <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
                 </div>
             </div>
-            <div class="details-section primary-section">
+            <div class="details-section primary-section spanning-section">
                 <label class="primary-label" for="character-relationships">Relationships</label>
                 <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
-                <div class="details-section secondary-section">
+                <div class="details-section secondary-section grid-section">
                     @for(character of characterList; track character) {
                         <!-- If not the current character -->
                         @if(worldCharacter?.id !== character.id) {
@@ -53,10 +53,11 @@
                                 <div class="relationship-header">
                                     <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
                                     <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
-                                    </div>
-                                    @if(character.altNames && character.altNames.length > 0) {           
-                                        <p class="subtitle">( {{ character.altNames?.join(', ') }} )</p>
-                                    }
+                                    <!-- <button class="character-thumbnail world-thumbnail" [routerLink]="['/character-details', character.id]"></button> -->
+                                </div>
+                                @if(character.altNames && character.altNames.length > 0) {           
+                                    <p class="subtitle">( {{ character.altNames?.join(', ') }} )</p>
+                                }
                                 @if (getRelationship(character.id)?.hasRelationship) {
                                     <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
                                     <textarea class="large-textarea relationship-textarea" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
@@ -87,6 +88,6 @@
                 </div>
             </div>
         </section>
-        <button type="submit" class="primary">Save Details</button>
+        <button type="submit" class="save-button primary">Save</button>
     </form>
 </article>

@@ -28,4 +28,7 @@
   justify-content: space-between;
   font-weight: bold;
   font-size: 11pt;
+  border-bottom: 1px solid var(--g3-color);
+  background-color: var(--g4-color);
+  /* background: linear-gradient(0deg, var(--g4-color), var(--g5-color)); */
 }
