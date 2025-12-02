@@ -27,6 +27,10 @@
   --background-color: var(--b5-color);
   --accent-color: var(--g4-color);
   --shadow-color: var(--b1-color);
+
+  /* Fonts */
+  --base-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --input-font-family: 'Lucida Console';
 }
 
 /* ============================================================================
@@ -38,7 +42,7 @@
 }
 
 body {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: var(--base-font-family);
   background-color: var(--g5-color);
 }
 
@@ -93,6 +97,28 @@ button{
 
 }
 
+.linked-character, .linked-story, .linked-location {
+  border: 0px;
+  background-color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    text-shadow: #333d29;
+    bottom: var(--g3-color) 3px 3px 10px;
+  }
+}
+
+.linked-story {
+  border: 0px;
+  background-color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    text-shadow: #333d29;
+    bottom: var(--g3-color) 3px 3px 10px;
+  }
+}
+
 .details-button {
   background: var(--accent-color);
   color: var(--secondary-color);
@@ -101,7 +127,7 @@ button{
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
-  transition: box-shadow 0.5s ease-in-out, background 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   /* cursor: pointer; */
 }
 
@@ -114,7 +140,7 @@ button{
 /* ============================================================================
    FORM ELEMENTS
    ============================================================================ */
-input, textarea {
+input {
   display: block;
 }
 
@@ -133,45 +159,55 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"] {
-  margin-bottom: 15px;
-  padding: 10px;
-  width: 300px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: solid .3px;
-  background-color: inherit;
-}
-
 input[type="checkbox"] {
   width: fit-content;
   margin-left: 10px;
   margin-right: 5px;
 }
 
-textarea {
+textarea, input[type="text"] {
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
   display: block;
+  font-size: 10pt;
+  background-color: inherit;
+  border: none;
+  border-bottom: solid .3px;
   margin-bottom: 15px;
+
+  font-family: var(--input-font-family);
+  
+  &:focus {
+    outline: none;
+    border-bottom: solid 1px var(--g3-color);
+    font-size: small;
+  }
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 300px;  
+}
+
+textarea {
   padding: 10px;
   /* height: fit-content; */
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  background-color: inherit;
-  /* border-top: solid .3px; */
-  border-bottom: solid .3px;
   resize: none;
 
-  &.large-textarea {
-    min-width: 300px;
+  &.small-textarea {
+    min-width: 200px;
+    min-height: 50px;
+  }
+  
+  &.medium-textarea {
+    min-width: 400px;
     min-height: 150px;
   }
 
-  &.small-textarea {
-    min-width: 150px;
-    min-height: 50px;
+  &.large-textarea {
+    min-width: 500px;
+    min-height: 300px;
   }
+
 }
 
 .form-field {
@@ -221,7 +257,7 @@ textarea {
   position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007bff;
+    background-color: var(--g2-color);
     color: white;
     padding: 15px 20px;
     border: none;

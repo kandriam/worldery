@@ -1,24 +1,61 @@
 <article>
     <section class="details-heading">
-    <h2 class="location-title">{{ worldLocation?.name }}</h2>
+        <h2 class="location-title">{{ worldLocation?.name }}</h2>
     </section>
-    <section class="edit-location-form">
     <form [formGroup]="applyForm" (submit)="submitApplication()">
-        <div>
-            <label for="location-title">Location Title</label>
-            <input id="location-title" type="text" formControlName="locationTitle" />
-        </div>
-            <label for="location-description">Location Description</label>
-            <textarea id="location-description" formControlName="locationDescription"></textarea>
-        <div>
-            <label for="location-characters">Location Characters</label>
-            <input id="location-characters" type="text" formControlName="locationCharacters" />
-            <label for="location-stories">Location Stories</label>
-            <input id="location-stories" type="text" formControlName="locationStories" />
-            <label for="location-tags">Location Tags</label>
-            <input id="location-tags" type="text" formControlName="locationTags" />
-        </div>
+        <section class="edit-location-form location-page-body">
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="location-title">Location Title</label>
+                    <input id="location-title" type="text" formControlName="locationTitle" />
+                </div>
+            </div>
+            
+            <div class="details-section primary-section spanning-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="location-description">Location Description</label>
+                    <textarea id="location-description" class="medium-textarea" formControlName="locationDescription"></textarea>
+                </div>
+            </div>
+            
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="location-characters">Location Characters</label>
+                    <input id="location-characters" type="text" formControlName="locationCharacters" />
+                    <div class="vertical-section">
+                        @for(character of characterList; track character) {
+                            <div class="form-field">
+                                <input type="checkbox" id="character-checkbox-{{character.id}}" [value]="character.id" (change)="onCharacterChange($event, character)" [checked]="isCharacterInLocation(character.firstName + ' ' + character.lastName)" />
+                                <button class="linked-character" [routerLink]="['/character-details', character.id]" type="button">
+                                    <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="location-stories">Location Stories</label>
+                    <input id="location-stories" type="text" formControlName="locationStories" />
+                    <div class="vertical-section">
+                        @for(story of storyList; track story) {
+                            <div class="form-field">
+                                <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story)" [checked]="isStoryInLocation(story.title)" />
+                                <button class="linked-story" [routerLink]="['/story-details', story.id]" type="button">
+                                    <label class="secondary-label">{{ story.title }}</label>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="location-tags">Location Tags</label>
+                    <input id="location-tags" type="text" formControlName="locationTags" />
+                </div>
+            </div>
+        </section>
         <button type="submit" class="save-button primary">Save</button>
     </form>
-    </section>
 </article>

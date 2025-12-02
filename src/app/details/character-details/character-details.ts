@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
 import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo } from '../../worldstory';
 import { WorldStoryService } from '../../services/world-story.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -13,13 +14,14 @@ import { WorldStoryService } from '../../services/world-story.service';
   styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
 
-export class WorldCharacterDetails {
+export class WorldCharacterDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
   worldCharacterService = inject(WorldCharacterService);
   worldCharacter: WorldCharacterInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
   worldStoryService = inject(WorldStoryService);
   storyList = Array<WorldStoryInfo>();
+  private routeSubscription: Subscription | undefined;
 
   applyForm = new FormGroup({
     characterFirstName: new FormControl(''),
@@ -38,7 +40,28 @@ export class WorldCharacterDetails {
   });
 
   constructor() {
-    const worldCharacterId = parseInt(this.route.snapshot.params['id'], 10);
+    // Moved initialization logic to ngOnInit
+  }
+
+  ngOnInit() {
+    // Subscribe to route parameter changes
+    this.routeSubscription = this.route.params.subscribe(params => {
+      const worldCharacterId = parseInt(params['id'], 10);
+      this.loadCharacterData(worldCharacterId);
+    });
+
+    // Load shared data that doesn't depend on the current character
+    this.loadSharedData();
+  }
+
+  ngOnDestroy() {
+    // Clean up subscription
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
+  private loadCharacterData(worldCharacterId: number) {
     this.worldCharacterService.getWorldCharacterById(worldCharacterId).then((worldCharacter) => {
       this.worldCharacter = worldCharacter;
       this.applyForm.patchValue({
@@ -55,10 +78,27 @@ export class WorldCharacterDetails {
         characterStories: worldCharacter?.stories?.join(', ') || '',
         characterTags: worldCharacter?.tags?.join(', ') || '',
       });
+      
+      // Update relationship checkboxes after character data loads
+      this.updateRelationshipUI();
     });
 
+    console.log("Character data loaded for ID:", worldCharacterId);
+  }
+
+  private loadSharedData() {
     this.worldCharacterService.getAllWorldCharacters().then((characters) => {
       this.characterList = characters;
+      this.updateRelationshipUI();
+    });
+
+    this.worldStoryService.getAllWorldStories().then((stories) => {
+      this.storyList = stories;
+    });
+  }
+
+  private updateRelationshipUI() {
+    if (this.characterList.length > 0 && this.worldCharacter) {
       for (let character of this.characterList) {
         if (this.getRelationship(character.id)?.hasRelationship == true) {
           let element = document.getElementById(`relationship-description-${character.id}`) as HTMLElement;
@@ -67,14 +107,7 @@ export class WorldCharacterDetails {
           // console.log(`Relationship between ${this.worldCharacter?.firstName} and ${character.firstName}:`, this.getRelationship(character.id));
         }
       }
-    });
-
-    this.worldStoryService.getAllWorldStories().then((stories) => {
-      this.storyList = stories;
-    });
-
-    console.log("Character Relationships Initialized:");
-    
+    }
   }
 
   toggleRelationship(event: Event, characterId: number) {
@@ -97,6 +130,10 @@ export class WorldCharacterDetails {
 
   getRelationship(characterID: number): worldCharacterRelationship | undefined {
     return this.worldCharacter?.relationships?.find(r => r.relatedCharacterID === characterID.toString());
+  }
+
+  isStoryInCharacter(storyTitle: string): boolean {
+    return this.worldCharacter?.stories?.includes(storyTitle) || false;
   }
 
   onRelationshipChange(event: Event, characterId: number) {
@@ -133,12 +170,50 @@ export class WorldCharacterDetails {
   }
 
   onStoryChange(event: Event, storyId: number) {
-    this.worldStoryService.getWorldStoryById(storyId).then((story) => {
-      if (story) {
-        console.log(`Story toggled: ${story.title}`);
-        // Additional logic to update stories can be added here
+    if (event.target instanceof HTMLInputElement) {
+      const isChecked = event.target.checked;
+      const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+      
+      this.worldStoryService.getWorldStoryById(storyId).then((story) => {
+        if (story) {
+          console.log(`Story ${story.title} ${isChecked ? 'added to' : 'removed from'} character`);
+          
+          // Update the story's characters list
+          let updatedCharacters = story.characters || [];
+          
+          if (isChecked) {
+            // Add character if not already present
+            if (!updatedCharacters.includes(characterName)) {
+              updatedCharacters.push(characterName);
+            }
+          } else {
+            // Remove character if present
+            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+          }
+          
+          // Update the story with the new characters list
+          this.worldStoryService.updateWorldStory(
+            story.id,
+            story.title,
+            story.description,
+            updatedCharacters,
+            story.locations || [],
+            story.tags || []
+          );
+        }
+      });
+    }
+  }
+
+  getFormStories(): string[] {
+    const stories: string[] = [];
+    for (let story of this.storyList) {
+      const checkbox = document.getElementById(`story-checkbox-${story.id}`) as HTMLInputElement;
+      if (checkbox && checkbox.checked) {
+        stories.push(story.title);
       }
-    });
+    }
+    return stories;
   }
 
   submitApplication() {
@@ -151,6 +226,10 @@ export class WorldCharacterDetails {
         }
       }
     }
+    
+    const selectedStories = this.getFormStories();
+    const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+    
     if (this.worldCharacter?.id !== undefined) {
       this.worldCharacterService.updateWorldCharacter(
         this.worldCharacter.id,
@@ -164,9 +243,42 @@ export class WorldCharacterDetails {
         relationships,
         this.applyForm.value.characterPhysicalDescription ?? '',
         this.applyForm.value.characterNonPhysicalDescription ?? '',
-        this.applyForm.value.characterStories?.split(', ') ?? [],
+        selectedStories,
         this.applyForm.value.characterTags?.split(', ') ?? [],
       );
+      
+      // Ensure all story records are updated to reflect their association with this character
+      for (let story of this.storyList) {
+        const isSelected = selectedStories.includes(story.title);
+        
+        this.worldStoryService.getWorldStoryById(story.id).then((fullStory) => {
+          if (fullStory) {
+            let updatedCharacters = fullStory.characters || [];
+            const hasCharacter = updatedCharacters.includes(characterName);
+            
+            if (isSelected && !hasCharacter) {
+              // Add character if selected but not in story's list
+              updatedCharacters.push(characterName);
+              this.updateStoryCharacters(story, fullStory, updatedCharacters);
+            } else if (!isSelected && hasCharacter) {
+              // Remove character if not selected but in story's list
+              updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+              this.updateStoryCharacters(story, fullStory, updatedCharacters);
+            }
+          }
+        });
+      }
     }
+  }
+  
+  private updateStoryCharacters(story: WorldStoryInfo, fullStory: WorldStoryInfo, updatedCharacters: string[]) {
+    this.worldStoryService.updateWorldStory(
+      story.id,
+      fullStory.title,
+      fullStory.description,
+      updatedCharacters,
+      fullStory.locations || [],
+      fullStory.tags || []
+    );
   }
 }

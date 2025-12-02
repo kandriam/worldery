@@ -1,3 +1,18 @@
-/* Event-specific styles only - common styles are in ../details.css */
 
-/* All common styles (.event-heading, .event-description, .event-details, .event-location) are now in ../details.css */
+.event-heading {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.event-description {
+  margin-bottom: 25px;
+}
+
+.event-details {
+  border: 1px solid var(--primary-color);
+}
+
+
+.event-location {
+  font-size: 24pt;
+  margin-bottom: 15px;
+}

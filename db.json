@@ -58,16 +58,17 @@
       "id": "4",
       "name": "Rudy's Birthday",
       "date": "2200-06-01",
-      "characters": [
-        "Rudy Edwards"
-      ],
+      "description": "Rudy is born",
       "location": [
         "Minnesota"
+      ],
+      "characters": [
+        "Cassandra Edwards",
+        "Rudy Edwards"
       ],
       "stories": [
         "Fire & Ice"
       ],
-      "description": "Rudy is born",
       "tags": [
         "birthday"
       ]
@@ -139,7 +140,8 @@
         "Judy Han"
       ],
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Jayara",
@@ -208,14 +210,6 @@
       "tags": [
         "tea"
       ]
-    },
-    {
-      "id": "6",
-      "name": "New Location",
-      "description": "",
-      "characters": [],
-      "stories": [],
-      "tags": []
     }
   ],
   "worldcharacters": [
@@ -283,7 +277,7 @@
         {
           "relatedCharacterID": "7",
           "relationshipType": [
-            ""
+            "Friend"
           ],
           "hasRelationship": true,
           "relationshipDescription": "Kiara met Leo at Cat's Tea, where Leo worked."
@@ -292,7 +286,8 @@
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
       "nonPhysicalDescription": "Pyrokinetic abilities.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -306,10 +301,8 @@
         "Frostbite",
         "Jay"
       ],
-      "physicalDescription": "Straight, white hair, gray eyes, Korean-American",
-      "nonPhysicalDescription": "cryokinetic abilities.",
-      "pronouns": "she/they",
       "birthdate": "2201-12-26",
+      "pronouns": "she/they",
       "roles": [
         "Protagonist",
         "Vigilante"
@@ -321,13 +314,55 @@
       "relationships": [
         {
           "relatedCharacterID": "1",
-          "hasRelationship": true,
           "relationshipType": [
             "Romantic Partner"
           ],
+          "hasRelationship": true,
           "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
+        },
+        {
+          "relatedCharacterID": "3",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "4",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
         }
       ],
+      "physicalDescription": "Straight, white hair, gray eyes, Korean-American",
+      "nonPhysicalDescription": "cryokinetic abilities.",
       "stories": [
         "Fire & Ice"
       ],
@@ -376,10 +411,8 @@
       "altNames": [
         "Rue"
       ],
-      "physicalDescription": "Purple hair, gray eyes, Caucasian",
-      "nonPhysicalDescription": "telepathic abilities.",
-      "pronouns": "she/her",
       "birthdate": "2200-06-01",
+      "pronouns": "she/her",
       "roles": [
         "Vigilante"
       ],
@@ -388,14 +421,56 @@
       ],
       "relationships": [
         {
+          "relatedCharacterID": "1",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "2",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
           "relatedCharacterID": "3",
-          "hasRelationship": true,
           "relationshipType": [
             "Twin Sister"
           ],
+          "hasRelationship": true,
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
         }
       ],
+      "physicalDescription": "Purple hair, gray eyes, Caucasian",
+      "nonPhysicalDescription": "telepathic abilities.",
       "stories": [
         "Fire & Ice"
       ],
@@ -523,7 +598,7 @@
     {
       "id": "1",
       "title": "Fire & Ice",
-      "description": "In a near-future world where individuals possess extraordinary abilities known as 'Gifts,",
+      "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.\n\nBut over the past few decades, Gifteds have become more common. They’re unpredictable, dangerous “Freaks”.\n\nThe Soldiers of Rebellion is a small vigilante “villain” group. For the past five years, they’ve been abducting Gifted children from their homes.\n",
       "characters": [
         "Kiara Ravao",
         "Judy Han",
@@ -551,7 +626,9 @@
       "id": "2",
       "title": "Blood & Water",
       "description": "",
-      "characters": [],
+      "characters": [
+        "Kiara Ravao"
+      ],
       "locations": [],
       "tags": [
         "Fire & Ice",

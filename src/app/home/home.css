@@ -27,7 +27,7 @@
   padding: 5px;
   justify-content: space-around;
   border: 2px solid var(--primary-color);
-  border-radius: 1px 1px 6px 6px;
+  border-radius: 1px 1px 7px 7px;
 
   /* &::-webkit-scrollbar {
     background-color: red;
@@ -114,14 +114,14 @@ button {
   padding: 5px;
   font-size: x-small;
   color: var(--secondary-color);
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--g2-color);
   border-radius: 10px;
   transition: box-shadow 0.5s ease-in-out;
-}
-
-.world-tags:hover {
-  background: var(--accent-color);
-  box-shadow: 2px 2px 5px var(--shadow-color);
+  
+  &:hover {
+    background: var(--accent-color);
+    box-shadow: 2px 2px 5px var(--shadow-color);
+  }
 }
 
 .world-description {

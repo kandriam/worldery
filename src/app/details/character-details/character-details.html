@@ -25,11 +25,11 @@
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-physical-description">Physical Description</label>
-                    <textarea id="character-physical-description" class="large-textarea" formControlName="characterPhysicalDescription"></textarea>
+                    <textarea id="character-physical-description" class="medium-textarea" formControlName="characterPhysicalDescription"></textarea>
                 </div>
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-non-physical-description">Non-Physical Description</label>
-                    <textarea id="character-non-physical-description" class="large-textarea" formControlName="characterNonPhysicalDescription"></textarea>
+                    <textarea id="character-non-physical-description" class="medium-textarea" formControlName="characterNonPhysicalDescription"></textarea>
                 </div>
             </div>
             <div class="details-section primary-section horizontal-section">
@@ -52,18 +52,19 @@
                             <div class="relationship-section" id="relationship-{{character.id}}">
                                 <div class="relationship-header">
                                     <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
-                                    <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
-                                    <button class="character-thumbnail world-thumbnail" [routerLink]="['/character-details', character.id]"></button>
+                                    <button class="linked-character" [routerLink]="['/character-details', character.id]">
+                                        <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
+                                    </button>
                                 </div>
                                 @if(character.altNames && character.altNames.length > 0) {           
                                     <p class="alt-names">( {{ character.altNames.join(', ') }} )</p>
                                 }
                                 @if (getRelationship(character.id)?.hasRelationship) {
                                     <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-                                    <textarea class="large-textarea relationship-textarea" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+                                    <textarea class="medium-textarea relationship-textarea" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
                                 } @else {
                                     <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-                                    <textarea class="large-textarea relationship-textarea hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+                                    <textarea class="medium-textarea relationship-textarea hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
                                 }
                             </div>
                         }
@@ -76,8 +77,10 @@
                     <div class="wrap-section">
                         @for(story of storyList; track story) {
                             <div class="form-field">
-                                <input type="checkbox" [value]="story.id" (change)="onStoryChange($event, story.id)" />
-                                <label class="secondary-label">{{ story.title }}</label>
+                                <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story.id)" [checked]="isStoryInCharacter(story.title)" />
+                                <button class="linked-story" [routerLink]="['/story-details', story.id]" type="button">
+                                    <label class="secondary-label">{{ story.title }}</label>
+                                </button>
                             </div>
                         }
                     </div>

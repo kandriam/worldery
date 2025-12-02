@@ -1,28 +1,85 @@
 <article>
     <section class="details-heading">
-    <h2 class="event-title">{{ worldEvent?.name }}</h2>
+        <h2 class="event-title">{{ worldEvent?.name }}</h2>
     </section>
-    <section class="edit-event-form">
     <form [formGroup]="applyForm" (submit)="submitApplication()">
-        <div>
-            <label for="event-title">Event Title</label>
-            <input id="event-title" type="text" formControlName="eventTitle" />
-            <label for="event-date">Event Date</label>
-            <input id="event-date" type="text" formControlName="eventDate" />
-        </div>
-            <label for="event-description">Event Description</label>
-            <textarea id="event-description" formControlName="eventDescription"></textarea>
-        <div>
-            <label for="event-location">Event Location</label>
-            <input id="event-location" type="text" formControlName="eventLocation" />
-            <label for="event-characters">Event Characters</label>
-            <input id="event-characters" type="text" formControlName="eventCharacters" />
-            <label for="event-stories">Event Stories</label>
-            <input id="event-stories" type="text" formControlName="eventStories" />
-            <label for="event-tags">Event Tags</label>
-            <input id="event-tags" type="text" formControlName="eventTags" />
-        </div>
+        <section class="edit-event-form event-page-body">
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-title">Event Title</label>
+                    <input id="event-title" type="text" formControlName="eventTitle" />
+                </div>
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-date">Event Date</label>
+                    <input id="event-date" type="text" formControlName="eventDate" />
+                </div>
+            </div>
+            
+            <div class="details-section primary-section spanning-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-description">Event Description</label>
+                    <textarea id="event-description" class="medium-textarea" formControlName="eventDescription"></textarea>
+                </div>
+            </div>
+            
+            <div class="details-section primary-section spanning-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-location">Event Location</label>
+                    <input id="event-location" type="text" formControlName="eventLocation" />
+                    <div class="vertical-section">
+                        @for(location of locationList; track location) {
+                            <div class="form-field">
+                                <input type="checkbox" id="location-checkbox-{{location.id}}" [value]="location.id" (change)="onLocationChange($event, location)" [checked]="isLocationInEvent(location.name)" />
+                                <button class="linked-location" [routerLink]="['/location-details', location.id]" type="button">
+                                    <label class="secondary-label">{{ location.name }}</label>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-stories">Event Stories</label>
+                    <input id="event-stories" type="text" formControlName="eventStories" />
+                    <div class="vertical-section">
+                        @for(story of storyList; track story) {
+                            <div class="form-field">
+                                <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story)" [checked]="isStoryInEvent(story.title)" />
+                                <button class="linked-story" [routerLink]="['/story-details', story.id]" type="button">
+                                    <label class="secondary-label">{{ story.title }}</label>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <div class="details-section primary-section spanning-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-characters">Event Characters</label>
+                    <input id="event-characters" type="text" formControlName="eventCharacters" />
+                    <div class="vertical-section">
+                        @for(character of characterList; track character) {
+                            <div class="form-field">
+                                <input type="checkbox" id="character-checkbox-{{character.id}}" [value]="character.id" (change)="onCharacterChange($event, character)" [checked]="isCharacterInEvent(character.firstName + ' ' + character.lastName)" />
+                                <button class="linked-character" [routerLink]="['/character-details', character.id]" type="button">
+                                    <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="event-tags">Event Tags</label>
+                    <input id="event-tags" type="text" formControlName="eventTags" />
+                </div>
+            </div>
+        </section>
         <button type="submit" class="save-button primary">Save</button>
     </form>
-    </section>
 </article>

@@ -2,6 +2,9 @@
 title: "Worldery ReadMe"
 ---
 # How to Run
+1. In the terminal window, run
+    `yarn dev`
+OR
 1. In one terminal window, run
     `ng serve`
 2. In a separate terminal, run
