@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { WorldCharacterService } from '../services/world-character.service';
-import { WorldCharacterInfo, worldCharacterRelationship } from '../worldcharacter';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { WorldCharacterService } from '../../services/world-character.service';
+import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import { WorldStoryInfo } from '../worldstory';
-import { WorldStoryService } from '../services/world-story.service';
+import { WorldStoryInfo } from '../../worldstory';
+import { WorldStoryService } from '../../services/world-story.service';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: "character-details.html",
-  styleUrls: ["./character-details.css", "../../styles.css"],
+  styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
 
 export class WorldCharacterDetails {

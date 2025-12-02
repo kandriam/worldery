@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WorldEventService } from '../services/world-event.service';
-import { WorldEventInfo } from '../worldevent';
+import { WorldEventService } from '../../services/world-event.service';
+import { WorldEventInfo } from '../../worldevent';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   imports: [ReactiveFormsModule],
   templateUrl: 'event-details.html',
-  styleUrls: ["./event-details.css", "../../styles.css"],
+  styleUrls: ["event-details.css", "../details.css", "../../../styles.css"],
 })
 
 export class WorldEventDetails {

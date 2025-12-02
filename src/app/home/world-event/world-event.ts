@@ -7,7 +7,7 @@ import { WorldEventService } from '../../services/world-event.service';
   selector: 'app-world-event',
   imports: [RouterLink, RouterOutlet],
   templateUrl: 'world-event.html',
-  styleUrls: ['./world-event.css', '../../../styles.css'],
+  styleUrls: ['world-event.css', '../home.css', '../../../styles.css'],
 })
 
 export class WorldEvent {

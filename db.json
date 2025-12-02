@@ -142,7 +142,8 @@
         "Fire & Ice"
       ],
       "tags": [
-        "Jayara"
+        "Jayara",
+        "housing"
       ]
     },
     {
@@ -190,7 +191,9 @@
       "stories": [
         "Fire & Ice"
       ],
-      "tags": []
+      "tags": [
+        "housing"
+      ]
     },
     {
       "id": "5",
@@ -205,6 +208,14 @@
       "tags": [
         "tea"
       ]
+    },
+    {
+      "id": "6",
+      "name": "New Location",
+      "description": "",
+      "characters": [],
+      "stories": [],
+      "tags": []
     }
   ],
   "worldcharacters": [

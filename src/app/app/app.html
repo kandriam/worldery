@@ -1,0 +1,16 @@
+<main>
+    <header class="nav-bar">
+        <button class="nav-button nav-brand" [routerLink]="['/']">
+        <!-- <img class="header-icon" src="assets/worldery-tab-icon.png" alt="Worldery icon"> -->
+        Worldery
+        </button>
+        <button class="nav-button primary">Timeline</button>
+        <button class="nav-button primary">World</button>
+        <button class="nav-button primary">Characters</button>
+        <button class="nav-button primary">Stories</button>
+        <button class="nav-button primary">Settings</button>
+    </header>
+    <section class="content">
+    <router-outlet></router-outlet>
+    </section>
+</main>

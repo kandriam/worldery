@@ -1,8 +1,8 @@
-
 .event-heading {
   font-weight: bold;
   margin-bottom: 15px;
 }
+
 .event-description {
   margin-bottom: 25px;
 }
@@ -10,7 +10,6 @@
 .event-details {
   border: 1px solid var(--primary-color);
 }
-
 
 .event-location {
   font-size: 24pt;

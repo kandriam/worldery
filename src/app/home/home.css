@@ -1,11 +1,25 @@
 .home-row-title {
-  /* border: 2px solid var(--primary-color);  */
+  /* border: 1px solid var(--primary-color);  */
   /* color: var(--secondary-color); */
   font: italic;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0px;
+
+  .primary{
+    background-color: var(--g3-color);
+    color: var(--g5-color);
+    transition: background-color 0.5s ease-in-out;
+    transition: box-shadow 0.5s ease-in-out;
+
+    &:hover {
+      background-color: var(--g2-color);
+      box-shadow: var(--shadow-color) 2px 2px 10px;
+    }
+  }
 }
+
 .home-row {
   display: flex;
   overflow: auto;
@@ -13,7 +27,11 @@
   padding: 5px;
   justify-content: space-around;
   border: 2px solid var(--primary-color);
-  border-radius: 1px 1px 10px 10px;
+  border-radius: 1px 1px 6px 6px;
+
+  /* &::-webkit-scrollbar {
+    background-color: red;
+  } */
 }
 
 input[type="text"] {
@@ -24,10 +42,133 @@ input[type="text"] {
   display: inline-block;
   width: 30%;
 }
+
 button {
-  padding: 10px;
+  /* padding: 10px; */
   border: solid 1px var(--primary-color);
   background: var(--primary-color);
   color: white;
   border-radius: 8px;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: medium;
+  color: var(--g1-color);
+  line-height: 1.4;
+  white-space: normal;
+}
+
+/* ============================================================================
+   WORLD COMPONENT STYLES
+   Moved from styles.css - components for world items display
+   ============================================================================ */
+
+/* World Icon Styles */
+.world-location::before {
+  content: '📍';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.world-characters::before {
+  content: '👥';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.world-stories::before {
+  content: '📖';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.world-date::before {
+  content: '📅';
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.world-tags::before {
+  content: '🏷️';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+/* World Content Components */
+.world-tags {
+  width: fit-content;
+  margin: 3px;
+  padding: 5px;
+  font-size: x-small;
+  color: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.world-tags:hover {
+  background: var(--accent-color);
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.world-description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: x-small;
+  color: var(--g1-color);
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.world-thumbnail {
+  background: var(--g4-color);
+  border-radius: 30px;
+  margin: 5px;
+  padding: 10px;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.world-thumbnail:hover {
+  box-shadow: 2px 2px 15px var(--shadow-color);
+}
+
+.thumbnail-header {
+  display: flex;
+  font-size: small;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thumbnail-delete-button {
+  background: var(--b4-color);
+  color: var(--g5-color);
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
+  margin-inline: 5px;
+  font-size: small;
+  transition: background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+
+  &:hover {
+    background: var(--b3-color);
+    box-shadow: var(--shadow-color) 2px 2px 10px;
+  }
+}
+
+.thumbnail-tag-container {
+  display: flex;
+  flex-wrap: wrap;
 }

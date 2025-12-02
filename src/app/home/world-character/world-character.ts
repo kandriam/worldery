@@ -7,7 +7,7 @@ import { WorldCharacterService } from '../../services/world-character.service';
   selector: 'app-world-character',
   imports: [RouterLink, RouterOutlet],
   templateUrl: 'world-character.html',
-  styleUrls: ['./world-character.css', '../../../styles.css'],
+  styleUrls: ['world-character.css', '../home.css', '../../../styles.css'],
 })
 
 export class WorldCharacter {

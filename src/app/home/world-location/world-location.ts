@@ -6,7 +6,7 @@ import { WorldLocationService } from '../../services/world-location.service';
   selector: 'app-world-location',
   imports: [RouterLink, RouterOutlet],
   templateUrl: 'world-location.html',
-  styleUrls: ['./world-location.css', '../../../styles.css']
+  styleUrls: ['world-location.css', '../home.css', '../../../styles.css']
 })
 export class WorldLocation {
   locationService = inject(WorldLocationService);

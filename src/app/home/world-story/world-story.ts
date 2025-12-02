@@ -7,7 +7,7 @@ import { WorldStoryService } from '../../services/world-story.service';
   selector: 'app-world-story',
   imports: [RouterLink, RouterOutlet],
   templateUrl: 'world-story.html',
-  styleUrls: ['./world-story.css', '../../../styles.css'],
+  styleUrls: ['world-story.css', '../home.css', '../../../styles.css'],
 })
 
 export class WorldStory {

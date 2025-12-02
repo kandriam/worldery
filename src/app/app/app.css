@@ -20,7 +20,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
+  padding: 0px 10px;
   /* background: linear-gradient(135deg, var(--g2-color), var(--g4-color)); */
   background-color: var(--g4-color);
   border-bottom: 2px solid var(--secondary-color);
@@ -51,9 +51,8 @@ header {
   border-radius: 6px;
   transition: text-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out, text-decoration 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 
-
   &.nav-brand {
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
   color: var(--secondary-color);
@@ -69,8 +68,8 @@ header {
 
 
   &.primary {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    /* font-weight: bold; */
     color: var(--g5-color);
     
     &:hover{

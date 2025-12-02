@@ -1,7 +1,7 @@
 <article>
     <section class="details-heading">
-    <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
-    <h3 class="subtitle">( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
+        <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
+        <h3 class="subtitle">( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
     </section>
     <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-character-form character-page-body">
@@ -53,10 +53,10 @@
                                 <div class="relationship-header">
                                     <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
                                     <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
-                                    <!-- <button class="character-thumbnail world-thumbnail" [routerLink]="['/character-details', character.id]"></button> -->
+                                    <button class="character-thumbnail world-thumbnail" [routerLink]="['/character-details', character.id]"></button>
                                 </div>
                                 @if(character.altNames && character.altNames.length > 0) {           
-                                    <p class="subtitle">( {{ character.altNames?.join(', ') }} )</p>
+                                    <p class="alt-names">( {{ character.altNames.join(', ') }} )</p>
                                 }
                                 @if (getRelationship(character.id)?.hasRelationship) {
                                     <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>

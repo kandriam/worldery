@@ -10,10 +10,19 @@
   flex-wrap: wrap;
 }
 
+.alt-names {
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 10pt;
+  color: var(--g3-color);
+}
+
 .relationship-section {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  
 }
 
 .relationship-textarea {
@@ -29,6 +38,8 @@
   font-weight: bold;
   font-size: 11pt;
   border-bottom: 1px solid var(--g3-color);
+  padding: 5px 5px 0px 5px;
+  border-radius: 10px 10px 0 0;
   background-color: var(--g4-color);
   /* background: linear-gradient(0deg, var(--g4-color), var(--g5-color)); */
 }

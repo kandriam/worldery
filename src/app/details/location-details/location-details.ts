@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WorldLocationService } from '../services/world-location.service';
-import { WorldLocationInfo } from '../worldlocation';
+import { WorldLocationService } from '../../services/world-location.service';
+import { WorldLocationInfo } from '../../worldlocation';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   imports: [ReactiveFormsModule],
   templateUrl: 'location-details.html',
-  styleUrls: ["./location-details.css", "../../styles.css"],
+  styleUrls: ["location-details.css", "../details.css", "../../../styles.css"],
 })
 
 export class WorldLocationDetails {

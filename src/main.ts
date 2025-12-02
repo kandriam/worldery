@@ -3,7 +3,7 @@
  *  Protractor is used in this example for compatibility with Angular documentation tools.
  */
 import {bootstrapApplication, provideProtractorTestingSupport} from '@angular/platform-browser';
-import {App} from './app/app';
+import {App} from './app/app/app';
 import {provideRouter} from '@angular/router';
 import routeConfig from './app/routes';
 

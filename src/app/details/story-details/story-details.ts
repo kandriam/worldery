@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WorldStoryService } from '../services/world-story.service';
-import { WorldStoryInfo } from '../worldstory';
+import { WorldStoryService } from '../../services/world-story.service';
+import { WorldStoryInfo } from '../../worldstory';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   imports: [ReactiveFormsModule],
   templateUrl: 'story-details.html',
-  styleUrls: ["./story-details.css", "../../styles.css"],
+  styleUrls: ["story-details.css", "../details.css", "../../../styles.css"],
 })
 
 export class WorldStoryDetails {
