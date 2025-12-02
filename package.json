@@ -5,7 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "json-server": "json-server --watch db.json",
+    "dev": "concurrently \"ng serve\" \"json-server --watch db.json\"",
+    "dev:verbose": "concurrently --names \"ANGULAR,JSON-SERVER\" --prefix-colors \"cyan,magenta\" \"ng serve\" \"json-server --watch db.json\""
   },
   "private": true,
   "dependencies": {
@@ -24,6 +27,8 @@
     "@angular/cli": "^20.1.0-next",
     "@angular/compiler-cli": "^20.1.0-next",
     "@types/node": "^16.11.35",
+    "concurrently": "^8.2.2",
+    "json-server": "^1.0.0-beta.3",
     "ts-node": "~10.9.0",
     "typescript": "~5.8.0"
   }
