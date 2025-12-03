@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/thumbnail/character-thumbnail/character-thumbnail.css"],
+  "sourcesContent": [".character-thumbnail {\r\n  min-width: 10rem;\r\n  width: fit-content;\r\n  height: 8rem;\r\n}\r\n\r\n.thumbnail-alt-names {\r\n  font-size: inherit;\r\n}\r\n\r\n.thumbnail-pronouns {\r\n  font-size: inherit;\r\n}"],
+  "mappings": ";AAAA,CAAC;AACC,aAAW;AACX,SAAO;AACP,UAAQ;AACV;AAEA,CAAC;AACC,aAAW;AACb;AAEA,CAAC;AACC,aAAW;AACb;",
+  "names": []
+}

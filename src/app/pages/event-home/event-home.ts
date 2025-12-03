@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {EventThumbnail} from '../../thumbnail/event-thumbnail/event-thumbnail';
+import { Component, inject } from '@angular/core';
+import {EventThumbnail} from '../../components/thumbnail/event-thumbnail/event-thumbnail';
 import {WorldEventInfo} from '../../worldevent';
 import {WorldEventService} from '../../services/world-event.service';
 import {WorldCharacterService} from '../../services/world-character.service';

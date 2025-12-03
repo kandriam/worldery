@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/thumbnail/event-thumbnail/event-thumbnail.css"],
+  "sourcesContent": [".event-thumbnail {\r\n  min-width: 10rem;\r\n  width: fit-content;\r\n  height: 8rem;\r\n}"],
+  "mappings": ";AAAA,CAAC;AACC,aAAW;AACX,SAAO;AACP,UAAQ;AACV;",
+  "names": []
+}

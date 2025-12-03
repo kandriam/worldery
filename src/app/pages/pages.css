@@ -1,9 +1,6 @@
 /* Shared Home Page Styles */
 
 .results {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem; */
   border: none;
   border-radius: 8px;
   margin-top: 20px;

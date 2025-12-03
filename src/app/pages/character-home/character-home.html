@@ -11,7 +11,7 @@
   
   <button class="primary" (click)="addWorldCharacter()">Add Character</button>
 
-  <section class="results">
+  <section class="results grid-section">
     @if (filteredCharacterList.length) {
       @for (worldCharacter of filteredCharacterList; track worldCharacter.id) {
         <app-character-thumbnail [worldCharacter]="worldCharacter"></app-character-thumbnail>

@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {LocationThumbnail} from '../../thumbnail/location-thumbnail/location-thumbnail';
+import { Component, inject } from '@angular/core';
+import {LocationThumbnail} from '../../components/thumbnail/location-thumbnail/location-thumbnail';
 import {WorldLocationInfo} from '../../worldlocation';
 import {WorldLocationService} from '../../services/world-location.service';
 import {WorldCharacterService} from '../../services/world-character.service';

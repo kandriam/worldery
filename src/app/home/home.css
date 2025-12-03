@@ -1,70 +1,4 @@
-.home-row-title {
-  /* border: 1px solid var(--g1-color);  */
-  /* color: var(--b2-color); */
-  font: italic;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: -5px;
-  padding: 0;
-
-}
-
-.home-row {
-  display: flex;
-  overflow: auto;
-  white-space: nowrap;
-  padding: 5px;
-  justify-content: space-around;
-  border: 2px solid var(--g1-color);
-  border-radius: 1px 1px 7px 7px;
-}
-
-.section-title {
-  border: 2px solid var(--g1-color);
-  background-color: var(--g5-color);
-  border-radius: 15px;
-  padding: 5px 10px;
-  margin-left: 5px;
-  margin-top: 10px;
-  font-family: var(--base-font-family);
-  text-transform: uppercase;
-  color: var(--g1-color);
-  font-size: larger;
-  font-weight: bold;
-
-  &:hover {
-    background-color: var(--g4-color);
-
-    &.event {
-      box-shadow: 2px 2px 10px var(--event-color) !important;
-    }
-    &.location {
-      box-shadow: 2px 2px 10px var(--location-color) !important;
-    }
-    &.character {
-      box-shadow: 2px 2px 10px var(--character-color) !important;
-    }
-    &.story {
-      box-shadow: 2px 2px 10px var(--story-color) !important;
-    }
-  }
-}
-
-.add-button {
-  background: var(--g1-color);
-
-  &::after {
-    content: '+';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-left: 5px;
-    vertical-align: middle;
-  }
-}
-
-/* Search Styling */
+/* Search Styling - these can be removed once SearchFilter component styles are finalized */
 
 .collapsible-header {
   display: flex;
@@ -207,17 +141,4 @@
   border: 1px solid var(--g4-color);
   border-radius: 8px;
   background-color: var(--accent-color);
-}
-
-.no-results {
-  width: 100%;
-  text-align: center;
-  padding: 2rem;
-  color: var(--g3-color);
-}
-
-.no-results p {
-  font-size: 1.1rem;
-  margin: 0;
-  font-style: italic;
 }

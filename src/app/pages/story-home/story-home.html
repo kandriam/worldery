@@ -12,7 +12,7 @@
   
   <button class="primary" (click)="addWorldStory()">Add Story</button>
 
-  <section class="results">
+  <section class="results grid-section">
     @if (filteredStoryList.length) {
       @for (worldStory of filteredStoryList; track worldStory.id) {
         <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>

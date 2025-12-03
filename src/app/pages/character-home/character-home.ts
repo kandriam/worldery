@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {CharacterThumbnail} from '../../thumbnail/character-thumbnail/character-thumbnail';
+import { Component, inject } from '@angular/core';
+import {CharacterThumbnail} from '../../components/thumbnail/character-thumbnail/character-thumbnail';
 import {WorldCharacterInfo} from '../../worldcharacter';
 import {WorldCharacterService} from '../../services/world-character.service';
 import {WorldStoryService} from '../../services/world-story.service';

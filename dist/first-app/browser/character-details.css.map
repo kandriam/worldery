@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/details/character-details/character-details.css"],
+  "sourcesContent": [".character-heading {\r\n  font-weight: bold;\r\n  margin-bottom: 15px;\r\n}\r\n\r\n.character-page-body {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n\r\n.alt-names {\r\n  font-style: italic;\r\n  margin-top: 0;\r\n  margin-bottom: 10px;\r\n  font-size: 10pt;\r\n  color: var(--g3-color);\r\n}\r\n\r\n.relationship-section {\r\n  display: flex;\r\n  flex-direction: column;\r\n  margin-bottom: 10px;\r\n  \r\n}\r\n\r\n.relationship-textarea {\r\n  display: block;\r\n  margin-top: 5px;\r\n  flex-grow: 1;\r\n}\r\n\r\n.relationship-header {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n  font-weight: bold;\r\n  font-size: 11pt;\r\n  border-bottom: 1px solid var(--g3-color);\r\n  padding: 5px 5px 0px 5px;\r\n  border-radius: 10px 10px 0 0;\r\n  background-color: var(--g4-color);\r\n}"],
+  "mappings": ";AAAA,CAAC;AACC,eAAa;AACb,iBAAe;AACjB;AAEA,CAAC;AACC,WAAS;AACT,aAAW;AACb;AAEA,CAAC;AACC,cAAY;AACZ,cAAY;AACZ,iBAAe;AACf,aAAW;AACX,SAAO,IAAI;AACb;AAEA,CAAC;AACC,WAAS;AACT,kBAAgB;AAChB,iBAAe;AAEjB;AAEA,CAAC;AACC,WAAS;AACT,cAAY;AACZ,aAAW;AACb;AAEA,CAAC;AACC,WAAS;AACT,eAAa;AACb,mBAAiB;AACjB,eAAa;AACb,aAAW;AACX,iBAAe,IAAI,MAAM,IAAI;AAC7B,WAAS,IAAI,IAAI,IAAI;AACrB,iBAAe,KAAK,KAAK,EAAE;AAC3B,oBAAkB,IAAI;AACxB;",
+  "names": []
+}

@@ -1,0 +1,31 @@
+<section class="home-row">
+  <div class="home-row-title">
+    <button class="section-title" [class]="entityType" [routerLink]="[routePath]">{{ title }}</button>
+    <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>
+  </div>
+  <div class="home-row-results">
+    @if (entities.length) {
+      @if (isEventList(entities)) {
+        @for(worldEvent of entities; track $index) {
+          <app-event-thumbnail [worldEvent]="worldEvent"></app-event-thumbnail>
+        }
+      } @else if (isLocationList(entities)) {
+        @for(worldLocation of entities; track $index) {
+          <app-location-thumbnail [worldLocation]="worldLocation"></app-location-thumbnail>
+        }
+      } @else if (isCharacterList(entities)) {
+        @for(worldCharacter of entities; track $index) {
+          <app-character-thumbnail [worldCharacter]="worldCharacter"></app-character-thumbnail>
+        }
+      } @else if (isStoryList(entities)) {
+        @for(worldStory of entities; track $index) {
+          <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>
+        }
+      }
+    } @else {
+      <div class="no-results">
+        <p>{{ noResultsMessage }}</p>
+      </div>
+    }
+  </div>
+</section>

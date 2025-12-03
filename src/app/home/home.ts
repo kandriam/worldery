@@ -1,25 +1,21 @@
 import {Component, inject} from '@angular/core';
-import {EventThumbnail} from '../thumbnail/event-thumbnail/event-thumbnail';
 import {WorldEventInfo} from '../worldevent';
 import {WorldEventService} from '../services/world-event.service';
 
-import { LocationThumbnail } from '../thumbnail/location-thumbnail/location-thumbnail';
 import { WorldLocationInfo } from '../worldlocation';
 import { WorldLocationService } from '../services/world-location.service';
 
-import { CharacterThumbnail } from '../thumbnail/character-thumbnail/character-thumbnail';
 import { WorldCharacterInfo } from '../worldcharacter';
 import { WorldCharacterService } from '../services/world-character.service';
 
-import { StoryThumbnail } from '../thumbnail/story-thumbnail/story-thumbnail';
 import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
-import { RouterLink } from '@angular/router';
 import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../components/search-filter/search-filter';
+import {HomeRow, EntityType} from '../components/home-row/home-row';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail, SearchFilter],
+  imports: [SearchFilter, HomeRow],
   templateUrl: 'home.html',
   styleUrls: ['./home.css', '../../styles.css'],
 })
@@ -159,28 +155,9 @@ export class Home {
     this.filteredCharacterList = filteredCharacters;
     this.filteredStoryList = filteredStories;
   }
-
-  addWorldElement(elementType: string) {
-    console.log('Add world element clicked:', elementType);
-    if (elementType === 'event') {
-      console.log('Adding new event');
-      this.eventService.createWorldEvent('New Event', '', '', '', '', '', []);
-    }
-    else if (elementType === 'location') {
-      console.log('Adding new location');
-      // Logic to add a new location
-      this.locationService.createWorldLocation('New Location', '', [], [], []);
-    }
-    else if (elementType === 'character') {
-      console.log('Adding new character');
-      // Logic to add a new character
-      this.characterService.createWorldCharacter('New Character', '', [], '', '', [], [], [], '', '', [], []);
-    }
-    else if (elementType === 'story') {
-      console.log('Adding new story');
-      // Logic to add a new story
-      this.storyService.createWorldStory('New Story', '', [], [], []);
-    }
-    // window.location.reload();
+  
+  addWorldElement(entityType: EntityType) {
+    // Placeholder for add functionality
+    console.log(`Add ${entityType} functionality would be implemented here`);
   }
 }

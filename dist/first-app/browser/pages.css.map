@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/pages.css"],
+  "sourcesContent": ["/* Shared Home Page Styles */\r\n\r\n.results {\r\n  border: none;\r\n  border-radius: 8px;\r\n  margin-top: 20px;\r\n  border-top: 1px solid var(--g4-color);\r\n  border-bottom: 1px solid var(--g4-color);\r\n}\r\n\r\n.no-results {\r\n  grid-column: 1 / -1;\r\n  text-align: center;\r\n  padding: 2rem;\r\n  color: var(--g3-color);\r\n}\r\n\r\n.no-results p {\r\n  font-size: 1.1rem;\r\n  margin: 0;\r\n}\r\n\r\n/* Responsive design */\r\n@media (max-width: 768px) {\r\n  .results {\r\n    grid-template-columns: 1fr;\r\n  }\r\n}"],
+  "mappings": ";AAEA,CAAC;AACC,UAAQ;AACR,iBAAe;AACf,cAAY;AACZ,cAAY,IAAI,MAAM,IAAI;AAC1B,iBAAe,IAAI,MAAM,IAAI;AAC/B;AAEA,CAAC;AACC,eAAa,EAAE,EAAE;AACjB,cAAY;AACZ,WAAS;AACT,SAAO,IAAI;AACb;AAEA,CAPC,WAOW;AACV,aAAW;AACX,UAAQ;AACV;AAGA,OAAO,CAAC,SAAS,EAAE;AACjB,GAtBD;AAuBG,2BAAuB;AACzB;AACF;",
+  "names": []
+}

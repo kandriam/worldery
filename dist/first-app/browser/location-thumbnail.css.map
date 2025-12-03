@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/thumbnail/location-thumbnail/location-thumbnail.css"],
+  "sourcesContent": [".location-thumbnail {\r\n  /* width: fit-content; */\r\n  width: 20rem;\r\n  height: 8rem;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAC;AAEC,SAAO;AACP,UAAQ;AACV;",
+  "names": []
+}
