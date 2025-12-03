@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
 import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 
 export class WorldCharacterDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
   worldCharacterService = inject(WorldCharacterService);
   worldCharacter: WorldCharacterInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
@@ -280,5 +281,12 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       fullStory.locations || [],
       fullStory.tags || []
     );
+  }
+
+  deleteCharacter() {
+    if (this.worldCharacter?.id && confirm(`Are you sure you want to delete ${this.worldCharacter.firstName} ${this.worldCharacter.lastName}? This action cannot be undone.`)) {
+      this.worldCharacterService.deleteWorldCharacter(this.worldCharacter.id);
+      this.router.navigate(['/character']);
+    }
   }
 }

@@ -1,6 +1,7 @@
 <article>
-    <section class="details-heading">
+    <section class="details-heading horizontal-section">
         <h2 class="story-title">{{ worldStory?.title }}</h2>
+        <button class="delete-button secondary" (click)="deleteStory()">Delete Story</button>
     </section>
     <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-story-form story-page-body">

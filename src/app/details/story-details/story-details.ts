@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldStoryService } from '../../services/world-story.service';
 import { WorldStoryInfo } from '../../worldstory';
 import { WorldCharacterService } from '../../services/world-character.service';
@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 
 export class WorldStoryDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
   worldStoryService = inject(WorldStoryService);
   worldCharacterService = inject(WorldCharacterService);
   worldLocationService = inject(WorldLocationService);
@@ -280,5 +281,12 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
       updatedStories,
       fullLocation.tags || []
     );
+  }
+
+  deleteStory() {
+    if (this.worldStory?.id && confirm(`Are you sure you want to delete "${this.worldStory.title}"? This action cannot be undone.`)) {
+      this.worldStoryService.deleteWorldStory(this.worldStory.id);
+      this.router.navigate(['/story']);
+    }
   }
 }

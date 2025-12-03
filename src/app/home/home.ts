@@ -12,6 +12,7 @@ import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
 import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../components/search-filter/search-filter';
 import {HomeRow, EntityType} from '../components/home-row/home-row';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -36,6 +37,8 @@ export class Home {
   storyService: WorldStoryService = inject(WorldStoryService);
   worldStoryList: WorldStoryInfo[] = [];
   filteredStoryList: WorldStoryInfo[] = [];
+
+  router: Router = inject(Router);
 
   // All entities for filter dropdowns
   allCharacters: WorldCharacterInfo[] = [];
@@ -156,8 +159,133 @@ export class Home {
     this.filteredStoryList = filteredStories;
   }
   
-  addWorldElement(entityType: EntityType) {
-    // Placeholder for add functionality
-    console.log(`Add ${entityType} functionality would be implemented here`);
+  async addWorldElement(entityType: EntityType) {
+    let newId: number;
+    
+    switch(entityType) {
+      case 'event':
+        console.log('Adding new event');
+        newId = await this.createEventAndGetId();
+        this.router.navigate(['/event', newId]);
+        break;
+      case 'location':
+        console.log('Adding new location');
+        newId = await this.createLocationAndGetId();
+        this.router.navigate(['/location', newId]);
+        break;
+      case 'character':
+        console.log('Adding new character');
+        newId = await this.createCharacterAndGetId();
+        this.router.navigate(['/character', newId]);
+        break;
+      case 'story':
+        console.log('Adding new story');
+        newId = await this.createStoryAndGetId();
+        this.router.navigate(['/story', newId]);
+        break;
+      default:
+        console.log(`Unknown entity type: ${entityType}`);
+    }
+  }
+  
+  private async createEventAndGetId(): Promise<number> {
+    const events = await this.eventService.getAllWorldEvents();
+    const maxId = events.length > 0 ? Math.max(...events.map(e => e.id)) : 0;
+    const newId = maxId + 1;
+    
+    await fetch('http://localhost:3000/worldevents', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: newId,
+        name: 'New Event',
+        date: '',
+        description: '',
+        location: [],
+        characters: [],
+        stories: [],
+        tags: [],
+      }),
+    });
+    
+    return newId;
+  }
+  
+  private async createLocationAndGetId(): Promise<number> {
+    const locations = await this.locationService.getAllWorldLocations();
+    const maxId = locations.length > 0 ? Math.max(...locations.map(l => l.id)) : 0;
+    const newId = maxId + 1;
+    
+    await fetch('http://localhost:3000/worldlocations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: newId,
+        name: 'New Location',
+        description: '',
+        characters: [],
+        stories: [],
+        tags: [],
+      }),
+    });
+    
+    return newId;
+  }
+  
+  private async createCharacterAndGetId(): Promise<number> {
+    const characters = await this.characterService.getAllWorldCharacters();
+    const maxId = characters.length > 0 ? Math.max(...characters.map(c => c.id)) : 0;
+    const newId = maxId + 1;
+    
+    await fetch('http://localhost:3000/worldcharacters', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: newId,
+        firstName: 'New',
+        lastName: 'Character',
+        altNames: [],
+        birthdate: '',
+        pronouns: '',
+        roles: [],
+        affiliations: [],
+        relationships: [],
+        physicalDescription: '',
+        nonPhysicalDescription: '',
+        stories: [],
+        tags: [],
+      }),
+    });
+    
+    return newId;
+  }
+  
+  private async createStoryAndGetId(): Promise<number> {
+    const stories = await this.storyService.getAllWorldStories();
+    const maxId = stories.length > 0 ? Math.max(...stories.map(s => s.id)) : 0;
+    const newId = maxId + 1;
+    
+    await fetch('http://localhost:3000/worldstories', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: newId,
+        title: 'New Story',
+        description: '',
+        characters: [],
+        locations: [],
+        tags: [],
+      }),
+    });
+    
+    return newId;
   }
 }

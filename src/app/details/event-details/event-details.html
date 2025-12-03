@@ -1,6 +1,7 @@
 <article>
-    <section class="details-heading">
+    <section class="details-heading horizontal-section">
         <h2 class="event-title">{{ worldEvent?.name }}</h2>
+        <button class="delete-button secondary" (click)="deleteEvent()">Delete Event</button>
     </section>
     <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-event-form event-page-body">

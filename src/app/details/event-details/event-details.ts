@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldEventService } from '../../services/world-event.service';
 import { WorldEventInfo } from '../../worldevent';
 import { WorldCharacterService } from '../../services/world-character.service';
@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs';
 
 export class WorldEventDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
   worldEventService = inject(WorldEventService);
   worldCharacterService = inject(WorldCharacterService);
   worldStoryService = inject(WorldStoryService);
@@ -175,6 +176,13 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         selectedStories.join(', '),
         this.applyForm.value.eventTags?.split(', ') ?? [],
       );
+    }
+  }
+
+  deleteEvent() {
+    if (this.worldEvent?.id && confirm(`Are you sure you want to delete "${this.worldEvent.name}"? This action cannot be undone.`)) {
+      this.worldEventService.deleteWorldEvent(this.worldEvent.id);
+      this.router.navigate(['/event']);
     }
   }
 }

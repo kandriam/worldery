@@ -1,7 +1,10 @@
 <article>
-    <section class="details-heading">
+    <section class="details-heading horizontal-section">
         <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
-        <h3 class="subtitle">( {{ worldCharacter?.altNames?.join(', ') }} )</h3>
+        @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {
+            <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>
+        }
+        <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
     </section>
     <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-character-form character-page-body">

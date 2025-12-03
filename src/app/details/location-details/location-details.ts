@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldLocationService } from '../../services/world-location.service';
 import { WorldLocationInfo } from '../../worldlocation';
 import { WorldCharacterService } from '../../services/world-character.service';
@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 
 export class WorldLocationDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
   worldLocationService = inject(WorldLocationService);
   worldCharacterService = inject(WorldCharacterService);
   worldStoryService = inject(WorldStoryService);
@@ -140,6 +141,13 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
         selectedStories,
         this.applyForm.value.locationTags?.split(', ') ?? [],
       );
+    }
+  }
+
+  deleteLocation() {
+    if (this.worldLocation?.id && confirm(`Are you sure you want to delete "${this.worldLocation.name}"? This action cannot be undone.`)) {
+      this.worldLocationService.deleteWorldLocation(this.worldLocation.id);
+      this.router.navigate(['/location']);
     }
   }
 }
