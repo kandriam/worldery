@@ -58,6 +58,7 @@
     --story-highlight-color: var(--pastel-purple);
   
   /* Fonts */
+  --headings-font-family: 'Be Vietnam Pro', sans-serif;
   --base-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --input-font-family: 'Lucida Console';
 }
@@ -84,7 +85,7 @@ a {
    TYPOGRAPHY
    ============================================================================ */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--headings-font-family);
   color: var(--g1-color);
 }
 
@@ -190,6 +191,7 @@ label {
   color: var(--b2-color);
   font-weight: bold;
   text-transform: uppercase;
+  /* font-family: var(--base-font-family); */
   font-size: 12pt;
 
   &.required::after {

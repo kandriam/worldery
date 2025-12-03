@@ -3,8 +3,8 @@
    HOME COMPONENT STYLES
    ============================================================================ */
 
-/* World Icon Styles */
-.world-location::before {
+/* Thumbnail Icon Styles */
+.thumbnail-location::before {
   content: '📍';
   display: inline-block;
   width: 16px;
@@ -13,7 +13,7 @@
   vertical-align: middle;
 }
 
-.world-characters::before {
+.thumbnail-characters::before {
   content: '👥';
   display: inline-block;
   width: 16px;
@@ -22,7 +22,7 @@
   vertical-align: middle;
 }
 
-.world-stories::before {
+.thumbnail-stories::before {
   content: '📖';
   display: inline-block;
   width: 16px;
@@ -31,13 +31,16 @@
   vertical-align: middle;
 }
 
-.world-date::before {
+.thumbnail-date::before {
   content: '📅';
   display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
   vertical-align: middle;
 }
 
-.world-tags::before {
+.thumbnail-tags::before {
   content: '🏷️';
   display: inline-block;
   width: 16px;
@@ -46,8 +49,8 @@
   vertical-align: middle;
 }
 
-/* World Content Components */
-.world-tags {
+/* Thumbnail Components */
+.thumbnail-tags {
   width: fit-content;
   margin: 1px;
   padding: 3px;

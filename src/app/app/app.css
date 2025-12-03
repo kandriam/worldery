@@ -34,7 +34,7 @@ header {
   height: 50px;
   margin-right: 8px;
   vertical-align: middle;
-  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .header-nav-icon:hover {
@@ -49,7 +49,7 @@ header {
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 6px;
-  transition: text-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out, text-decoration 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &.nav-brand {
   font-size: 2rem;
@@ -67,27 +67,16 @@ header {
   }
 
 
-  &.primary {
+  &.page {
     font-size: 1.5rem;
     /* font-weight: bold; */
-    color: var(--g5-color);
+    color: var(--b3-color);
     
     &:hover{
-      background-color: var(--g3-color);
+      /* background-color: var(--g3-color); */
       box-shadow: var(--g3-color) 1px 1px 10px;
     }
   } 
-
-  &.secondary {
-    font-size: 2rem;
-    font-weight: normal;
-    color: var(--g5-color);
-    
-    &:hover{
-      background-color: var(--g2-color);
-      box-shadow: var(--g3-color) 1px 1px 10px;
-    }
-  }
 }
 
 .nav-links {
@@ -103,7 +92,7 @@ header {
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   font-weight: 500;
 }
 
@@ -135,7 +124,7 @@ header {
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-toggle:hover {
@@ -178,7 +167,7 @@ header {
   color: var(--g5-color);
   text-decoration: none;
   padding: 12px 20px;
-  transition: background-color 0.3s ease-in-out, padding-left 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border-left: 3px solid transparent;
 }
 
@@ -208,7 +197,7 @@ header {
 .breadcrumb-item {
   color: var(--g1-color);
   text-decoration: none;
-  transition: color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .breadcrumb-item:hover {
@@ -240,7 +229,7 @@ header {
   color: var(--g1-color);
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border-bottom: 3px solid transparent;
   font-weight: 500;
 }

@@ -4,11 +4,11 @@
         <!-- <img class="header-icon" src="assets/worldery-tab-icon.png" alt="Worldery icon"> -->
         Worldery
         </button>
-        <button class="nav-button primary" [routerLink]="['/event']">Timeline</button>
-        <button class="nav-button primary" [routerLink]="['/location']">World</button>
-        <button class="nav-button primary" [routerLink]="['/character']">Characters</button>
-        <button class="nav-button primary" [routerLink]="['/story']">Stories</button>
-        <button class="nav-button primary" [routerLink]="['/settings']">Settings</button>
+        <button class="nav-button page event" [routerLink]="['/event']">Timeline</button>
+        <button class="nav-button page location" [routerLink]="['/location']">World</button>
+        <button class="nav-button page character" [routerLink]="['/character']">Characters</button>
+        <button class="nav-button page story" [routerLink]="['/story']">Stories</button>
+        <button class="nav-button page" [routerLink]="['/settings']">Settings</button>
     </header>
     <section class="content">
     <router-outlet></router-outlet>

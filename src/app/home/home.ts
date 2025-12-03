@@ -14,10 +14,11 @@ import { WorldCharacterService } from '../services/world-character.service';
 import { StoryThumbnail } from '../thumbnail/story-thumbnail/story-thumbnail';
 import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
+  imports: [RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
   templateUrl: 'home.html',
   styleUrls: ['./home.css', '../../styles.css'],
 })

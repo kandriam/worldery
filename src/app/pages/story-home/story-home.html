@@ -3,8 +3,8 @@
   <section class="filter-section">
     <label for="filter">Search stories</label>
     <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-    <button class="primary" (click)="addWorldStory()">Add Story</button>
   </section>
+  <button class="primary" (click)="addWorldStory()">Add Story</button>
 
   <section class="results">
     @if (filteredStoryList.length) {

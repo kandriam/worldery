@@ -1,12 +1,16 @@
 <section>
-    <form>
-        <input type="text" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-    <!-- <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button> -->
-    </form>
+  <section class="filter-section">
+    <label for="filter">Search World</label>
+    <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
+  </section>
+  <!-- <form>
+    <input type="text" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
+    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+  </form> -->
 </section>
 <section>
 <div class="home-row-title">
-    <h2>Timeline</h2>
+    <button class="section-title event" [routerLink]="['/event']">Timeline</button>
     <button class="primary add-button event" (click)="addWorldElement('event')">Add Event</button>
 </div>
 <div class="home-row">
@@ -24,7 +28,7 @@
 
 <section>
     <div class="home-row-title">
-        <h2>World</h2>
+        <button class="section-title location" [routerLink]="['/location']">World</button>
         <button class="primary add-button location" (click)="addWorldElement('location')">Add Location</button>
     </div>
     <div class="home-row">
@@ -41,7 +45,7 @@
 </section>
 <section>
     <div class="home-row-title">
-        <h2>Characters</h2>
+        <button class="section-title character" [routerLink]="['/character']">Characters</button>
         <button class="primary add-button character" (click)="addWorldElement('character')">Add Character</button>
     </div>
     <div class="home-row">
@@ -60,7 +64,7 @@
 
 <section>
     <div class="home-row-title">
-        <h2>Stories</h2>
+        <button class="section-title story" [routerLink]="['/story']">Stories</button>
         <button class="primary add-button story" (click)="addWorldElement('story')">Add Story</button>
     </div>
     <div class="home-row">

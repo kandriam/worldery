@@ -11,16 +11,6 @@
   background-color: var(--accent-color);
 }
 
-.filter-section input {
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.filter-section button {
-  align-self: flex-start;
-}
-
 .results {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

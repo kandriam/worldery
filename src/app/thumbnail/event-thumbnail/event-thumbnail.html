@@ -3,14 +3,14 @@
         <h4 class="thumbnail-title">{{ worldEvent().name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteEvent(worldEvent().id, $event)">Delete</button>
     </div>
-    <p class="world-date thumbnail-description">{{ worldEvent().date }}</p>
+    <p class="thumbnail-date thumbnail-description">{{ worldEvent().date }}</p>
 
     <div class="thumbnail-description">
         {{ worldEvent().description }}
     </div>
     <div class="thumbnail-tag-container">
         @for (tag of worldEvent().tags; track tag) {
-            <div class="world-tags">{{ tag }}</div>
+            <div class="thumbnail-tags">{{ tag }}</div>
         }
     </div>
 </div>

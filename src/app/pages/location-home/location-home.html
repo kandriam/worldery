@@ -1,10 +1,10 @@
 <article>
-  <h1>Locations</h1>
+  <h1>World</h1>
   <section class="filter-section">
     <label for="filter">Search locations</label>
     <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-    <button class="primary" (click)="addWorldLocation()">Add Location</button>
   </section>
+  <button class="primary" (click)="addWorldLocation()">Add Location</button>
 
   <section class="results">
     @if (filteredLocationList.length) {
