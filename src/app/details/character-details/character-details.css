@@ -4,8 +4,6 @@
 }
 
 .character-page-body {
-  /* display: grid; */
-  /* grid-template-columns: 1fr 1fr 1fr; */
   display: flex;
   flex-wrap: wrap;
 }
@@ -41,5 +39,4 @@
   padding: 5px 5px 0px 5px;
   border-radius: 10px 10px 0 0;
   background-color: var(--g4-color);
-  /* background: linear-gradient(0deg, var(--g4-color), var(--g5-color)); */
 }

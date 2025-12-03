@@ -21,7 +21,7 @@
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="location-characters">Location Characters</label>
-                    <input id="location-characters" type="text" formControlName="locationCharacters" />
+                    <!-- <input id="location-characters" type="text" formControlName="locationCharacters" /> -->
                     <div class="vertical-section">
                         @for(character of characterList; track character) {
                             <div class="form-field">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="location-stories">Location Stories</label>
-                    <input id="location-stories" type="text" formControlName="locationStories" />
+                    <!-- <input id="location-stories" type="text" formControlName="locationStories" /> -->
                     <div class="vertical-section">
                         @for(story of storyList; track story) {
                             <div class="form-field">
@@ -52,7 +52,7 @@
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="location-tags">Location Tags</label>
-                    <input id="location-tags" type="text" formControlName="locationTags" />
+                    <textarea class="small-textarea" id="location-tags" formControlName="locationTags"></textarea>
                 </div>
             </div>
         </section>

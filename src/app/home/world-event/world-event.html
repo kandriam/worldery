@@ -1,14 +1,13 @@
-
-<div class="event-thumbnail world-thumbnail" [routerLink]="['/event-details', worldEvent().id]">
+<div class="event-thumbnail world-thumbnail event" [routerLink]="['/event-details', worldEvent().id]">
     <div class="thumbnail-header">
         <h4 class="thumbnail-title">{{ worldEvent().name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteEvent(worldEvent().id, $event)">Delete</button>
     </div>
-    <p class="world-date">{{ worldEvent().date }}</p>
-    <div class="world-description">{{ worldEvent().description }}</div>
-    <!-- <p class="world-location">{{ worldEvent().location.join(', ') }}</p>
-    <p class="world-characters">{{ worldEvent().characters.join(', ') }}</p>
-    <p class="world-stories">{{ worldEvent().stories.join(', ') }}</p> -->
+    <p class="world-date thumbnail-description">{{ worldEvent().date }}</p>
+
+    <div class="thumbnail-description">
+        {{ worldEvent().description }}
+    </div>
     <div class="thumbnail-tag-container">
         @for (tag of worldEvent().tags; track tag) {
             <div class="world-tags">{{ tag }}</div>

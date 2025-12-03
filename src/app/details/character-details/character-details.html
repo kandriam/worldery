@@ -73,7 +73,7 @@
                 
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-stories">Stories</label>
-                    <input id="character-stories" type="text" formControlName="characterStories" />
+                    <!-- <input id="character-stories" type="text" formControlName="characterStories" /> -->
                     <div class="wrap-section">
                         @for(story of storyList; track story) {
                             <div class="form-field">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-tags">Tags</label>
-                    <input id="character-tags" type="text" formControlName="characterTags" />
+                    <textarea class="small-textarea" id="character-tags" formControlName="characterTags"></textarea>
                 </div>
             </div>
         </section>

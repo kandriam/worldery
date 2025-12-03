@@ -25,7 +25,7 @@
             <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="event-location">Event Location</label>
-                    <input id="event-location" type="text" formControlName="eventLocation" />
+                    <!-- <input id="event-location" type="text" formControlName="eventLocation" /> -->
                     <div class="vertical-section">
                         @for(location of locationList; track location) {
                             <div class="form-field">
@@ -39,10 +39,10 @@
                 </div>
             </div>
             
-            <div class="details-section primary-section horizontal-section">
+            <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="event-stories">Event Stories</label>
-                    <input id="event-stories" type="text" formControlName="eventStories" />
+                    <!-- <input id="event-stories" type="text" formControlName="eventStories" /> -->
                     <div class="vertical-section">
                         @for(story of storyList; track story) {
                             <div class="form-field">
@@ -59,7 +59,7 @@
             <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="event-characters">Event Characters</label>
-                    <input id="event-characters" type="text" formControlName="eventCharacters" />
+                    <!-- <input id="event-characters" type="text" formControlName="eventCharacters" /> -->
                     <div class="vertical-section">
                         @for(character of characterList; track character) {
                             <div class="form-field">
@@ -73,10 +73,10 @@
                 </div>
             </div>
             
-            <div class="details-section primary-section horizontal-section">
+            <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="event-tags">Event Tags</label>
-                    <input id="event-tags" type="text" formControlName="eventTags" />
+                    <textarea class="small-textarea" id="event-tags" formControlName="eventTags"></textarea>
                 </div>
             </div>
         </section>

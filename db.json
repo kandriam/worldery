@@ -158,7 +158,8 @@
         "Judy Han"
       ],
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "cafe",
@@ -176,7 +177,8 @@
         "William Hardin"
       ],
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Soldiers of Rebellion"
@@ -191,7 +193,8 @@
         "Matthew Rivera-Anderson"
       ],
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "housing"
@@ -364,7 +367,8 @@
       "physicalDescription": "Straight, white hair, gray eyes, Korean-American",
       "nonPhysicalDescription": "cryokinetic abilities.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -377,10 +381,8 @@
       "altNames": [
         "Cassie"
       ],
-      "physicalDescription": "Purple hair, gray eyes, Caucasian",
-      "nonPhysicalDescription": "illusionist abilities.",
-      "pronouns": "she/her",
       "birthdate": "2200-06-01",
+      "pronouns": "she/her",
       "roles": [
         "Vigilante"
       ],
@@ -397,8 +399,11 @@
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
         }
       ],
+      "physicalDescription": "Purple hair, gray eyes, Caucasian",
+      "nonPhysicalDescription": "illusionist abilities.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -472,7 +477,8 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "telepathic abilities.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -485,10 +491,8 @@
       "altNames": [
         "Will"
       ],
-      "physicalDescription": "Red hair, green eyes, mixed white and Latina",
-      "nonPhysicalDescription": "Non-Gift.",
-      "pronouns": "she/they",
       "birthdate": "2202-04-02",
+      "pronouns": "she/they",
       "roles": [
         "Support Character"
       ],
@@ -521,8 +525,11 @@
           "relationshipDescription": "Willow and Kiara have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
         }
       ],
+      "physicalDescription": "Red hair, green eyes, mixed white and Latina",
+      "nonPhysicalDescription": "Non-Gift.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Non-Gifted"
@@ -535,10 +542,8 @@
       "altNames": [
         "Matt"
       ],
-      "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
-      "nonPhysicalDescription": "invisibility abilities.",
-      "pronouns": "he/him",
       "birthdate": "2201-04-16",
+      "pronouns": "he/him",
       "roles": [
         "Support Character"
       ],
@@ -555,8 +560,11 @@
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
         }
       ],
+      "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
+      "nonPhysicalDescription": "invisibility abilities.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -567,10 +575,8 @@
       "firstName": "Leo",
       "lastName": "Deng",
       "altNames": [],
-      "physicalDescription": "Black hair, brown eyes, Asian-American",
-      "nonPhysicalDescription": "super strength and hyposensitivity.",
-      "pronouns": "she/her",
       "birthdate": "2199-11-30",
+      "pronouns": "she/her",
       "roles": [
         "Support Character",
         "Cafe Owner"
@@ -586,8 +592,11 @@
           "relationshipDescription": "Willow and Leo met at Cat's Tea."
         }
       ],
+      "physicalDescription": "Black hair, brown eyes, Asian-American",
+      "nonPhysicalDescription": "super strength and hyposensitivity.",
       "stories": [
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -625,11 +634,22 @@
     {
       "id": "2",
       "title": "Blood & Water",
-      "description": "",
+      "description": "A year after the events of Fire & Ice, Jay and Kiara are forced to flee the city and live at the SafeHouse.",
       "characters": [
-        "Kiara Ravao"
+        "Kiara Ravao",
+        "Judy Han",
+        "Cassandra Edwards",
+        "Rudy Edwards",
+        "Willow Rivera-Anderson",
+        "Matthew Rivera-Anderson",
+        "Leo Deng"
       ],
-      "locations": [],
+      "locations": [
+        "Jayara Apartment",
+        "Sunday Brunch",
+        "SafeHouse",
+        "Rivera-Anderson Family House"
+      ],
       "tags": [
         "Fire & Ice",
         "Book 2",

@@ -14,14 +14,14 @@
             <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="story-description">Story Description</label>
-                    <textarea id="story-description" class="medium-textarea" formControlName="storyDescription"></textarea>
+                    <textarea id="story-description" class="large-textarea" formControlName="storyDescription"></textarea>
                 </div>
             </div>
             
             <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="story-characters">Story Characters</label>
-                    <input id="story-characters" type="text" formControlName="storyCharacters" />
+                    <!-- <input id="story-characters" type="text" formControlName="storyCharacters" /> -->
                     <div class="vertical-section">
                         @for(character of characterList; track character) {
                             <div class="form-field">
@@ -38,7 +38,7 @@
             <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="story-locations">Story Locations</label>
-                    <input id="story-locations" type="text" formControlName="storyLocations" />
+                    <!-- <input id="story-locations" type="text" formControlName="storyLocations" /> -->
                     <div class="vertical-section">
                         @for(location of locationList; track location) {
                             <div class="form-field">
@@ -55,7 +55,7 @@
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="story-tags">Story Tags</label>
-                    <input id="story-tags" type="text" formControlName="storyTags" />
+                    <textarea class="small-textarea" id="story-tags" formControlName="storyTags"></textarea>
                 </div>
             </div>
         </section>

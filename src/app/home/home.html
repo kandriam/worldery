@@ -4,44 +4,51 @@
     <!-- <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button> -->
     </form>
 </section>
+<section>
 <div class="home-row-title">
     <h2>Timeline</h2>
-    <button class="primary" (click)="addWorldElement('event')">Add Event</button>
+    <button class="primary add-button event" (click)="addWorldElement('event')">Add Event</button>
 </div>
 <div class="home-row">
     @for(worldEvent of filteredEventList; track $index) {
-    <app-world-event [worldEvent]="worldEvent"></app-world-event>
+        <app-world-event [worldEvent]="worldEvent"></app-world-event>
     }
 </div>
+</section>
 
-<div class="home-row-title">
-    <h2>World</h2>
-    <button class="primary" (click)="addWorldElement('location')">Add Location</button>
-</div>
-<div class="home-row">
-    @for(worldLocation of filteredLocationList; track $index) {
-    <app-world-location [worldLocation]="worldLocation"></app-world-location>
-    }
-</div> 
+<section>
+    <div class="home-row-title">
+        <h2>World</h2>
+        <button class="primary add-button location" (click)="addWorldElement('location')">Add Location</button>
+    </div>
+    <div class="home-row">
+        @for(worldLocation of filteredLocationList; track $index) {
+            <app-world-location [worldLocation]="worldLocation"></app-world-location>
+        }
+    </div> 
+</section>
+<section>
+    <div class="home-row-title">
+        <h2>Characters</h2>
+        <button class="primary add-button character" (click)="addWorldElement('character')">Add Character</button>
+    </div>
+    <div class="home-row">
+        <!-- Character components would go here -->
+        @for(worldCharacter of filteredCharacterList; track $index) {
+            <app-world-character [worldCharacter]="worldCharacter"></app-world-character>
+        }
+    </div>
+</section>
 
-<div class="home-row-title">
-    <h2>Characters</h2>
-    <button class="primary" (click)="addWorldElement('character')">Add Character</button>
-</div>
-<div class="home-row">
-    <!-- Character components would go here -->
-    @for(worldCharacter of filteredCharacterList; track $index) {
-    <app-world-character [worldCharacter]="worldCharacter"></app-world-character>
-    }
-</div>
-
-<div class="home-row-title">
-    <h2>Stories</h2>
-        <button class="primary" (click)="addWorldElement('story')">Add Story</button>
-</div>
-<div class="home-row">
-    <!-- Story components would go here -->
-    @for(worldStory of filteredStoryList; track $index) {
-    <app-world-story [worldStory]="worldStory"></app-world-story>
-    }
-</div>
+<section>
+    <div class="home-row-title">
+        <h2>Stories</h2>
+        <button class="primary add-button story" (click)="addWorldElement('story')">Add Story</button>
+    </div>
+    <div class="home-row">
+        <!-- Story components would go here -->
+        @for(worldStory of filteredStoryList; track $index) {
+            <app-world-story [worldStory]="worldStory"></app-world-story>
+        }
+    </div>
+</section>

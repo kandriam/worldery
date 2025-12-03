@@ -1,9 +1,13 @@
-<div class="story-thumbnail world-thumbnail" [routerLink]="['/story-details', worldStory().id]">
+<div class="story-thumbnail world-thumbnail story" [routerLink]="['/story-details', worldStory().id]">
     <div class="thumbnail-header">
         <h4 class="thumbnail-title">{{ worldStory().title }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteStory(worldStory().id, $event)">Delete</button>
     </div>
-    <div class="world-description">{{ worldStory().description }}</div>
+    <div class="thumbnail-description">
+        @for ( paragraph of worldStory().description.split('\n'); track paragraph) {
+            <p>{{ paragraph }}</p>
+        }
+    </div>
     <div class="thumbnail-tag-container">
     @for (tag of worldStory().tags; track tag) {
         <div class="world-tags">{{ tag }}</div>
