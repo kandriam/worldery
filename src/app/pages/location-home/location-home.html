@@ -1,9 +1,15 @@
 <article>
   <h1>World</h1>
-  <section class="filter-section">
-    <label for="filter">Search locations</label>
-    <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-  </section>
+  
+  <app-search-filter 
+    searchLabel="Search locations"
+    searchPlaceholder="Search"
+    [filterConfig]="filterConfig"
+    [allCharacters]="allCharacters"
+    [allStories]="allStories"
+    (filterChange)="onFilterChange($event)">
+  </app-search-filter>
+  
   <button class="primary" (click)="addWorldLocation()">Add Location</button>
 
   <section class="results">

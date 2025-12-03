@@ -2,40 +2,67 @@ import {Component, inject} from '@angular/core';
 import {CharacterThumbnail} from '../../thumbnail/character-thumbnail/character-thumbnail';
 import {WorldCharacterInfo} from '../../worldcharacter';
 import {WorldCharacterService} from '../../services/world-character.service';
+import {WorldStoryService} from '../../services/world-story.service';
+import {WorldStoryInfo} from '../../worldstory';
+import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-character-home',
-  imports: [CharacterThumbnail],
+  imports: [CharacterThumbnail, SearchFilter],
   templateUrl: 'character-home.html',
   styleUrls: ['../pages.css', 'character-home.css', '../../../styles.css'],
 })
 
 export class CharacterHome {
   characterService: WorldCharacterService = inject(WorldCharacterService);
+  storyService: WorldStoryService = inject(WorldStoryService);
+  
   filteredCharacterList: WorldCharacterInfo[] = [];
   worldCharacterList: WorldCharacterInfo[] = [];
+  allStories: WorldStoryInfo[] = [];
+  
+  filterConfig: FilterConfig = {
+    showCharacters: false,
+    showStories: true,
+    showLocations: false,
+    showDateRange: false
+  };
 
   constructor() {
-    this.characterService
-      .getAllWorldCharacters()
-      .then((worldCharacterList: WorldCharacterInfo[]) => {
-        this.worldCharacterList = worldCharacterList;
-        this.filteredCharacterList = worldCharacterList;
-      });
+    Promise.all([
+      this.characterService.getAllWorldCharacters(),
+      this.storyService.getAllWorldStories()
+    ]).then(([characters, stories]) => {
+      this.worldCharacterList = characters;
+      this.filteredCharacterList = characters;
+      this.allStories = stories;
+    });
   }
 
-  filterResults(text: string) {
-    if (!text) {
-      this.filteredCharacterList = this.worldCharacterList;
-      return;
+  onFilterChange(filterState: FilterState) {
+    let filtered = [...this.worldCharacterList];
+    
+    // Text search filter
+    if (filterState.searchTerms.length > 0) {
+      filtered = filtered.filter((worldCharacter) =>
+        matchesSearchTerms(filterState.searchTerms,
+          worldCharacter?.tags.join(' '),
+          worldCharacter?.firstName,
+          worldCharacter?.lastName,
+          worldCharacter?.altNames.join(' '))
+      );
     }
     
-    this.filteredCharacterList = this.worldCharacterList.filter((worldCharacter) =>
-      worldCharacter?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.firstName.toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.lastName.toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.altNames.join(' ').toLowerCase().includes(text.toLowerCase())
-    );
+    // Story filter
+    if (filterState.selectedStories.length > 0) {
+      filtered = filtered.filter((worldCharacter) =>
+        filterState.selectedStories.some(selectedStory => 
+          worldCharacter.stories.some(charStory => charStory === selectedStory)
+        )
+      );
+    }
+    
+    this.filteredCharacterList = filtered;
   }
 
   addWorldCharacter() {

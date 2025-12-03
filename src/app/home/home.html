@@ -1,82 +1,81 @@
+<app-search-filter 
+  searchLabel="Search World"
+  searchPlaceholder="Search"
+  [filterConfig]="filterConfig"
+  [allCharacters]="allCharacters"
+  [allStories]="allStories"
+  [allLocations]="allLocations"
+  (filterChange)="onFilterChange($event)">
+</app-search-filter>
 <section>
-  <section class="filter-section">
-    <label for="filter">Search World</label>
-    <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-  </section>
-  <!-- <form>
-    <input type="text" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-  </form> -->
-</section>
-<section>
-<div class="home-row-title">
-    <button class="section-title event" [routerLink]="['/event']">Timeline</button>
-    <button class="primary add-button event" (click)="addWorldElement('event')">Add Event</button>
-</div>
-<div class="home-row">
-    @if (filteredEventList.length) {
-      @for(worldEvent of filteredEventList; track $index) {
-            <app-event-thumbnail [worldEvent]="worldEvent"></app-event-thumbnail>
+  <div class="home-row-title">
+      <button class="section-title event" [routerLink]="['/event']">Timeline</button>
+      <button class="primary add-button event" (click)="addWorldElement('event')">Add Event</button>
+  </div>
+  <div class="home-row">
+      @if (filteredEventList.length) {
+        @for(worldEvent of filteredEventList; track $index) {
+              <app-event-thumbnail [worldEvent]="worldEvent"></app-event-thumbnail>
+        }
+      } @else {
+        <div class="no-results">
+          <p>No events found. Try adjusting your search or add a new event.</p>
+        </div>
       }
-    } @else {
-      <div class="no-results">
-        <p>No events found. Try adjusting your search or add a new event.</p>
-      </div>
-    }
-</div>
+  </div>
 </section>
 
 <section>
-    <div class="home-row-title">
-        <button class="section-title location" [routerLink]="['/location']">World</button>
-        <button class="primary add-button location" (click)="addWorldElement('location')">Add Location</button>
-    </div>
-    <div class="home-row">
-        @if (filteredLocationList.length) {
-          @for(worldLocation of filteredLocationList; track $index) {
-              <app-location-thumbnail [worldLocation]="worldLocation"></app-location-thumbnail>
-          }
-        } @else {
-          <div class="no-results">
-            <p>No locations found. Try adjusting your search or add a new location.</p>
-          </div>
+  <div class="home-row-title">
+      <button class="section-title location" [routerLink]="['/location']">World</button>
+      <button class="primary add-button location" (click)="addWorldElement('location')">Add Location</button>
+  </div>
+  <div class="home-row">
+      @if (filteredLocationList.length) {
+        @for(worldLocation of filteredLocationList; track $index) {
+            <app-location-thumbnail [worldLocation]="worldLocation"></app-location-thumbnail>
         }
-    </div> 
+      } @else {
+        <div class="no-results">
+          <p>No locations found. Try adjusting your search or add a new location.</p>
+        </div>
+      }
+  </div> 
 </section>
 <section>
-    <div class="home-row-title">
-        <button class="section-title character" [routerLink]="['/character']">Characters</button>
-        <button class="primary add-button character" (click)="addWorldElement('character')">Add Character</button>
-    </div>
-    <div class="home-row">
-        @if (filteredCharacterList.length) {
-          <!-- Character components would go here -->
-          @for(worldCharacter of filteredCharacterList; track $index) {
-              <app-character-thumbnail [worldCharacter]="worldCharacter"></app-character-thumbnail>
-          }
-        } @else {
-          <div class="no-results">
-            <p>No characters found. Try adjusting your search or add a new character.</p>
-          </div>
+  <div class="home-row-title">
+      <button class="section-title character" [routerLink]="['/character']">Characters</button>
+      <button class="primary add-button character" (click)="addWorldElement('character')">Add Character</button>
+  </div>
+  <div class="home-row">
+      @if (filteredCharacterList.length) {
+        <!-- Character components would go here -->
+        @for(worldCharacter of filteredCharacterList; track $index) {
+            <app-character-thumbnail [worldCharacter]="worldCharacter"></app-character-thumbnail>
         }
-    </div>
+      } @else {
+        <div class="no-results">
+          <p>No characters found. Try adjusting your search or add a new character.</p>
+        </div>
+      }
+  </div>
 </section>
 
 <section>
-    <div class="home-row-title">
-        <button class="section-title story" [routerLink]="['/story']">Stories</button>
-        <button class="primary add-button story" (click)="addWorldElement('story')">Add Story</button>
-    </div>
-    <div class="home-row">
-        @if (filteredStoryList.length) {
-          <!-- Story components would go here -->
-          @for(worldStory of filteredStoryList; track $index) {
-              <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>
-          }
-        } @else {
-          <div class="no-results">
-            <p>No stories found. Try adjusting your search or add a new story.</p>
-          </div>
+  <div class="home-row-title">
+      <button class="section-title story" [routerLink]="['/story']">Stories</button>
+      <button class="primary add-button story" (click)="addWorldElement('story')">Add Story</button>
+  </div>
+  <div class="home-row">
+      @if (filteredStoryList.length) {
+        <!-- Story components would go here -->
+        @for(worldStory of filteredStoryList; track $index) {
+            <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>
         }
-    </div>
+      } @else {
+        <div class="no-results">
+          <p>No stories found. Try adjusting your search or add a new story.</p>
+        </div>
+      }
+  </div>
 </section>

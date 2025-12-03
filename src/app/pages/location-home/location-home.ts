@@ -2,39 +2,67 @@ import {Component, inject} from '@angular/core';
 import {LocationThumbnail} from '../../thumbnail/location-thumbnail/location-thumbnail';
 import {WorldLocationInfo} from '../../worldlocation';
 import {WorldLocationService} from '../../services/world-location.service';
+import {WorldCharacterService} from '../../services/world-character.service';
+import {WorldStoryService} from '../../services/world-story.service';
+import {WorldCharacterInfo} from '../../worldcharacter';
+import {WorldStoryInfo} from '../../worldstory';
+import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-location-home',
-  imports: [LocationThumbnail],
+  imports: [LocationThumbnail, SearchFilter],
   templateUrl: 'location-home.html',
   styleUrls: ['../pages.css', 'location-home.css', '../../../styles.css'],
 })
 
 export class LocationHome {
   locationService: WorldLocationService = inject(WorldLocationService);
+  characterService: WorldCharacterService = inject(WorldCharacterService);
+  storyService: WorldStoryService = inject(WorldStoryService);
+  
   filteredLocationList: WorldLocationInfo[] = [];
   worldLocationList: WorldLocationInfo[] = [];
+  allCharacters: WorldCharacterInfo[] = [];
+  allStories: WorldStoryInfo[] = [];
+  
+  filterConfig: FilterConfig = {
+    showCharacters: true,
+    showStories: true,
+    showLocations: false,
+    showDateRange: false
+  };
 
   constructor() {
-    this.locationService
-      .getAllWorldLocations()
-      .then((worldLocationList: WorldLocationInfo[]) => {
-        this.worldLocationList = worldLocationList;
-        this.filteredLocationList = worldLocationList;
-      });
+    Promise.all([
+      this.locationService.getAllWorldLocations(),
+      this.characterService.getAllWorldCharacters(),
+      this.storyService.getAllWorldStories()
+    ]).then(([locations, characters, stories]) => {
+      this.worldLocationList = locations;
+      this.filteredLocationList = locations;
+      this.allCharacters = characters;
+      this.allStories = stories;
+    });
   }
 
-  filterResults(text: string) {
-    if (!text) {
-      this.filteredLocationList = this.worldLocationList;
-      return;
+  onFilterChange(filterState: FilterState) {
+    let filtered = [...this.worldLocationList];
+    
+    // Text search filter
+    if (filterState.searchTerms.length > 0) {
+      filtered = filtered.filter((worldLocation) =>
+        matchesSearchTerms(filterState.searchTerms,
+          worldLocation?.tags.join(' '),
+          worldLocation?.name,
+          worldLocation?.description)
+      );
     }
     
-    this.filteredLocationList = this.worldLocationList.filter((worldLocation) =>
-      worldLocation?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldLocation?.name.toLowerCase().includes(text.toLowerCase()) ||
-      worldLocation?.description.toLowerCase().includes(text.toLowerCase()),
-    );
+    // Note: Locations don't typically have direct character/story relationships
+    // This filtering would work based on which characters/stories are associated with locations
+    // For now, keeping the structure for potential future enhancement
+    
+    this.filteredLocationList = filtered;
   }
 
   addWorldLocation() {

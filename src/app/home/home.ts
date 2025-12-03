@@ -15,10 +15,11 @@ import { StoryThumbnail } from '../thumbnail/story-thumbnail/story-thumbnail';
 import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
 import { RouterLink } from '@angular/router';
+import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
+  imports: [RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail, SearchFilter],
   templateUrl: 'home.html',
   styleUrls: ['./home.css', '../../styles.css'],
 })
@@ -40,72 +41,123 @@ export class Home {
   worldStoryList: WorldStoryInfo[] = [];
   filteredStoryList: WorldStoryInfo[] = [];
 
+  // All entities for filter dropdowns
+  allCharacters: WorldCharacterInfo[] = [];
+  allStories: WorldStoryInfo[] = [];
+  allLocations: WorldLocationInfo[] = [];
+  
+  filterConfig: FilterConfig = {
+    showCharacters: true,
+    showStories: true,
+    showLocations: true,
+    showDateRange: true
+  };
+
   constructor() {
-    this.eventService
-      .getAllWorldEvents()
-      .then((worldEventList: WorldEventInfo[]) => {
-        this.worldEventList = worldEventList.sort((a, b) => (a.date > b.date ? 1 : -1));
-        this.filteredEventList = this.worldEventList;
-      });
-
-    this.locationService
-      .getAllWorldLocations()
-      .then((worldLocationList: WorldLocationInfo[]) => {
-        this.worldLocationList = worldLocationList;
-        this.filteredLocationList = worldLocationList;
-      });
-    
-      this.characterService
-      .getAllWorldCharacters()
-      .then((worldCharacterList: WorldCharacterInfo[]) => {
-        this.worldCharacterList = worldCharacterList;
-        this.filteredCharacterList = worldCharacterList;
-      });
-
-    this.storyService
-      .getAllWorldStories()
-      .then((worldStoryList: WorldStoryInfo[]) => {
-        this.worldStoryList = worldStoryList;
-        this.filteredStoryList = worldStoryList;
-      });
+    // Load all data for both display and filtering
+    Promise.all([
+      this.eventService.getAllWorldEvents(),
+      this.locationService.getAllWorldLocations(), 
+      this.characterService.getAllWorldCharacters(),
+      this.storyService.getAllWorldStories()
+    ]).then(([events, locations, characters, stories]) => {
+      this.worldEventList = events.sort((a, b) => (a.date > b.date ? 1 : -1));
+      this.filteredEventList = this.worldEventList;
+      
+      this.worldLocationList = locations;
+      this.filteredLocationList = locations;
+      
+      this.worldCharacterList = characters;
+      this.filteredCharacterList = characters;
+      
+      this.worldStoryList = stories;
+      this.filteredStoryList = stories;
+      
+      // Populate filter arrays
+      this.allCharacters = characters;
+      this.allStories = stories;
+      this.allLocations = locations;
+    });
   }
 
-  filterResults(text: string) {
-    let searchItems = text.split(' ').map(item => item.trim()).filter(item => item.length > 0);
+  onFilterChange(filterState: FilterState) {
+    // Apply text search to all entity types
+    let filteredEvents = [...this.worldEventList];
+    let filteredLocations = [...this.worldLocationList];
+    let filteredCharacters = [...this.worldCharacterList];
+    let filteredStories = [...this.worldStoryList];
     
-    if (!text) {
-      this.filteredEventList = this.worldEventList;
-      this.filteredLocationList = this.worldLocationList;
-      this.filteredCharacterList = this.worldCharacterList;
-      return;
+    if (filterState.searchTerms.length > 0) {
+      filteredEvents = filteredEvents.filter((worldEvent) =>
+        matchesSearchTerms(filterState.searchTerms, 
+          worldEvent?.tags.join(' '),
+          worldEvent?.name,
+          worldEvent?.description)
+      );
+      
+      filteredLocations = filteredLocations.filter((worldLocation) =>
+        matchesSearchTerms(filterState.searchTerms,
+          worldLocation?.tags.join(' '),
+          worldLocation?.name,
+          worldLocation?.description)
+      );
+      
+      filteredCharacters = filteredCharacters.filter((worldCharacter) =>
+        matchesSearchTerms(filterState.searchTerms,
+          worldCharacter?.tags.join(' '),
+          worldCharacter?.firstName,
+          worldCharacter?.lastName,
+          worldCharacter?.altNames.join(' '))
+      );
+      
+      filteredStories = filteredStories.filter((worldStory) =>
+        matchesSearchTerms(filterState.searchTerms,
+          worldStory?.tags.join(' '),
+          worldStory?.title,
+          worldStory?.description)
+      );
     }
-
-    for (let item of searchItems) {
-      console.log('Searching for:', item);
+    
+    // Apply entity filters to events
+    if (filterState.selectedCharacters.length > 0) {
+      filteredEvents = filteredEvents.filter((worldEvent) =>
+        filterState.selectedCharacters.some(selectedChar => 
+          worldEvent.characters.some(eventChar => eventChar === selectedChar)
+        )
+      );
     }
     
-    this.filteredEventList = this.worldEventList.filter((worldEvent) =>
-      worldEvent?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldEvent?.name.toLowerCase().includes(text.toLowerCase()) ||
-      worldEvent?.description.toLowerCase().includes(text.toLowerCase()),
-    );
-    this.filteredLocationList = this.worldLocationList.filter((worldLocation) =>
-      worldLocation?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldLocation?.name.toLowerCase().includes(text.toLowerCase()) ||
-      worldLocation?.description.toLowerCase().includes(text.toLowerCase()) ,
-    );
-    this.filteredCharacterList = this.worldCharacterList.filter((worldCharacter) =>
-      worldCharacter?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.firstName.toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.lastName.toLowerCase().includes(text.toLowerCase()) ||
-      worldCharacter?.altNames.join(' ').toLowerCase().includes(text.toLowerCase())
-    );
-    this.filteredStoryList = this.worldStoryList.filter((worldStory) =>
-      worldStory?.tags.join(' ').toLowerCase().includes(text.toLowerCase()) ||
-      worldStory?.title.toLowerCase().includes(text.toLowerCase()) ||
-      worldStory?.description.toLowerCase().includes(text.toLowerCase()),
-    ); 
+    if (filterState.selectedStories.length > 0) {
+      filteredEvents = filteredEvents.filter((worldEvent) =>
+        filterState.selectedStories.some(selectedStory => 
+          worldEvent.stories.some(eventStory => eventStory === selectedStory)
+        )
+      );
+    }
     
+    if (filterState.selectedLocations.length > 0) {
+      filteredEvents = filteredEvents.filter((worldEvent) =>
+        filterState.selectedLocations.some(selectedLoc => 
+          worldEvent.location.some(eventLoc => eventLoc === selectedLoc)
+        )
+      );
+    }
+    
+    // Date range filter for events
+    if (filterState.startDate || filterState.endDate) {
+      filteredEvents = filteredEvents.filter((worldEvent) => {
+        const eventDate = new Date(worldEvent.date);
+        const start = filterState.startDate ? new Date(filterState.startDate) : new Date('1900-01-01');
+        const end = filterState.endDate ? new Date(filterState.endDate) : new Date('2099-12-31');
+        return eventDate >= start && eventDate <= end;
+      });
+    }
+    
+    // Update filtered lists
+    this.filteredEventList = filteredEvents;
+    this.filteredLocationList = filteredLocations;
+    this.filteredCharacterList = filteredCharacters;
+    this.filteredStoryList = filteredStories;
   }
 
   addWorldElement(elementType: string) {

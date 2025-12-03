@@ -58,7 +58,7 @@
     --story-highlight-color: var(--pastel-purple);
   
   /* Fonts */
-  --headings-font-family: 'Be Vietnam Pro', sans-serif;
+  --headings-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --base-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --input-font-family: 'Lucida Console';
 }
@@ -86,7 +86,7 @@ a {
    ============================================================================ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headings-font-family);
-  color: var(--g1-color);
+  color: var(--b1-color);
 }
 
 h1 {
@@ -290,14 +290,6 @@ textarea {
 .form-field {
   display: flex;
   width: fit-content;
-}
-
-.search-input {
-  width: 250px;
-  outline: none;
-  /* font-size: small; */
-  /* background-color: var(--b5-color); */
-  background-color: red;
 }
 
 /* ============================================================================

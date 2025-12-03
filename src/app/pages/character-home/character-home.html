@@ -1,9 +1,14 @@
 <article>
   <h1>Characters</h1>
-  <section class="filter-section">
-    <label for="filter">Search characters</label>
-    <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
-  </section>
+  
+  <app-search-filter 
+    searchLabel="Search characters"
+    searchPlaceholder="Search"
+    [filterConfig]="filterConfig"
+    [allStories]="allStories"
+    (filterChange)="onFilterChange($event)">
+  </app-search-filter>
+  
   <button class="primary" (click)="addWorldCharacter()">Add Character</button>
 
   <section class="results">

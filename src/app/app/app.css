@@ -45,15 +45,15 @@ header {
 .nav-button {
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: large;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 8px;
   border-radius: 6px;
   transition: all 0.3s ease-in-out;
+  font-family: var(--headings-font-family);
 
   &.nav-brand {
   font-size: 2rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
   color: var(--b2-color);
   text-decoration: underline var(--g3-color);
@@ -68,10 +68,10 @@ header {
 
 
   &.page {
-    font-size: 1.5rem;
+    font-size: large;
     /* font-weight: bold; */
     color: var(--b3-color);
-    
+    text-transform: uppercase;
     &:hover{
       /* background-color: var(--g3-color); */
       box-shadow: var(--g3-color) 1px 1px 10px;

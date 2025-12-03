@@ -1,0 +1,107 @@
+<section class="filter-section">
+  <h2>{{searchLabel}}</h2>
+  <input type="text" 
+         class="search-input" 
+         [placeholder]="searchPlaceholder" 
+         #searchInput 
+         (input)="onSearchChange()"/>
+  
+  <div class="collapsible-header" (click)="toggleFilters()">
+    <h3 class="filter-header">Filter By</h3>
+    <span class="toggle-icon" [class.expanded]="isFiltersExpanded">▼</span>
+  </div>
+  
+  <div class="filter-content" [class.hidden]="!isFiltersExpanded">
+    <div class="grid-section">
+      @if (filterConfig.showCharacters) {
+        <div class="filter-group">
+          <label class="secondary-label">Characters</label>
+          <div class="checkbox-group">
+            @for (character of allCharacters; track character.id) {
+              <label class="checkbox-label">
+                <input type="checkbox" 
+                       [value]="character.firstName + ' ' + character.lastName"
+                       (change)="onCharacterFilterChange($event)"
+                       class="filter-checkbox">
+                {{character.firstName}} {{character.lastName}}
+              </label>
+            }
+          </div>
+        </div>
+      }
+      
+      @if (filterConfig.showStories) {
+        <div class="filter-group">
+          <label class="secondary-label">Stories</label>
+          <div class="checkbox-group">
+            @for (story of allStories; track story.id) {
+              <label class="checkbox-label">
+                <input type="checkbox" 
+                       [value]="story.title"
+                       (change)="onStoryFilterChange($event)"
+                       class="filter-checkbox">
+                {{story.title}}
+              </label>
+            }
+          </div>
+        </div>
+      }
+      
+      @if (filterConfig.showLocations) {
+        <div class="filter-group">
+          <label class="secondary-label">Locations</label>
+          <div class="checkbox-group">
+            @for (location of allLocations; track location.id) {
+              <label class="checkbox-label">
+                <input type="checkbox" 
+                       [value]="location.name"
+                       (change)="onLocationFilterChange($event)"
+                       class="filter-checkbox">
+                {{location.name}}
+              </label>
+            }
+          </div>
+        </div>
+      }
+      
+      @if (filterConfig.showDateRange) {
+        <div class="filter-group">
+          <label class="secondary-label">Date Range</label>
+          <div class="date-range-group">
+            <label class="checkbox-label">
+              <input type="checkbox" 
+                     #startDateEnabled
+                     (change)="onStartDateToggle($event)"
+                     class="filter-checkbox">
+              Start Date
+            </label>
+            <input type="date" 
+                   #startDateFilter 
+                   (change)="onDateChange()" 
+                   placeholder="Start Date" 
+                   class="date-input"
+                   [disabled]="!isStartDateEnabled">
+            
+            <span class="date-separator">to</span>
+            
+            <label class="checkbox-label">
+              <input type="checkbox" 
+                     #endDateEnabled
+                     (change)="onEndDateToggle($event)"
+                     class="filter-checkbox">
+              End Date
+            </label>
+            <input type="date" 
+                   #endDateFilter 
+                   (change)="onDateChange()" 
+                   placeholder="End Date" 
+                   class="date-input"
+                   [disabled]="!isEndDateEnabled">
+          </div>
+        </div>
+      }
+    </div>
+    
+    <button class="secondary" (click)="clearAllFilters()">Clear Filters</button>
+  </div>
+</section>
