@@ -3,12 +3,12 @@ import { WorldLocationInfo } from '../../worldlocation';
 import {RouterLink, RouterOutlet } from '@angular/router';
 import { WorldLocationService } from '../../services/world-location.service';
 @Component({
-  selector: 'app-world-location',
+  selector: 'app-location-thumbnail',
   imports: [RouterLink, RouterOutlet],
-  templateUrl: 'world-location.html',
-  styleUrls: ['world-location.css', '../home.css', '../../../styles.css']
+  templateUrl: 'location-thumbnail.html',
+  styleUrls: ['location-thumbnail.css', '../thumbnail.css', '../../../styles.css']
 })
-export class WorldLocation {
+export class LocationThumbnail {
   locationService = inject(WorldLocationService);
   worldLocation = input.required<WorldLocationInfo>();
 

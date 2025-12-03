@@ -1,23 +1,23 @@
 import {Component, inject} from '@angular/core';
-import {WorldEvent} from './world-event/world-event';
+import {EventThumbnail} from '../thumbnail/event-thumbnail/event-thumbnail';
 import {WorldEventInfo} from '../worldevent';
 import {WorldEventService} from '../services/world-event.service';
 
-import { WorldLocation } from "./world-location/world-location";
+import { LocationThumbnail } from '../thumbnail/location-thumbnail/location-thumbnail';
 import { WorldLocationInfo } from '../worldlocation';
 import { WorldLocationService } from '../services/world-location.service';
 
-import { WorldCharacter } from './world-character/world-character';
+import { CharacterThumbnail } from '../thumbnail/character-thumbnail/character-thumbnail';
 import { WorldCharacterInfo } from '../worldcharacter';
 import { WorldCharacterService } from '../services/world-character.service';
 
-import { WorldStory } from './world-story/world-story';
+import { StoryThumbnail } from '../thumbnail/story-thumbnail/story-thumbnail';
 import { WorldStoryInfo } from '../worldstory';
 import { WorldStoryService } from '../services/world-story.service';
 
 @Component({
   selector: 'app-home',
-  imports: [WorldEvent, WorldLocation, WorldCharacter, WorldStory],
+  imports: [EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
   templateUrl: 'home.html',
   styleUrls: ['./home.css', '../../styles.css'],
 })

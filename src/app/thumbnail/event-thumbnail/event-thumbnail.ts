@@ -4,13 +4,13 @@ import {RouterLink, RouterOutlet } from '@angular/router';
 import { WorldEventService } from '../../services/world-event.service';
 
 @Component({
-  selector: 'app-world-event',
+  selector: 'app-event-thumbnail',
   imports: [RouterLink, RouterOutlet],
-  templateUrl: 'world-event.html',
-  styleUrls: ['world-event.css', '../home.css', '../../../styles.css'],
+  templateUrl: 'event-thumbnail.html',
+  styleUrls: ['event-thumbnail.css', '../thumbnail.css', '../../../styles.css'],
 })
 
-export class WorldEvent {
+export class EventThumbnail {
   worldEvent = input.required<WorldEventInfo>();
   worldEventService = inject(WorldEventService);
 

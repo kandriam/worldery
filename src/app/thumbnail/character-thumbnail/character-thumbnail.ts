@@ -4,19 +4,19 @@ import {RouterLink, RouterOutlet } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
 
 @Component({
-  selector: 'app-world-character',
+  selector: 'app-character-thumbnail',
   imports: [RouterLink, RouterOutlet],
-  templateUrl: 'world-character.html',
-  styleUrls: ['world-character.css', '../home.css', '../../../styles.css'],
+  templateUrl: 'character-thumbnail.html',
+  styleUrls: ['character-thumbnail.css', '../thumbnail.css', '../../../styles.css'],
 })
 
-export class WorldCharacter {
+export class CharacterThumbnail {
   characterService = inject(WorldCharacterService);
   worldCharacter = input.required<WorldCharacterInfo>();
 
   deleteCharacter(id: number, event: Event) {
     event.stopPropagation();
-    console.log(`Delete location with ID: ${id}`);
+    console.log(`Delete character with ID: ${id}`);
     this.characterService.deleteWorldCharacter(id);
   }
 }

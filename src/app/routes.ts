@@ -4,6 +4,10 @@ import {WorldEventDetails} from './details/event-details/event-details';
 import { WorldLocationDetails } from './details/location-details/location-details';
 import { WorldCharacterDetails } from './details/character-details/character-details';
 import { WorldStoryDetails } from './details/story-details/story-details';
+import { EventHome } from './pages/event-home/event-home';
+import { LocationHome } from './pages/location-home/location-home';
+import { CharacterHome } from './pages/character-home/character-home';
+import { StoryHome } from './pages/story-home/story-home';
 
 const routeConfig: Routes = [
   {
@@ -12,22 +16,42 @@ const routeConfig: Routes = [
     title: 'Home page',
   },
   {
-    path: 'event-details/:id',
+    path: 'event',
+    component: EventHome,
+    title: 'Event Timeline',
+  },
+  {
+    path: 'event/:id',
     component: WorldEventDetails,
     title: 'Event details',
   },
   {
-    path: 'location-details/:id',
+    path: 'location',
+    component: LocationHome,
+    title: 'Locations',
+  },
+  {
+    path: 'location/:id',
     component: WorldLocationDetails,
     title: 'Location details',
   },
   {
-    path: 'character-details/:id',
+    path: 'character',
+    component: CharacterHome,
+    title: 'Characters',
+  },
+  {
+    path: 'character/:id',
     component: WorldCharacterDetails,
     title: 'Character details',
   },
   {
-    path: 'story-details/:id',
+    path: 'story',
+    component: StoryHome,
+    title: 'Stories',
+  },
+  {
+    path: 'story/:id',
     component: WorldStoryDetails,
     title: 'Story details',
   }

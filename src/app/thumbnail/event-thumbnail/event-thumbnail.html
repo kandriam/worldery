@@ -1,4 +1,4 @@
-<div class="event-thumbnail world-thumbnail event" [routerLink]="['/event-details', worldEvent().id]">
+<div class="event-thumbnail world-thumbnail event" [routerLink]="['/event', worldEvent().id]">
     <div class="thumbnail-header">
         <h4 class="thumbnail-title">{{ worldEvent().name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteEvent(worldEvent().id, $event)">Delete</button>

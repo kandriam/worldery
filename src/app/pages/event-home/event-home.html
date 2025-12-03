@@ -1,0 +1,20 @@
+<article>
+  <h1>Event Timeline</h1>
+  <section class="filter-section">
+    <label for="filter">Search events</label>
+    <input type="text" class="search-input" placeholder="Search" #filter (input)="filterResults(filter.value)"/>
+    <button class="primary add-button" (click)="addWorldEvent()">Add Event</button>
+  </section>
+
+  <section class="results">
+    @if (filteredEventList.length) {
+      @for (worldEvent of filteredEventList; track worldEvent.id) {
+        <app-event-thumbnail [worldEvent]="worldEvent"></app-event-thumbnail>
+      }
+    } @else {
+      <div class="no-results">
+        <p>No events found. Try adjusting your search or add a new event.</p>
+      </div>
+    }
+  </section>
+</article>

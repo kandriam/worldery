@@ -26,7 +26,7 @@
                         @for(character of characterList; track character) {
                             <div class="form-field">
                                 <input type="checkbox" id="character-checkbox-{{character.id}}" [value]="character.id" (change)="onCharacterChange($event, character)" [checked]="isCharacterInLocation(character.firstName + ' ' + character.lastName)" />
-                                <button class="linked-character" [routerLink]="['/character-details', character.id]" type="button">
+                                <button class="linked-character" [routerLink]="['/character', character.id]" type="button">
                                     <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
                                 </button>
                             </div>
@@ -40,7 +40,7 @@
                         @for(story of storyList; track story) {
                             <div class="form-field">
                                 <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story)" [checked]="isStoryInLocation(story.title)" />
-                                <button class="linked-story" [routerLink]="['/story-details', story.id]" type="button">
+                                <button class="linked-story" [routerLink]="['/story', story.id]" type="button">
                                     <label class="secondary-label">{{ story.title }}</label>
                                 </button>
                             </div>

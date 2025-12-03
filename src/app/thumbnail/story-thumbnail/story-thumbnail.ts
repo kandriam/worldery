@@ -4,13 +4,13 @@ import {RouterLink, RouterOutlet } from '@angular/router';
 import { WorldStoryService } from '../../services/world-story.service';
 
 @Component({
-  selector: 'app-world-story',
+  selector: 'app-story-thumbnail',
   imports: [RouterLink, RouterOutlet],
-  templateUrl: 'world-story.html',
-  styleUrls: ['world-story.css', '../home.css', '../../../styles.css'],
+  templateUrl: 'story-thumbnail.html',
+  styleUrls: ['story-thumbnail.css', '../thumbnail.css', '../../../styles.css'],
 })
 
-export class WorldStory {
+export class StoryThumbnail {
   storyService = inject(WorldStoryService);
   worldStory = input.required<WorldStoryInfo>();
 

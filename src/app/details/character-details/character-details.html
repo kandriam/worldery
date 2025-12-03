@@ -9,7 +9,7 @@
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-first-name">Name</label>
                     <input id="character-first-name" type="text" formControlName="characterFirstName" />
-                    <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Firstname"/>
+                    <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Firstname" required="true"/>
                     
                     <label class="primary-label" for="character-alt-names">Alternate Names</label>
                     <input id="character-alt-names" type="text" formControlName="characterAltNames" />
@@ -42,7 +42,7 @@
                     <input id="character-affiliations" type="text" formControlName="characterAffiliations" />
                 </div>
             </div>
-            <div class="details-section primary-section spanning-section">
+            <div class="details-section primary-section vertical-section">
                 <label class="primary-label" for="character-relationships">Relationships</label>
                 <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
                 <div class="details-section secondary-section grid-section">
@@ -52,7 +52,7 @@
                             <div class="relationship-section" id="relationship-{{character.id}}">
                                 <div class="relationship-header">
                                     <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
-                                    <button class="linked-character" [routerLink]="['/character-details', character.id]">
+                                    <button class="linked-character" [routerLink]="['/character', character.id]">
                                         <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
                                     </button>
                                 </div>
@@ -70,7 +70,8 @@
                         }
                     }
                 </div>
-                
+            </div>
+            <div class="details-section primary-section horizontal-section">                
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-stories">Stories</label>
                     <!-- <input id="character-stories" type="text" formControlName="characterStories" /> -->
@@ -78,7 +79,7 @@
                         @for(story of storyList; track story) {
                             <div class="form-field">
                                 <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story.id)" [checked]="isStoryInCharacter(story.title)" />
-                                <button class="linked-story" [routerLink]="['/story-details', story.id]" type="button">
+                                <button class="linked-story" [routerLink]="['/story', story.id]" type="button">
                                     <label class="secondary-label">{{ story.title }}</label>
                                 </button>
                             </div>
