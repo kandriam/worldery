@@ -1,0 +1,102 @@
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.form-field label {
+  margin-bottom: 5px;
+}
+
+.checkbox-label {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.checkbox-label:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin: 0;
+  width: auto;
+}
+
+.filter-select {
+  max-width: 200px;
+}
+
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid var(--g3-color);
+  border-radius: 8px;
+  background-color: var(--g5-color);
+  font-family: var(--input-font-family);
+  cursor: pointer;
+  max-width: 250px;
+}
+
+input[type="file"]:focus {
+  outline: none;
+  border-color: var(--g2-color);
+  background-color: var(--b5-color);
+}
+
+.horizontal-section {
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.horizontal-section button {
+  padding: 12px 20px;
+  font-size: 16px;
+  min-width: 120px;
+}
+
+/* Settings sections spacing */
+.details-section {
+  margin-bottom: 30px;
+}
+
+.details-section:last-of-type {
+  margin-bottom: 40px;
+}
+
+/* Color section styling */
+.color-section-header {
+  margin: 25px 0 15px 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--g4-color);
+  color: var(--g2-color);
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 15px;
+  }
+  
+  .horizontal-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .horizontal-section button {
+    width: 100%;
+  }
+  
+  .filter-select,
+  input[type="file"] {
+    max-width: 100%;
+  }
+}

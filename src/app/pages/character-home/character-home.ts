@@ -69,4 +69,4 @@ export class CharacterHome {
     console.log('Adding new character');
     this.characterService.createWorldCharacter('New Character', '', [], '', '', [], [], [], '', '', [], []);
   }
-}
+}                                           

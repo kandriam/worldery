@@ -8,6 +8,7 @@ import { EventHome } from './pages/event-home/event-home';
 import { LocationHome } from './pages/location-home/location-home';
 import { CharacterHome } from './pages/character-home/character-home';
 import { StoryHome } from './pages/story-home/story-home';
+import { Settings } from './pages/settings/settings';
 
 const routeConfig: Routes = [
   {
@@ -54,6 +55,11 @@ const routeConfig: Routes = [
     path: 'story/:id',
     component: WorldStoryDetails,
     title: 'Story details',
+  },
+  {
+    path: 'settings',
+    component: Settings,
+    title: 'Settings',
   }
 ];
 export default routeConfig;

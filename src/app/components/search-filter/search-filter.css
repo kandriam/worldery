@@ -29,10 +29,13 @@
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
-  padding: 1rem;
-  border: 1px solid var(--g4-color);
+  border: 1px solid var(--g3-color);
   border-radius: 8px;
-  background-color: var(--accent-color);
+  
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid;
+  border-top: 2px solid;
 }
 
 /* Collapsible Filter Styles */
