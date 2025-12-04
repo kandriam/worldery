@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {EventThumbnail} from '../../components/thumbnail/event-thumbnail/event-thumbnail';
+import {HomeRow} from '../../components/home-row/home-row';
 import {WorldEventInfo} from '../../worldevent';
 import {WorldEventService} from '../../services/world-event.service';
 import {WorldCharacterService} from '../../services/world-character.service';
@@ -12,7 +12,7 @@ import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../..
 
 @Component({
   selector: 'app-event-home',
-  imports: [EventThumbnail, SearchFilter],
+  imports: [SearchFilter, HomeRow],
   templateUrl: 'event-home.html',
   styleUrls: ['../pages.css', 'event-home.css', '../../../styles.css'],
 })
@@ -108,5 +108,10 @@ export class EventHome {
   addWorldEvent() {
     console.log('Adding new event');
     this.eventService.createWorldEvent('New Event', '', '', '', '', '', []);
+  }
+
+  onTagClicked(tag: string) {
+    // Handle tag click - could add to search filter
+    console.log('Tag clicked:', tag);
   }
 }

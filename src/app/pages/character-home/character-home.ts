@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {CharacterThumbnail} from '../../components/thumbnail/character-thumbnail/character-thumbnail';
+import {HomeRow} from '../../components/home-row/home-row';
 import {WorldCharacterInfo} from '../../worldcharacter';
 import {WorldCharacterService} from '../../services/world-character.service';
 import {WorldStoryService} from '../../services/world-story.service';
@@ -8,7 +8,7 @@ import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../..
 
 @Component({
   selector: 'app-character-home',
-  imports: [CharacterThumbnail, SearchFilter],
+  imports: [SearchFilter, HomeRow],
   templateUrl: 'character-home.html',
   styleUrls: ['../pages.css', 'character-home.css', '../../../styles.css'],
 })
@@ -68,5 +68,10 @@ export class CharacterHome {
   addWorldCharacter() {
     console.log('Adding new character');
     this.characterService.createWorldCharacter('New Character', '', [], '', '', [], [], [], '', '', [], []);
+  }
+
+  onTagClicked(tag: string) {
+    // Handle tag click - could add to search filter
+    console.log('Tag clicked:', tag);
   }
 }                                           

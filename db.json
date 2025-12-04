@@ -143,6 +143,10 @@
         "Fire & Ice",
         "Blood & Water"
       ],
+      "relatedLocations": [
+        "Sunday Brunch",
+        "Cat's Tea"
+      ],
       "tags": [
         "Jayara",
         "housing"
@@ -160,6 +164,10 @@
       "stories": [
         "Fire & Ice",
         "Blood & Water"
+      ],
+      "relatedLocations": [
+        "SafeHouse",
+        "Jayara Apartment"
       ],
       "tags": [
         "cafe",
@@ -180,6 +188,7 @@
         "Fire & Ice",
         "Blood & Water"
       ],
+      "relatedLocations": [],
       "tags": [
         "Soldiers of Rebellion"
       ]
@@ -196,6 +205,7 @@
         "Fire & Ice",
         "Blood & Water"
       ],
+      "relatedLocations": [],
       "tags": [
         "housing"
       ]
@@ -210,6 +220,7 @@
       "stories": [
         "Fire & Ice"
       ],
+      "relatedLocations": [],
       "tags": [
         "tea"
       ]
@@ -220,6 +231,7 @@
       "description": "",
       "characters": [],
       "stories": [],
+      "relatedLocations": [],
       "tags": []
     }
   ],

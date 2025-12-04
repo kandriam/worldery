@@ -86,4 +86,21 @@ export class HomeRow {
   isStoryList(entities: EntityData): entities is WorldStoryInfo[] {
     return this.entityType === 'story';
   }
+  
+  // Methods to determine which display buttons should be shown
+  shouldShowDateButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'character';
+  }
+  
+  shouldShowLocationButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'story' || this.entityType === 'location';
+  }
+  
+  shouldShowCharactersButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'location' || this.entityType === 'story';
+  }
+  
+  shouldShowStoriesButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'character' || this.entityType === 'location';
+  }
 }

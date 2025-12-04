@@ -18,7 +18,7 @@ export class WorldLocationService {
     return locationJson[0] ?? {};
   }
 
-  updateWorldLocation(locationID: number, locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationTags: string[]) {
+  updateWorldLocation(locationID: number, locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationRelatedLocations: string[], locationTags: string[]) {
     console.log(
       `Location edited:
       locationID: ${locationID},
@@ -26,6 +26,7 @@ export class WorldLocationService {
       locationDescription: ${locationDescription},
       locationCharacters: ${locationCharacters},
       locationStories: ${locationStories},
+      locationRelatedLocations: ${locationRelatedLocations},
       locationTags: ${locationTags}.`,
     );
     fetch(`${this.url}/${locationID}`, {
@@ -39,6 +40,7 @@ export class WorldLocationService {
         description: locationDescription,
         characters: locationCharacters,
         stories: locationStories,
+        relatedLocations: locationRelatedLocations,
         tags: locationTags,
       }),
     });
@@ -70,6 +72,7 @@ export class WorldLocationService {
           description: locationDescription,
           characters: locationCharacters,
           stories: locationStories,
+          relatedLocations: [],
           tags: locationTags,
         }),
       });

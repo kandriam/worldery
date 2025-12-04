@@ -5,14 +5,14 @@
     </div>
     
     @if (showLocation() && worldStory().locations.length > 0) {
-        <div class="thumbnail-info">
-            <strong>Locations:</strong> {{ worldStory().locations.join(', ') }}
+        <div class="thumbnail-info thumbnail-location">
+            {{ worldStory().locations.join(', ') }}
         </div>
     }
     
     @if (showCharacters() && worldStory().characters.length > 0) {
-        <div class="thumbnail-info">
-            <strong>Characters:</strong> {{ worldStory().characters.join(', ') }}
+        <div class="thumbnail-info thumbnail-characters">
+            {{ worldStory().characters.join(', ') }}
         </div>
     }
     

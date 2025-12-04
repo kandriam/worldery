@@ -25,6 +25,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   worldLocation: WorldLocationInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
   storyList = Array<WorldStoryInfo>();
+  locationList = Array<WorldLocationInfo>();
   private routeSubscription: Subscription | undefined;
 
   applyForm = new FormGroup({
@@ -67,6 +68,10 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     this.worldStoryService.getAllWorldStories().then((stories) => {
       this.storyList = stories;
     });
+    
+    this.worldLocationService.getAllWorldLocations().then((locations) => {
+      this.locationList = locations;
+    });
   }
 
   private loadLocationData(worldLocationId: number) {
@@ -92,6 +97,10 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     return this.worldLocation?.stories?.includes(storyTitle) || false;
   }
 
+  isRelatedLocationInLocation(locationName: string): boolean {
+    return this.worldLocation?.relatedLocations?.includes(locationName) || false;
+  }
+
   onCharacterChange(event: Event, character: WorldCharacterInfo) {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
@@ -103,6 +112,13 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
       console.log(`Story ${story.title} ${isChecked ? 'added to' : 'removed from'} location`);
+    }
+  }
+
+  onRelatedLocationChange(event: Event, location: WorldLocationInfo) {
+    if (event.target instanceof HTMLInputElement) {
+      const isChecked = event.target.checked;
+      console.log(`Related location ${location.name} ${isChecked ? 'added to' : 'removed from'} location`);
     }
   }
 
@@ -128,9 +144,21 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     return stories;
   }
 
+  getFormRelatedLocations(): string[] {
+    const relatedLocations: string[] = [];
+    for (let location of this.locationList) {
+      const checkbox = document.getElementById(`related-location-checkbox-${location.id}`) as HTMLInputElement;
+      if (checkbox && checkbox.checked) {
+        relatedLocations.push(location.name);
+      }
+    }
+    return relatedLocations;
+  }
+
   submitApplication() {
     const selectedCharacters = this.getFormCharacters();
     const selectedStories = this.getFormStories();
+    const selectedRelatedLocations = this.getFormRelatedLocations();
     
     if (this.worldLocation?.id !== undefined) {
       this.worldLocationService.updateWorldLocation(
@@ -139,6 +167,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
         this.applyForm.value.locationDescription ?? '',
         selectedCharacters,
         selectedStories,
+        selectedRelatedLocations,
         this.applyForm.value.locationTags?.split(', ') ?? [],
       );
     }

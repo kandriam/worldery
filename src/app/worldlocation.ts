@@ -4,5 +4,6 @@ export interface WorldLocationInfo {
     description: string;
     characters: string[];
     stories: string[];
+    relatedLocations: string[];
     tags: string[];
 }

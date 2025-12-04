@@ -104,7 +104,10 @@
   font-size: x-small;
   color: var(--g1-color);
   line-height: 1.4;
-  white-space: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .thumbnail-header {
@@ -112,6 +115,15 @@
   font-size: small;
   justify-content: space-between;
   align-items: center;
+}
+
+.thumbnail-title {
+  margin: 0;
+  font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 }
 
 .thumbnail-delete-button {
@@ -140,6 +152,10 @@
   font-size: x-small;
   color: var(--g2-color);
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .thumbnail-info strong {

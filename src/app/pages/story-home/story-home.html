@@ -10,17 +10,13 @@
     (filterChange)="onFilterChange($event)">
   </app-search-filter>
   
-  <button class="primary" (click)="addWorldStory()">Add Story</button>
-
-  <section class="results grid-section">
-    @if (filteredStoryList.length) {
-      @for (worldStory of filteredStoryList; track worldStory.id) {
-        <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>
-      }
-    } @else {
-      <div class="no-results">
-        <p>No stories found. Try adjusting your search or add a new story.</p>
-      </div>
-    }
-  </section>
+  <app-home-row
+    entityType="story"
+    title="Stories"
+    routePath="/stories"
+    [entities]="filteredStoryList"
+    noResultsMessage="No stories found. Try adjusting your search or add a new story."
+    (addElement)="addWorldStory()"
+    (tagClicked)="onTagClicked($event)">
+  </app-home-row>
 </article>

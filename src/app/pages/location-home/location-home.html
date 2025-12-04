@@ -10,17 +10,13 @@
     (filterChange)="onFilterChange($event)">
   </app-search-filter>
   
-  <button class="primary" (click)="addWorldLocation()">Add Location</button>
-
-  <section class="results grid-section">
-    @if (filteredLocationList.length) {
-      @for (worldLocation of filteredLocationList; track worldLocation.id) {
-        <app-location-thumbnail [worldLocation]="worldLocation"></app-location-thumbnail>
-      }
-    } @else {
-      <div class="no-results">
-        <p>No locations found. Try adjusting your search or add a new location.</p>
-      </div>
-    }
-  </section>
+  <app-home-row
+    entityType="location"
+    title="World"
+    routePath="/locations"
+    [entities]="filteredLocationList"
+    noResultsMessage="No locations found. Try adjusting your search or add a new location."
+    (addElement)="addWorldLocation()"
+    (tagClicked)="onTagClicked($event)">
+  </app-home-row>
 </article>

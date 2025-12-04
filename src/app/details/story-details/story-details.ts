@@ -161,6 +161,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
             fullLocation.description,
             fullLocation.characters || [],
             updatedStories,
+            fullLocation.relatedLocations || [],
             fullLocation.tags || []
           );
         }
@@ -279,6 +280,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
       fullLocation.description,
       fullLocation.characters || [],
       updatedStories,
+      fullLocation.relatedLocations || [],
       fullLocation.tags || []
     );
   }

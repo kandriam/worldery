@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {LocationThumbnail} from '../../components/thumbnail/location-thumbnail/location-thumbnail';
+import {HomeRow} from '../../components/home-row/home-row';
 import {WorldLocationInfo} from '../../worldlocation';
 import {WorldLocationService} from '../../services/world-location.service';
 import {WorldCharacterService} from '../../services/world-character.service';
@@ -10,7 +10,7 @@ import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../..
 
 @Component({
   selector: 'app-location-home',
-  imports: [LocationThumbnail, SearchFilter],
+  imports: [SearchFilter, HomeRow],
   templateUrl: 'location-home.html',
   styleUrls: ['../pages.css', 'location-home.css', '../../../styles.css'],
 })
@@ -68,5 +68,10 @@ export class LocationHome {
   addWorldLocation() {
     console.log('Adding new location');
     this.locationService.createWorldLocation('New Location', '', [], [], []);
+  }
+
+  onTagClicked(tag: string) {
+    // Handle tag click - could add to search filter
+    console.log('Tag clicked:', tag);
   }
 }

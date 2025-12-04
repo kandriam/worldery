@@ -16,6 +16,12 @@
         </div>
     }
     
+    @if (showLocation() && worldLocation().relatedLocations && worldLocation().relatedLocations.length > 0) {
+        <div class="thumbnail-info thumbnail-location">
+            Related: {{ worldLocation().relatedLocations.join(', ') }}
+        </div>
+    }
+    
     <div class="thumbnail-description">
         {{ worldLocation().description }}
     </div>

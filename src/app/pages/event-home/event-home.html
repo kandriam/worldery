@@ -11,17 +11,14 @@
     (filterChange)="onFilterChange($event)">
   </app-search-filter>
   
-  <button class="primary add-button" (click)="addWorldEvent()">Add Event</button>
+  <app-home-row
+    entityType="event"
+    title="Timeline"
+    routePath="/events"
+    [entities]="filteredEventList"
+    noResultsMessage="No events found. Try adjusting your search or add a new event."
+    (addElement)="addWorldEvent()"
+    (tagClicked)="onTagClicked($event)">
+  </app-home-row>
 
-  <section class="results">
-    @if (filteredEventList.length) {
-      @for (worldEvent of filteredEventList; track worldEvent.id) {
-        <app-event-thumbnail [worldEvent]="worldEvent"></app-event-thumbnail>
-      }
-    } @else {
-      <div class="no-results">
-        <p>No events found. Try adjusting your search or add a new event.</p>
-      </div>
-    }
-  </section>
 </article>

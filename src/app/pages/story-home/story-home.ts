@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {StoryThumbnail} from '../../components/thumbnail/story-thumbnail/story-thumbnail';
+import {HomeRow} from '../../components/home-row/home-row';
 import {WorldStoryInfo} from '../../worldstory';
 import {WorldStoryService} from '../../services/world-story.service';
 import {WorldCharacterService} from '../../services/world-character.service';
@@ -10,7 +10,7 @@ import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../..
 
 @Component({
   selector: 'app-story-home',
-  imports: [StoryThumbnail, SearchFilter],
+  imports: [SearchFilter, HomeRow],
   templateUrl: 'story-home.html',
   styleUrls: ['../pages.css', 'story-home.css', '../../../styles.css'],
 })
@@ -82,5 +82,10 @@ export class StoryHome {
   addWorldStory() {
     console.log('Adding new story');
     this.storyService.createWorldStory('New Story', '', [], [], []);
+  }
+
+  onTagClicked(tag: string) {
+    // Handle tag click - could add to search filter
+    console.log('Tag clicked:', tag);
   }
 }

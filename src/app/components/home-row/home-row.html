@@ -2,10 +2,18 @@
   <div class="home-row-header">
     <button class="home-row-title" [class]="entityType" [routerLink]="[routePath]">{{ title }}</button>
     <div class="display-container">
-        <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button>
-        <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
-        <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
-        <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
+        @if (shouldShowDateButton()) {
+          <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button>
+        }
+        @if (shouldShowLocationButton()) {
+          <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
+        }
+        @if (shouldShowCharactersButton()) {
+          <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
+        }
+        @if (shouldShowStoriesButton()) {
+          <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
+        }
     </div>
     <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>
   </div>
