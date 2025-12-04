@@ -23,7 +23,7 @@
     </div>
     <div class="thumbnail-tag-container">
     @for (tag of worldStory().tags; track tag) {
-        <div class="thumbnail-tags" (click)="onTagClick(tag, $event)">{{ tag }}</div>
+        <div class="tag" (click)="onTagClick(tag, $event)">{{ tag }}</div>
     }
     </div>
 </div>

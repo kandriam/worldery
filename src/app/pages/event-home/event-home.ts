@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {HomeRow} from '../../components/home-row/home-row';
+import {Timeline} from '../../components/timeline/timeline/timeline';
 import {WorldEventInfo} from '../../worldevent';
 import {WorldEventService} from '../../services/world-event.service';
 import {WorldCharacterService} from '../../services/world-character.service';
@@ -12,7 +13,7 @@ import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../..
 
 @Component({
   selector: 'app-event-home',
-  imports: [SearchFilter, HomeRow],
+  imports: [SearchFilter, HomeRow, Timeline],
   templateUrl: 'event-home.html',
   styleUrls: ['../pages.css', 'event-home.css', '../../../styles.css'],
 })
@@ -28,6 +29,8 @@ export class EventHome {
   allCharacters: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
   allLocations: WorldLocationInfo[] = [];
+  
+  viewMode: 'timeline' | 'grid' = 'timeline';
 
   filterConfig: FilterConfig = {
     showCharacters: true,
@@ -113,5 +116,9 @@ export class EventHome {
   onTagClicked(tag: string) {
     // Handle tag click - could add to search filter
     console.log('Tag clicked:', tag);
+  }
+  
+  setViewMode(mode: 'timeline' | 'grid') {
+    this.viewMode = mode;
   }
 }

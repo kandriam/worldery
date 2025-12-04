@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/details/story-details/story-details.css"],
-  "sourcesContent": ["\r\n.event-heading {\r\n  font-weight: bold;\r\n  margin-bottom: 15px;\r\n}\r\n.event-description {\r\n  margin-bottom: 25px;\r\n}\r\n\r\n.event-details {\r\n  border: 1px solid var(--g1-color);\r\n}\r\n\r\n\r\n.event-location {\r\n  font-size: 24pt;\r\n  margin-bottom: 15px;\r\n}\r\n"],
-  "mappings": ";AACA,CAAC;AACC,eAAa;AACb,iBAAe;AACjB;AACA,CAAC;AACC,iBAAe;AACjB;AAEA,CAAC;AACC,UAAQ,IAAI,MAAM,IAAI;AACxB;AAGA,CAAC;AACC,aAAW;AACX,iBAAe;AACjB;",
-  "names": []
-}

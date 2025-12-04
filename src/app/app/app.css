@@ -3,7 +3,7 @@
 }
 header {
   display: block;
-  height: 60px;
+  height: 3.75rem;
   padding: var(--content-padding);
   box-shadow: 0px 5px 25px var(--shadow-color);
 }
@@ -30,8 +30,8 @@ header {
 
 /* Header Icon Styles */
 .header-icon {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   margin-right: 8px;
   vertical-align: middle;
   transition: all 0.3s ease-in-out;
@@ -135,8 +135,8 @@ header {
 .side-nav {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 250px;
+  left: -15.625rem;
+  width: 15.625rem;
   height: 100vh;
   background: var(--g1-color);
   border-right: 2px solid var(--b2-color);

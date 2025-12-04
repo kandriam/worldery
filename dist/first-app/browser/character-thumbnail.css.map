@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/thumbnail/character-thumbnail/character-thumbnail.css"],
-  "sourcesContent": [".character-thumbnail {\r\n  min-width: 10rem;\r\n  min-height: 8rem;\r\n}"],
-  "mappings": ";AAAA,CAAC;AACC,aAAW;AACX,cAAY;AACd;",
-  "names": []
-}

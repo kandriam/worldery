@@ -1,0 +1,37 @@
+<section class="timeline-container">
+  <div class="timeline-header">
+    <h2 class="timeline-title">{{ title }}</h2>
+    <div class="timeline-controls">
+      <div class="display-container">
+        <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button>
+        <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
+        <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
+        <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
+      </div>
+    </div>
+    <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
+  </div>
+  
+  <div class="timeline-content">
+    @if (sortedEvents.length > 0) {
+      <div class="timeline">
+        @for (event of sortedEvents; track event.id; let i = $index) {
+          <app-timeline-event 
+            [event]="event"
+            [index]="i"
+            [showDate]="showDate"
+            [showLocation]="showLocation"
+            [showCharacters]="showCharacters"
+            [showStories]="showStories"
+            [shouldShowYear]="shouldShowYearMarker(event, i)"
+            (tagClicked)="onTagClick($event)">
+          </app-timeline-event>
+        }
+      </div>
+    } @else {
+      <div class="no-results">
+        <p>{{ noResultsMessage }}</p>
+      </div>
+    }
+  </div>
+</section>

@@ -1,3 +1,43 @@
 /* Event Home Page-Specific Styles */
 
+/* View Toggle Buttons */
+.view-toggle {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.view-button {
+  background: var(--g4-color);
+  color: var(--g1-color);
+  border: 2px solid var(--g3-color);
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.view-button:hover {
+  background: var(--g3-color);
+  border-color: var(--g2-color);
+  transform: translateY(-2px);
+}
+
+.view-button.active {
+  background: var(--g3-color);
+  color: var(--g5-color);
+  border-color: var(--g1-color);
+  box-shadow: 0 4px 15px var(--event-color);
+}
+
+.view-button.active:hover {
+  background: var(--g1-color);
+  border-color: var(--g1-color);
+}
+
 /* Add event-specific overrides or additional styles here */

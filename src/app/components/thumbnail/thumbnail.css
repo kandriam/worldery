@@ -32,33 +32,7 @@
   vertical-align: middle;
 }
 
-.thumbnail-tags::before {
-  content: '🏷️';
-  display: inline-block;
-  margin-right: 2px;
-  vertical-align: middle;
-}
-
 /* Thumbnail Components */
-.thumbnail-tags {
-  width: fit-content;
-  margin: 1px;
-  padding: 3px 8px 3px 3px;
-  font-size: x-small;
-  font-style: italic;
-  color: var(--b2-color);
-  border: 1px solid var(--g3-color);
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  
-  &:hover {
-    /* background-color: var(--g3-color); */
-    color: var(--g1-color);
-    box-shadow: 2px 2px 5px var(--shadow-color);
-    transform: translateY(-1px);
-  }
-}
 
 .world-thumbnail {
   background: var(--g4-color);

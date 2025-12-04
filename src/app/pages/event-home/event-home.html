@@ -11,14 +11,33 @@
     (filterChange)="onFilterChange($event)">
   </app-search-filter>
   
-  <app-home-row
-    entityType="event"
-    title="Timeline"
-    routePath="/events"
-    [entities]="filteredEventList"
-    noResultsMessage="No events found. Try adjusting your search or add a new event."
-    (addElement)="addWorldEvent()"
-    (tagClicked)="onTagClicked($event)">
-  </app-home-row>
+  <div class="view-toggle">
+    <button [class.active]="viewMode === 'timeline'" (click)="setViewMode('timeline')" class="view-button">
+      📅 Timeline View
+    </button>
+    <button [class.active]="viewMode === 'grid'" (click)="setViewMode('grid')" class="view-button">
+      📋 Grid View
+    </button>
+  </div>
+  
+  @if (viewMode === 'timeline') {
+    <app-timeline
+      [events]="filteredEventList"
+      title="Events Timeline"
+      noResultsMessage="No events found. Try adjusting your search or add a new event."
+      (addElement)="addWorldEvent()"
+      (tagClicked)="onTagClicked($event)">
+    </app-timeline>
+  } @else {
+    <app-home-row
+      entityType="event"
+      title="Events"
+      routePath="/events"
+      [entities]="filteredEventList"
+      noResultsMessage="No events found. Try adjusting your search or add a new event."
+      (addElement)="addWorldEvent()"
+      (tagClicked)="onTagClicked($event)">
+    </app-home-row>
+  }
 
 </article>

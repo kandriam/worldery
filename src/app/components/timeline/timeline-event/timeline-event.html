@@ -1,0 +1,51 @@
+<div class="timeline-item">
+  @if (shouldShowYear()) {
+    <div class="year-marker">
+      <span class="year-label">{{ getYear(event().date) }}</span>
+    </div>
+  }
+  <div class="timeline-connector"></div>
+  <div class="timeline-content-wrapper">
+    <div class="timeline-date">
+      {{ formatDate(event().date) }}
+    </div>
+    <div class="timeline-event"  [routerLink]="['/event', event().id]">
+      <div class="event-header">
+        <h3 class="event-title">{{ event().name }}</h3>
+      </div>
+      
+      @if (showLocation() && event().location.length > 0) {
+        <div class="event-info event-location">
+          <span class="info-label">📍</span>
+          {{ event().location.join(', ') }}
+        </div>
+      }
+      
+      @if (showCharacters() && event().characters.length > 0) {
+        <div class="event-info event-characters">
+          <span class="info-label">👥</span>
+          {{ event().characters.join(', ') }}
+        </div>
+      }
+      
+      @if (showStories() && event().stories.length > 0) {
+        <div class="event-info event-stories">
+          <span class="info-label">📖</span>
+          {{ event().stories.join(', ') }}
+        </div>
+      }
+      
+      <div class="event-description">
+        {{ event().description }}
+      </div>
+      
+      @if (event().tags.length > 0) {
+        <div class="event-tags">
+          @for (tag of event().tags; track tag) {
+            <span class="tag" (click)="onTagClick(tag)">{{ tag }}</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
