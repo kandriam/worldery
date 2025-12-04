@@ -1,5 +1,5 @@
 .story-thumbnail {
   /* width: fit-content; */
   width: 15rem;
-  height: 15rem;
+  min-height: 15rem;
 }

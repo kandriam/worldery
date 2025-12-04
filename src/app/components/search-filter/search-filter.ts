@@ -158,6 +158,30 @@ export class SearchFilter {
     this.emitFilterState();
   }
 
+  addSearchTerm(term: string) {
+    if (!this.searchInput) return;
+    
+    const currentValue = this.searchInput.nativeElement.value;
+    const currentTerms = currentValue
+      .split(',')
+      .map(t => t.trim())
+      .filter(t => t.length > 0);
+    
+    // Don't add if term already exists
+    if (!currentTerms.includes(term)) {
+      const newValue = currentTerms.length > 0 ? `${currentValue}, ${term}` : term;
+      this.searchInput.nativeElement.value = newValue;
+      this.emitFilterState();
+    }
+  }
+
+  clearSearchBar() {
+    if (this.searchInput) {
+      this.searchInput.nativeElement.value = '';
+      this.emitFilterState();
+    }
+  }
+
   private emitFilterState() {
     const searchText = this.searchInput?.nativeElement.value || '';
     const searchTerms = searchText

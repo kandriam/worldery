@@ -213,6 +213,14 @@
       "tags": [
         "tea"
       ]
+    },
+    {
+      "id": 6,
+      "name": "New Location",
+      "description": "",
+      "characters": [],
+      "stories": [],
+      "tags": []
     }
   ],
   "worldcharacters": [

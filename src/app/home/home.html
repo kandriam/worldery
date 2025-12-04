@@ -14,7 +14,8 @@
   routePath="/event"
   [entities]="filteredEventList"
   noResultsMessage="No events found. Try adjusting your search or add a new event."
-  (addElement)="addWorldElement($event)">
+  (addElement)="addWorldElement($event)"
+  (tagClicked)="onTagClick($event)">
 </app-home-row>
 
 <app-home-row
@@ -23,7 +24,8 @@
   routePath="/location"
   [entities]="filteredLocationList"
   noResultsMessage="No locations found. Try adjusting your search or add a new location."
-  (addElement)="addWorldElement($event)">
+  (addElement)="addWorldElement($event)"
+  (tagClicked)="onTagClick($event)">
 </app-home-row>
 
 <app-home-row
@@ -32,7 +34,8 @@
   routePath="/character"
   [entities]="filteredCharacterList"
   noResultsMessage="No characters found. Try adjusting your search or add a new character."
-  (addElement)="addWorldElement($event)">
+  (addElement)="addWorldElement($event)"
+  (tagClicked)="onTagClick($event)">
 </app-home-row>
 
 <app-home-row
@@ -41,5 +44,6 @@
   routePath="/story"
   [entities]="filteredStoryList"
   noResultsMessage="No stories found. Try adjusting your search or add a new story."
-  (addElement)="addWorldElement($event)">
+  (addElement)="addWorldElement($event)"
+  (tagClicked)="onTagClick($event)">
 </app-home-row>

@@ -3,14 +3,37 @@
         <h4 class="thumbnail-title">{{ worldEvent().name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteEvent(worldEvent().id, $event)">Delete</button>
     </div>
-    <p class="thumbnail-date thumbnail-description">{{ worldEvent().date }}</p>
+    @if (showDate()) {
+        <div class="thumbnail-date thumbnail-info">
+            {{ worldEvent().date }}
+        </div>
+    }
+    
+    @if (showLocation() && worldEvent().location.length > 0) {
+        <div class="thumbnail-location thumbnail-info">
+            {{ worldEvent().location.join(', ') }}
+        </div>
+    }
+    
+    @if (showCharacters() && worldEvent().characters.length > 0) {
+        <div class="thumbnail-characters thumbnail-info">
+            {{ worldEvent().characters.join(', ') }}
+        </div>
+    }
+    
+    @if (showStories() && worldEvent().stories.length > 0) {
+        <div class="thumbnail-stories thumbnail-info">
+            {{ worldEvent().stories.join(', ') }}
+        </div>
+    }
 
     <div class="thumbnail-description">
         {{ worldEvent().description }}
     </div>
+
     <div class="thumbnail-tag-container">
         @for (tag of worldEvent().tags; track tag) {
-            <div class="thumbnail-tags">{{ tag }}</div>
+            <div class="thumbnail-tags" (click)="onTagClick(tag, $event)">{{ tag }}</div>
         }
     </div>
 </div>

@@ -3,13 +3,27 @@
         <h4 class="thumbnail-title">{{ worldCharacter().firstName }} {{ worldCharacter().lastName }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteCharacter(worldCharacter().id, $event)">Delete</button>
     </div>
+    
     <div class="thumbnail-description">
-        <p class="thumbnail-alt-names">{{ worldCharacter().altNames.join(', ') }}</p>
-        <p class="thumbnail-pronouns">{{ worldCharacter().pronouns }}</p>
+        <div class="thumbnail-alt-names">{{ worldCharacter().altNames.join(', ') }}</div>
+        <div class="thumbnail-pronouns">{{ worldCharacter().pronouns }}</div>
     </div>
+
+    @if (showDate() && worldCharacter().birthdate) {
+        <div class="thumbnail-info">
+            <strong>Birthdate:</strong> {{ worldCharacter().birthdate }}
+        </div>
+    }
+    
+    @if (showStories() && worldCharacter().stories.length > 0) {
+        <div class="thumbnail-stories thumbnail-info">
+            {{ worldCharacter().stories.join(', ') }}
+        </div>
+    }
+    
     <div class="thumbnail-tag-container">
     @for (tag of worldCharacter().tags; track tag) {
-        <div class="thumbnail-tags">{{ tag }}</div>
+        <div class="thumbnail-tags" (click)="onTagClick(tag, $event)">{{ tag }}</div>
     }
     </div>
 </div>

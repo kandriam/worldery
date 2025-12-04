@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["src/app/details/details.css"],
-  "sourcesContent": [".heading {\r\n    font-weight: bold;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.description {\r\n    margin-bottom: 25px;\r\n}\r\n\r\n.details {\r\n    border: 1px solid var(--g1-color);\r\n}\r\n\r\n.location {\r\n    font-size: 24pt;\r\n    margin-bottom: 15px;\r\n}\r\n"],
-  "mappings": ";AAAA,CAAC;AACG,eAAa;AACb,iBAAe;AACnB;AAEA,CAAC;AACG,iBAAe;AACnB;AAEA,CAAC;AACG,UAAQ,IAAI,MAAM,IAAI;AAC1B;AAEA,CAAC;AACG,aAAW;AACX,iBAAe;AACnB;",
+  "sourcesContent": [".heading {\r\n    font-weight: bold;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.description {\r\n    margin-bottom: 25px;\r\n}\r\n\r\n.details {\r\n    border: 1px solid var(--g1-color);\r\n}\r\n\r\n.location {\r\n    font-size: 24pt;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.details-heading {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.details-heading h2 {\r\n    margin: 0;\r\n    flex-grow: 1;\r\n}\r\n\r\n.delete-button {\r\n    margin-left: 20px;\r\n    padding: 8px 16px;\r\n    /* border: 1px solid var(--danger-color, #dc3545); */\r\n    background-color: transparent;\r\n    /* color: var(--danger-color, #dc3545); */\r\n    border-radius: 4px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n    white-space: nowrap;\r\n}\r\n\r\n.delete-button:hover {\r\n    /* background-color: var(--danger-color, #dc3545); */\r\n    color: white;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAC;AACG,eAAa;AACb,iBAAe;AACnB;AAEA,CAAC;AACG,iBAAe;AACnB;AAEA,CAAC;AACG,UAAQ,IAAI,MAAM,IAAI;AAC1B;AAEA,CAAC;AACG,aAAW;AACX,iBAAe;AACnB;AAEA,CAAC;AACG,WAAS;AACT,mBAAiB;AACjB,eAAa;AACb,iBAAe;AACnB;AAEA,CAPC,gBAOgB;AACb,UAAQ;AACR,aAAW;AACf;AAEA,CAAC;AACG,eAAa;AACb,WAAS,IAAI;AAEb,oBAAkB;AAElB,iBAAe;AACf,UAAQ;AACR,aAAW;AACX,eAAa;AACjB;AAEA,CAZC,aAYa;AAEV,SAAO;AACX;",
   "names": []
 }

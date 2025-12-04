@@ -1,12 +1,13 @@
 /* Home Row Component Styles */
 
-.home-row-title {
+.home-row-header {
   font: italic;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: -5px;
   padding: 0;
+  position: relative;
 }
 
 .home-row-results {
@@ -19,7 +20,7 @@
   border-radius: 1px 1px 7px 7px;
 }
 
-.section-title {
+.home-row-title {
   border: 2px solid var(--g1-color);
   background-color: var(--g5-color);
   border-radius: 15px;
@@ -31,26 +32,66 @@
   color: var(--g1-color);
   font-size: larger;
   font-weight: bold;
+
+  &:hover {
+    background-color: var(--g4-color);
+
+    &.event {
+        box-shadow: 2px 2px 10px var(--event-color) !important;
+    }
+
+    &.location {
+        box-shadow: 2px 2px 10px var(--location-color) !important;
+    }
+
+    &.character {
+        box-shadow: 2px 2px 10px var(--character-color) !important;
+    }
+
+    &.story {
+        box-shadow: 2px 2px 10px var(--story-color) !important;
+    }
+  }
 }
 
-.section-title:hover {
+.display-container {
+  border: 2px solid var(--g1-color);
+  background-color: var(--g5-color);
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  font-family: var(--base-font-family);
+  text-transform: uppercase;
+  color: var(--g1-color);
+  font-size: larger;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.display-container button {
+  border: 1px solid var(--g2-color);
   background-color: var(--g4-color);
+  color: var(--g1-color);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.section-title.event:hover {
-  box-shadow: 2px 2px 10px var(--event-color) !important;
+.display-container button:hover {
+  background-color: var(--g3-color);
 }
 
-.section-title.location:hover {
-  box-shadow: 2px 2px 10px var(--location-color) !important;
-}
-
-.section-title.character:hover {
-  box-shadow: 2px 2px 10px var(--character-color) !important;
-}
-
-.section-title.story:hover {
-  box-shadow: 2px 2px 10px var(--story-color) !important;
+.display-container button.active {
+  background-color: var(--g1-color);
+  color: var(--g5-color);
+  font-weight: bold;
 }
 
 .add-button {
@@ -77,4 +118,25 @@
   font-size: 1.1rem;
   margin: 0;
   font-style: italic;
+}
+
+.display-button {
+    background-color: var(--g5-color) !important;
+
+    &.date::after {
+        content: '📅';
+    }
+    &.location::after {
+        content: '📍';
+    }
+    &.characters::after {
+        content: '👤';
+    }
+    &.stories::after {
+        content: '📖';
+    }
+
+    &:hover {
+        background-color: var(--g4-color) !important;
+    }
 }

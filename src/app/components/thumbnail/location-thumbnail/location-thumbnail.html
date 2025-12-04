@@ -3,12 +3,25 @@
         <h4 class="thumbnail-title">{{ worldLocation().name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteLocation(worldLocation().id, $event)">Delete</button>
     </div>
+    
+    @if (showCharacters() && worldLocation().characters.length > 0) {
+        <div class="thumbnail-info thumbnail-characters">
+            {{ worldLocation().characters.join(', ') }}
+        </div>
+    }
+    
+    @if (showStories() && worldLocation().stories.length > 0) {
+        <div class="thumbnail-info thumbnail-stories">
+            {{ worldLocation().stories.join(', ') }}
+        </div>
+    }
+    
     <div class="thumbnail-description">
         {{ worldLocation().description }}
     </div>
     <div class="thumbnail-tag-container">
     @for (tag of worldLocation().tags; track tag) {
-        <div class="thumbnail-tags">{{ tag }}</div>
+        <div class="thumbnail-tags" (click)="onTagClick(tag, $event)">{{ tag }}</div>
     }
     </div>
 </div>

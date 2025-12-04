@@ -1,6 +1,14 @@
 /* SearchFilter Component Styles */
 
 /* Search Input Styles */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
 .search-input {
   width: 250px;
   padding: 10px;
@@ -9,7 +17,6 @@
   border-bottom: solid 1px var(--g3-color);
   border-radius: 8px;
   font-family: var(--input-font-family);
-  margin-bottom: 15px;
   
   &::placeholder {
     font-size: small;
@@ -21,6 +28,35 @@
     font-size: small;
     background-color: var(--b5-color);
   }
+}
+
+.clear-search-btn {
+  background: none;
+  border: 1px solid var(--g3-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g2-color);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: all 0.2s ease;
+  padding: 0;
+  font-weight: bold;
+}
+
+.clear-search-btn:hover {
+  background-color: var(--g4-color);
+  color: var(--g1-color);
+  border-color: var(--g2-color);
+}
+
+.clear-search-btn:active {
+  background-color: var(--g3-color);
+  transform: scale(0.95);
 }
 
 /* Filter Section Container */
@@ -190,8 +226,14 @@
     margin-bottom: 1rem;
   }
   
-  .search-input {
+  .search-container {
+    flex-direction: row;
     width: 100%;
+  }
+  
+  .search-input {
+    flex: 1;
+    width: auto;
   }
   
   .date-input {

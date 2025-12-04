@@ -1,4 +1,4 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, output} from '@angular/core';
 import {WorldEventInfo} from '../../../worldevent';
 import {RouterLink } from '@angular/router';
 import { WorldEventService } from '../../../services/world-event.service';
@@ -12,11 +12,22 @@ import { WorldEventService } from '../../../services/world-event.service';
 
 export class EventThumbnail {
   worldEvent = input.required<WorldEventInfo>();
+  showDate = input<boolean>(true);
+  showLocation = input<boolean>(true);
+  showCharacters = input<boolean>(true);
+  showStories = input<boolean>(true);
   worldEventService = inject(WorldEventService);
+  
+  tagClicked = output<string>();
 
   deleteEvent(id: number, event: Event) {
     event.stopPropagation();
     console.log(`Delete event with ID: ${id}`);
     this.worldEventService.deleteWorldEvent(id);
+  }
+  
+  onTagClick(tag: string, event: Event) {
+    event.stopPropagation();
+    this.tagClicked.emit(tag);
   }
 }

@@ -1,10 +1,17 @@
 <section class="filter-section">
   <h2>{{searchLabel}}</h2>
-  <input type="text" 
-         class="search-input" 
-         [placeholder]="searchPlaceholder" 
-         #searchInput 
-         (input)="onSearchChange()"/>
+  <div class="search-container">
+    <input type="text" 
+           class="search-input" 
+           [placeholder]="searchPlaceholder" 
+           #searchInput 
+           (input)="onSearchChange()"/>
+    <button class="clear-search-btn" 
+            (click)="clearSearchBar()" 
+            title="Clear search">
+      ×
+    </button>
+  </div>
   
   <div class="collapsible-header" (click)="toggleFilters()">
     <h3 class="filter-header">Filter By</h3>

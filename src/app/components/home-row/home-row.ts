@@ -28,9 +28,36 @@ export class HomeRow {
   @Input() noResultsMessage!: string;
   
   @Output() addElement = new EventEmitter<EntityType>();
+  @Output() tagClicked = new EventEmitter<string>();
+  
+  // Display toggles
+  showDate = true;
+  showLocation = true;
+  showCharacters = true;
+  showStories = true;
   
   onAddElement() {
     this.addElement.emit(this.entityType);
+  }
+  
+  onTagClick(tag: string) {
+    this.tagClicked.emit(tag);
+  }
+  
+  toggleDate() {
+    this.showDate = !this.showDate;
+  }
+  
+  toggleLocation() {
+    this.showLocation = !this.showLocation;
+  }
+  
+  toggleCharacters() {
+    this.showCharacters = !this.showCharacters;
+  }
+  
+  toggleStories() {
+    this.showStories = !this.showStories;
   }
   
   getEntityDisplayName(): string {

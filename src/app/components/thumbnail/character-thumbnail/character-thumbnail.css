@@ -1,13 +1,4 @@
 .character-thumbnail {
   min-width: 10rem;
-  width: fit-content;
-  height: 8rem;
-}
-
-.thumbnail-alt-names {
-  font-size: inherit;
-}
-
-.thumbnail-pronouns {
-  font-size: inherit;
+  min-height: 8rem;
 }

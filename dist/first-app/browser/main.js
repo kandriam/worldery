@@ -36685,21 +36685,79 @@ var SearchFilter = _SearchFilter;
 
 // src/app/components/thumbnail/event-thumbnail/event-thumbnail.ts
 var _c03 = (a0) => ["/event", a0];
-function EventThumbnail_For_12_Template(rf, ctx) {
+function EventThumbnail_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 7);
+    \u0275\u0275elementStart(0, "p", 4);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const tag_r1 = ctx.$implicit;
+    const ctx_r0 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(tag_r1);
+    \u0275\u0275textInterpolate(ctx_r0.worldEvent().date);
+  }
+}
+function EventThumbnail_Conditional_7_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 5)(1, "strong");
+    \u0275\u0275text(2, "Location:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldEvent().location.join(", "), " ");
+  }
+}
+function EventThumbnail_Conditional_8_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 5)(1, "strong");
+    \u0275\u0275text(2, "Characters:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldEvent().characters.join(", "), " ");
+  }
+}
+function EventThumbnail_Conditional_9_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 5)(1, "strong");
+    \u0275\u0275text(2, "Stories:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldEvent().stories.join(", "), " ");
+  }
+}
+function EventThumbnail_For_14_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 8);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const tag_r2 = ctx.$implicit;
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(tag_r2);
   }
 }
 var _EventThumbnail = class _EventThumbnail {
   constructor() {
     this.worldEvent = input.required(...ngDevMode ? [{ debugName: "worldEvent" }] : []);
+    this.showDate = input(true, ...ngDevMode ? [{ debugName: "showDate" }] : []);
+    this.showLocation = input(true, ...ngDevMode ? [{ debugName: "showLocation" }] : []);
+    this.showCharacters = input(true, ...ngDevMode ? [{ debugName: "showCharacters" }] : []);
+    this.showStories = input(true, ...ngDevMode ? [{ debugName: "showStories" }] : []);
     this.worldEventService = inject2(WorldEventService);
   }
   deleteEvent(id, event) {
@@ -36711,7 +36769,7 @@ var _EventThumbnail = class _EventThumbnail {
 _EventThumbnail.\u0275fac = function EventThumbnail_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _EventThumbnail)();
 };
-_EventThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EventThumbnail, selectors: [["app-event-thumbnail"]], inputs: { worldEvent: [1, "worldEvent"] }, decls: 13, vars: 6, consts: [[1, "event-thumbnail", "world-thumbnail", "event", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-date", "thumbnail-description"], [1, "thumbnail-description"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function EventThumbnail_Template(rf, ctx) {
+_EventThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EventThumbnail, selectors: [["app-event-thumbnail"]], inputs: { worldEvent: [1, "worldEvent"], showDate: [1, "showDate"], showLocation: [1, "showLocation"], showCharacters: [1, "showCharacters"], showStories: [1, "showStories"] }, decls: 15, vars: 9, consts: [[1, "event-thumbnail", "world-thumbnail", "event", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-date", "thumbnail-description"], [1, "thumbnail-info"], [1, "thumbnail-description"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function EventThumbnail_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "h4", 2);
     \u0275\u0275text(3);
@@ -36722,28 +36780,35 @@ _EventThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: 
     });
     \u0275\u0275text(5, "Delete");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "p", 4);
-    \u0275\u0275text(7);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "div", 5);
-    \u0275\u0275text(9);
-    \u0275\u0275elementEnd();
+    \u0275\u0275conditionalCreate(6, EventThumbnail_Conditional_6_Template, 2, 1, "p", 4);
+    \u0275\u0275conditionalCreate(7, EventThumbnail_Conditional_7_Template, 4, 1, "div", 5);
+    \u0275\u0275conditionalCreate(8, EventThumbnail_Conditional_8_Template, 4, 1, "div", 5);
+    \u0275\u0275conditionalCreate(9, EventThumbnail_Conditional_9_Template, 4, 1, "div", 5);
     \u0275\u0275elementStart(10, "div", 6);
-    \u0275\u0275repeaterCreate(11, EventThumbnail_For_12_Template, 2, 1, "div", 7, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275text(11);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(12, "div", 7);
+    \u0275\u0275repeaterCreate(13, EventThumbnail_For_14_Template, 2, 1, "div", 8, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(4, _c03, ctx.worldEvent().id));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(7, _c03, ctx.worldEvent().id));
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldEvent().name);
-    \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate(ctx.worldEvent().date);
+    \u0275\u0275advance(3);
+    \u0275\u0275conditional(ctx.showDate() ? 6 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.showLocation() && ctx.worldEvent().location.length > 0 ? 7 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.showCharacters() && ctx.worldEvent().characters.length > 0 ? 8 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.showStories() && ctx.worldEvent().stories.length > 0 ? 9 : -1);
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1(" ", ctx.worldEvent().description, " ");
     \u0275\u0275advance(2);
     \u0275\u0275repeater(ctx.worldEvent().tags);
   }
-}, dependencies: [RouterLink], styles: ["\n\n.event-thumbnail[_ngcontent-%COMP%] {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n/*# sourceMappingURL=event-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
+}, dependencies: [RouterLink], styles: ["\n\n.event-thumbnail[_ngcontent-%COMP%] {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n/*# sourceMappingURL=event-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info[_ngcontent-%COMP%] {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
 var EventThumbnail = _EventThumbnail;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EventThumbnail, [{
@@ -36753,7 +36818,27 @@ var EventThumbnail = _EventThumbnail;
         <h4 class="thumbnail-title">{{ worldEvent().name }}</h4>\r
         <button class="thumbnail-delete-button" (click)="deleteEvent(worldEvent().id, $event)">Delete</button>\r
     </div>\r
-    <p class="thumbnail-date thumbnail-description">{{ worldEvent().date }}</p>\r
+    @if (showDate()) {\r
+        <p class="thumbnail-date thumbnail-description">{{ worldEvent().date }}</p>\r
+    }\r
+    \r
+    @if (showLocation() && worldEvent().location.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Location:</strong> {{ worldEvent().location.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
+    @if (showCharacters() && worldEvent().characters.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Characters:</strong> {{ worldEvent().characters.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
+    @if (showStories() && worldEvent().stories.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Stories:</strong> {{ worldEvent().stories.join(', ') }}\r
+        </div>\r
+    }\r
 \r
     <div class="thumbnail-description">\r
         {{ worldEvent().description }}\r
@@ -36763,7 +36848,7 @@ var EventThumbnail = _EventThumbnail;
             <div class="thumbnail-tags">{{ tag }}</div>\r
         }\r
     </div>\r
-</div>`, styles: ["/* src/app/components/thumbnail/event-thumbnail/event-thumbnail.css */\n.event-thumbnail {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n/*# sourceMappingURL=event-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
+</div>`, styles: ["/* src/app/components/thumbnail/event-thumbnail/event-thumbnail.css */\n.event-thumbnail {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n/*# sourceMappingURL=event-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info strong {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
   }], null, null);
 })();
 (() => {
@@ -36772,22 +36857,54 @@ var EventThumbnail = _EventThumbnail;
 
 // src/app/components/thumbnail/location-thumbnail/location-thumbnail.ts
 var _c04 = (a0) => ["/location", a0];
-function LocationThumbnail_For_10_Template(rf, ctx) {
+function LocationThumbnail_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 6);
+    \u0275\u0275elementStart(0, "div", 4)(1, "strong");
+    \u0275\u0275text(2, "Characters:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldLocation().characters.join(", "), " ");
+  }
+}
+function LocationThumbnail_Conditional_7_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 4)(1, "strong");
+    \u0275\u0275text(2, "Stories:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldLocation().stories.join(", "), " ");
+  }
+}
+function LocationThumbnail_For_12_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 7);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const tag_r1 = ctx.$implicit;
+    const tag_r2 = ctx.$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(tag_r1);
+    \u0275\u0275textInterpolate(tag_r2);
   }
 }
 var _LocationThumbnail = class _LocationThumbnail {
   constructor() {
     this.locationService = inject2(WorldLocationService);
     this.worldLocation = input.required(...ngDevMode ? [{ debugName: "worldLocation" }] : []);
+    this.showDate = input(true, ...ngDevMode ? [{ debugName: "showDate" }] : []);
+    this.showLocation = input(true, ...ngDevMode ? [{ debugName: "showLocation" }] : []);
+    this.showCharacters = input(true, ...ngDevMode ? [{ debugName: "showCharacters" }] : []);
+    this.showStories = input(true, ...ngDevMode ? [{ debugName: "showStories" }] : []);
   }
   deleteLocation(id, event) {
     event.stopPropagation();
@@ -36798,7 +36915,7 @@ var _LocationThumbnail = class _LocationThumbnail {
 _LocationThumbnail.\u0275fac = function LocationThumbnail_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _LocationThumbnail)();
 };
-_LocationThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _LocationThumbnail, selectors: [["app-location-thumbnail"]], inputs: { worldLocation: [1, "worldLocation"] }, decls: 11, vars: 5, consts: [[1, "location-thumbnail", "world-thumbnail", "location", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-description"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function LocationThumbnail_Template(rf, ctx) {
+_LocationThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _LocationThumbnail, selectors: [["app-location-thumbnail"]], inputs: { worldLocation: [1, "worldLocation"], showDate: [1, "showDate"], showLocation: [1, "showLocation"], showCharacters: [1, "showCharacters"], showStories: [1, "showStories"] }, decls: 13, vars: 7, consts: [[1, "location-thumbnail", "world-thumbnail", "location", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-info"], [1, "thumbnail-description"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function LocationThumbnail_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "h4", 2);
     \u0275\u0275text(3);
@@ -36809,23 +36926,29 @@ _LocationThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ typ
     });
     \u0275\u0275text(5, "Delete");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 4);
-    \u0275\u0275text(7);
-    \u0275\u0275elementEnd();
+    \u0275\u0275conditionalCreate(6, LocationThumbnail_Conditional_6_Template, 4, 1, "div", 4);
+    \u0275\u0275conditionalCreate(7, LocationThumbnail_Conditional_7_Template, 4, 1, "div", 4);
     \u0275\u0275elementStart(8, "div", 5);
-    \u0275\u0275repeaterCreate(9, LocationThumbnail_For_10_Template, 2, 1, "div", 6, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275text(9);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(10, "div", 6);
+    \u0275\u0275repeaterCreate(11, LocationThumbnail_For_12_Template, 2, 1, "div", 7, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(3, _c04, ctx.worldLocation().id));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(5, _c04, ctx.worldLocation().id));
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldLocation().name);
-    \u0275\u0275advance(4);
+    \u0275\u0275advance(3);
+    \u0275\u0275conditional(ctx.showCharacters() && ctx.worldLocation().characters.length > 0 ? 6 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.showStories() && ctx.worldLocation().stories.length > 0 ? 7 : -1);
+    \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1(" ", ctx.worldLocation().description, " ");
     \u0275\u0275advance(2);
     \u0275\u0275repeater(ctx.worldLocation().tags);
   }
-}, dependencies: [RouterLink], styles: ["\n\n.location-thumbnail[_ngcontent-%COMP%] {\n  width: 20rem;\n  height: 8rem;\n}\n/*# sourceMappingURL=location-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
+}, dependencies: [RouterLink], styles: ["\n\n.location-thumbnail[_ngcontent-%COMP%] {\n  width: 20rem;\n  height: 8rem;\n}\n/*# sourceMappingURL=location-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info[_ngcontent-%COMP%] {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
 var LocationThumbnail = _LocationThumbnail;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(LocationThumbnail, [{
@@ -36835,6 +36958,19 @@ var LocationThumbnail = _LocationThumbnail;
         <h4 class="thumbnail-title">{{ worldLocation().name }}</h4>\r
         <button class="thumbnail-delete-button" (click)="deleteLocation(worldLocation().id, $event)">Delete</button>\r
     </div>\r
+    \r
+    @if (showCharacters() && worldLocation().characters.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Characters:</strong> {{ worldLocation().characters.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
+    @if (showStories() && worldLocation().stories.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Stories:</strong> {{ worldLocation().stories.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
     <div class="thumbnail-description">\r
         {{ worldLocation().description }}\r
     </div>\r
@@ -36843,7 +36979,7 @@ var LocationThumbnail = _LocationThumbnail;
         <div class="thumbnail-tags">{{ tag }}</div>\r
     }\r
     </div>\r
-</div>`, styles: ["/* src/app/components/thumbnail/location-thumbnail/location-thumbnail.css */\n.location-thumbnail {\n  width: 20rem;\n  height: 8rem;\n}\n/*# sourceMappingURL=location-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
+</div>`, styles: ["/* src/app/components/thumbnail/location-thumbnail/location-thumbnail.css */\n.location-thumbnail {\n  width: 20rem;\n  height: 8rem;\n}\n/*# sourceMappingURL=location-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info strong {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
   }], null, null);
 })();
 (() => {
@@ -36852,22 +36988,54 @@ var LocationThumbnail = _LocationThumbnail;
 
 // src/app/components/thumbnail/character-thumbnail/character-thumbnail.ts
 var _c05 = (a0) => ["/character", a0];
-function CharacterThumbnail_For_13_Template(rf, ctx) {
+function CharacterThumbnail_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 8);
+    \u0275\u0275elementStart(0, "div", 4)(1, "strong");
+    \u0275\u0275text(2, "Birthdate:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldCharacter().birthdate, " ");
+  }
+}
+function CharacterThumbnail_Conditional_7_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 4)(1, "strong");
+    \u0275\u0275text(2, "Stories:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldCharacter().stories.join(", "), " ");
+  }
+}
+function CharacterThumbnail_For_15_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 9);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const tag_r1 = ctx.$implicit;
+    const tag_r2 = ctx.$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(tag_r1);
+    \u0275\u0275textInterpolate(tag_r2);
   }
 }
 var _CharacterThumbnail = class _CharacterThumbnail {
   constructor() {
     this.characterService = inject2(WorldCharacterService);
     this.worldCharacter = input.required(...ngDevMode ? [{ debugName: "worldCharacter" }] : []);
+    this.showDate = input(true, ...ngDevMode ? [{ debugName: "showDate" }] : []);
+    this.showLocation = input(true, ...ngDevMode ? [{ debugName: "showLocation" }] : []);
+    this.showCharacters = input(true, ...ngDevMode ? [{ debugName: "showCharacters" }] : []);
+    this.showStories = input(true, ...ngDevMode ? [{ debugName: "showStories" }] : []);
   }
   deleteCharacter(id, event) {
     event.stopPropagation();
@@ -36878,7 +37046,7 @@ var _CharacterThumbnail = class _CharacterThumbnail {
 _CharacterThumbnail.\u0275fac = function CharacterThumbnail_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _CharacterThumbnail)();
 };
-_CharacterThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CharacterThumbnail, selectors: [["app-character-thumbnail"]], inputs: { worldCharacter: [1, "worldCharacter"] }, decls: 14, vars: 7, consts: [[1, "character-thumbnail", "world-thumbnail", "character", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-description"], [1, "thumbnail-alt-names"], [1, "thumbnail-pronouns"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function CharacterThumbnail_Template(rf, ctx) {
+_CharacterThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CharacterThumbnail, selectors: [["app-character-thumbnail"]], inputs: { worldCharacter: [1, "worldCharacter"], showDate: [1, "showDate"], showLocation: [1, "showLocation"], showCharacters: [1, "showCharacters"], showStories: [1, "showStories"] }, decls: 16, vars: 9, consts: [[1, "character-thumbnail", "world-thumbnail", "character", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-info"], [1, "thumbnail-description"], [1, "thumbnail-alt-names"], [1, "thumbnail-pronouns"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function CharacterThumbnail_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "h4", 2);
     \u0275\u0275text(3);
@@ -36889,28 +37057,34 @@ _CharacterThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ ty
     });
     \u0275\u0275text(5, "Delete");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 4)(7, "p", 5);
-    \u0275\u0275text(8);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "p", 6);
+    \u0275\u0275conditionalCreate(6, CharacterThumbnail_Conditional_6_Template, 4, 1, "div", 4);
+    \u0275\u0275conditionalCreate(7, CharacterThumbnail_Conditional_7_Template, 4, 1, "div", 4);
+    \u0275\u0275elementStart(8, "div", 5)(9, "p", 6);
     \u0275\u0275text(10);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(11, "p", 7);
+    \u0275\u0275text(12);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(11, "div", 7);
-    \u0275\u0275repeaterCreate(12, CharacterThumbnail_For_13_Template, 2, 1, "div", 8, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(13, "div", 8);
+    \u0275\u0275repeaterCreate(14, CharacterThumbnail_For_15_Template, 2, 1, "div", 9, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(5, _c05, ctx.worldCharacter().id));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(7, _c05, ctx.worldCharacter().id));
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate2("", ctx.worldCharacter().firstName, " ", ctx.worldCharacter().lastName);
-    \u0275\u0275advance(5);
+    \u0275\u0275advance(3);
+    \u0275\u0275conditional(ctx.showDate() && ctx.worldCharacter().birthdate ? 6 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.showStories() && ctx.worldCharacter().stories.length > 0 ? 7 : -1);
+    \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldCharacter().altNames.join(", "));
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(ctx.worldCharacter().pronouns);
     \u0275\u0275advance(2);
     \u0275\u0275repeater(ctx.worldCharacter().tags);
   }
-}, dependencies: [RouterLink], styles: ["\n\n.character-thumbnail[_ngcontent-%COMP%] {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n.thumbnail-alt-names[_ngcontent-%COMP%] {\n  font-size: inherit;\n}\n.thumbnail-pronouns[_ngcontent-%COMP%] {\n  font-size: inherit;\n}\n/*# sourceMappingURL=character-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
+}, dependencies: [RouterLink], styles: ["\n\n.character-thumbnail[_ngcontent-%COMP%] {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n.thumbnail-alt-names[_ngcontent-%COMP%] {\n  font-size: inherit;\n}\n.thumbnail-pronouns[_ngcontent-%COMP%] {\n  font-size: inherit;\n}\n/*# sourceMappingURL=character-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info[_ngcontent-%COMP%] {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
 var CharacterThumbnail = _CharacterThumbnail;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CharacterThumbnail, [{
@@ -36920,6 +37094,19 @@ var CharacterThumbnail = _CharacterThumbnail;
         <h4 class="thumbnail-title">{{ worldCharacter().firstName }} {{ worldCharacter().lastName }}</h4>\r
         <button class="thumbnail-delete-button" (click)="deleteCharacter(worldCharacter().id, $event)">Delete</button>\r
     </div>\r
+    \r
+    @if (showDate() && worldCharacter().birthdate) {\r
+        <div class="thumbnail-info">\r
+            <strong>Birthdate:</strong> {{ worldCharacter().birthdate }}\r
+        </div>\r
+    }\r
+    \r
+    @if (showStories() && worldCharacter().stories.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Stories:</strong> {{ worldCharacter().stories.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
     <div class="thumbnail-description">\r
         <p class="thumbnail-alt-names">{{ worldCharacter().altNames.join(', ') }}</p>\r
         <p class="thumbnail-pronouns">{{ worldCharacter().pronouns }}</p>\r
@@ -36929,7 +37116,7 @@ var CharacterThumbnail = _CharacterThumbnail;
         <div class="thumbnail-tags">{{ tag }}</div>\r
     }\r
     </div>\r
-</div>`, styles: ["/* src/app/components/thumbnail/character-thumbnail/character-thumbnail.css */\n.character-thumbnail {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n.thumbnail-alt-names {\n  font-size: inherit;\n}\n.thumbnail-pronouns {\n  font-size: inherit;\n}\n/*# sourceMappingURL=character-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
+</div>`, styles: ["/* src/app/components/thumbnail/character-thumbnail/character-thumbnail.css */\n.character-thumbnail {\n  min-width: 10rem;\n  width: fit-content;\n  height: 8rem;\n}\n.thumbnail-alt-names {\n  font-size: inherit;\n}\n.thumbnail-pronouns {\n  font-size: inherit;\n}\n/*# sourceMappingURL=character-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info strong {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
   }], null, null);
 })();
 (() => {
@@ -36938,34 +37125,66 @@ var CharacterThumbnail = _CharacterThumbnail;
 
 // src/app/components/thumbnail/story-thumbnail/story-thumbnail.ts
 var _c06 = (a0) => ["/story", a0];
-function StoryThumbnail_For_8_Template(rf, ctx) {
+function StoryThumbnail_Conditional_6_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 4)(1, "strong");
+    \u0275\u0275text(2, "Locations:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldStory().locations.join(", "), " ");
+  }
+}
+function StoryThumbnail_Conditional_7_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 4)(1, "strong");
+    \u0275\u0275text(2, "Characters:");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", ctx_r0.worldStory().characters.join(", "), " ");
+  }
+}
+function StoryThumbnail_For_10_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "p");
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const paragraph_r1 = ctx.$implicit;
+    const paragraph_r2 = ctx.$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(paragraph_r1);
+    \u0275\u0275textInterpolate(paragraph_r2);
   }
 }
-function StoryThumbnail_For_11_Template(rf, ctx) {
+function StoryThumbnail_For_13_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 6);
+    \u0275\u0275elementStart(0, "div", 7);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const tag_r2 = ctx.$implicit;
+    const tag_r3 = ctx.$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(tag_r2);
+    \u0275\u0275textInterpolate(tag_r3);
   }
 }
 var _StoryThumbnail = class _StoryThumbnail {
   constructor() {
     this.storyService = inject2(WorldStoryService);
     this.worldStory = input.required(...ngDevMode ? [{ debugName: "worldStory" }] : []);
+    this.showDate = input(true, ...ngDevMode ? [{ debugName: "showDate" }] : []);
+    this.showLocation = input(true, ...ngDevMode ? [{ debugName: "showLocation" }] : []);
+    this.showCharacters = input(true, ...ngDevMode ? [{ debugName: "showCharacters" }] : []);
+    this.showStories = input(true, ...ngDevMode ? [{ debugName: "showStories" }] : []);
   }
   deleteStory(id, event) {
     event.stopPropagation();
@@ -36976,7 +37195,7 @@ var _StoryThumbnail = class _StoryThumbnail {
 _StoryThumbnail.\u0275fac = function StoryThumbnail_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _StoryThumbnail)();
 };
-_StoryThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _StoryThumbnail, selectors: [["app-story-thumbnail"]], inputs: { worldStory: [1, "worldStory"] }, decls: 12, vars: 4, consts: [[1, "story-thumbnail", "world-thumbnail", "story", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-description"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function StoryThumbnail_Template(rf, ctx) {
+_StoryThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _StoryThumbnail, selectors: [["app-story-thumbnail"]], inputs: { worldStory: [1, "worldStory"], showDate: [1, "showDate"], showLocation: [1, "showLocation"], showCharacters: [1, "showCharacters"], showStories: [1, "showStories"] }, decls: 14, vars: 6, consts: [[1, "story-thumbnail", "world-thumbnail", "story", 3, "routerLink"], [1, "thumbnail-header"], [1, "thumbnail-title"], [1, "thumbnail-delete-button", 3, "click"], [1, "thumbnail-info"], [1, "thumbnail-description"], [1, "thumbnail-tag-container"], [1, "thumbnail-tags"]], template: function StoryThumbnail_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "h4", 2);
     \u0275\u0275text(3);
@@ -36987,23 +37206,29 @@ _StoryThumbnail.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: 
     });
     \u0275\u0275text(5, "Delete");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 4);
-    \u0275\u0275repeaterCreate(7, StoryThumbnail_For_8_Template, 2, 1, "p", null, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275conditionalCreate(6, StoryThumbnail_Conditional_6_Template, 4, 1, "div", 4);
+    \u0275\u0275conditionalCreate(7, StoryThumbnail_Conditional_7_Template, 4, 1, "div", 4);
+    \u0275\u0275elementStart(8, "div", 5);
+    \u0275\u0275repeaterCreate(9, StoryThumbnail_For_10_Template, 2, 1, "p", null, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "div", 5);
-    \u0275\u0275repeaterCreate(10, StoryThumbnail_For_11_Template, 2, 1, "div", 6, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(11, "div", 6);
+    \u0275\u0275repeaterCreate(12, StoryThumbnail_For_13_Template, 2, 1, "div", 7, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(2, _c06, ctx.worldStory().id));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(4, _c06, ctx.worldStory().id));
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldStory().title);
-    \u0275\u0275advance(4);
+    \u0275\u0275advance(3);
+    \u0275\u0275conditional(ctx.showLocation() && ctx.worldStory().locations.length > 0 ? 6 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.showCharacters() && ctx.worldStory().characters.length > 0 ? 7 : -1);
+    \u0275\u0275advance(2);
     \u0275\u0275repeater(ctx.worldStory().description.split("\n"));
     \u0275\u0275advance(3);
     \u0275\u0275repeater(ctx.worldStory().tags);
   }
-}, dependencies: [RouterLink], styles: ["\n\n.story-thumbnail[_ngcontent-%COMP%] {\n  width: 15rem;\n  height: 15rem;\n}\n/*# sourceMappingURL=story-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
+}, dependencies: [RouterLink], styles: ["\n\n.story-thumbnail[_ngcontent-%COMP%] {\n  width: 15rem;\n  height: 15rem;\n}\n/*# sourceMappingURL=story-thumbnail.css.map */", '\n\n.thumbnail-location[_ngcontent-%COMP%]::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters[_ngcontent-%COMP%]::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories[_ngcontent-%COMP%]::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date[_ngcontent-%COMP%]::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%]::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags[_ngcontent-%COMP%] {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%] {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header[_ngcontent-%COMP%] {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%] {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info[_ngcontent-%COMP%] {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */'] });
 var StoryThumbnail = _StoryThumbnail;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(StoryThumbnail, [{
@@ -37013,6 +37238,19 @@ var StoryThumbnail = _StoryThumbnail;
         <h4 class="thumbnail-title">{{ worldStory().title }}</h4>\r
         <button class="thumbnail-delete-button" (click)="deleteStory(worldStory().id, $event)">Delete</button>\r
     </div>\r
+    \r
+    @if (showLocation() && worldStory().locations.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Locations:</strong> {{ worldStory().locations.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
+    @if (showCharacters() && worldStory().characters.length > 0) {\r
+        <div class="thumbnail-info">\r
+            <strong>Characters:</strong> {{ worldStory().characters.join(', ') }}\r
+        </div>\r
+    }\r
+    \r
     <div class="thumbnail-description">\r
         @for ( paragraph of worldStory().description.split('\\n'); track paragraph) {\r
             <p>{{ paragraph }}</p>\r
@@ -37023,7 +37261,7 @@ var StoryThumbnail = _StoryThumbnail;
         <div class="thumbnail-tags">{{ tag }}</div>\r
     }\r
     </div>\r
-</div>`, styles: ["/* src/app/components/thumbnail/story-thumbnail/story-thumbnail.css */\n.story-thumbnail {\n  width: 15rem;\n  height: 15rem;\n}\n/*# sourceMappingURL=story-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
+</div>`, styles: ["/* src/app/components/thumbnail/story-thumbnail/story-thumbnail.css */\n.story-thumbnail {\n  width: 15rem;\n  height: 15rem;\n}\n/*# sourceMappingURL=story-thumbnail.css.map */\n", '/* src/app/components/thumbnail/thumbnail.css */\n.thumbnail-location::before {\n  content: "\\1f4cd";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-characters::before {\n  content: "\\1f465";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-stories::before {\n  content: "\\1f4d6";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-date::before {\n  content: "\\1f4c5";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags::before {\n  content: "\\1f3f7\\fe0f";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-right: 2px;\n  vertical-align: middle;\n}\n.thumbnail-tags {\n  width: fit-content;\n  margin: 1px;\n  padding: 3px 8px 3px 3px;\n  font-size: x-small;\n  font-style: italic;\n  color: var(--b2-color);\n  border: 1px solid var(--g3-color);\n  border-radius: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-tags:hover {\n  background-color: var(--g4-color);\n  box-shadow: 2px 2px 5px var(--shadow-color);\n}\n.world-thumbnail {\n  background: var(--g4-color);\n  border-radius: 15px;\n  margin: 5px;\n  padding: 10px;\n  transition: all 0.3s ease-in-out;\n}\n.world-thumbnail:hover {\n  box-shadow: 2px 2px 15px var(--shadow-color);\n}\n.world-thumbnail:hover.event {\n  box-shadow: 2px 2px 5px var(--event-color) !important;\n}\n.world-thumbnail:hover.location {\n  box-shadow: 2px 2px 5px var(--location-color) !important;\n}\n.world-thumbnail:hover.character {\n  box-shadow: 2px 2px 5px var(--character-color) !important;\n}\n.world-thumbnail:hover.story {\n  box-shadow: 2px 2px 5px var(--story-color) !important;\n}\n.thumbnail-description {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  font-size: x-small;\n  color: var(--g1-color);\n  line-height: 1.4;\n  white-space: normal;\n}\n.thumbnail-header {\n  display: flex;\n  font-size: small;\n  justify-content: space-between;\n  align-items: center;\n}\n.thumbnail-delete-button {\n  background: var(--b4-color);\n  color: var(--g5-color);\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  margin-inline: 5px;\n  font-size: small;\n  transition: all 0.3s ease-in-out;\n}\n.thumbnail-delete-button:hover {\n  background-color: var(--b3-color);\n}\n.thumbnail-tag-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n.thumbnail-info {\n  margin: 5px 0;\n  font-size: x-small;\n  color: var(--g2-color);\n  line-height: 1.3;\n}\n.thumbnail-info strong {\n  color: var(--g1-color);\n  font-weight: bold;\n}\n/*# sourceMappingURL=thumbnail.css.map */\n'] }]
   }], null, null);
 })();
 (() => {
@@ -37032,90 +37270,94 @@ var StoryThumbnail = _StoryThumbnail;
 
 // src/app/components/home-row/home-row.ts
 var _c07 = (a0) => [a0];
-function HomeRow_Conditional_7_Conditional_0_For_1_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_0_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-event-thumbnail", 6);
+    \u0275\u0275element(0, "app-event-thumbnail", 8);
   }
   if (rf & 2) {
     const worldEvent_r1 = ctx.$implicit;
-    \u0275\u0275property("worldEvent", worldEvent_r1);
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("worldEvent", worldEvent_r1)("showDate", ctx_r1.showDate)("showLocation", ctx_r1.showLocation)("showCharacters", ctx_r1.showCharacters)("showStories", ctx_r1.showStories);
   }
 }
-function HomeRow_Conditional_7_Conditional_0_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_7_Conditional_0_For_1_Template, 1, 1, "app-event-thumbnail", 6, \u0275\u0275repeaterTrackByIndex);
+    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_16_Conditional_0_For_1_Template, 1, 5, "app-event-thumbnail", 8, \u0275\u0275repeaterTrackByIndex);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r1.entities);
   }
 }
-function HomeRow_Conditional_7_Conditional_1_For_1_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_1_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-location-thumbnail", 7);
+    \u0275\u0275element(0, "app-location-thumbnail", 9);
   }
   if (rf & 2) {
     const worldLocation_r3 = ctx.$implicit;
-    \u0275\u0275property("worldLocation", worldLocation_r3);
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("worldLocation", worldLocation_r3)("showDate", ctx_r1.showDate)("showLocation", ctx_r1.showLocation)("showCharacters", ctx_r1.showCharacters)("showStories", ctx_r1.showStories);
   }
 }
-function HomeRow_Conditional_7_Conditional_1_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_7_Conditional_1_For_1_Template, 1, 1, "app-location-thumbnail", 7, \u0275\u0275repeaterTrackByIndex);
+    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_16_Conditional_1_For_1_Template, 1, 5, "app-location-thumbnail", 9, \u0275\u0275repeaterTrackByIndex);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r1.entities);
   }
 }
-function HomeRow_Conditional_7_Conditional_2_For_1_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_2_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-character-thumbnail", 8);
+    \u0275\u0275element(0, "app-character-thumbnail", 10);
   }
   if (rf & 2) {
     const worldCharacter_r4 = ctx.$implicit;
-    \u0275\u0275property("worldCharacter", worldCharacter_r4);
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("worldCharacter", worldCharacter_r4)("showDate", ctx_r1.showDate)("showLocation", ctx_r1.showLocation)("showCharacters", ctx_r1.showCharacters)("showStories", ctx_r1.showStories);
   }
 }
-function HomeRow_Conditional_7_Conditional_2_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_7_Conditional_2_For_1_Template, 1, 1, "app-character-thumbnail", 8, \u0275\u0275repeaterTrackByIndex);
+    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_16_Conditional_2_For_1_Template, 1, 5, "app-character-thumbnail", 10, \u0275\u0275repeaterTrackByIndex);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r1.entities);
   }
 }
-function HomeRow_Conditional_7_Conditional_3_For_1_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_3_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-story-thumbnail", 9);
+    \u0275\u0275element(0, "app-story-thumbnail", 11);
   }
   if (rf & 2) {
     const worldStory_r5 = ctx.$implicit;
-    \u0275\u0275property("worldStory", worldStory_r5);
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("worldStory", worldStory_r5)("showDate", ctx_r1.showDate)("showLocation", ctx_r1.showLocation)("showCharacters", ctx_r1.showCharacters)("showStories", ctx_r1.showStories);
   }
 }
-function HomeRow_Conditional_7_Conditional_3_Template(rf, ctx) {
+function HomeRow_Conditional_16_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_7_Conditional_3_For_1_Template, 1, 1, "app-story-thumbnail", 9, \u0275\u0275repeaterTrackByIndex);
+    \u0275\u0275repeaterCreate(0, HomeRow_Conditional_16_Conditional_3_For_1_Template, 1, 5, "app-story-thumbnail", 11, \u0275\u0275repeaterTrackByIndex);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r1.entities);
   }
 }
-function HomeRow_Conditional_7_Template(rf, ctx) {
+function HomeRow_Conditional_16_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275conditionalCreate(0, HomeRow_Conditional_7_Conditional_0_Template, 2, 0)(1, HomeRow_Conditional_7_Conditional_1_Template, 2, 0)(2, HomeRow_Conditional_7_Conditional_2_Template, 2, 0)(3, HomeRow_Conditional_7_Conditional_3_Template, 2, 0);
+    \u0275\u0275conditionalCreate(0, HomeRow_Conditional_16_Conditional_0_Template, 2, 0)(1, HomeRow_Conditional_16_Conditional_1_Template, 2, 0)(2, HomeRow_Conditional_16_Conditional_2_Template, 2, 0)(3, HomeRow_Conditional_16_Conditional_3_Template, 2, 0);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275conditional(ctx_r1.isEventList(ctx_r1.entities) ? 0 : ctx_r1.isLocationList(ctx_r1.entities) ? 1 : ctx_r1.isCharacterList(ctx_r1.entities) ? 2 : ctx_r1.isStoryList(ctx_r1.entities) ? 3 : -1);
   }
 }
-function HomeRow_Conditional_8_Template(rf, ctx) {
+function HomeRow_Conditional_17_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 5)(1, "p");
+    \u0275\u0275elementStart(0, "div", 7)(1, "p");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd()();
   }
@@ -37128,9 +37370,25 @@ function HomeRow_Conditional_8_Template(rf, ctx) {
 var _HomeRow = class _HomeRow {
   constructor() {
     this.addElement = new EventEmitter();
+    this.showDate = true;
+    this.showLocation = true;
+    this.showCharacters = true;
+    this.showStories = true;
   }
   onAddElement() {
     this.addElement.emit(this.entityType);
+  }
+  toggleDate() {
+    this.showDate = !this.showDate;
+  }
+  toggleLocation() {
+    this.showLocation = !this.showLocation;
+  }
+  toggleCharacters() {
+    this.showCharacters = !this.showCharacters;
+  }
+  toggleStories() {
+    this.showStories = !this.showStories;
   }
   getEntityDisplayName() {
     const displayNames = {
@@ -37158,40 +37416,72 @@ var _HomeRow = class _HomeRow {
 _HomeRow.\u0275fac = function HomeRow_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _HomeRow)();
 };
-_HomeRow.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HomeRow, selectors: [["app-home-row"]], inputs: { entityType: "entityType", title: "title", routePath: "routePath", entities: "entities", noResultsMessage: "noResultsMessage" }, outputs: { addElement: "addElement" }, decls: 9, vars: 10, consts: [[1, "home-row"], [1, "home-row-title"], [1, "section-title", 3, "routerLink"], [1, "primary", "add-button", 3, "click"], [1, "home-row-results"], [1, "no-results"], [3, "worldEvent"], [3, "worldLocation"], [3, "worldCharacter"], [3, "worldStory"]], template: function HomeRow_Template(rf, ctx) {
+_HomeRow.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HomeRow, selectors: [["app-home-row"]], inputs: { entityType: "entityType", title: "title", routePath: "routePath", entities: "entities", noResultsMessage: "noResultsMessage" }, outputs: { addElement: "addElement" }, decls: 18, vars: 18, consts: [[1, "home-row"], [1, "home-row-header"], [1, "home-row-title", 3, "routerLink"], [1, "display-container"], [3, "click"], [1, "primary", "add-button", 3, "click"], [1, "home-row-results"], [1, "no-results"], [3, "worldEvent", "showDate", "showLocation", "showCharacters", "showStories"], [3, "worldLocation", "showDate", "showLocation", "showCharacters", "showStories"], [3, "worldCharacter", "showDate", "showLocation", "showCharacters", "showStories"], [3, "worldStory", "showDate", "showLocation", "showCharacters", "showStories"]], template: function HomeRow_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "section", 0)(1, "div", 1)(2, "button", 2);
     \u0275\u0275text(3);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "button", 3);
-    \u0275\u0275listener("click", function HomeRow_Template_button_click_4_listener() {
+    \u0275\u0275elementStart(4, "div", 3)(5, "button", 4);
+    \u0275\u0275listener("click", function HomeRow_Template_button_click_5_listener() {
+      return ctx.toggleDate();
+    });
+    \u0275\u0275text(6, "Date");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "button", 4);
+    \u0275\u0275listener("click", function HomeRow_Template_button_click_7_listener() {
+      return ctx.toggleLocation();
+    });
+    \u0275\u0275text(8, "Location");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "button", 4);
+    \u0275\u0275listener("click", function HomeRow_Template_button_click_9_listener() {
+      return ctx.toggleCharacters();
+    });
+    \u0275\u0275text(10, "Characters");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(11, "button", 4);
+    \u0275\u0275listener("click", function HomeRow_Template_button_click_11_listener() {
+      return ctx.toggleStories();
+    });
+    \u0275\u0275text(12, "Stories");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(13, "button", 5);
+    \u0275\u0275listener("click", function HomeRow_Template_button_click_13_listener() {
       return ctx.onAddElement();
     });
-    \u0275\u0275text(5);
+    \u0275\u0275text(14);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 4);
-    \u0275\u0275conditionalCreate(7, HomeRow_Conditional_7_Template, 4, 1)(8, HomeRow_Conditional_8_Template, 3, 1, "div", 5);
+    \u0275\u0275elementStart(15, "div", 6);
+    \u0275\u0275conditionalCreate(16, HomeRow_Conditional_16_Template, 4, 1)(17, HomeRow_Conditional_17_Template, 3, 1, "div", 7);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     \u0275\u0275advance(2);
     \u0275\u0275classMap(ctx.entityType);
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(8, _c07, ctx.routePath));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(16, _c07, ctx.routePath));
     \u0275\u0275advance();
     \u0275\u0275textInterpolate(ctx.title);
-    \u0275\u0275advance();
+    \u0275\u0275advance(2);
+    \u0275\u0275classProp("active", ctx.showDate);
+    \u0275\u0275advance(2);
+    \u0275\u0275classProp("active", ctx.showLocation);
+    \u0275\u0275advance(2);
+    \u0275\u0275classProp("active", ctx.showCharacters);
+    \u0275\u0275advance(2);
+    \u0275\u0275classProp("active", ctx.showStories);
+    \u0275\u0275advance(2);
     \u0275\u0275classMap(ctx.entityType);
     \u0275\u0275advance();
     \u0275\u0275textInterpolate1("Add ", ctx.getEntityDisplayName());
     \u0275\u0275advance(2);
-    \u0275\u0275conditional(ctx.entities.length ? 7 : 8);
+    \u0275\u0275conditional(ctx.entities.length ? 16 : 17);
   }
-}, dependencies: [CommonModule, RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail], styles: ['\n\n.home-row-title[_ngcontent-%COMP%] {\n  font: italic;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: -5px;\n  padding: 0;\n}\n.home-row-results[_ngcontent-%COMP%] {\n  display: flex;\n  overflow: auto;\n  white-space: nowrap;\n  padding: 5px;\n  justify-content: space-around;\n  border: 2px solid var(--g1-color);\n  border-radius: 1px 1px 7px 7px;\n}\n.section-title[_ngcontent-%COMP%] {\n  border: 2px solid var(--g1-color);\n  background-color: var(--g5-color);\n  border-radius: 15px;\n  padding: 5px 10px;\n  margin-left: 5px;\n  margin-top: 10px;\n  font-family: var(--base-font-family);\n  text-transform: uppercase;\n  color: var(--g1-color);\n  font-size: larger;\n  font-weight: bold;\n}\n.section-title[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n}\n.section-title.event[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\n.section-title.location[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\n.section-title.character[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\n.section-title.story[_ngcontent-%COMP%]:hover {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.add-button[_ngcontent-%COMP%] {\n  background: var(--g1-color);\n}\n.add-button[_ngcontent-%COMP%]::after {\n  content: "+";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-left: 5px;\n  vertical-align: middle;\n}\n.no-results[_ngcontent-%COMP%] {\n  width: 100%;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  font-size: 1.1rem;\n  margin: 0;\n  font-style: italic;\n}\n/*# sourceMappingURL=home-row.css.map */'] });
+}, dependencies: [CommonModule, RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail], styles: ['\n\n.home-row-header[_ngcontent-%COMP%] {\n  font: italic;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: -5px;\n  padding: 0;\n}\n.home-row-results[_ngcontent-%COMP%] {\n  display: flex;\n  overflow: auto;\n  white-space: nowrap;\n  padding: 5px;\n  justify-content: space-around;\n  border: 2px solid var(--g1-color);\n  border-radius: 1px 1px 7px 7px;\n}\n.home-row-title[_ngcontent-%COMP%] {\n  border: 2px solid var(--g1-color);\n  background-color: var(--g5-color);\n  border-radius: 15px;\n  padding: 5px 10px;\n  margin-left: 5px;\n  margin-top: 10px;\n  font-family: var(--base-font-family);\n  text-transform: uppercase;\n  color: var(--g1-color);\n  font-size: larger;\n  font-weight: bold;\n}\n.home-row-title[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n}\n.home-row-title[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\n.home-row-title[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\n.home-row-title[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\n.home-row-title[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.display-container[_ngcontent-%COMP%] {\n  border: 2px solid var(--g1-color);\n  background-color: var(--g5-color);\n  border-radius: 15px;\n  padding: 5px 10px;\n  margin-left: 5px;\n  margin-top: 10px;\n  font-family: var(--base-font-family);\n  text-transform: uppercase;\n  color: var(--g1-color);\n  font-size: larger;\n  font-weight: bold;\n  display: flex;\n  gap: 5px;\n}\n.display-container[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  border: 1px solid var(--g2-color);\n  background-color: var(--g4-color);\n  color: var(--g1-color);\n  padding: 4px 8px;\n  border-radius: 8px;\n  font-size: 12px;\n  font-weight: normal;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.display-container[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n}\n.display-container[_ngcontent-%COMP%]   button.active[_ngcontent-%COMP%] {\n  background-color: var(--g1-color);\n  color: var(--g5-color);\n  font-weight: bold;\n}\n.add-button[_ngcontent-%COMP%] {\n  background: var(--g1-color);\n}\n.add-button[_ngcontent-%COMP%]::after {\n  content: "+";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-left: 5px;\n  vertical-align: middle;\n}\n.no-results[_ngcontent-%COMP%] {\n  width: 100%;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  font-size: 1.1rem;\n  margin: 0;\n  font-style: italic;\n}\n/*# sourceMappingURL=home-row.css.map */'] });
 var HomeRow = _HomeRow;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HomeRow, [{
     type: Component,
-    args: [{ selector: "app-home-row", standalone: true, imports: [CommonModule, RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail], template: '<section class="home-row">\r\n  <div class="home-row-title">\r\n    <button class="section-title" [class]="entityType" [routerLink]="[routePath]">{{ title }}</button>\r\n    <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>\r\n  </div>\r\n  <div class="home-row-results">\r\n    @if (entities.length) {\r\n      @if (isEventList(entities)) {\r\n        @for(worldEvent of entities; track $index) {\r\n          <app-event-thumbnail [worldEvent]="worldEvent"></app-event-thumbnail>\r\n        }\r\n      } @else if (isLocationList(entities)) {\r\n        @for(worldLocation of entities; track $index) {\r\n          <app-location-thumbnail [worldLocation]="worldLocation"></app-location-thumbnail>\r\n        }\r\n      } @else if (isCharacterList(entities)) {\r\n        @for(worldCharacter of entities; track $index) {\r\n          <app-character-thumbnail [worldCharacter]="worldCharacter"></app-character-thumbnail>\r\n        }\r\n      } @else if (isStoryList(entities)) {\r\n        @for(worldStory of entities; track $index) {\r\n          <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>\r\n        }\r\n      }\r\n    } @else {\r\n      <div class="no-results">\r\n        <p>{{ noResultsMessage }}</p>\r\n      </div>\r\n    }\r\n  </div>\r\n</section>', styles: ['/* src/app/components/home-row/home-row.css */\n.home-row-title {\n  font: italic;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: -5px;\n  padding: 0;\n}\n.home-row-results {\n  display: flex;\n  overflow: auto;\n  white-space: nowrap;\n  padding: 5px;\n  justify-content: space-around;\n  border: 2px solid var(--g1-color);\n  border-radius: 1px 1px 7px 7px;\n}\n.section-title {\n  border: 2px solid var(--g1-color);\n  background-color: var(--g5-color);\n  border-radius: 15px;\n  padding: 5px 10px;\n  margin-left: 5px;\n  margin-top: 10px;\n  font-family: var(--base-font-family);\n  text-transform: uppercase;\n  color: var(--g1-color);\n  font-size: larger;\n  font-weight: bold;\n}\n.section-title:hover {\n  background-color: var(--g4-color);\n}\n.section-title.event:hover {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\n.section-title.location:hover {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\n.section-title.character:hover {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\n.section-title.story:hover {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.add-button {\n  background: var(--g1-color);\n}\n.add-button::after {\n  content: "+";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-left: 5px;\n  vertical-align: middle;\n}\n.no-results {\n  width: 100%;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results p {\n  font-size: 1.1rem;\n  margin: 0;\n  font-style: italic;\n}\n/*# sourceMappingURL=home-row.css.map */\n'] }]
+    args: [{ selector: "app-home-row", standalone: true, imports: [CommonModule, RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail], template: '<section class="home-row">\r\n  <div class="home-row-header">\r\n    <button class="home-row-title" [class]="entityType" [routerLink]="[routePath]">{{ title }}</button>\r\n    <div class="display-container">\r\n        <button [class.active]="showDate" (click)="toggleDate()">Date</button>\r\n        <button [class.active]="showLocation" (click)="toggleLocation()">Location</button>\r\n        <button [class.active]="showCharacters" (click)="toggleCharacters()">Characters</button>\r\n        <button [class.active]="showStories" (click)="toggleStories()">Stories</button>\r\n    </div>\r\n    <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>\r\n  </div>\r\n  <div class="home-row-results">\r\n    @if (entities.length) {\r\n      @if (isEventList(entities)) {\r\n        @for(worldEvent of entities; track $index) {\r\n          <app-event-thumbnail \r\n            [worldEvent]="worldEvent"\r\n            [showDate]="showDate"\r\n            [showLocation]="showLocation"\r\n            [showCharacters]="showCharacters"\r\n            [showStories]="showStories">\r\n          </app-event-thumbnail>\r\n        }\r\n      } @else if (isLocationList(entities)) {\r\n        @for(worldLocation of entities; track $index) {\r\n          <app-location-thumbnail \r\n            [worldLocation]="worldLocation"\r\n            [showDate]="showDate"\r\n            [showLocation]="showLocation"\r\n            [showCharacters]="showCharacters"\r\n            [showStories]="showStories">\r\n          </app-location-thumbnail>\r\n        }\r\n      } @else if (isCharacterList(entities)) {\r\n        @for(worldCharacter of entities; track $index) {\r\n          <app-character-thumbnail \r\n            [worldCharacter]="worldCharacter"\r\n            [showDate]="showDate"\r\n            [showLocation]="showLocation"\r\n            [showCharacters]="showCharacters"\r\n            [showStories]="showStories">\r\n          </app-character-thumbnail>\r\n        }\r\n      } @else if (isStoryList(entities)) {\r\n        @for(worldStory of entities; track $index) {\r\n          <app-story-thumbnail \r\n            [worldStory]="worldStory"\r\n            [showDate]="showDate"\r\n            [showLocation]="showLocation"\r\n            [showCharacters]="showCharacters"\r\n            [showStories]="showStories">\r\n          </app-story-thumbnail>\r\n        }\r\n      }\r\n    } @else {\r\n      <div class="no-results">\r\n        <p>{{ noResultsMessage }}</p>\r\n      </div>\r\n    }\r\n  </div>\r\n</section>', styles: ['/* src/app/components/home-row/home-row.css */\n.home-row-header {\n  font: italic;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: -5px;\n  padding: 0;\n}\n.home-row-results {\n  display: flex;\n  overflow: auto;\n  white-space: nowrap;\n  padding: 5px;\n  justify-content: space-around;\n  border: 2px solid var(--g1-color);\n  border-radius: 1px 1px 7px 7px;\n}\n.home-row-title {\n  border: 2px solid var(--g1-color);\n  background-color: var(--g5-color);\n  border-radius: 15px;\n  padding: 5px 10px;\n  margin-left: 5px;\n  margin-top: 10px;\n  font-family: var(--base-font-family);\n  text-transform: uppercase;\n  color: var(--g1-color);\n  font-size: larger;\n  font-weight: bold;\n}\n.home-row-title:hover {\n  background-color: var(--g4-color);\n}\n.home-row-title:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\n.home-row-title:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\n.home-row-title:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\n.home-row-title:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.display-container {\n  border: 2px solid var(--g1-color);\n  background-color: var(--g5-color);\n  border-radius: 15px;\n  padding: 5px 10px;\n  margin-left: 5px;\n  margin-top: 10px;\n  font-family: var(--base-font-family);\n  text-transform: uppercase;\n  color: var(--g1-color);\n  font-size: larger;\n  font-weight: bold;\n  display: flex;\n  gap: 5px;\n}\n.display-container button {\n  border: 1px solid var(--g2-color);\n  background-color: var(--g4-color);\n  color: var(--g1-color);\n  padding: 4px 8px;\n  border-radius: 8px;\n  font-size: 12px;\n  font-weight: normal;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.display-container button:hover {\n  background-color: var(--g3-color);\n}\n.display-container button.active {\n  background-color: var(--g1-color);\n  color: var(--g5-color);\n  font-weight: bold;\n}\n.add-button {\n  background: var(--g1-color);\n}\n.add-button::after {\n  content: "+";\n  display: inline-block;\n  width: 16px;\n  height: 16px;\n  margin-left: 5px;\n  vertical-align: middle;\n}\n.no-results {\n  width: 100%;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results p {\n  font-size: 1.1rem;\n  margin: 0;\n  font-style: italic;\n}\n/*# sourceMappingURL=home-row.css.map */\n'] }]
   }], null, { entityType: [{
     type: Input
   }], title: [{
@@ -37225,6 +37515,7 @@ var _Home = class _Home {
     this.storyService = inject2(WorldStoryService);
     this.worldStoryList = [];
     this.filteredStoryList = [];
+    this.router = inject2(Router);
     this.allCharacters = [];
     this.allStories = [];
     this.allLocations = [];
@@ -37287,7 +37578,130 @@ var _Home = class _Home {
     this.filteredStoryList = filteredStories;
   }
   addWorldElement(entityType) {
-    console.log(`Add ${entityType} functionality would be implemented here`);
+    return __async(this, null, function* () {
+      let newId;
+      switch (entityType) {
+        case "event":
+          console.log("Adding new event");
+          newId = yield this.createEventAndGetId();
+          this.router.navigate(["/event", newId]);
+          break;
+        case "location":
+          console.log("Adding new location");
+          newId = yield this.createLocationAndGetId();
+          this.router.navigate(["/location", newId]);
+          break;
+        case "character":
+          console.log("Adding new character");
+          newId = yield this.createCharacterAndGetId();
+          this.router.navigate(["/character", newId]);
+          break;
+        case "story":
+          console.log("Adding new story");
+          newId = yield this.createStoryAndGetId();
+          this.router.navigate(["/story", newId]);
+          break;
+        default:
+          console.log(`Unknown entity type: ${entityType}`);
+      }
+    });
+  }
+  createEventAndGetId() {
+    return __async(this, null, function* () {
+      const events = yield this.eventService.getAllWorldEvents();
+      const maxId = events.length > 0 ? Math.max(...events.map((e) => e.id)) : 0;
+      const newId = maxId + 1;
+      yield fetch("http://localhost:3000/worldevents", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: newId,
+          name: "New Event",
+          date: "",
+          description: "",
+          location: [],
+          characters: [],
+          stories: [],
+          tags: []
+        })
+      });
+      return newId;
+    });
+  }
+  createLocationAndGetId() {
+    return __async(this, null, function* () {
+      const locations = yield this.locationService.getAllWorldLocations();
+      const maxId = locations.length > 0 ? Math.max(...locations.map((l) => l.id)) : 0;
+      const newId = maxId + 1;
+      yield fetch("http://localhost:3000/worldlocations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: newId,
+          name: "New Location",
+          description: "",
+          characters: [],
+          stories: [],
+          tags: []
+        })
+      });
+      return newId;
+    });
+  }
+  createCharacterAndGetId() {
+    return __async(this, null, function* () {
+      const characters = yield this.characterService.getAllWorldCharacters();
+      const maxId = characters.length > 0 ? Math.max(...characters.map((c) => c.id)) : 0;
+      const newId = maxId + 1;
+      yield fetch("http://localhost:3000/worldcharacters", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: newId,
+          firstName: "New",
+          lastName: "Character",
+          altNames: [],
+          birthdate: "",
+          pronouns: "",
+          roles: [],
+          affiliations: [],
+          relationships: [],
+          physicalDescription: "",
+          nonPhysicalDescription: "",
+          stories: [],
+          tags: []
+        })
+      });
+      return newId;
+    });
+  }
+  createStoryAndGetId() {
+    return __async(this, null, function* () {
+      const stories = yield this.storyService.getAllWorldStories();
+      const maxId = stories.length > 0 ? Math.max(...stories.map((s) => s.id)) : 0;
+      const newId = maxId + 1;
+      yield fetch("http://localhost:3000/worldstories", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: newId,
+          title: "New Story",
+          description: "",
+          characters: [],
+          locations: [],
+          tags: []
+        })
+      });
+      return newId;
+    });
   }
 };
 _Home.\u0275fac = function Home_Factory(__ngFactoryType__) {
@@ -37341,7 +37755,7 @@ var Home = _Home;
   }], () => [], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Home, { className: "Home", filePath: "src/app/home/home.ts", lineNumber: 23 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Home, { className: "Home", filePath: "src/app/home/home.ts", lineNumber: 24 });
 })();
 
 // node_modules/@angular/forms/fesm2022/forms.mjs
@@ -43889,17 +44303,17 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
 var _c08 = (a0) => ["/location", a0];
 var _c13 = (a0) => ["/story", a0];
 var _c23 = (a0) => ["/character", a0];
-function WorldEventDetails_For_26_Template(rf, ctx) {
+function WorldEventDetails_For_28_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 15)(1, "input", 21);
-    \u0275\u0275listener("change", function WorldEventDetails_For_26_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 16)(1, "input", 22);
+    \u0275\u0275listener("change", function WorldEventDetails_For_28_Template_input_change_1_listener($event) {
       const location_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onLocationChange($event, location_r2));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 22)(3, "label", 23);
+    \u0275\u0275elementStart(2, "button", 23)(3, "label", 24);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -43914,17 +44328,17 @@ function WorldEventDetails_For_26_Template(rf, ctx) {
     \u0275\u0275textInterpolate(location_r2.name);
   }
 }
-function WorldEventDetails_For_32_Template(rf, ctx) {
+function WorldEventDetails_For_34_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 15)(1, "input", 21);
-    \u0275\u0275listener("change", function WorldEventDetails_For_32_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 16)(1, "input", 22);
+    \u0275\u0275listener("change", function WorldEventDetails_For_34_Template_input_change_1_listener($event) {
       const story_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onStoryChange($event, story_r5));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 24)(3, "label", 23);
+    \u0275\u0275elementStart(2, "button", 25)(3, "label", 24);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -43939,17 +44353,17 @@ function WorldEventDetails_For_32_Template(rf, ctx) {
     \u0275\u0275textInterpolate(story_r5.title);
   }
 }
-function WorldEventDetails_For_38_Template(rf, ctx) {
+function WorldEventDetails_For_40_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 15)(1, "input", 21);
-    \u0275\u0275listener("change", function WorldEventDetails_For_38_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 16)(1, "input", 22);
+    \u0275\u0275listener("change", function WorldEventDetails_For_40_Template_input_change_1_listener($event) {
       const character_r7 = \u0275\u0275restoreView(_r6).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onCharacterChange($event, character_r7));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 25)(3, "label", 23);
+    \u0275\u0275elementStart(2, "button", 26)(3, "label", 24);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -43967,6 +44381,7 @@ function WorldEventDetails_For_38_Template(rf, ctx) {
 var _WorldEventDetails = class _WorldEventDetails {
   constructor() {
     this.route = inject2(ActivatedRoute);
+    this.router = inject2(Router);
     this.worldEventService = inject2(WorldEventService);
     this.worldCharacterService = inject2(WorldCharacterService);
     this.worldStoryService = inject2(WorldStoryService);
@@ -44087,65 +44502,77 @@ var _WorldEventDetails = class _WorldEventDetails {
       this.worldEventService.updateWorldEvent(this.worldEvent.id, this.applyForm.value.eventTitle ?? "", this.applyForm.value.eventDate ?? "", this.applyForm.value.eventDescription ?? "", selectedLocations.join(", "), selectedCharacters.join(", "), selectedStories.join(", "), this.applyForm.value.eventTags?.split(", ") ?? []);
     }
   }
+  deleteEvent() {
+    if (this.worldEvent?.id && confirm(`Are you sure you want to delete "${this.worldEvent.name}"? This action cannot be undone.`)) {
+      this.worldEventService.deleteWorldEvent(this.worldEvent.id);
+      this.router.navigate(["/event"]);
+    }
+  }
 };
 _WorldEventDetails.\u0275fac = function WorldEventDetails_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _WorldEventDetails)();
 };
-_WorldEventDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldEventDetails, selectors: [["app-details"]], decls: 46, vars: 2, consts: [[1, "details-heading"], [1, "event-title"], [3, "submit", "formGroup"], [1, "edit-event-form", "event-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "event-title", 1, "primary-label"], ["id", "event-title", "type", "text", "formControlName", "eventTitle"], ["for", "event-date", 1, "primary-label"], ["id", "event-date", "type", "text", "formControlName", "eventDate"], [1, "details-section", "primary-section", "spanning-section"], ["for", "event-description", 1, "primary-label"], ["id", "event-description", "formControlName", "eventDescription", 1, "medium-textarea"], ["for", "event-location", 1, "primary-label"], [1, "vertical-section"], [1, "form-field"], ["for", "event-stories", 1, "primary-label"], ["for", "event-characters", 1, "primary-label"], ["for", "event-tags", 1, "primary-label"], ["id", "event-tags", "formControlName", "eventTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], ["type", "checkbox", 3, "change", "id", "value", "checked"], ["type", "button", 1, "linked-location", 3, "routerLink"], [1, "secondary-label"], ["type", "button", 1, "linked-story", 3, "routerLink"], ["type", "button", 1, "linked-character", 3, "routerLink"]], template: function WorldEventDetails_Template(rf, ctx) {
+_WorldEventDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldEventDetails, selectors: [["app-details"]], decls: 48, vars: 2, consts: [[1, "details-heading", "horizontal-section"], [1, "event-title"], [1, "delete-button", "secondary", 3, "click"], [3, "submit", "formGroup"], [1, "edit-event-form", "event-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "event-title", 1, "primary-label"], ["id", "event-title", "type", "text", "formControlName", "eventTitle"], ["for", "event-date", 1, "primary-label"], ["id", "event-date", "type", "text", "formControlName", "eventDate"], [1, "details-section", "primary-section", "spanning-section"], ["for", "event-description", 1, "primary-label"], ["id", "event-description", "formControlName", "eventDescription", 1, "medium-textarea"], ["for", "event-location", 1, "primary-label"], [1, "vertical-section"], [1, "form-field"], ["for", "event-stories", 1, "primary-label"], ["for", "event-characters", 1, "primary-label"], ["for", "event-tags", 1, "primary-label"], ["id", "event-tags", "formControlName", "eventTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], ["type", "checkbox", 3, "change", "id", "value", "checked"], ["type", "button", 1, "linked-location", 3, "routerLink"], [1, "secondary-label"], ["type", "button", 1, "linked-story", 3, "routerLink"], ["type", "button", 1, "linked-character", 3, "routerLink"]], template: function WorldEventDetails_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "article")(1, "section", 0)(2, "h2", 1);
     \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "button", 2);
+    \u0275\u0275listener("click", function WorldEventDetails_Template_button_click_4_listener() {
+      return ctx.deleteEvent();
+    });
+    \u0275\u0275text(5, "Delete Event");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(4, "form", 2);
-    \u0275\u0275listener("submit", function WorldEventDetails_Template_form_submit_4_listener() {
+    \u0275\u0275elementStart(6, "form", 3);
+    \u0275\u0275listener("submit", function WorldEventDetails_Template_form_submit_6_listener() {
       return ctx.submitApplication();
     });
-    \u0275\u0275elementStart(5, "section", 3)(6, "div", 4)(7, "div", 5)(8, "label", 6);
-    \u0275\u0275text(9, "Title");
+    \u0275\u0275elementStart(7, "section", 4)(8, "div", 5)(9, "div", 6)(10, "label", 7);
+    \u0275\u0275text(11, "Title");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(10, "input", 7);
+    \u0275\u0275element(12, "input", 8);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(11, "div", 5)(12, "label", 8);
-    \u0275\u0275text(13, "Date");
+    \u0275\u0275elementStart(13, "div", 6)(14, "label", 9);
+    \u0275\u0275text(15, "Date");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(14, "input", 9);
+    \u0275\u0275element(16, "input", 10);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(15, "div", 10)(16, "div", 5)(17, "label", 11);
-    \u0275\u0275text(18, "Description");
+    \u0275\u0275elementStart(17, "div", 11)(18, "div", 6)(19, "label", 12);
+    \u0275\u0275text(20, "Description");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(19, "textarea", 12);
+    \u0275\u0275element(21, "textarea", 13);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(20, "div", 10)(21, "div", 5)(22, "label", 13);
-    \u0275\u0275text(23, "Location");
+    \u0275\u0275elementStart(22, "div", 11)(23, "div", 6)(24, "label", 14);
+    \u0275\u0275text(25, "Location");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "div", 14);
-    \u0275\u0275repeaterCreate(25, WorldEventDetails_For_26_Template, 5, 8, "div", 15, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(26, "div", 15);
+    \u0275\u0275repeaterCreate(27, WorldEventDetails_For_28_Template, 5, 8, "div", 16, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(27, "div", 5)(28, "label", 16);
-    \u0275\u0275text(29, "Stories");
+    \u0275\u0275elementStart(29, "div", 6)(30, "label", 17);
+    \u0275\u0275text(31, "Stories");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(30, "div", 14);
-    \u0275\u0275repeaterCreate(31, WorldEventDetails_For_32_Template, 5, 8, "div", 15, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(32, "div", 15);
+    \u0275\u0275repeaterCreate(33, WorldEventDetails_For_34_Template, 5, 8, "div", 16, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(33, "div", 5)(34, "label", 17);
-    \u0275\u0275text(35, "Characters");
+    \u0275\u0275elementStart(35, "div", 6)(36, "label", 18);
+    \u0275\u0275text(37, "Characters");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(36, "div", 14);
-    \u0275\u0275repeaterCreate(37, WorldEventDetails_For_38_Template, 5, 9, "div", 15, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(38, "div", 15);
+    \u0275\u0275repeaterCreate(39, WorldEventDetails_For_40_Template, 5, 9, "div", 16, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(39, "div", 10)(40, "div", 5)(41, "label", 18);
-    \u0275\u0275text(42, "Tags");
+    \u0275\u0275elementStart(41, "div", 11)(42, "div", 6)(43, "label", 19);
+    \u0275\u0275text(44, "Tags");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(43, "textarea", 19);
+    \u0275\u0275element(45, "textarea", 20);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(44, "button", 20);
-    \u0275\u0275text(45, "Save");
+    \u0275\u0275elementStart(46, "button", 21);
+    \u0275\u0275text(47, "Save");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldEvent == null ? null : ctx.worldEvent.name);
-    \u0275\u0275advance();
+    \u0275\u0275advance(3);
     \u0275\u0275property("formGroup", ctx.applyForm);
     \u0275\u0275advance(21);
     \u0275\u0275repeater(ctx.locationList);
@@ -44154,14 +44581,15 @@ _WorldEventDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ typ
     \u0275\u0275advance(6);
     \u0275\u0275repeater(ctx.characterList);
   }
-}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.event-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.event-details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.event-location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=event-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
+}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.event-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.event-details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.event-location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=event-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button[_ngcontent-%COMP%] {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button[_ngcontent-%COMP%]:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
 var WorldEventDetails = _WorldEventDetails;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(WorldEventDetails, [{
     type: Component,
     args: [{ selector: "app-details", imports: [ReactiveFormsModule, RouterLink], template: `<article>\r
-    <section class="details-heading">\r
+    <section class="details-heading horizontal-section">\r
         <h2 class="event-title">{{ worldEvent?.name }}</h2>\r
+        <button class="delete-button secondary" (click)="deleteEvent()">Delete Event</button>\r
     </section>\r
     <form [formGroup]="applyForm" (submit)="submitApplication()">\r
         <section class="edit-event-form event-page-body">\r
@@ -44237,7 +44665,7 @@ var WorldEventDetails = _WorldEventDetails;
         </section>\r
         <button type="submit" class="save-button primary">Save</button>\r
     </form>\r
-</article>`, styles: ["/* src/app/details/event-details/event-details.css */\n.event-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description {\n  margin-bottom: 25px;\n}\n.event-details {\n  border: 1px solid var(--g1-color);\n}\n.event-location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=event-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
+</article>`, styles: ["/* src/app/details/event-details/event-details.css */\n.event-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description {\n  margin-bottom: 25px;\n}\n.event-details {\n  border: 1px solid var(--g1-color);\n}\n.event-location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=event-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading h2 {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
   }], () => [], null);
 })();
 (() => {
@@ -44247,17 +44675,17 @@ var WorldEventDetails = _WorldEventDetails;
 // src/app/details/location-details/location-details.ts
 var _c09 = (a0) => ["/character", a0];
 var _c14 = (a0) => ["/story", a0];
-function WorldLocationDetails_For_22_Template(rf, ctx) {
+function WorldLocationDetails_For_24_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 13)(1, "input", 18);
-    \u0275\u0275listener("change", function WorldLocationDetails_For_22_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 14)(1, "input", 19);
+    \u0275\u0275listener("change", function WorldLocationDetails_For_24_Template_input_change_1_listener($event) {
       const character_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onCharacterChange($event, character_r2));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 19)(3, "label", 20);
+    \u0275\u0275elementStart(2, "button", 20)(3, "label", 21);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -44272,17 +44700,17 @@ function WorldLocationDetails_For_22_Template(rf, ctx) {
     \u0275\u0275textInterpolate2("", character_r2.firstName, " ", character_r2.lastName);
   }
 }
-function WorldLocationDetails_For_28_Template(rf, ctx) {
+function WorldLocationDetails_For_30_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 13)(1, "input", 18);
-    \u0275\u0275listener("change", function WorldLocationDetails_For_28_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 14)(1, "input", 19);
+    \u0275\u0275listener("change", function WorldLocationDetails_For_30_Template_input_change_1_listener($event) {
       const story_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onStoryChange($event, story_r5));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 21)(3, "label", 20);
+    \u0275\u0275elementStart(2, "button", 22)(3, "label", 21);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -44300,6 +44728,7 @@ function WorldLocationDetails_For_28_Template(rf, ctx) {
 var _WorldLocationDetails = class _WorldLocationDetails {
   constructor() {
     this.route = inject2(ActivatedRoute);
+    this.router = inject2(Router);
     this.worldLocationService = inject2(WorldLocationService);
     this.worldCharacterService = inject2(WorldCharacterService);
     this.worldStoryService = inject2(WorldStoryService);
@@ -44393,68 +44822,81 @@ var _WorldLocationDetails = class _WorldLocationDetails {
       this.worldLocationService.updateWorldLocation(this.worldLocation.id, this.applyForm.value.locationTitle ?? "", this.applyForm.value.locationDescription ?? "", selectedCharacters, selectedStories, this.applyForm.value.locationTags?.split(", ") ?? []);
     }
   }
+  deleteLocation() {
+    if (this.worldLocation?.id && confirm(`Are you sure you want to delete "${this.worldLocation.name}"? This action cannot be undone.`)) {
+      this.worldLocationService.deleteWorldLocation(this.worldLocation.id);
+      this.router.navigate(["/location"]);
+    }
+  }
 };
 _WorldLocationDetails.\u0275fac = function WorldLocationDetails_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _WorldLocationDetails)();
 };
-_WorldLocationDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldLocationDetails, selectors: [["app-details"]], decls: 36, vars: 2, consts: [[1, "details-heading"], [1, "location-title"], [3, "submit", "formGroup"], [1, "edit-location-form", "location-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "location-title", 1, "primary-label"], ["id", "location-title", "type", "text", "formControlName", "locationTitle"], [1, "details-section", "primary-section", "spanning-section"], ["for", "location-description", 1, "primary-label"], ["id", "location-description", "formControlName", "locationDescription", 1, "medium-textarea"], ["for", "location-characters", 1, "primary-label"], [1, "vertical-section"], [1, "form-field"], ["for", "location-stories", 1, "primary-label"], ["for", "location-tags", 1, "primary-label"], ["id", "location-tags", "formControlName", "locationTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], ["type", "checkbox", 3, "change", "id", "value", "checked"], ["type", "button", 1, "linked-character", 3, "routerLink"], [1, "secondary-label"], ["type", "button", 1, "linked-story", 3, "routerLink"]], template: function WorldLocationDetails_Template(rf, ctx) {
+_WorldLocationDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldLocationDetails, selectors: [["app-details"]], decls: 38, vars: 2, consts: [[1, "details-heading", "horizontal-section"], [1, "location-title"], [1, "delete-button", "secondary", 3, "click"], [3, "submit", "formGroup"], [1, "edit-location-form", "location-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "location-title", 1, "primary-label"], ["id", "location-title", "type", "text", "formControlName", "locationTitle"], [1, "details-section", "primary-section", "spanning-section"], ["for", "location-description", 1, "primary-label"], ["id", "location-description", "formControlName", "locationDescription", 1, "medium-textarea"], ["for", "location-characters", 1, "primary-label"], [1, "vertical-section"], [1, "form-field"], ["for", "location-stories", 1, "primary-label"], ["for", "location-tags", 1, "primary-label"], ["id", "location-tags", "formControlName", "locationTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], ["type", "checkbox", 3, "change", "id", "value", "checked"], ["type", "button", 1, "linked-character", 3, "routerLink"], [1, "secondary-label"], ["type", "button", 1, "linked-story", 3, "routerLink"]], template: function WorldLocationDetails_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "article")(1, "section", 0)(2, "h2", 1);
     \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "button", 2);
+    \u0275\u0275listener("click", function WorldLocationDetails_Template_button_click_4_listener() {
+      return ctx.deleteLocation();
+    });
+    \u0275\u0275text(5, "Delete Location");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(4, "form", 2);
-    \u0275\u0275listener("submit", function WorldLocationDetails_Template_form_submit_4_listener() {
+    \u0275\u0275elementStart(6, "form", 3);
+    \u0275\u0275listener("submit", function WorldLocationDetails_Template_form_submit_6_listener() {
       return ctx.submitApplication();
     });
-    \u0275\u0275elementStart(5, "section", 3)(6, "div", 4)(7, "div", 5)(8, "label", 6);
-    \u0275\u0275text(9, "Location Title");
+    \u0275\u0275elementStart(7, "section", 4)(8, "div", 5)(9, "div", 6)(10, "label", 7);
+    \u0275\u0275text(11, "Location Title");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(10, "input", 7);
+    \u0275\u0275element(12, "input", 8);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(11, "div", 8)(12, "div", 5)(13, "label", 9);
-    \u0275\u0275text(14, "Location Description");
+    \u0275\u0275elementStart(13, "div", 9)(14, "div", 6)(15, "label", 10);
+    \u0275\u0275text(16, "Location Description");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(15, "textarea", 10);
+    \u0275\u0275element(17, "textarea", 11);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "div", 4)(17, "div", 5)(18, "label", 11);
-    \u0275\u0275text(19, "Location Characters");
+    \u0275\u0275elementStart(18, "div", 5)(19, "div", 6)(20, "label", 12);
+    \u0275\u0275text(21, "Location Characters");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(20, "div", 12);
-    \u0275\u0275repeaterCreate(21, WorldLocationDetails_For_22_Template, 5, 9, "div", 13, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(22, "div", 13);
+    \u0275\u0275repeaterCreate(23, WorldLocationDetails_For_24_Template, 5, 9, "div", 14, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(23, "div", 5)(24, "label", 14);
-    \u0275\u0275text(25, "Location Stories");
+    \u0275\u0275elementStart(25, "div", 6)(26, "label", 15);
+    \u0275\u0275text(27, "Location Stories");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(26, "div", 12);
-    \u0275\u0275repeaterCreate(27, WorldLocationDetails_For_28_Template, 5, 8, "div", 13, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(28, "div", 13);
+    \u0275\u0275repeaterCreate(29, WorldLocationDetails_For_30_Template, 5, 8, "div", 14, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(29, "div", 4)(30, "div", 5)(31, "label", 15);
-    \u0275\u0275text(32, "Location Tags");
+    \u0275\u0275elementStart(31, "div", 5)(32, "div", 6)(33, "label", 16);
+    \u0275\u0275text(34, "Location Tags");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(33, "textarea", 16);
+    \u0275\u0275element(35, "textarea", 17);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(34, "button", 17);
-    \u0275\u0275text(35, "Save");
+    \u0275\u0275elementStart(36, "button", 18);
+    \u0275\u0275text(37, "Save");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldLocation == null ? null : ctx.worldLocation.name);
-    \u0275\u0275advance();
+    \u0275\u0275advance(3);
     \u0275\u0275property("formGroup", ctx.applyForm);
     \u0275\u0275advance(17);
     \u0275\u0275repeater(ctx.characterList);
     \u0275\u0275advance(6);
     \u0275\u0275repeater(ctx.storyList);
   }
-}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.event-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.event-details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.event-location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=location-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
+}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.event-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.event-details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.event-location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=location-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button[_ngcontent-%COMP%] {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button[_ngcontent-%COMP%]:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
 var WorldLocationDetails = _WorldLocationDetails;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(WorldLocationDetails, [{
     type: Component,
     args: [{ selector: "app-details", imports: [ReactiveFormsModule, RouterLink], template: `<article>\r
-    <section class="details-heading">\r
+    <section class="details-heading horizontal-section">\r
         <h2 class="location-title">{{ worldLocation?.name }}</h2>\r
+        <button class="delete-button secondary" (click)="deleteLocation()">Delete Location</button>\r
     </section>\r
     <form [formGroup]="applyForm" (submit)="submitApplication()">\r
         <section class="edit-location-form location-page-body">\r
@@ -44512,7 +44954,7 @@ var WorldLocationDetails = _WorldLocationDetails;
         </section>\r
         <button type="submit" class="save-button primary">Save</button>\r
     </form>\r
-</article>`, styles: ["/* src/app/details/location-details/location-details.css */\n.event-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description {\n  margin-bottom: 25px;\n}\n.event-details {\n  border: 1px solid var(--g1-color);\n}\n.event-location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=location-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
+</article>`, styles: ["/* src/app/details/location-details/location-details.css */\n.event-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description {\n  margin-bottom: 25px;\n}\n.event-details {\n  border: 1px solid var(--g1-color);\n}\n.event-location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=location-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading h2 {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
   }], () => [], null);
 })();
 (() => {
@@ -44522,123 +44964,135 @@ var WorldLocationDetails = _WorldLocationDetails;
 // src/app/details/character-details/character-details.ts
 var _c010 = (a0) => ["/character", a0];
 var _c15 = (a0) => ["/story", a0];
-function WorldCharacterDetails_For_47_Conditional_0_Conditional_6_Template(rf, ctx) {
+function WorldCharacterDetails_Conditional_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 38);
+    \u0275\u0275elementStart(0, "h3", 2);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const character_r2 = \u0275\u0275nextContext(2).$implicit;
+    const ctx_r0 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1("( ", character_r2.altNames.join(", "), " )");
+    \u0275\u0275textInterpolate1("( ", ctx_r0.worldCharacter.altNames.join(", "), " )");
   }
 }
-function WorldCharacterDetails_For_47_Conditional_0_Conditional_7_Template(rf, ctx) {
+function WorldCharacterDetails_For_48_Conditional_0_Conditional_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "input", 39);
-    \u0275\u0275elementStart(1, "textarea", 40);
+    \u0275\u0275elementStart(0, "p", 39);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const character_r3 = \u0275\u0275nextContext(2).$implicit;
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate1("( ", character_r3.altNames.join(", "), " )");
+  }
+}
+function WorldCharacterDetails_For_48_Conditional_0_Conditional_7_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275element(0, "input", 40);
+    \u0275\u0275elementStart(1, "textarea", 41);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     let tmp_13_0;
     let tmp_15_0;
-    const character_r2 = \u0275\u0275nextContext(2).$implicit;
-    const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-type-", character_r2.id))("value", (tmp_13_0 = ctx_r2.getRelationship(character_r2.id)) == null ? null : tmp_13_0.relationshipType == null ? null : tmp_13_0.relationshipType.join(", "));
+    const character_r3 = \u0275\u0275nextContext(2).$implicit;
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-type-", character_r3.id))("value", (tmp_13_0 = ctx_r0.getRelationship(character_r3.id)) == null ? null : tmp_13_0.relationshipType == null ? null : tmp_13_0.relationshipType.join(", "));
     \u0275\u0275advance();
-    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-description-", character_r2.id));
+    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-description-", character_r3.id));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate((tmp_15_0 = ctx_r2.getRelationship(character_r2.id)) == null ? null : tmp_15_0.relationshipDescription);
+    \u0275\u0275textInterpolate((tmp_15_0 = ctx_r0.getRelationship(character_r3.id)) == null ? null : tmp_15_0.relationshipDescription);
   }
 }
-function WorldCharacterDetails_For_47_Conditional_0_Conditional_8_Template(rf, ctx) {
+function WorldCharacterDetails_For_48_Conditional_0_Conditional_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "input", 41);
-    \u0275\u0275elementStart(1, "textarea", 42);
+    \u0275\u0275element(0, "input", 42);
+    \u0275\u0275elementStart(1, "textarea", 43);
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     let tmp_13_0;
     let tmp_15_0;
-    const character_r2 = \u0275\u0275nextContext(2).$implicit;
-    const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-type-", character_r2.id))("value", (tmp_13_0 = ctx_r2.getRelationship(character_r2.id)) == null ? null : tmp_13_0.relationshipType == null ? null : tmp_13_0.relationshipType.join(", "));
+    const character_r3 = \u0275\u0275nextContext(2).$implicit;
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-type-", character_r3.id))("value", (tmp_13_0 = ctx_r0.getRelationship(character_r3.id)) == null ? null : tmp_13_0.relationshipType == null ? null : tmp_13_0.relationshipType.join(", "));
     \u0275\u0275advance();
-    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-description-", character_r2.id));
+    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-description-", character_r3.id));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate((tmp_15_0 = ctx_r2.getRelationship(character_r2.id)) == null ? null : tmp_15_0.relationshipDescription);
+    \u0275\u0275textInterpolate((tmp_15_0 = ctx_r0.getRelationship(character_r3.id)) == null ? null : tmp_15_0.relationshipDescription);
   }
 }
-function WorldCharacterDetails_For_47_Conditional_0_Template(rf, ctx) {
+function WorldCharacterDetails_For_48_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
-    const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 33)(1, "div", 34)(2, "input", 35);
-    \u0275\u0275listener("change", function WorldCharacterDetails_For_47_Conditional_0_Template_input_change_2_listener($event) {
-      \u0275\u0275restoreView(_r1);
-      const character_r2 = \u0275\u0275nextContext().$implicit;
-      const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.toggleRelationship($event, character_r2.id));
+    const _r2 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 34)(1, "div", 35)(2, "input", 36);
+    \u0275\u0275listener("change", function WorldCharacterDetails_For_48_Conditional_0_Template_input_change_2_listener($event) {
+      \u0275\u0275restoreView(_r2);
+      const character_r3 = \u0275\u0275nextContext().$implicit;
+      const ctx_r0 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r0.toggleRelationship($event, character_r3.id));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "button", 36)(4, "label", 37);
+    \u0275\u0275elementStart(3, "button", 37)(4, "label", 38);
     \u0275\u0275text(5);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275conditionalCreate(6, WorldCharacterDetails_For_47_Conditional_0_Conditional_6_Template, 2, 1, "p", 38);
-    \u0275\u0275conditionalCreate(7, WorldCharacterDetails_For_47_Conditional_0_Conditional_7_Template, 3, 6)(8, WorldCharacterDetails_For_47_Conditional_0_Conditional_8_Template, 3, 6);
+    \u0275\u0275conditionalCreate(6, WorldCharacterDetails_For_48_Conditional_0_Conditional_6_Template, 2, 1, "p", 39);
+    \u0275\u0275conditionalCreate(7, WorldCharacterDetails_For_48_Conditional_0_Conditional_7_Template, 3, 6)(8, WorldCharacterDetails_For_48_Conditional_0_Conditional_8_Template, 3, 6);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     let tmp_14_0;
     let tmp_19_0;
-    const character_r2 = \u0275\u0275nextContext().$implicit;
-    const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-", character_r2.id));
+    const character_r3 = \u0275\u0275nextContext().$implicit;
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-", character_r3.id));
     \u0275\u0275advance(2);
-    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-checkbox-", character_r2.id))("value", character_r2.id)("checked", (tmp_14_0 = ctx_r2.getRelationship(character_r2.id)) == null ? null : tmp_14_0.hasRelationship);
+    \u0275\u0275property("id", \u0275\u0275interpolate1("relationship-checkbox-", character_r3.id))("value", character_r3.id)("checked", (tmp_14_0 = ctx_r0.getRelationship(character_r3.id)) == null ? null : tmp_14_0.hasRelationship);
     \u0275\u0275advance();
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(13, _c010, character_r2.id));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(13, _c010, character_r3.id));
     \u0275\u0275advance();
-    \u0275\u0275property("for", \u0275\u0275interpolate1("relationship-textarea-", character_r2.id));
+    \u0275\u0275property("for", \u0275\u0275interpolate1("relationship-textarea-", character_r3.id));
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate2("", character_r2.firstName, " ", character_r2.lastName);
+    \u0275\u0275textInterpolate2("", character_r3.firstName, " ", character_r3.lastName);
     \u0275\u0275advance();
-    \u0275\u0275conditional(character_r2.altNames && character_r2.altNames.length > 0 ? 6 : -1);
+    \u0275\u0275conditional(character_r3.altNames && character_r3.altNames.length > 0 ? 6 : -1);
     \u0275\u0275advance();
-    \u0275\u0275conditional(((tmp_19_0 = ctx_r2.getRelationship(character_r2.id)) == null ? null : tmp_19_0.hasRelationship) ? 7 : 8);
+    \u0275\u0275conditional(((tmp_19_0 = ctx_r0.getRelationship(character_r3.id)) == null ? null : tmp_19_0.hasRelationship) ? 7 : 8);
   }
 }
-function WorldCharacterDetails_For_47_Template(rf, ctx) {
+function WorldCharacterDetails_For_48_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275conditionalCreate(0, WorldCharacterDetails_For_47_Conditional_0_Template, 9, 15, "div", 33);
+    \u0275\u0275conditionalCreate(0, WorldCharacterDetails_For_48_Conditional_0_Template, 9, 15, "div", 34);
   }
   if (rf & 2) {
-    const character_r2 = ctx.$implicit;
-    const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275conditional((ctx_r2.worldCharacter == null ? null : ctx_r2.worldCharacter.id) !== character_r2.id ? 0 : -1);
+    const character_r3 = ctx.$implicit;
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275conditional((ctx_r0.worldCharacter == null ? null : ctx_r0.worldCharacter.id) !== character_r3.id ? 0 : -1);
   }
 }
-function WorldCharacterDetails_For_54_Template(rf, ctx) {
+function WorldCharacterDetails_For_55_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 29)(1, "input", 35);
-    \u0275\u0275listener("change", function WorldCharacterDetails_For_54_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 30)(1, "input", 36);
+    \u0275\u0275listener("change", function WorldCharacterDetails_For_55_Template_input_change_1_listener($event) {
       const story_r5 = \u0275\u0275restoreView(_r4).$implicit;
-      const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.onStoryChange($event, story_r5.id));
+      const ctx_r0 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r0.onStoryChange($event, story_r5.id));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 43)(3, "label", 44);
+    \u0275\u0275elementStart(2, "button", 44)(3, "label", 45);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     const story_r5 = ctx.$implicit;
-    const ctx_r2 = \u0275\u0275nextContext();
+    const ctx_r0 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275property("id", \u0275\u0275interpolate1("story-checkbox-", story_r5.id))("value", story_r5.id)("checked", ctx_r2.isStoryInCharacter(story_r5.title));
+    \u0275\u0275property("id", \u0275\u0275interpolate1("story-checkbox-", story_r5.id))("value", story_r5.id)("checked", ctx_r0.isStoryInCharacter(story_r5.title));
     \u0275\u0275advance();
     \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(6, _c15, story_r5.id));
     \u0275\u0275advance(2);
@@ -44648,6 +45102,7 @@ function WorldCharacterDetails_For_54_Template(rf, ctx) {
 var _WorldCharacterDetails = class _WorldCharacterDetails {
   constructor() {
     this.route = inject2(ActivatedRoute);
+    this.router = inject2(Router);
     this.worldCharacterService = inject2(WorldCharacterService);
     this.characterList = Array();
     this.worldStoryService = inject2(WorldStoryService);
@@ -44835,102 +45290,115 @@ var _WorldCharacterDetails = class _WorldCharacterDetails {
   updateStoryCharacters(story, fullStory, updatedCharacters) {
     this.worldStoryService.updateWorldStory(story.id, fullStory.title, fullStory.description, updatedCharacters, fullStory.locations || [], fullStory.tags || []);
   }
+  deleteCharacter() {
+    if (this.worldCharacter?.id && confirm(`Are you sure you want to delete ${this.worldCharacter.firstName} ${this.worldCharacter.lastName}? This action cannot be undone.`)) {
+      this.worldCharacterService.deleteWorldCharacter(this.worldCharacter.id);
+      this.router.navigate(["/character"]);
+    }
+  }
 };
 _WorldCharacterDetails.\u0275fac = function WorldCharacterDetails_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _WorldCharacterDetails)();
 };
-_WorldCharacterDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldCharacterDetails, selectors: [["app-details"]], decls: 61, vars: 4, consts: [[1, "details-heading"], [1, "character-title"], [1, "subtitle"], [3, "submit", "formGroup"], [1, "edit-character-form", "character-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "character-first-name", 1, "primary-label"], ["id", "character-first-name", "type", "text", "formControlName", "characterFirstName"], ["id", "character-last-name", "type", "text", "formControlName", "characterLastName", "placeholder", "Firstname", "required", "true"], ["for", "character-alt-names", 1, "primary-label"], ["id", "character-alt-names", "type", "text", "formControlName", "characterAltNames"], ["for", "character-pronouns", 1, "primary-label"], ["id", "character-pronouns", "type", "text", "formControlName", "characterPronouns"], ["for", "character-birthdate", 1, "primary-label"], ["id", "character-birthdate", "type", "text", "formControlName", "characterBirthdate"], ["for", "character-physical-description", 1, "primary-label"], ["id", "character-physical-description", "formControlName", "characterPhysicalDescription", 1, "medium-textarea"], ["for", "character-non-physical-description", 1, "primary-label"], ["id", "character-non-physical-description", "formControlName", "characterNonPhysicalDescription", 1, "medium-textarea"], ["for", "roles", 1, "primary-label"], ["id", "roles", "type", "text", "formControlName", "characterRoles"], ["for", "character-affiliations", 1, "primary-label"], ["id", "character-affiliations", "type", "text", "formControlName", "characterAffiliations"], [1, "details-section", "primary-section", "vertical-section"], ["for", "character-relationships", 1, "primary-label"], [1, "details-section", "secondary-section", "grid-section"], ["for", "character-stories", 1, "primary-label"], [1, "wrap-section"], [1, "form-field"], ["for", "character-tags", 1, "primary-label"], ["id", "character-tags", "formControlName", "characterTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], [1, "relationship-section", 3, "id"], [1, "relationship-header"], ["type", "checkbox", 3, "change", "id", "value", "checked"], [1, "linked-character", 3, "routerLink"], [1, "secondary-label", 3, "for"], [1, "alt-names"], ["type", "text", "placeholder", "Relationship Type", 1, "relationship-type-input", 3, "id", "value"], ["placeholder", "Describe relationship...", 1, "medium-textarea", "relationship-textarea", 3, "id"], ["type", "text", "placeholder", "Relationship Type", 1, "relationship-type-input", "hidden", 3, "id", "value"], ["placeholder", "Describe relationship...", 1, "medium-textarea", "relationship-textarea", "hidden", 3, "id"], ["type", "button", 1, "linked-story", 3, "routerLink"], [1, "secondary-label"]], template: function WorldCharacterDetails_Template(rf, ctx) {
+_WorldCharacterDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldCharacterDetails, selectors: [["app-details"]], decls: 62, vars: 4, consts: [[1, "details-heading", "horizontal-section"], [1, "character-title"], [1, "subtitle"], [1, "delete-button", "secondary", 3, "click"], [3, "submit", "formGroup"], [1, "edit-character-form", "character-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "character-first-name", 1, "primary-label"], ["id", "character-first-name", "type", "text", "formControlName", "characterFirstName"], ["id", "character-last-name", "type", "text", "formControlName", "characterLastName", "placeholder", "Firstname", "required", "true"], ["for", "character-alt-names", 1, "primary-label"], ["id", "character-alt-names", "type", "text", "formControlName", "characterAltNames"], ["for", "character-pronouns", 1, "primary-label"], ["id", "character-pronouns", "type", "text", "formControlName", "characterPronouns"], ["for", "character-birthdate", 1, "primary-label"], ["id", "character-birthdate", "type", "text", "formControlName", "characterBirthdate"], ["for", "character-physical-description", 1, "primary-label"], ["id", "character-physical-description", "formControlName", "characterPhysicalDescription", 1, "medium-textarea"], ["for", "character-non-physical-description", 1, "primary-label"], ["id", "character-non-physical-description", "formControlName", "characterNonPhysicalDescription", 1, "medium-textarea"], ["for", "roles", 1, "primary-label"], ["id", "roles", "type", "text", "formControlName", "characterRoles"], ["for", "character-affiliations", 1, "primary-label"], ["id", "character-affiliations", "type", "text", "formControlName", "characterAffiliations"], [1, "details-section", "primary-section", "vertical-section"], ["for", "character-relationships", 1, "primary-label"], [1, "details-section", "secondary-section", "grid-section"], ["for", "character-stories", 1, "primary-label"], [1, "wrap-section"], [1, "form-field"], ["for", "character-tags", 1, "primary-label"], ["id", "character-tags", "formControlName", "characterTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], [1, "relationship-section", 3, "id"], [1, "relationship-header"], ["type", "checkbox", 3, "change", "id", "value", "checked"], [1, "linked-character", 3, "routerLink"], [1, "secondary-label", 3, "for"], [1, "alt-names"], ["type", "text", "placeholder", "Relationship Type", 1, "relationship-type-input", 3, "id", "value"], ["placeholder", "Describe relationship...", 1, "medium-textarea", "relationship-textarea", 3, "id"], ["type", "text", "placeholder", "Relationship Type", 1, "relationship-type-input", "hidden", 3, "id", "value"], ["placeholder", "Describe relationship...", 1, "medium-textarea", "relationship-textarea", "hidden", 3, "id"], ["type", "button", 1, "linked-story", 3, "routerLink"], [1, "secondary-label"]], template: function WorldCharacterDetails_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "article")(1, "section", 0)(2, "h2", 1);
     \u0275\u0275text(3);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "h3", 2);
-    \u0275\u0275text(5);
+    \u0275\u0275conditionalCreate(4, WorldCharacterDetails_Conditional_4_Template, 2, 1, "h3", 2);
+    \u0275\u0275elementStart(5, "button", 3);
+    \u0275\u0275listener("click", function WorldCharacterDetails_Template_button_click_5_listener() {
+      return ctx.deleteCharacter();
+    });
+    \u0275\u0275text(6, "Delete Character");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "form", 3);
-    \u0275\u0275listener("submit", function WorldCharacterDetails_Template_form_submit_6_listener() {
+    \u0275\u0275elementStart(7, "form", 4);
+    \u0275\u0275listener("submit", function WorldCharacterDetails_Template_form_submit_7_listener() {
       return ctx.submitApplication();
     });
-    \u0275\u0275elementStart(7, "section", 4)(8, "div", 5)(9, "div", 6)(10, "label", 7);
-    \u0275\u0275text(11, "Name");
+    \u0275\u0275elementStart(8, "section", 5)(9, "div", 6)(10, "div", 7)(11, "label", 8);
+    \u0275\u0275text(12, "Name");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(12, "input", 8)(13, "input", 9);
-    \u0275\u0275elementStart(14, "label", 10);
-    \u0275\u0275text(15, "Alternate Names");
+    \u0275\u0275element(13, "input", 9)(14, "input", 10);
+    \u0275\u0275elementStart(15, "label", 11);
+    \u0275\u0275text(16, "Alternate Names");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(16, "input", 11);
+    \u0275\u0275element(17, "input", 12);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(17, "div", 6)(18, "label", 12);
-    \u0275\u0275text(19, "Pronouns");
+    \u0275\u0275elementStart(18, "div", 7)(19, "label", 13);
+    \u0275\u0275text(20, "Pronouns");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(20, "input", 13);
-    \u0275\u0275elementStart(21, "label", 14);
-    \u0275\u0275text(22, "Birthdate");
+    \u0275\u0275element(21, "input", 14);
+    \u0275\u0275elementStart(22, "label", 15);
+    \u0275\u0275text(23, "Birthdate");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(23, "input", 15);
+    \u0275\u0275element(24, "input", 16);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(24, "div", 5)(25, "div", 6)(26, "label", 16);
-    \u0275\u0275text(27, "Physical Description");
+    \u0275\u0275elementStart(25, "div", 6)(26, "div", 7)(27, "label", 17);
+    \u0275\u0275text(28, "Physical Description");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(28, "textarea", 17);
+    \u0275\u0275element(29, "textarea", 18);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(29, "div", 6)(30, "label", 18);
-    \u0275\u0275text(31, "Non-Physical Description");
+    \u0275\u0275elementStart(30, "div", 7)(31, "label", 19);
+    \u0275\u0275text(32, "Non-Physical Description");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(32, "textarea", 19);
+    \u0275\u0275element(33, "textarea", 20);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(33, "div", 5)(34, "div", 6)(35, "label", 20);
-    \u0275\u0275text(36, "Roles");
+    \u0275\u0275elementStart(34, "div", 6)(35, "div", 7)(36, "label", 21);
+    \u0275\u0275text(37, "Roles");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(37, "input", 21);
+    \u0275\u0275element(38, "input", 22);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(38, "div", 6)(39, "label", 22);
-    \u0275\u0275text(40, "Affiliations");
+    \u0275\u0275elementStart(39, "div", 7)(40, "label", 23);
+    \u0275\u0275text(41, "Affiliations");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(41, "input", 23);
+    \u0275\u0275element(42, "input", 24);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(42, "div", 24)(43, "label", 25);
-    \u0275\u0275text(44, "Relationships");
+    \u0275\u0275elementStart(43, "div", 25)(44, "label", 26);
+    \u0275\u0275text(45, "Relationships");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(45, "div", 26);
-    \u0275\u0275repeaterCreate(46, WorldCharacterDetails_For_47_Template, 1, 1, null, null, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(46, "div", 27);
+    \u0275\u0275repeaterCreate(47, WorldCharacterDetails_For_48_Template, 1, 1, null, null, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(48, "div", 5)(49, "div", 6)(50, "label", 27);
-    \u0275\u0275text(51, "Stories");
+    \u0275\u0275elementStart(49, "div", 6)(50, "div", 7)(51, "label", 28);
+    \u0275\u0275text(52, "Stories");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(52, "div", 28);
-    \u0275\u0275repeaterCreate(53, WorldCharacterDetails_For_54_Template, 5, 8, "div", 29, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(53, "div", 29);
+    \u0275\u0275repeaterCreate(54, WorldCharacterDetails_For_55_Template, 5, 8, "div", 30, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(55, "div", 6)(56, "label", 30);
-    \u0275\u0275text(57, "Tags");
+    \u0275\u0275elementStart(56, "div", 7)(57, "label", 31);
+    \u0275\u0275text(58, "Tags");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(58, "textarea", 31);
+    \u0275\u0275element(59, "textarea", 32);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(59, "button", 32);
-    \u0275\u0275text(60, "Save");
+    \u0275\u0275elementStart(60, "button", 33);
+    \u0275\u0275text(61, "Save");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate2("", ctx.worldCharacter == null ? null : ctx.worldCharacter.firstName, " ", ctx.worldCharacter == null ? null : ctx.worldCharacter.lastName);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("( ", ctx.worldCharacter == null ? null : ctx.worldCharacter.altNames == null ? null : ctx.worldCharacter.altNames.join(", "), " )");
     \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.worldCharacter && ctx.worldCharacter.altNames && ctx.worldCharacter.altNames.length > 0 ? 4 : -1);
+    \u0275\u0275advance(3);
     \u0275\u0275property("formGroup", ctx.applyForm);
     \u0275\u0275advance(40);
     \u0275\u0275repeater(ctx.characterList);
     \u0275\u0275advance(7);
     \u0275\u0275repeater(ctx.storyList);
   }
-}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, RequiredValidator, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.character-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.character-page-body[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.alt-names[_ngcontent-%COMP%] {\n  font-style: italic;\n  margin-top: 0;\n  margin-bottom: 10px;\n  font-size: 10pt;\n  color: var(--g3-color);\n}\n.relationship-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 10px;\n}\n.relationship-textarea[_ngcontent-%COMP%] {\n  display: block;\n  margin-top: 5px;\n  flex-grow: 1;\n}\n.relationship-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 11pt;\n  border-bottom: 1px solid var(--g3-color);\n  padding: 5px 5px 0px 5px;\n  border-radius: 10px 10px 0 0;\n  background-color: var(--g4-color);\n}\n/*# sourceMappingURL=character-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
+}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, RequiredValidator, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.character-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.character-page-body[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.alt-names[_ngcontent-%COMP%] {\n  font-style: italic;\n  margin-top: 0;\n  margin-bottom: 10px;\n  font-size: 10pt;\n  color: var(--g3-color);\n}\n.relationship-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 10px;\n}\n.relationship-textarea[_ngcontent-%COMP%] {\n  display: block;\n  margin-top: 5px;\n  flex-grow: 1;\n}\n.relationship-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 11pt;\n  border-bottom: 1px solid var(--g3-color);\n  padding: 5px 5px 0px 5px;\n  border-radius: 10px 10px 0 0;\n  background-color: var(--g4-color);\n}\n/*# sourceMappingURL=character-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button[_ngcontent-%COMP%] {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button[_ngcontent-%COMP%]:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
 var WorldCharacterDetails = _WorldCharacterDetails;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(WorldCharacterDetails, [{
     type: Component,
     args: [{ selector: "app-details", imports: [ReactiveFormsModule, RouterLink], template: `<article>\r
-    <section class="details-heading">\r
+    <section class="details-heading horizontal-section">\r
         <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>\r
-        <h3 class="subtitle">( {{ worldCharacter?.altNames?.join(', ') }} )</h3>\r
+        @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {\r
+            <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>\r
+        }\r
+        <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>\r
     </section>\r
     <form [formGroup]="applyForm" (submit)="submitApplication()">\r
         <section class="edit-character-form character-page-body">\r
@@ -45023,7 +45491,7 @@ var WorldCharacterDetails = _WorldCharacterDetails;
         </section>\r
         <button type="submit" class="save-button primary">Save</button>\r
     </form>\r
-</article>`, styles: ["/* src/app/details/character-details/character-details.css */\n.character-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.character-page-body {\n  display: flex;\n  flex-wrap: wrap;\n}\n.alt-names {\n  font-style: italic;\n  margin-top: 0;\n  margin-bottom: 10px;\n  font-size: 10pt;\n  color: var(--g3-color);\n}\n.relationship-section {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 10px;\n}\n.relationship-textarea {\n  display: block;\n  margin-top: 5px;\n  flex-grow: 1;\n}\n.relationship-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 11pt;\n  border-bottom: 1px solid var(--g3-color);\n  padding: 5px 5px 0px 5px;\n  border-radius: 10px 10px 0 0;\n  background-color: var(--g4-color);\n}\n/*# sourceMappingURL=character-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
+</article>`, styles: ["/* src/app/details/character-details/character-details.css */\n.character-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.character-page-body {\n  display: flex;\n  flex-wrap: wrap;\n}\n.alt-names {\n  font-style: italic;\n  margin-top: 0;\n  margin-bottom: 10px;\n  font-size: 10pt;\n  color: var(--g3-color);\n}\n.relationship-section {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 10px;\n}\n.relationship-textarea {\n  display: block;\n  margin-top: 5px;\n  flex-grow: 1;\n}\n.relationship-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 11pt;\n  border-bottom: 1px solid var(--g3-color);\n  padding: 5px 5px 0px 5px;\n  border-radius: 10px 10px 0 0;\n  background-color: var(--g4-color);\n}\n/*# sourceMappingURL=character-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading h2 {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
   }], () => [], null);
 })();
 (() => {
@@ -45033,17 +45501,17 @@ var WorldCharacterDetails = _WorldCharacterDetails;
 // src/app/details/story-details/story-details.ts
 var _c011 = (a0) => ["/character", a0];
 var _c16 = (a0) => ["/location", a0];
-function WorldStoryDetails_For_22_Template(rf, ctx) {
+function WorldStoryDetails_For_24_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 13)(1, "input", 18);
-    \u0275\u0275listener("change", function WorldStoryDetails_For_22_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 14)(1, "input", 19);
+    \u0275\u0275listener("change", function WorldStoryDetails_For_24_Template_input_change_1_listener($event) {
       const character_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onCharacterChange($event, character_r2));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 19)(3, "label", 20);
+    \u0275\u0275elementStart(2, "button", 20)(3, "label", 21);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -45058,17 +45526,17 @@ function WorldStoryDetails_For_22_Template(rf, ctx) {
     \u0275\u0275textInterpolate2("", character_r2.firstName, " ", character_r2.lastName);
   }
 }
-function WorldStoryDetails_For_29_Template(rf, ctx) {
+function WorldStoryDetails_For_31_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 13)(1, "input", 18);
-    \u0275\u0275listener("change", function WorldStoryDetails_For_29_Template_input_change_1_listener($event) {
+    \u0275\u0275elementStart(0, "div", 14)(1, "input", 19);
+    \u0275\u0275listener("change", function WorldStoryDetails_For_31_Template_input_change_1_listener($event) {
       const location_r5 = \u0275\u0275restoreView(_r4).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onLocationChange($event, location_r5));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(2, "button", 21)(3, "label", 20);
+    \u0275\u0275elementStart(2, "button", 22)(3, "label", 21);
     \u0275\u0275text(4);
     \u0275\u0275elementEnd()()();
   }
@@ -45086,6 +45554,7 @@ function WorldStoryDetails_For_29_Template(rf, ctx) {
 var _WorldStoryDetails = class _WorldStoryDetails {
   constructor() {
     this.route = inject2(ActivatedRoute);
+    this.router = inject2(Router);
     this.worldStoryService = inject2(WorldStoryService);
     this.worldCharacterService = inject2(WorldCharacterService);
     this.worldLocationService = inject2(WorldLocationService);
@@ -45245,68 +45714,81 @@ var _WorldStoryDetails = class _WorldStoryDetails {
   updateLocationStories(location2, fullLocation, updatedStories) {
     this.worldLocationService.updateWorldLocation(location2.id, fullLocation.name, fullLocation.description, fullLocation.characters || [], updatedStories, fullLocation.tags || []);
   }
+  deleteStory() {
+    if (this.worldStory?.id && confirm(`Are you sure you want to delete "${this.worldStory.title}"? This action cannot be undone.`)) {
+      this.worldStoryService.deleteWorldStory(this.worldStory.id);
+      this.router.navigate(["/story"]);
+    }
+  }
 };
 _WorldStoryDetails.\u0275fac = function WorldStoryDetails_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _WorldStoryDetails)();
 };
-_WorldStoryDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldStoryDetails, selectors: [["app-details"]], decls: 37, vars: 2, consts: [[1, "details-heading"], [1, "story-title"], [3, "submit", "formGroup"], [1, "edit-story-form", "story-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "story-title", 1, "primary-label"], ["id", "story-title", "type", "text", "formControlName", "storyTitle"], [1, "details-section", "primary-section", "spanning-section"], ["for", "story-description", 1, "primary-label"], ["id", "story-description", "formControlName", "storyDescription", 1, "large-textarea"], ["for", "story-characters", 1, "primary-label"], [1, "vertical-section"], [1, "form-field"], ["for", "story-locations", 1, "primary-label"], ["for", "story-tags", 1, "primary-label"], ["id", "story-tags", "formControlName", "storyTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], ["type", "checkbox", 3, "change", "id", "value", "checked"], ["type", "button", 1, "linked-character", 3, "routerLink"], [1, "secondary-label"], ["type", "button", 1, "linked-location", 3, "routerLink"]], template: function WorldStoryDetails_Template(rf, ctx) {
+_WorldStoryDetails.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _WorldStoryDetails, selectors: [["app-details"]], decls: 39, vars: 2, consts: [[1, "details-heading", "horizontal-section"], [1, "story-title"], [1, "delete-button", "secondary", 3, "click"], [3, "submit", "formGroup"], [1, "edit-story-form", "story-page-body"], [1, "details-section", "primary-section", "horizontal-section"], [1, "details-section", "secondary-section"], ["for", "story-title", 1, "primary-label"], ["id", "story-title", "type", "text", "formControlName", "storyTitle"], [1, "details-section", "primary-section", "spanning-section"], ["for", "story-description", 1, "primary-label"], ["id", "story-description", "formControlName", "storyDescription", 1, "large-textarea"], ["for", "story-characters", 1, "primary-label"], [1, "vertical-section"], [1, "form-field"], ["for", "story-locations", 1, "primary-label"], ["for", "story-tags", 1, "primary-label"], ["id", "story-tags", "formControlName", "storyTags", 1, "small-textarea"], ["type", "submit", 1, "save-button", "primary"], ["type", "checkbox", 3, "change", "id", "value", "checked"], ["type", "button", 1, "linked-character", 3, "routerLink"], [1, "secondary-label"], ["type", "button", 1, "linked-location", 3, "routerLink"]], template: function WorldStoryDetails_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "article")(1, "section", 0)(2, "h2", 1);
     \u0275\u0275text(3);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "button", 2);
+    \u0275\u0275listener("click", function WorldStoryDetails_Template_button_click_4_listener() {
+      return ctx.deleteStory();
+    });
+    \u0275\u0275text(5, "Delete Story");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(4, "form", 2);
-    \u0275\u0275listener("submit", function WorldStoryDetails_Template_form_submit_4_listener() {
+    \u0275\u0275elementStart(6, "form", 3);
+    \u0275\u0275listener("submit", function WorldStoryDetails_Template_form_submit_6_listener() {
       return ctx.submitApplication();
     });
-    \u0275\u0275elementStart(5, "section", 3)(6, "div", 4)(7, "div", 5)(8, "label", 6);
-    \u0275\u0275text(9, "Story Title");
+    \u0275\u0275elementStart(7, "section", 4)(8, "div", 5)(9, "div", 6)(10, "label", 7);
+    \u0275\u0275text(11, "Story Title");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(10, "input", 7);
+    \u0275\u0275element(12, "input", 8);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(11, "div", 8)(12, "div", 5)(13, "label", 9);
-    \u0275\u0275text(14, "Story Description");
+    \u0275\u0275elementStart(13, "div", 9)(14, "div", 6)(15, "label", 10);
+    \u0275\u0275text(16, "Story Description");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(15, "textarea", 10);
+    \u0275\u0275element(17, "textarea", 11);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "div", 8)(17, "div", 5)(18, "label", 11);
-    \u0275\u0275text(19, "Story Characters");
+    \u0275\u0275elementStart(18, "div", 9)(19, "div", 6)(20, "label", 12);
+    \u0275\u0275text(21, "Story Characters");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(20, "div", 12);
-    \u0275\u0275repeaterCreate(21, WorldStoryDetails_For_22_Template, 5, 9, "div", 13, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(22, "div", 13);
+    \u0275\u0275repeaterCreate(23, WorldStoryDetails_For_24_Template, 5, 9, "div", 14, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(23, "div", 8)(24, "div", 5)(25, "label", 14);
-    \u0275\u0275text(26, "Story Locations");
+    \u0275\u0275elementStart(25, "div", 9)(26, "div", 6)(27, "label", 15);
+    \u0275\u0275text(28, "Story Locations");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(27, "div", 12);
-    \u0275\u0275repeaterCreate(28, WorldStoryDetails_For_29_Template, 5, 8, "div", 13, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementStart(29, "div", 13);
+    \u0275\u0275repeaterCreate(30, WorldStoryDetails_For_31_Template, 5, 8, "div", 14, \u0275\u0275repeaterTrackByIdentity);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(30, "div", 4)(31, "div", 5)(32, "label", 15);
-    \u0275\u0275text(33, "Story Tags");
+    \u0275\u0275elementStart(32, "div", 5)(33, "div", 6)(34, "label", 16);
+    \u0275\u0275text(35, "Story Tags");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(34, "textarea", 16);
+    \u0275\u0275element(36, "textarea", 17);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(35, "button", 17);
-    \u0275\u0275text(36, "Save");
+    \u0275\u0275elementStart(37, "button", 18);
+    \u0275\u0275text(38, "Save");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     \u0275\u0275advance(3);
     \u0275\u0275textInterpolate(ctx.worldStory == null ? null : ctx.worldStory.title);
-    \u0275\u0275advance();
+    \u0275\u0275advance(3);
     \u0275\u0275property("formGroup", ctx.applyForm);
     \u0275\u0275advance(17);
     \u0275\u0275repeater(ctx.characterList);
     \u0275\u0275advance(7);
     \u0275\u0275repeater(ctx.locationList);
   }
-}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.event-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.event-details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.event-location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=story-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
+}, dependencies: [ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, RouterLink], styles: ["\n\n.event-heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.event-details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.event-location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=story-details.css.map */", "\n\n.heading[_ngcontent-%COMP%] {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n}\n.details[_ngcontent-%COMP%] {\n  border: 1px solid var(--g1-color);\n}\n.location[_ngcontent-%COMP%] {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button[_ngcontent-%COMP%] {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button[_ngcontent-%COMP%]:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */", '\n\n[_ngcontent-%COMP%]:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n}\nbody[_ngcontent-%COMP%] {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na[_ngcontent-%COMP%] {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1[_ngcontent-%COMP%], \nh2[_ngcontent-%COMP%], \nh3[_ngcontent-%COMP%], \nh4[_ngcontent-%COMP%], \nh5[_ngcontent-%COMP%], \nh6[_ngcontent-%COMP%] {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2[_ngcontent-%COMP%] {\n  margin-top: 10px;\n}\n.subtitle[_ngcontent-%COMP%] {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton[_ngcontent-%COMP%] {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary[_ngcontent-%COMP%] {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary[_ngcontent-%COMP%] {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton[_ngcontent-%COMP%]:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton[_ngcontent-%COMP%]:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character[_ngcontent-%COMP%], \n.linked-story[_ngcontent-%COMP%], \n.linked-location[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n[_ngcontent-%COMP%]:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story[_ngcontent-%COMP%] {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story[_ngcontent-%COMP%]:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput[_ngcontent-%COMP%] {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: red;\n}\n.primary-label[_ngcontent-%COMP%] {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required[_ngcontent-%COMP%]::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label[_ngcontent-%COMP%] {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect[_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox][_ngcontent-%COMP%] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox][_ngcontent-%COMP%]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea[_ngcontent-%COMP%], \ninput[type=text][_ngcontent-%COMP%] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n[_ngcontent-%COMP%]:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text][_ngcontent-%COMP%] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text][_ngcontent-%COMP%]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea[_ngcontent-%COMP%] {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea[_ngcontent-%COMP%] {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea[_ngcontent-%COMP%] {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea[_ngcontent-%COMP%] {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  width: fit-content;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary[_ngcontent-%COMP%] {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary[_ngcontent-%COMP%]:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button[_ngcontent-%COMP%]   .secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary[_ngcontent-%COMP%] {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary[_ngcontent-%COMP%]:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section[_ngcontent-%COMP%] {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section[_ngcontent-%COMP%] {\n  border-color: var(--g3-color);\n}\n.secondary-section[_ngcontent-%COMP%] {\n  border-color: var(--g4-color);\n}\n.horizontal-section[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n}\n.grid-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */'] });
 var WorldStoryDetails = _WorldStoryDetails;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(WorldStoryDetails, [{
     type: Component,
     args: [{ selector: "app-details", imports: [ReactiveFormsModule, RouterLink], template: `<article>\r
-    <section class="details-heading">\r
+    <section class="details-heading horizontal-section">\r
         <h2 class="story-title">{{ worldStory?.title }}</h2>\r
+        <button class="delete-button secondary" (click)="deleteStory()">Delete Story</button>\r
     </section>\r
     <form [formGroup]="applyForm" (submit)="submitApplication()">\r
         <section class="edit-story-form story-page-body">\r
@@ -45367,7 +45849,7 @@ var WorldStoryDetails = _WorldStoryDetails;
         </section>\r
         <button type="submit" class="save-button primary">Save</button>\r
     </form>\r
-</article>`, styles: ["/* src/app/details/story-details/story-details.css */\n.event-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description {\n  margin-bottom: 25px;\n}\n.event-details {\n  border: 1px solid var(--g1-color);\n}\n.event-location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=story-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
+</article>`, styles: ["/* src/app/details/story-details/story-details.css */\n.event-heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.event-description {\n  margin-bottom: 25px;\n}\n.event-details {\n  border: 1px solid var(--g1-color);\n}\n.event-location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n/*# sourceMappingURL=story-details.css.map */\n", "/* src/app/details/details.css */\n.heading {\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n.description {\n  margin-bottom: 25px;\n}\n.details {\n  border: 1px solid var(--g1-color);\n}\n.location {\n  font-size: 24pt;\n  margin-bottom: 15px;\n}\n.details-heading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n.details-heading h2 {\n  margin: 0;\n  flex-grow: 1;\n}\n.delete-button {\n  margin-left: 20px;\n  padding: 8px 16px;\n  background-color: transparent;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  white-space: nowrap;\n}\n.delete-button:hover {\n  color: white;\n}\n/*# sourceMappingURL=details.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
   }], () => [], null);
 })();
 (() => {
@@ -45786,7 +46268,7 @@ var _StoryHome = class _StoryHome {
 _StoryHome.\u0275fac = function StoryHome_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _StoryHome)();
 };
-_StoryHome.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _StoryHome, selectors: [["app-story-home"]], decls: 9, vars: 4, consts: [["searchLabel", "Search stories", "searchPlaceholder", "Search", 3, "filterChange", "filterConfig", "allCharacters", "allLocations"], [1, "primary", 3, "click"], [1, "results"], [1, "no-results"], [3, "worldStory"]], template: function StoryHome_Template(rf, ctx) {
+_StoryHome.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _StoryHome, selectors: [["app-story-home"]], decls: 9, vars: 4, consts: [["searchLabel", "Search stories", "searchPlaceholder", "Search", 3, "filterChange", "filterConfig", "allCharacters", "allLocations"], [1, "primary", 3, "click"], [1, "results", "grid-section"], [1, "no-results"], [3, "worldStory"]], template: function StoryHome_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "article")(1, "h1");
     \u0275\u0275text(2, "Stories");
@@ -45817,7 +46299,7 @@ var StoryHome = _StoryHome;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(StoryHome, [{
     type: Component,
-    args: [{ selector: "app-story-home", imports: [StoryThumbnail, SearchFilter], template: '<article>\r\n  <h1>Stories</h1>\r\n  \r\n  <app-search-filter \r\n    searchLabel="Search stories"\r\n    searchPlaceholder="Search"\r\n    [filterConfig]="filterConfig"\r\n    [allCharacters]="allCharacters"\r\n    [allLocations]="allLocations"\r\n    (filterChange)="onFilterChange($event)">\r\n  </app-search-filter>\r\n  \r\n  <button class="primary" (click)="addWorldStory()">Add Story</button>\r\n\r\n  <section class="results">\r\n    @if (filteredStoryList.length) {\r\n      @for (worldStory of filteredStoryList; track worldStory.id) {\r\n        <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>\r\n      }\r\n    } @else {\r\n      <div class="no-results">\r\n        <p>No stories found. Try adjusting your search or add a new story.</p>\r\n      </div>\r\n    }\r\n  </section>\r\n</article>', styles: ["/* src/app/pages/pages.css */\n.results {\n  border: none;\n  border-radius: 8px;\n  margin-top: 20px;\n  border-top: 1px solid var(--g4-color);\n  border-bottom: 1px solid var(--g4-color);\n}\n.no-results {\n  grid-column: 1 / -1;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results p {\n  font-size: 1.1rem;\n  margin: 0;\n}\n@media (max-width: 768px) {\n  .results {\n    grid-template-columns: 1fr;\n  }\n}\n/*# sourceMappingURL=pages.css.map */\n", "/* src/app/pages/story-home/story-home.css */\n/*# sourceMappingURL=story-home.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
+    args: [{ selector: "app-story-home", imports: [StoryThumbnail, SearchFilter], template: '<article>\r\n  <h1>Stories</h1>\r\n  \r\n  <app-search-filter \r\n    searchLabel="Search stories"\r\n    searchPlaceholder="Search"\r\n    [filterConfig]="filterConfig"\r\n    [allCharacters]="allCharacters"\r\n    [allLocations]="allLocations"\r\n    (filterChange)="onFilterChange($event)">\r\n  </app-search-filter>\r\n  \r\n  <button class="primary" (click)="addWorldStory()">Add Story</button>\r\n\r\n  <section class="results grid-section">\r\n    @if (filteredStoryList.length) {\r\n      @for (worldStory of filteredStoryList; track worldStory.id) {\r\n        <app-story-thumbnail [worldStory]="worldStory"></app-story-thumbnail>\r\n      }\r\n    } @else {\r\n      <div class="no-results">\r\n        <p>No stories found. Try adjusting your search or add a new story.</p>\r\n      </div>\r\n    }\r\n  </section>\r\n</article>', styles: ["/* src/app/pages/pages.css */\n.results {\n  border: none;\n  border-radius: 8px;\n  margin-top: 20px;\n  border-top: 1px solid var(--g4-color);\n  border-bottom: 1px solid var(--g4-color);\n}\n.no-results {\n  grid-column: 1 / -1;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results p {\n  font-size: 1.1rem;\n  margin: 0;\n}\n@media (max-width: 768px) {\n  .results {\n    grid-template-columns: 1fr;\n  }\n}\n/*# sourceMappingURL=pages.css.map */\n", "/* src/app/pages/story-home/story-home.css */\n/*# sourceMappingURL=story-home.css.map */\n", '/* src/styles.css */\n:root {\n  --b1-color: #582f0e;\n  --b2-color: #7f4f24;\n  --b3-color: #936639;\n  --b4-color: #a68a64;\n  --b5-color: #b6ad90;\n  --g1-color: #333d29;\n  --g2-color: #414833;\n  --g3-color: #656d4a;\n  --g4-color: #a4ac86;\n  --g5-color: #c2c5aa;\n  --bright-red: #e37b7a;\n  --bright-orange: #f1b75f;\n  --bright-yellow: #faea77;\n  --bright-green: #9dc870;\n  --bright-blue: #67bfce;\n  --bright-purple: #9c83b7;\n  --pastel-red: #ebaec7;\n  --pastel-orange: #f4c790;\n  --pastel-yellow: #fff1b3;\n  --pastel-green: #9ccca4;\n  --pastel-blue: #b4dce7;\n  --pastel-purple: #d9c2db;\n  --shadow-color: var(--b1-color);\n  --highlight-color: var(--g4-color);\n  --event-color: var(--bright-blue);\n  --event-highlight-color: var(--pastel-blue);\n  --location-color: var(--bright-green);\n  --location-highlight-color: var(--pastel-green);\n  --character-color: var(--bright-orange);\n  --character-highlight-color: var(--pastel-orange);\n  --story-color: var(--bright-purple);\n  --story-highlight-color: var(--pastel-purple);\n  --headings-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --base-font-family:\n    "Trebuchet MS",\n    "Lucida Sans Unicode",\n    "Lucida Grande",\n    "Lucida Sans",\n    Arial,\n    sans-serif;\n  --input-font-family: "Lucida Console";\n}\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: var(--base-font-family);\n  background-color: var(--g5-color);\n}\na {\n  color: inherit;\n  text-decoration: inherit;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: var(--headings-font-family);\n  color: var(--b1-color);\n}\nh1 {\n  font-size: 2.5rem;\n  text-decoration: none;\n}\nh2 {\n  margin-top: 10px;\n}\n.subtitle {\n  font-style: italic;\n  color: var(--g3-color);\n  margin-bottom: 15px;\n}\nbutton {\n  border: none;\n  border-radius: 8px;\n  padding: 5px;\n  transition: all 0.3s ease-in-out;\n}\nbutton.primary {\n  background: var(--g3-color);\n  color: var(--g5-color);\n}\nbutton.primary:hover {\n  background-color: var(--g4-color);\n  color: var(--g2-color);\n}\nbutton.secondary {\n  background: var(--b3-color);\n  color: var(--g5-color);\n}\nbutton.secondary:hover {\n  background-color: var(--b4-color);\n  color: var(--g2-color);\n}\nbutton:hover.event {\n  box-shadow: 2px 2px 10px var(--event-color) !important;\n}\nbutton:hover.location {\n  box-shadow: 2px 2px 10px var(--location-color) !important;\n}\nbutton:hover.character {\n  box-shadow: 2px 2px 10px var(--character-color) !important;\n}\nbutton:hover.story {\n  box-shadow: 2px 2px 10px var(--story-color) !important;\n}\n.linked-character,\n.linked-story,\n.linked-location {\n  border: 0px;\n  background-color: inherit;\n  transition: all 0.3s ease-in-out;\n}\n:is(.linked-character, .linked-story, .linked-location):hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  box-shadow: var(--g3-color) 3px 3px 10px;\n}\n.linked-story {\n  border: 0px;\n  background-color: inherit;\n}\n.linked-story:hover {\n  text-decoration: underline;\n  text-shadow: var(--g1-color);\n  bottom: var(--g3-color) 3px 3px 10px;\n}\ninput {\n  display: block;\n  font-family: var(--input-font-family);\n}\nlabel {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\nlabel.required::after {\n  content: " *";\n  color: red;\n}\n.primary-label {\n  color: var(--b2-color);\n  font-weight: bold;\n  text-transform: uppercase;\n  font-size: 12pt;\n}\n.primary-label.required::after {\n  content: " *";\n  color: var(--bright-red);\n}\n.secondary-label {\n  color: var(--g1-color);\n  text-transform: capitalize;\n  font-weight: bold;\n  font-size: 10pt;\n  margin-bottom: 5px;\n}\nselect {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--headings-font-family);\n}\nselect:focus {\n  outline: none;\n  background-color: var(--b5-color);\n}\ninput[type=checkbox] {\n  width: fit-content;\n  margin-left: 10px;\n  margin-right: 5px;\n  border-radius: 15px;\n  transition: all 0.3s ease;\n}\ninput[type=checkbox]:checked {\n  accent-color: var(--g3-color);\n}\ntextarea,\ninput[type=text] {\n  display: block;\n  background-color: inherit;\n  border: none;\n  border-bottom: solid 1px var(--g3-color);\n  margin-bottom: 15px;\n  border-radius: 8px;\n  font-family: var(--input-font-family);\n}\n:is(textarea, input[type=text])::placeholder {\n  font-size: small;\n  opacity: 1;\n}\n:is(textarea, input[type=text]):focus {\n  outline: none;\n  font-size: small;\n  background-color: var(--b5-color);\n}\ninput[type=text] {\n  padding: 10px;\n  width: 300px;\n}\ninput[type=text]:required::after {\n  content: "*";\n  color: red;\n  margin-left: 5px;\n}\ntextarea {\n  padding: 10px;\n  resize: none;\n}\ntextarea.small-textarea {\n  min-width: 200px;\n  min-height: 50px;\n}\ntextarea.medium-textarea {\n  min-width: 400px;\n  min-height: 150px;\n}\ntextarea.large-textarea {\n  min-width: 500px;\n  min-height: 300px;\n}\n.form-field {\n  display: flex;\n  width: fit-content;\n}\n::-webkit-scrollbar {\n  background: transparent;\n  width: 10px;\n  height: 10px;\n}\n::-webkit-scrollbar-track {\n  background: transparent;\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb {\n  background-color: var(--b4-color);\n  border-radius: 15px;\n}\n::-webkit-scrollbar-thumb:hover {\n  background-color: var(--b3-color);\n}\n.save-button {\n  margin-top: 10px;\n  padding: 10px 15px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  padding: 10px;\n  border: none;\n  border-radius: 50px;\n  cursor: pointer;\n  z-index: 1000;\n  transition: all 0.3s ease;\n}\n.save-button .primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button .primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button.primary {\n  background-color: var(--g2-color);\n  color: var(--g5-color);\n}\n.save-button.primary:hover {\n  background-color: var(--g3-color);\n  color: var(--g2-color);\n}\n.save-button .secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button .secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.save-button.secondary {\n  background-color: var(--b2-color);\n  color: var(--g5-color);\n}\n.save-button.secondary:hover {\n  background-color: var(--b3-color);\n  color: var(--g2-color);\n}\n.details-section {\n  margin: 10px;\n  padding: 10px;\n  border-bottom: 2px solid;\n  border-top: 2px solid;\n  border-radius: 5px;\n  width: fit-content;\n}\n.primary-section {\n  border-color: var(--g3-color);\n}\n.secondary-section {\n  border-color: var(--g4-color);\n}\n.horizontal-section {\n  display: flex;\n  gap: 20px;\n}\n.wrap-section {\n  display: flex;\n  flex-wrap: wrap;\n}\n.spanning-section {\n  display: flex;\n  width: 100%;\n}\n.grid-section {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n}\n.hidden {\n  display: none;\n}\n/*# sourceMappingURL=styles.css.map */\n'] }]
   }], () => [], null);
 })();
 (() => {
@@ -46385,7 +46867,7 @@ var Settings = _Settings;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Settings, [{
     type: Component,
-    args: [{ selector: "app-settings", standalone: true, imports: [CommonModule, FormsModule], template: '<article>\r\n  <h1>Settings</h1>\r\n  \r\n  <form (ngSubmit)="saveSettings()">\r\n    <!-- Display Settings -->\r\n    <section class="details-section primary-section">\r\n      <h2>Display Settings</h2>\r\n      \r\n      <div class="form-field hidden">\r\n        <label class="primary-label" for="theme">Theme</label>\r\n        <select id="theme" [(ngModel)]="theme" name="theme" class="filter-select">\r\n          <option value="default">Default</option>\r\n          <option value="dark">Dark</option>\r\n          <option value="light">Light</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field hidden">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="showThumbnails" name="showThumbnails">\r\n          Show Thumbnails\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="form-field hidden">\r\n        <label class="primary-label" for="itemsPerPage">Items Per Page</label>\r\n        <select id="itemsPerPage" [(ngModel)]="itemsPerPage" name="itemsPerPage" class="filter-select">\r\n          <option [value]="6">6</option>\r\n          <option [value]="12">12</option>\r\n          <option [value]="24">24</option>\r\n          <option [value]="48">48</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="defaultSort">Default Sort</label>\r\n        <select id="defaultSort" [(ngModel)]="defaultSort" name="defaultSort" class="filter-select">\r\n          <option value="name">Name</option>\r\n          <option value="date">Date</option>\r\n          <option value="modified">Last Modified</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="fontSize">Font Size</label>\r\n        <select id="fontSize" [(ngModel)]="fontSize" name="fontSize" class="filter-select">\r\n          <option value="small">Small</option>\r\n          <option value="medium">Medium</option>\r\n          <option value="large">Large</option>\r\n          <option value="extra-large">Extra Large</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <h3 class="color-section-header">Entity Colors</h3>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="eventColor">Timeline/Events Color</label>\r\n        <select id="eventColor" [(ngModel)]="eventColor" name="eventColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="locationColor">World/Locations Color</label>\r\n        <select id="locationColor" [(ngModel)]="locationColor" name="locationColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="characterColor">Characters Color</label>\r\n        <select id="characterColor" [(ngModel)]="characterColor" name="characterColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="storyColor">Stories Color</label>\r\n        <select id="storyColor" [(ngModel)]="storyColor" name="storyColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n    </section>\r\n    \r\n    <!-- Application Settings -->\r\n    <section class="details-section primary-section">\r\n      <h2>Application Settings</h2>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="autoSave" name="autoSave">\r\n          Auto Save Changes\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="rememberFilters" name="rememberFilters">\r\n          Remember Filter Settings\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="showAdvancedFilters" name="showAdvancedFilters">\r\n          Show Advanced Filters by Default\r\n        </label>\r\n      </div>\r\n    </section>\r\n    \r\n    <!-- Export/Import Settings -->\r\n    <section class="details-section primary-section">\r\n      <h2>Export & Import</h2>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="exportFormat">Export Format</label>\r\n        <select id="exportFormat" [(ngModel)]="exportFormat" name="exportFormat" class="filter-select">\r\n          <option value="json">JSON</option>\r\n          <option value="csv">CSV</option>\r\n          <option value="xml">XML</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="includeImages" name="includeImages">\r\n          Include Images in Export\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="horizontal-section">\r\n          \r\n          <div class="form-field">\r\n              <label class="primary-label" for="importFile">Import Data</label>\r\n              <input type="file" id="importFile" (change)="importData($event)" accept=".json,.csv,.xml">\r\n            </div>\r\n        </div>\r\n        <button type="button" class="secondary" (click)="exportData()">Export Data</button>\r\n    </section>\r\n    \r\n    <!-- Action Buttons -->\r\n             <!-- <button type="submit" class="save-button primary">Save</button> -->\r\n\r\n    <section class="horizontal-section save-button">\r\n      <button type="submit" class="primary">Save Settings</button>\r\n      <button type="button" class="secondary" (click)="resetSettings()">Reset to Defaults</button>\r\n    </section>\r\n  </form>\r\n</article>', styles: ["/* src/app/pages/settings/settings.css */\n.form-field {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 20px;\n  gap: 8px;\n}\n.form-field label {\n  margin-bottom: 5px;\n}\n.checkbox-label {\n  display: flex !important;\n  flex-direction: row !important;\n  align-items: center;\n  gap: 10px;\n  cursor: pointer;\n  padding: 8px;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n.checkbox-label:hover {\n  background-color: rgba(255, 255, 255, 0.1);\n}\n.checkbox-label input[type=checkbox] {\n  margin: 0;\n  width: auto;\n}\n.filter-select {\n  max-width: 200px;\n}\ninput[type=file] {\n  padding: 8px;\n  border: 1px solid var(--g3-color);\n  border-radius: 8px;\n  background-color: var(--g5-color);\n  font-family: var(--input-font-family);\n  cursor: pointer;\n  max-width: 250px;\n}\ninput[type=file]:focus {\n  outline: none;\n  border-color: var(--g2-color);\n  background-color: var(--b5-color);\n}\n.horizontal-section {\n  align-items: flex-end;\n  gap: 20px;\n  flex-wrap: wrap;\n}\n.horizontal-section button {\n  padding: 12px 20px;\n  font-size: 16px;\n  min-width: 120px;\n}\n.details-section {\n  margin-bottom: 30px;\n}\n.details-section:last-of-type {\n  margin-bottom: 40px;\n}\n.color-section-header {\n  margin: 25px 0 15px 0;\n  padding-top: 15px;\n  border-top: 1px solid var(--g4-color);\n  color: var(--g2-color);\n  font-size: 1.1rem;\n}\n@media (max-width: 768px) {\n  .settings-container {\n    padding: 15px;\n  }\n  .horizontal-section {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  .horizontal-section button {\n    width: 100%;\n  }\n  .filter-select,\n  input[type=file] {\n    max-width: 100%;\n  }\n}\n/*# sourceMappingURL=settings.css.map */\n", "/* src/app/pages/pages.css */\n.results {\n  border: none;\n  border-radius: 8px;\n  margin-top: 20px;\n  border-top: 1px solid var(--g4-color);\n  border-bottom: 1px solid var(--g4-color);\n}\n.no-results {\n  grid-column: 1 / -1;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results p {\n  font-size: 1.1rem;\n  margin: 0;\n}\n@media (max-width: 768px) {\n  .results {\n    grid-template-columns: 1fr;\n  }\n}\n/*# sourceMappingURL=pages.css.map */\n"] }]
+    args: [{ selector: "app-settings", standalone: true, imports: [CommonModule, FormsModule], template: '<article>\r\n  <h1>Settings</h1>\r\n  \r\n  <form (ngSubmit)="saveSettings()">\r\n    <!-- Display Settings -->\r\n    <section class="details-section primary-section">\r\n      <h2>Display Settings</h2>\r\n      \r\n      <div class="form-field hidden">\r\n        <label class="primary-label" for="theme">Theme</label>\r\n        <select id="theme" [(ngModel)]="theme" name="theme" class="filter-select">\r\n          <option value="default">Default</option>\r\n          <option value="dark">Dark</option>\r\n          <option value="light">Light</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field hidden">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="showThumbnails" name="showThumbnails">\r\n          Show Thumbnails\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="form-field hidden">\r\n        <label class="primary-label" for="itemsPerPage">Items Per Page</label>\r\n        <select id="itemsPerPage" [(ngModel)]="itemsPerPage" name="itemsPerPage" class="filter-select">\r\n          <option [value]="6">6</option>\r\n          <option [value]="12">12</option>\r\n          <option [value]="24">24</option>\r\n          <option [value]="48">48</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="defaultSort">Default Sort</label>\r\n        <select id="defaultSort" [(ngModel)]="defaultSort" name="defaultSort" class="filter-select">\r\n          <option value="name">Name</option>\r\n          <option value="date">Date</option>\r\n          <option value="modified">Last Modified</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="fontSize">Font Size</label>\r\n        <select id="fontSize" [(ngModel)]="fontSize" name="fontSize" class="filter-select">\r\n          <option value="small">Small</option>\r\n          <option value="medium">Medium</option>\r\n          <option value="large">Large</option>\r\n          <option value="extra-large">Extra Large</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <h3 class="color-section-header">Entity Colors</h3>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="eventColor">Timeline/Events Color</label>\r\n        <select id="eventColor" [(ngModel)]="eventColor" name="eventColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="locationColor">World/Locations Color</label>\r\n        <select id="locationColor" [(ngModel)]="locationColor" name="locationColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="characterColor">Characters Color</label>\r\n        <select id="characterColor" [(ngModel)]="characterColor" name="characterColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="storyColor">Stories Color</label>\r\n        <select id="storyColor" [(ngModel)]="storyColor" name="storyColor" class="filter-select" (change)="onColorChange()">\r\n          <option value="red">Red</option>\r\n          <option value="orange">Orange</option>\r\n          <option value="yellow">Yellow</option>\r\n          <option value="green">Green</option>\r\n          <option value="blue">Blue</option>\r\n          <option value="purple">Purple</option>\r\n        </select>\r\n      </div>\r\n    </section>\r\n    \r\n    <!-- Application Settings -->\r\n    <section class="details-section primary-section">\r\n      <h2>Application Settings</h2>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="autoSave" name="autoSave">\r\n          Auto Save Changes\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="rememberFilters" name="rememberFilters">\r\n          Remember Filter Settings\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="showAdvancedFilters" name="showAdvancedFilters">\r\n          Show Advanced Filters by Default\r\n        </label>\r\n      </div>\r\n    </section>\r\n    \r\n    <!-- Export/Import Settings -->\r\n    <section class="details-section primary-section">\r\n      <h2>Export & Import</h2>\r\n      \r\n      <div class="form-field">\r\n        <label class="primary-label" for="exportFormat">Export Format</label>\r\n        <select id="exportFormat" [(ngModel)]="exportFormat" name="exportFormat" class="filter-select">\r\n          <option value="json">JSON</option>\r\n          <option value="csv">CSV</option>\r\n          <option value="xml">XML</option>\r\n        </select>\r\n      </div>\r\n      \r\n      <div class="form-field">\r\n        <label class="checkbox-label">\r\n          <input type="checkbox" [(ngModel)]="includeImages" name="includeImages">\r\n          Include Images in Export\r\n        </label>\r\n      </div>\r\n      \r\n      <div class="horizontal-section">\r\n          \r\n          <div class="form-field">\r\n              <label class="primary-label" for="importFile">Import Data</label>\r\n              <input type="file" id="importFile" (change)="importData($event)" accept=".json,.csv,.xml">\r\n            </div>\r\n        </div>\r\n        <button type="button" class="secondary" (click)="exportData()">Export Data</button>\r\n    </section>\r\n    \r\n    <section class="horizontal-section save-button">\r\n      <button type="submit" class="primary">Save Settings</button>\r\n      <button type="button" class="secondary" (click)="resetSettings()">Reset to Defaults</button>\r\n    </section>\r\n  </form>\r\n</article>', styles: ["/* src/app/pages/settings/settings.css */\n.form-field {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 20px;\n  gap: 8px;\n}\n.form-field label {\n  margin-bottom: 5px;\n}\n.checkbox-label {\n  display: flex !important;\n  flex-direction: row !important;\n  align-items: center;\n  gap: 10px;\n  cursor: pointer;\n  padding: 8px;\n  border-radius: 4px;\n  transition: background-color 0.2s ease;\n}\n.checkbox-label:hover {\n  background-color: rgba(255, 255, 255, 0.1);\n}\n.checkbox-label input[type=checkbox] {\n  margin: 0;\n  width: auto;\n}\n.filter-select {\n  max-width: 200px;\n}\ninput[type=file] {\n  padding: 8px;\n  border: 1px solid var(--g3-color);\n  border-radius: 8px;\n  background-color: var(--g5-color);\n  font-family: var(--input-font-family);\n  cursor: pointer;\n  max-width: 250px;\n}\ninput[type=file]:focus {\n  outline: none;\n  border-color: var(--g2-color);\n  background-color: var(--b5-color);\n}\n.horizontal-section {\n  align-items: flex-end;\n  gap: 20px;\n  flex-wrap: wrap;\n}\n.horizontal-section button {\n  padding: 12px 20px;\n  font-size: 16px;\n  min-width: 120px;\n}\n.details-section {\n  margin-bottom: 30px;\n}\n.details-section:last-of-type {\n  margin-bottom: 40px;\n}\n.color-section-header {\n  margin: 25px 0 15px 0;\n  padding-top: 15px;\n  border-top: 1px solid var(--g4-color);\n  color: var(--g2-color);\n  font-size: 1.1rem;\n}\n@media (max-width: 768px) {\n  .settings-container {\n    padding: 15px;\n  }\n  .horizontal-section {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  .horizontal-section button {\n    width: 100%;\n  }\n  .filter-select,\n  input[type=file] {\n    max-width: 100%;\n  }\n}\n/*# sourceMappingURL=settings.css.map */\n", "/* src/app/pages/pages.css */\n.results {\n  border: none;\n  border-radius: 8px;\n  margin-top: 20px;\n  border-top: 1px solid var(--g4-color);\n  border-bottom: 1px solid var(--g4-color);\n}\n.no-results {\n  grid-column: 1 / -1;\n  text-align: center;\n  padding: 2rem;\n  color: var(--g3-color);\n}\n.no-results p {\n  font-size: 1.1rem;\n  margin: 0;\n}\n@media (max-width: 768px) {\n  .results {\n    grid-template-columns: 1fr;\n  }\n}\n/*# sourceMappingURL=pages.css.map */\n"] }]
   }], () => [{ type: SettingsService }], null);
 })();
 (() => {

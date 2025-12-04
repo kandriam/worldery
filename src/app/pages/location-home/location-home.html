@@ -12,7 +12,7 @@
   
   <button class="primary" (click)="addWorldLocation()">Add Location</button>
 
-  <section class="results">
+  <section class="results grid-section">
     @if (filteredLocationList.length) {
       @for (worldLocation of filteredLocationList; track worldLocation.id) {
         <app-location-thumbnail [worldLocation]="worldLocation"></app-location-thumbnail>

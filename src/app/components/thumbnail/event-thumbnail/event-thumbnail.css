@@ -1,5 +1,5 @@
 .event-thumbnail {
   min-width: 10rem;
-  width: fit-content;
-  height: 8rem;
+  width: 10rem;
+  min-height: 8rem;
 }

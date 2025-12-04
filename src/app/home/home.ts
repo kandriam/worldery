@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ViewChild} from '@angular/core';
 import {WorldEventInfo} from '../worldevent';
 import {WorldEventService} from '../services/world-event.service';
 
@@ -22,6 +22,8 @@ import { Router } from '@angular/router';
 })
 
 export class Home {
+  @ViewChild(SearchFilter) searchFilter!: SearchFilter;
+  
   eventService: WorldEventService = inject(WorldEventService);
   filteredEventList: WorldEventInfo[] = [];
   worldEventList: WorldEventInfo[] = [];
@@ -287,5 +289,12 @@ export class Home {
     });
     
     return newId;
+  }
+  
+  onTagClick(tag: string) {
+    console.log('Tag clicked:', tag);
+    if (this.searchFilter) {
+      this.searchFilter.addSearchTerm(tag);
+    }
   }
 }
