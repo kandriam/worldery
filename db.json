@@ -116,6 +116,64 @@
         "Book 1; Chapter 1",
         "Jayara"
       ]
+    },
+    {
+      "id": "8",
+      "name": "Leo's Birthday",
+      "date": "2201-08-16",
+      "characters": [
+        "Leo Deng"
+      ],
+      "location": [
+        "St Paul, Minnesota"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "description": "Leo is born",
+      "tags": [
+        "birthday"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Kiara meets Leo",
+      "date": "2223-07-06",
+      "characters": [
+        "Kiara Ravao",
+        "Leo Deng"
+      ],
+      "location": [
+        "Cat's Tea"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "description": "Kiara meets Leo for the first time at Pages & Paragraphs",
+      "tags": [
+        "Book 1; Chapter 5",
+        "Pages & Paragraphs"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Kiara meets Willow and Matthew",
+      "date": "2212-09-10",
+      "characters": [
+        "Kiara Ravao",
+        "Willow Rivera-Anderson",
+        "Matthew Rivera-Anderson"
+      ],
+      "location": [
+        "St Paul, Minnesota"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "description": "Kiara meets Willow and Matthew at school on the playground",
+      "tags": [
+        "Backstory"
+      ]
     }
   ],
   "worldlocations": [
@@ -247,6 +305,21 @@
         "Sunday Brunch",
         "Rivera-Anderson Family House",
         "Cat's Tea"
+      ],
+      "tags": []
+    },
+    {
+      "id": "8",
+      "name": "Pages & Paragraphs",
+      "description": "A bookstore in St Paul, Minnesota. Kiara works here part-time.",
+      "characters": [
+        "Kiara Ravao"
+      ],
+      "stories": [
+        "Fire & Ice"
+      ],
+      "relatedLocations": [
+        "St Paul, Minnesota"
       ],
       "tags": []
     }

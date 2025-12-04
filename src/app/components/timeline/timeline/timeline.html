@@ -14,11 +14,13 @@
   
   <div class="timeline-content">
     @if (sortedEvents.length > 0) {
+      <div class="timeline-line"></div>
       <div class="timeline">
         @for (event of sortedEvents; track event.id; let i = $index) {
           <app-timeline-event 
             [event]="event"
             [index]="i"
+            [currentEventId]="currentEventId"
             [showDate]="showDate"
             [showLocation]="showLocation"
             [showCharacters]="showCharacters"

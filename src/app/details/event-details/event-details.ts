@@ -10,10 +10,11 @@ import { WorldLocationService } from '../../services/world-location.service';
 import { WorldLocationInfo } from '../../worldlocation';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Timeline } from "src/app/components/timeline/timeline/timeline";
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, Timeline],
   templateUrl: 'event-details.html',
   styleUrls: ["event-details.css", "../details.css", "../../../styles.css"],
 })
@@ -29,11 +30,20 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   characterList = Array<WorldCharacterInfo>();
   storyList = Array<WorldStoryInfo>();
   locationList = Array<WorldLocationInfo>();
+  filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
+
+  // Date dropdown options
+  months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
 
   applyForm = new FormGroup({
     eventTitle: new FormControl(''),
-    eventDate: new FormControl(''),
+    eventYear: new FormControl(''),
+    eventMonth: new FormControl(''),
+    eventDay: new FormControl(''),
     eventDescription: new FormControl(''),
     eventLocation: new FormControl(''),
     eventCharacters: new FormControl(''),
@@ -75,14 +85,35 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     this.worldLocationService.getAllWorldLocations().then((locations) => {
       this.locationList = locations;
     });
+    
+    // Load all events for timeline
+    this.worldEventService.getAllWorldEvents().then((events) => {
+      this.filteredEventList = events;
+    });
   }
 
   private loadEventData(worldEventId: number) {
     this.worldEventService.getWorldEventById(worldEventId).then((worldEvent) => {
       this.worldEvent = worldEvent;
+      
+      // Parse date into separate components
+      const eventDate = worldEvent?.date || '';
+      let year = '', month = '', day = '';
+      
+      if (eventDate) {
+        const dateParts = eventDate.split('-');
+        if (dateParts.length === 3) {
+          year = dateParts[0];
+          month = this.getMonthName(parseInt(dateParts[1]));
+          day = parseInt(dateParts[2]).toString();
+        }
+      }
+      
       this.applyForm.patchValue({
         eventTitle: worldEvent?.name || '',
-        eventDate: worldEvent?.date || '',
+        eventYear: year,
+        eventMonth: month,
+        eventDay: day,
         eventDescription: worldEvent?.description || '',
         eventLocation: worldEvent?.location?.join(', ') || '',
         eventCharacters: worldEvent?.characters?.join(', ') || '',
@@ -166,15 +197,21 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     const selectedLocations = this.getFormLocations();
     
     if (this.worldEvent?.id !== undefined) {
+      const formattedDate = this.formatEventDate(
+        this.applyForm.value.eventYear || '',
+        this.applyForm.value.eventMonth || '',
+        this.applyForm.value.eventDay || ''
+      );
+      
       this.worldEventService.updateWorldEvent(
         this.worldEvent.id,
         this.applyForm.value.eventTitle ?? '',
-        this.applyForm.value.eventDate ?? '',
+        formattedDate,
         this.applyForm.value.eventDescription ?? '',
         selectedLocations.join(', '),
         selectedCharacters.join(', '),
         selectedStories.join(', '),
-        this.applyForm.value.eventTags?.split(', ') ?? [],
+        this.applyForm.value.eventTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
       );
     }
   }
@@ -184,5 +221,44 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldEventService.deleteWorldEvent(this.worldEvent.id);
       this.router.navigate(['/event']);
     }
+  }
+
+  // Helper methods for date handling
+  private getMonthName(monthNumber: number): string {
+    if (monthNumber >= 1 && monthNumber <= 12) {
+      return this.months[monthNumber - 1];
+    }
+    return '';
+  }
+
+  private getMonthNumber(monthName: string): number {
+    const index = this.months.indexOf(monthName);
+    return index >= 0 ? index + 1 : 0;
+  }
+
+  private formatEventDate(year: string, monthName: string, day: string): string {
+    if (!year || !monthName || !day) {
+      return '';
+    }
+    
+    const monthNumber = this.getMonthNumber(monthName);
+    if (monthNumber === 0) {
+      return '';
+    }
+    
+    const paddedMonth = monthNumber.toString().padStart(2, '0');
+    const paddedDay = day.padStart(2, '0');
+    
+    return `${year}-${paddedMonth}-${paddedDay}`;
+  }
+
+  // Timeline methods
+  addWorldEvent() {
+    this.router.navigate(['/event/new']);
+  }
+
+  onTagClicked(tag: string) {
+    // Handle tag click - could navigate to filtered view or show related events
+    console.log('Tag clicked:', tag);
   }
 }

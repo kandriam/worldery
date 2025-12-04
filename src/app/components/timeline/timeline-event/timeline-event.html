@@ -1,4 +1,4 @@
-<div class="timeline-item">
+<div class="timeline-item" [class.current-event]="isCurrentEvent()">
   @if (shouldShowYear()) {
     <div class="year-marker">
       <span class="year-label">{{ getYear(event().date) }}</span>
@@ -16,21 +16,18 @@
       
       @if (showLocation() && event().location.length > 0) {
         <div class="event-info event-location">
-          <span class="info-label">📍</span>
           {{ event().location.join(', ') }}
         </div>
       }
       
       @if (showCharacters() && event().characters.length > 0) {
         <div class="event-info event-characters">
-          <span class="info-label">👥</span>
           {{ event().characters.join(', ') }}
         </div>
       }
       
       @if (showStories() && event().stories.length > 0) {
         <div class="event-info event-stories">
-          <span class="info-label">📖</span>
           {{ event().stories.join(', ') }}
         </div>
       }

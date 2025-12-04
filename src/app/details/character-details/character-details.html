@@ -21,8 +21,17 @@
                     <label class="primary-label" for="character-pronouns">Pronouns</label>
                     <input id="character-pronouns" type="text" formControlName="characterPronouns" placeholder="he/him, she/her, they/them, etc..." />
                     
-                    <label class="primary-label" for="character-birthdate">Birthdate</label>
-                    <input id="character-birthdate" type="text" formControlName="characterBirthdate" placeholder="Enter birthdate..." />
+                    <label class="primary-label">Birthdate</label>
+                    <div class="date-selector">
+                        <input id="character-birth-year" type="number" formControlName="characterBirthYear" placeholder="Year" min="1800" max="3000" />
+                        <select id="character-birth-month" formControlName="characterBirthMonth">
+                            <option value="">Month</option>
+                            @for (month of months; track month) {
+                                <option value="{{ month }}">{{ month }}</option>
+                            }
+                        </select>
+                        <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
+                    </div>
                 </div>
             </div>
             <div class="details-section primary-section horizontal-section">

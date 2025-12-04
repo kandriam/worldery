@@ -12,6 +12,7 @@ import { TimelineEvent } from '../timeline-event/timeline-event';
 })
 export class Timeline {
   @Input() events!: WorldEventInfo[];
+  @Input() currentEventId?: string;
   @Input() title: string = 'Timeline';
   @Input() noResultsMessage: string = 'No events found';
   

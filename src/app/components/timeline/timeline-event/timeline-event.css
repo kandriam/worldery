@@ -8,6 +8,30 @@
   transition: all 0.3s ease;
 }
 
+/* Current Event Highlighting */
+.timeline-item.current-event .timeline-content-wrapper {
+  /* background: var(--b1-color); */
+  border-color: var(--event-color);
+  box-shadow: 0 0.5rem 2rem var(--event-color);
+  transform: translateY(-0.25rem);
+}
+
+.timeline-item.current-event .timeline-connector {
+  background: var(--g1-color);
+  border-color: var(--event-color);
+  box-shadow: 0 0 1.5rem var(--event-color);
+  transform: translateX(-50%) scale(1.3);
+}
+
+.timeline-item.current-event .event-title {
+  /* color: var(--g5-color); */
+  font-weight: bold;
+}
+
+.timeline-item.current-event .timeline-date {
+  /* color: var(--g5-color); */
+}
+
 /* Year Markers */
 .year-marker {
   position: absolute;
@@ -19,7 +43,7 @@
 
 .year-label {
   background: var(--event-color);
-  color: var(--g5-color);
+  color: var(--g1-color);
   padding: 0.5rem 1rem;
   border-radius: 1.25rem;
   font-weight: bold;
@@ -87,11 +111,13 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
 .timeline-item:hover .event-title {
   -webkit-line-clamp: unset;
+  line-clamp: unset;
   overflow: visible;
 }
 
@@ -142,8 +168,21 @@
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
-  font-size: 0.875rem;
+  font-size: x-small;
   color: var(--g2-color);
+
+  &.event-location::before {
+    content: '📍';
+    margin-right: 0.5rem;
+  }
+  &.event-characters::before {
+    content: '👥';
+    margin-right: 0.5rem;
+  }
+  &.event-stories::before {
+    content: '📖';
+    margin-right: 0.5rem;
+  }
 }
 
 .info-label {
@@ -153,7 +192,7 @@
 
 .event-description {
   margin: 0.9375rem 0;
-  font-size: 0.875rem;
+  font-size: small;
   line-height: 1.5;
   color: var(--g1-color);
 }
@@ -204,7 +243,7 @@
   }
   
   .event-title {
-    font-size: 0.875rem;
+    font-size: 0.5rem;
   }
   
   .year-marker {

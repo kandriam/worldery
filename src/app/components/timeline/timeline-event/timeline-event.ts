@@ -13,6 +13,7 @@ import { WorldEventInfo } from '../../../worldevent';
 export class TimelineEvent {
   event = input.required<WorldEventInfo>();
   index = input.required<number>();
+  currentEventId = input<string | undefined>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
   showCharacters = input<boolean>(true);
@@ -26,7 +27,9 @@ export class TimelineEvent {
   }
   
   formatDate(dateString: string): string {
-    const date = new Date(dateString);
+    // Parse YYYY-MM-DD format to avoid timezone issues
+    const [year, month, day] = dateString.split('-').map(num => parseInt(num, 10));
+    const date = new Date(year, month - 1, day); // month is 0-based in JS Date
     return date.toLocaleDateString('en-US', { 
       year: 'numeric', 
       month: 'short', 
@@ -35,6 +38,11 @@ export class TimelineEvent {
   }
   
   getYear(dateString: string): string {
-    return new Date(dateString).getFullYear().toString();
+    const [year] = dateString.split('-').map(num => parseInt(num, 10));
+    return year.toString();
+  }
+  
+  isCurrentEvent(): boolean {
+    return this.currentEventId() === this.event().id.toString();
   }
 }

@@ -24,12 +24,20 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   storyList = Array<WorldStoryInfo>();
   private routeSubscription: Subscription | undefined;
 
+  // Date dropdown options
+  months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
   applyForm = new FormGroup({
     characterFirstName: new FormControl(''),
     characterLastName: new FormControl(''),
     characterAltNames: new FormControl(''),
     characterPronouns: new FormControl(''),
-    characterBirthdate: new FormControl(''),
+    characterBirthYear: new FormControl(''),
+    characterBirthMonth: new FormControl(''),
+    characterBirthDay: new FormControl(''),
     characterRoles: new FormControl(''),
     characterAffiliations: new FormControl(''),
     characterRelationships: new FormControl(''),
@@ -65,12 +73,28 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   private loadCharacterData(worldCharacterId: number) {
     this.worldCharacterService.getWorldCharacterById(worldCharacterId).then((worldCharacter) => {
       this.worldCharacter = worldCharacter;
+      
+      // Parse birthdate into separate components
+      const birthdate = worldCharacter?.birthdate || '';
+      let year = '', month = '', day = '';
+      
+      if (birthdate) {
+        const dateParts = birthdate.split('-');
+        if (dateParts.length === 3) {
+          year = dateParts[0];
+          month = this.getMonthName(parseInt(dateParts[1]));
+          day = parseInt(dateParts[2]).toString();
+        }
+      }
+      
       this.applyForm.patchValue({
         characterFirstName: worldCharacter?.firstName || '',
         characterLastName: worldCharacter?.lastName || '',
         characterAltNames: worldCharacter?.altNames?.join(', ') || '',
         characterPronouns: worldCharacter?.pronouns || '',
-        characterBirthdate: worldCharacter?.birthdate || '',
+        characterBirthYear: year,
+        characterBirthMonth: month,
+        characterBirthDay: day,
         characterRoles: worldCharacter?.roles?.join(', ') || '',
         characterAffiliations: worldCharacter?.affiliations?.join(', ') || '',
         characterRelationships: worldCharacter?.relationships?.join(', ') || '',
@@ -232,20 +256,26 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
     
     if (this.worldCharacter?.id !== undefined) {
+      const formattedBirthdate = this.formatBirthdate(
+        this.applyForm.value.characterBirthYear || '',
+        this.applyForm.value.characterBirthMonth || '',
+        this.applyForm.value.characterBirthDay || ''
+      );
+      
       this.worldCharacterService.updateWorldCharacter(
         this.worldCharacter.id,
         this.applyForm.value.characterFirstName ?? '',
         this.applyForm.value.characterLastName ?? '',
-        this.applyForm.value.characterAltNames?.split(', ') ?? [],
-        this.applyForm.value.characterBirthdate ?? '',
+        this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [],
+        formattedBirthdate,
         this.applyForm.value.characterPronouns ?? '',
-        this.applyForm.value.characterRoles?.split(', ') ?? [],
-        this.applyForm.value.characterAffiliations?.split(', ') ?? [],
+        this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [],
+        this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [],
         relationships,
         this.applyForm.value.characterPhysicalDescription ?? '',
         this.applyForm.value.characterNonPhysicalDescription ?? '',
         selectedStories,
-        this.applyForm.value.characterTags?.split(', ') ?? [],
+        this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
       );
       
       // Ensure all story records are updated to reflect their association with this character
@@ -288,5 +318,34 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       this.worldCharacterService.deleteWorldCharacter(this.worldCharacter.id);
       this.router.navigate(['/character']);
     }
+  }
+
+  // Helper methods for birthdate handling
+  private getMonthName(monthNumber: number): string {
+    if (monthNumber >= 1 && monthNumber <= 12) {
+      return this.months[monthNumber - 1];
+    }
+    return '';
+  }
+
+  private getMonthNumber(monthName: string): number {
+    const index = this.months.indexOf(monthName);
+    return index >= 0 ? index + 1 : 0;
+  }
+
+  private formatBirthdate(year: string, monthName: string, day: string): string {
+    if (!year || !monthName || !day) {
+      return '';
+    }
+    
+    const monthNumber = this.getMonthNumber(monthName);
+    if (monthNumber === 0) {
+      return '';
+    }
+    
+    const paddedMonth = monthNumber.toString().padStart(2, '0');
+    const paddedDay = day.padStart(2, '0');
+    
+    return `${year}-${paddedMonth}-${paddedDay}`;
   }
 }

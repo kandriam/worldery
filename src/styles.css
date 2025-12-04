@@ -185,6 +185,22 @@ button{
 input {
   display: block;
   font-family: var(--input-font-family);
+
+  /* &[type="number"] {
+    width: 4rem;
+    text-align: center;
+
+    background-color: inherit;
+  } */
+}
+
+/* Date input groups */
+.horizontal-section input[type="number"] {
+  flex: 0 0 auto;
+}
+
+.horizontal-section select {
+  flex: 1;
 }
 
 label {
@@ -308,6 +324,27 @@ textarea {
   width: fit-content;
 }
 
+.date-selector {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  input[type="number"], select {
+    display: block;
+    background-color: inherit;
+    border: none;
+    border-bottom: solid 1px var(--g3-color);
+    margin-bottom: 15px;
+    border-radius: 5px;
+
+    font-family: var(--headings-font-family);
+
+    &:focus {
+      outline: none;
+      background-color: var(--b5-color);
+    } 
+  }
+}
 /* ============================================================================
    SCROLLBAR STYLES
    ============================================================================ */
@@ -429,7 +466,6 @@ textarea {
 .spanning-section {
   /* width: 100%; */
   display: flex;
-  width: 100%;
 }
 
 .grid-section {

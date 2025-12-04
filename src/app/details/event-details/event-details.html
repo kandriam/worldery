@@ -11,8 +11,17 @@
                     <input id="event-title" type="text" formControlName="eventTitle" placeholder="Enter event name..." />
                 </div>
                 <div class="details-section secondary-section">
-                    <label class="primary-label" for="event-date">Date</label>
-                    <input id="event-date" type="text" formControlName="eventDate" placeholder="Enter event date..." />
+                    <label class="primary-label">Date</label>
+                    <div class="date-selector">
+                        <input id="event-year" type="number" formControlName="eventYear" placeholder="Year" min="1800" max="3000" />
+                        <select id="event-month" formControlName="eventMonth">
+                            <option value="">Month</option>
+                            @for (month of months; track month) {
+                                <option value="{{ month }}">{{ month }}</option>
+                            }
+                        </select>
+                        <input id="event-day" type="number" formControlName="eventDay" placeholder="Day" min="1" max="31" />
+                    </div>
                 </div>
             </div>
             
@@ -77,4 +86,13 @@
         </section>
         <button type="submit" class="save-button primary">Save</button>
     </form>
+
+    <app-timeline
+      [events]="filteredEventList"
+      [currentEventId]="worldEvent?.id?.toString()"
+      title="Events Timeline"
+      noResultsMessage="No events found. Try adjusting your search or add a new event."
+      (addElement)="addWorldEvent()"
+      (tagClicked)="onTagClicked($event)">
+    </app-timeline>
 </article>
