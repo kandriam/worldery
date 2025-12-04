@@ -155,28 +155,41 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     return relatedLocations;
   }
 
-  submitApplication() {
+  async submitApplication() {
     const selectedCharacters = this.getFormCharacters();
     const selectedStories = this.getFormStories();
     const selectedRelatedLocations = this.getFormRelatedLocations();
     
     if (this.worldLocation?.id !== undefined) {
-      this.worldLocationService.updateWorldLocation(
-        this.worldLocation.id,
-        this.applyForm.value.locationTitle ?? '',
-        this.applyForm.value.locationDescription ?? '',
-        selectedCharacters,
-        selectedStories,
-        selectedRelatedLocations,
-        this.applyForm.value.locationTags?.split(', ') ?? [],
-      );
+      try {
+        await this.worldLocationService.updateWorldLocation(
+          this.worldLocation.id,
+          this.applyForm.value.locationTitle ?? '',
+          this.applyForm.value.locationDescription ?? '',
+          selectedCharacters,
+          selectedStories,
+          selectedRelatedLocations,
+          this.applyForm.value.locationTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
+        );
+        console.log('Location updated successfully');
+        // Optionally refresh the data or show a success message
+        this.loadLocationData(this.worldLocation.id);
+      } catch (error) {
+        console.error('Failed to update location:', error);
+        // Optionally show an error message to the user
+      }
     }
   }
 
-  deleteLocation() {
+  async deleteLocation() {
     if (this.worldLocation?.id && confirm(`Are you sure you want to delete "${this.worldLocation.name}"? This action cannot be undone.`)) {
-      this.worldLocationService.deleteWorldLocation(this.worldLocation.id);
-      this.router.navigate(['/location']);
+      try {
+        await this.worldLocationService.deleteWorldLocation(this.worldLocation.id);
+        this.router.navigate(['/location']);
+      } catch (error) {
+        console.error('Failed to delete location:', error);
+        // Optionally show an error message to the user
+      }
     }
   }
 }

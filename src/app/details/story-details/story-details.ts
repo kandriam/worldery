@@ -191,104 +191,41 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     return locations;
   }
 
-  submitApplication() {
+  async submitApplication() {
     const selectedCharacters = this.getFormCharacters();
     const selectedLocations = this.getFormLocations();
     
     if (this.worldStory?.id !== undefined) {
-      // Update the story with selected characters and locations
-      this.worldStoryService.updateWorldStory(
-        this.worldStory.id,
-        this.applyForm.value.storyTitle ?? '',
-        this.applyForm.value.storyDescription ?? '',
-        selectedCharacters,
-        selectedLocations,
-        this.applyForm.value.storyTags?.split(', ') ?? [],
-      );
-      
-      // Ensure all character records are updated to reflect their association with this story
-      const storyTitle = this.applyForm.value.storyTitle ?? '';
-      
-      // Update each character's story list based on checkbox selections
-      for (let character of this.characterList) {
-        const isSelected = selectedCharacters.includes(`${character.firstName} ${character.lastName}`);
+      try {
+        // The service now handles bidirectional relationships automatically
+        await this.worldStoryService.updateWorldStory(
+          this.worldStory.id,
+          this.applyForm.value.storyTitle ?? '',
+          this.applyForm.value.storyDescription ?? '',
+          selectedCharacters,
+          selectedLocations,
+          this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
+        );
         
-        this.worldCharacterService.getWorldCharacterById(character.id).then((fullCharacter) => {
-          if (fullCharacter) {
-            let updatedStories = fullCharacter.stories || [];
-            const hasStory = updatedStories.includes(storyTitle);
-            
-            if (isSelected && !hasStory) {
-              // Add story if selected but not in character's list
-              updatedStories.push(storyTitle);
-              this.updateCharacterStories(character, fullCharacter, updatedStories);
-            } else if (!isSelected && hasStory) {
-              // Remove story if not selected but in character's list
-              updatedStories = updatedStories.filter(story => story !== storyTitle);
-              this.updateCharacterStories(character, fullCharacter, updatedStories);
-            }
-          }
-        });
-      }
-      
-      // Update each location's story list based on checkbox selections
-      for (let location of this.locationList) {
-        const isSelected = selectedLocations.includes(location.name);
-        
-        this.worldLocationService.getWorldLocationById(location.id).then((fullLocation) => {
-          if (fullLocation) {
-            let updatedStories = fullLocation.stories || [];
-            const hasStory = updatedStories.includes(storyTitle);
-            
-            if (isSelected && !hasStory) {
-              // Add story if selected but not in location's list
-              updatedStories.push(storyTitle);
-              this.updateLocationStories(location, fullLocation, updatedStories);
-            } else if (!isSelected && hasStory) {
-              // Remove story if not selected but in location's list
-              updatedStories = updatedStories.filter(story => story !== storyTitle);
-              this.updateLocationStories(location, fullLocation, updatedStories);
-            }
-          }
-        });
+        console.log('Story updated successfully');
+        // Optionally refresh the data
+        this.loadStoryData(this.worldStory.id);
+      } catch (error) {
+        console.error('Failed to update story:', error);
+        // Optionally show an error message to the user
       }
     }
   }
   
-  private updateCharacterStories(character: WorldCharacterInfo, fullCharacter: WorldCharacterInfo, updatedStories: string[]) {
-    this.worldCharacterService.updateWorldCharacter(
-      character.id,
-      fullCharacter.firstName,
-      fullCharacter.lastName,
-      fullCharacter.altNames || [],
-      fullCharacter.birthdate || '',
-      fullCharacter.pronouns || '',
-      fullCharacter.roles || [],
-      fullCharacter.affiliations || [],
-      fullCharacter.relationships || [],
-      fullCharacter.physicalDescription || '',
-      fullCharacter.nonPhysicalDescription || '',
-      updatedStories,
-      fullCharacter.tags || []
-    );
-  }
-  
-  private updateLocationStories(location: WorldLocationInfo, fullLocation: WorldLocationInfo, updatedStories: string[]) {
-    this.worldLocationService.updateWorldLocation(
-      location.id,
-      fullLocation.name,
-      fullLocation.description,
-      fullLocation.characters || [],
-      updatedStories,
-      fullLocation.relatedLocations || [],
-      fullLocation.tags || []
-    );
-  }
-
-  deleteStory() {
+  async deleteStory() {
     if (this.worldStory?.id && confirm(`Are you sure you want to delete "${this.worldStory.title}"? This action cannot be undone.`)) {
-      this.worldStoryService.deleteWorldStory(this.worldStory.id);
-      this.router.navigate(['/story']);
+      try {
+        await this.worldStoryService.deleteWorldStory(this.worldStory.id);
+        this.router.navigate(['/story']);
+      } catch (error) {
+        console.error('Failed to delete story:', error);
+        // Optionally show an error message to the user
+      }
     }
   }
 }

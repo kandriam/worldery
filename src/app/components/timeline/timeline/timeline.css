@@ -62,7 +62,7 @@
 
 .display-button {
   border: 1px solid var(--g2-color);
-  background-color: var(--g4-color);
+  background-color: var(--g5-color);
   color: var(--g1-color);
   padding: 4px 8px;
   border-radius: 8px;
@@ -70,17 +70,22 @@
   font-weight: normal;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--g3-color);
+  }
+  
+  &.active {
+    background-color: var(--g4-color);
+    color: var(--g5-color);
+    font-weight: bold;
+
+    &:hover {
+      background-color: var(--g3-color);
+    }
+  }
 }
 
-.display-button:hover {
-  background-color: var(--g3-color);
-}
-
-.display-button.active {
-  background-color: var(--g1-color);
-  color: var(--g5-color);
-  font-weight: bold;
-}
 
 .display-button.date::after {
   content: '📅';
@@ -133,24 +138,6 @@
   scrollbar-width: thin;
   scrollbar-color: var(--event-color) var(--g4-color);
 }
-
-/* .timeline::-webkit-scrollbar {
-  height: 0.5rem;
-}
-
-.timeline::-webkit-scrollbar-track {
-  background: var(--g4-color);
-  border-radius: 0.25rem;
-}
-
-.timeline::-webkit-scrollbar-thumb {
-  background: var(--event-color);
-  border-radius: 0.25rem;
-}
-
-.timeline::-webkit-scrollbar-thumb:hover {
-  background: var(--g1-color);
-} */
 
 .timeline::before {
   content: '';

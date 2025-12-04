@@ -25,9 +25,7 @@
       "characters": [
         "Judy Han"
       ],
-      "location": [
-        "Minnesota"
-      ],
+      "location": [],
       "stories": [
         "Fire & Ice"
       ],
@@ -43,8 +41,7 @@
       "characters": [
         "Cassandra Edwards"
       ],
-      "location": [
-      ],
+      "location": [],
       "stories": [
         "Fire & Ice"
       ],
@@ -58,8 +55,7 @@
       "name": "Rudy's Birthday",
       "date": "2200-06-01",
       "description": "Rudy is born",
-      "location": [
-      ],
+      "location": [],
       "characters": [
         "Cassandra Edwards",
         "Rudy Edwards"
@@ -78,9 +74,7 @@
       "characters": [
         "Willow Rivera-Anderson"
       ],
-      "location": [
-        "Minnesota"
-      ],
+      "location": [],
       "stories": [
         "Fire & Ice"
       ],
@@ -96,9 +90,7 @@
       "characters": [
         "Matthew Rivera-Anderson"
       ],
-      "location": [
-        "Minnesota"
-      ],
+      "location": [],
       "stories": [
         "Fire & Ice"
       ],
@@ -115,9 +107,7 @@
         "Kiara Ravao",
         "Judy Han"
       ],
-      "location": [
-        "St Paul, Minnesota"
-      ],
+      "location": [],
       "stories": [
         "Fire & Ice"
       ],
@@ -142,8 +132,7 @@
         "Blood & Water"
       ],
       "relatedLocations": [
-        "Sunday Brunch",
-        "Cat's Tea"
+        "St Paul, Minnesota"
       ],
       "tags": [
         "Jayara",
@@ -155,17 +144,16 @@
       "name": "Sunday Brunch",
       "description": "Cafe which serves as a front for the Soldiers of Rebellion. Owned by Cassandra and Rudy Edwards.",
       "characters": [
-        "Rudy Edwards",
+        "Judy Han",
         "Cassandra Edwards",
-        "Judy Han"
+        "Rudy Edwards"
       ],
       "stories": [
         "Fire & Ice",
         "Blood & Water"
       ],
       "relatedLocations": [
-        "SafeHouse",
-        "Jayara Apartment"
+        "St Paul, Minnesota"
       ],
       "tags": [
         "cafe",
@@ -203,7 +191,9 @@
         "Fire & Ice",
         "Blood & Water"
       ],
-      "relatedLocations": [],
+      "relatedLocations": [
+        "St Paul, Minnesota"
+      ],
       "tags": [
         "housing"
       ]
@@ -213,23 +203,51 @@
       "name": "Cat's Tea",
       "description": "A quaint tea shop owned by the Deng family.",
       "characters": [
+        "Matthew Rivera-Anderson",
         "Leo Deng"
       ],
       "stories": [
         "Fire & Ice"
       ],
-      "relatedLocations": [],
+      "relatedLocations": [
+        "St Paul, Minnesota"
+      ],
       "tags": [
         "tea"
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "New Location",
       "description": "",
       "characters": [],
       "stories": [],
       "relatedLocations": [],
+      "tags": []
+    },
+    {
+      "id": "7",
+      "name": "St Paul, Minnesota",
+      "description": "",
+      "characters": [
+        "Kiara Ravao",
+        "Judy Han",
+        "Cassandra Edwards",
+        "Rudy Edwards",
+        "Willow Rivera-Anderson",
+        "Matthew Rivera-Anderson",
+        "Leo Deng"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water"
+      ],
+      "relatedLocations": [
+        "Jayara Apartment",
+        "Sunday Brunch",
+        "Rivera-Anderson Family House",
+        "Cat's Tea"
+      ],
       "tags": []
     }
   ],

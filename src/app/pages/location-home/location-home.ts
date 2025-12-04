@@ -65,9 +65,14 @@ export class LocationHome {
     this.filteredLocationList = filtered;
   }
 
-  addWorldLocation() {
+  async addWorldLocation() {
     console.log('Adding new location');
-    this.locationService.createWorldLocation('New Location', '', [], [], []);
+    try {
+      await this.locationService.createWorldLocation('New Location', '', [], [], []);
+      console.log('Location created successfully');
+    } catch (error) {
+      console.error('Failed to create location:', error);
+    }
   }
 
   onTagClicked(tag: string) {

@@ -22,7 +22,7 @@ export class WorldCharacterService {
     return await data.json() ?? [];
   }
 
-  updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
@@ -39,30 +39,43 @@ export class WorldCharacterService {
       characterStories: ${characterStories},
       characterTags: ${characterTags}.`,
     );
-    fetch(`${this.url}/${characterID}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: characterID,
-        firstName: characterFirstName,
-        lastName: characterLastName,
-        altNames: characterAltNames,
-        birthdate: characterBirthdate,
-        pronouns: characterPronouns,
-        roles: characterRoles,
-        affiliations: characterAffiliations,
-        relationships: characterRelationships,
-        physicalDescription: characterPhysicalDescription,
-        nonPhysicalDescription: characterNonPhysicalDescription,
-        stories: characterStories,
-        tags: characterTags,
-      }),
-    });
+    
+    try {
+      const response = await fetch(`${this.url}/${characterID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: characterID,
+          firstName: characterFirstName,
+          lastName: characterLastName,
+          altNames: characterAltNames,
+          birthdate: characterBirthdate,
+          pronouns: characterPronouns,
+          roles: characterRoles,
+          affiliations: characterAffiliations,
+          relationships: characterRelationships,
+          physicalDescription: characterPhysicalDescription,
+          nonPhysicalDescription: characterNonPhysicalDescription,
+          stories: characterStories,
+          tags: characterTags,
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to update character: ${response.statusText}`);
+      }
+      
+      console.log('Character updated successfully');
+      return await response.json();
+    } catch (error) {
+      console.error('Error updating character:', error);
+      throw error;
+    }
   }
 
-  createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character created:
       characterFirstName: ${characterFirstName},
@@ -78,12 +91,16 @@ export class WorldCharacterService {
       characterStories: ${characterStories},
       characterTags: ${characterTags}.`,
     );
-    this.getAllWorldCharacters().then(characters => {
-      console.log(characters.length);
+    
+    try {
+      const characters = await this.getAllWorldCharacters();
+      console.log('Current characters count:', characters.length);
+      
       // determine next id
       const maxId = characters.length > 0 ? Math.max(...characters.map(e => e.id)) : 0;
-      const newId = String(maxId + 1);
-      fetch(this.url, {
+      const newId = maxId + 1;
+      
+      const response = await fetch(this.url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -104,16 +121,38 @@ export class WorldCharacterService {
           tags: characterTags,
         }),
       });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to create character: ${response.statusText}`);
+      }
+      
+      console.log('Character created successfully');
+      const newCharacter = await response.json();
       window.location.reload();
-    });
+      return newCharacter;
+    } catch (error) {
+      console.error('Error creating character:', error);
+      throw error;
+    }
   }
 
-  deleteWorldCharacter(characterID: number) {
+  async deleteWorldCharacter(characterID: number) {
     console.log(`Deleting character with ID: ${characterID}`);
-    fetch(`${this.url}/${characterID}`, {
-      method: 'DELETE',
-    });
-    window.location.reload();
+    try {
+      const response = await fetch(`${this.url}/${characterID}`, {
+        method: 'DELETE',
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to delete character: ${response.statusText}`);
+      }
+      
+      console.log('Character deleted successfully');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting character:', error);
+      throw error;
+    }
   }
   
   updateCharacterRelationships(characterID: number, relatedCharacterName: string, relationships: worldCharacterRelationship[]) {

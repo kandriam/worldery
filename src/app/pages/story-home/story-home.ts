@@ -79,9 +79,14 @@ export class StoryHome {
     this.filteredStoryList = filtered;
   }
 
-  addWorldStory() {
+  async addWorldStory() {
     console.log('Adding new story');
-    this.storyService.createWorldStory('New Story', '', [], [], []);
+    try {
+      await this.storyService.createWorldStory('New Story', '', [], [], []);
+      console.log('Story created successfully');
+    } catch (error) {
+      console.error('Failed to create story:', error);
+    }
   }
 
   onTagClicked(tag: string) {

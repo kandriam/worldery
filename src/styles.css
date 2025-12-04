@@ -323,7 +323,7 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--event-color);
+  background: var(--b3-color);
   border-radius: 0.25rem;
 }
 
