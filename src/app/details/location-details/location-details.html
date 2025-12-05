@@ -21,47 +21,28 @@
             
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
-                    <label class="primary-label" for="location-characters">Location Characters</label>
-                    <!-- <input id="location-characters" type="text" formControlName="locationCharacters" /> -->
-                    <div class="vertical-section">
-                        @for(character of characterList; track character) {
-                            <div class="form-field">
-                                <input type="checkbox" id="character-checkbox-{{character.id}}" [value]="character.id" (change)="onCharacterChange($event, character)" [checked]="isCharacterInLocation(character.firstName + ' ' + character.lastName)" />
-                                <button class="linked-character" [routerLink]="['/character', character.id]" type="button">
-                                    <label class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
-                                </button>
-                            </div>
-                        }
-                    </div>
+                    <app-association-list
+                        [items]="getCharactersAssociationList()"
+                        [label]="'Location Characters'"
+                        [type]="'character'"
+                        (itemToggled)="onCharacterToggle($event)">
+                    </app-association-list>
                 </div>
                 <div class="details-section secondary-section">
-                    <label class="primary-label" for="location-stories">Location Stories</label>
-                    <!-- <input id="location-stories" type="text" formControlName="locationStories" /> -->
-                    <div class="vertical-section">
-                        @for(story of storyList; track story) {
-                            <div class="form-field">
-                                <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story)" [checked]="isStoryInLocation(story.title)" />
-                                <button class="linked-story" [routerLink]="['/story', story.id]" type="button">
-                                    <label class="secondary-label">{{ story.title }}</label>
-                                </button>
-                            </div>
-                        }
-                    </div>
+                    <app-association-list
+                        [items]="getStoriesAssociationList()"
+                        [label]="'Location Stories'"
+                        [type]="'story'"
+                        (itemToggled)="onStoryToggle($event)">
+                    </app-association-list>
                 </div>
                 <div class="details-section secondary-section">
-                    <label class="primary-label" for="location-related-locations">Related Locations</label>
-                    <div class="vertical-section">
-                        @for(location of locationList; track location) {
-                            @if(worldLocation?.id !== location.id) {
-                                <div class="form-field">
-                                    <input type="checkbox" id="related-location-checkbox-{{location.id}}" [value]="location.id" (change)="onRelatedLocationChange($event, location)" [checked]="isRelatedLocationInLocation(location.name)" />
-                                    <button class="linked-location" [routerLink]="['/location', location.id]" type="button">
-                                        <label class="secondary-label">{{ location.name }}</label>
-                                    </button>
-                                </div>
-                            }
-                        }
-                    </div>
+                    <app-association-list
+                        [items]="getRelatedLocationsAssociationList()"
+                        [label]="'Related Locations'"
+                        [type]="'location'"
+                        (itemToggled)="onRelatedLocationToggle($event)">
+                    </app-association-list>
                 </div>
             </div>
             

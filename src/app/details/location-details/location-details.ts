@@ -9,12 +9,13 @@ import { WorldStoryService } from '../../services/world-story.service';
 import { WorldStoryInfo } from '../../worldstory';
 import { WorldEventInfo } from '../../worldevent';
 import { Timeline } from '../../components/timeline/timeline/timeline';
+import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, Timeline],
+  imports: [ReactiveFormsModule, RouterLink, Timeline, AssociationList],
   templateUrl: 'location-details.html',
   styleUrls: ["location-details.css", "../details.css", "../../../styles.css"],
 })
@@ -88,6 +89,15 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   private loadLocationData(worldLocationId: string) {
     this.worldLocationService.getWorldLocationById(worldLocationId).then((worldLocation) => {
       this.worldLocation = worldLocation;
+      
+      // Ensure arrays are initialized
+      if (this.worldLocation) {
+        this.worldLocation.characters = this.worldLocation.characters || [];
+        this.worldLocation.stories = this.worldLocation.stories || [];
+        this.worldLocation.relatedLocations = this.worldLocation.relatedLocations || [];
+        this.worldLocation.tags = this.worldLocation.tags || [];
+      }
+      
       this.applyForm.patchValue({
         locationTitle: worldLocation?.name || '',
         locationDescription: worldLocation?.description || '',
@@ -113,6 +123,75 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
 
   isRelatedLocationInLocation(locationName: string): boolean {
     return this.worldLocation?.relatedLocations?.includes(locationName) || false;
+  }
+
+  getCharactersAssociationList(): AssociationItem[] {
+    return this.characterList.map(character => ({
+      id: character.id,
+      name: `${character.firstName} ${character.lastName}`,
+      isAssociated: this.isCharacterInLocation(`${character.firstName} ${character.lastName}`)
+    }));
+  }
+
+  getStoriesAssociationList(): AssociationItem[] {
+    return this.storyList.map(story => ({
+      id: story.id,
+      name: story.title,
+      isAssociated: this.isStoryInLocation(story.title)
+    }));
+  }
+
+  getRelatedLocationsAssociationList(): AssociationItem[] {
+    return this.locationList
+      .filter(location => this.worldLocation?.id !== location.id)
+      .map(location => ({
+        id: location.id,
+        name: location.name,
+        isAssociated: this.isRelatedLocationInLocation(location.name)
+      }));
+  }
+
+  onCharacterToggle(event: {id: string, isChecked: boolean}) {
+    const character = this.characterList.find(c => c.id === event.id);
+    if (character && this.worldLocation) {
+      const characterName = `${character.firstName} ${character.lastName}`;
+      if (event.isChecked) {
+        if (!this.worldLocation.characters.includes(characterName)) {
+          this.worldLocation.characters.push(characterName);
+        }
+      } else {
+        this.worldLocation.characters = this.worldLocation.characters.filter(name => name !== characterName);
+      }
+      console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} location`);
+    }
+  }
+
+  onStoryToggle(event: {id: string, isChecked: boolean}) {
+    const story = this.storyList.find(s => s.id === event.id);
+    if (story && this.worldLocation) {
+      if (event.isChecked) {
+        if (!this.worldLocation.stories.includes(story.title)) {
+          this.worldLocation.stories.push(story.title);
+        }
+      } else {
+        this.worldLocation.stories = this.worldLocation.stories.filter(title => title !== story.title);
+      }
+      console.log(`Story ${story.title} ${event.isChecked ? 'added to' : 'removed from'} location`);
+    }
+  }
+
+  onRelatedLocationToggle(event: {id: string, isChecked: boolean}) {
+    const location = this.locationList.find(l => l.id === event.id);
+    if (location && this.worldLocation) {
+      if (event.isChecked) {
+        if (!this.worldLocation.relatedLocations.includes(location.name)) {
+          this.worldLocation.relatedLocations.push(location.name);
+        }
+      } else {
+        this.worldLocation.relatedLocations = this.worldLocation.relatedLocations.filter(name => name !== location.name);
+      }
+      console.log(`Related location ${location.name} ${event.isChecked ? 'added to' : 'removed from'} location`);
+    }
   }
 
   onCharacterChange(event: Event, character: WorldCharacterInfo) {
@@ -170,19 +249,15 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   }
 
   async submitApplication() {
-    const selectedCharacters = this.getFormCharacters();
-    const selectedStories = this.getFormStories();
-    const selectedRelatedLocations = this.getFormRelatedLocations();
-    
     if (this.worldLocation?.id !== undefined) {
       try {
         await this.worldLocationService.updateWorldLocation(
           this.worldLocation.id,
           this.applyForm.value.locationTitle ?? '',
           this.applyForm.value.locationDescription ?? '',
-          selectedCharacters,
-          selectedStories,
-          selectedRelatedLocations,
+          this.worldLocation.characters,
+          this.worldLocation.stories,
+          this.worldLocation.relatedLocations,
           this.applyForm.value.locationTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
         );
         console.log('Location updated successfully');

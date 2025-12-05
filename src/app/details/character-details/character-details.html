@@ -88,7 +88,7 @@
                     <app-association-list
                         [items]="getStoriesAssociationList()"
                         [label]="'Stories'"
-                        [routePrefix]="'story'"
+                        [type]="'story'"
                         (itemToggled)="onStoryToggle($event)">
                     </app-association-list>
                 </div>
@@ -100,7 +100,7 @@
                     <app-association-list
                         [items]="getLocationsAssociationList()"
                         [label]="'Associated Locations'"
-                        [routePrefix]="'location'"
+                        [type]="'location'"
                         (itemToggled)="onLocationToggle($event)">
                     </app-association-list>
                 </div>

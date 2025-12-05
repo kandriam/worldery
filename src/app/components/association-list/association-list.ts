@@ -7,6 +7,8 @@ export interface AssociationItem {
   isAssociated: boolean;
 }
 
+export type EntityType = 'character' | 'event' | 'location' | 'story';
+
 @Component({
   selector: 'app-association-list',
   standalone: true,
@@ -17,9 +19,13 @@ export interface AssociationItem {
 export class AssociationList {
   @Input() items: AssociationItem[] = [];
   @Input() label: string = 'Associations';
-  @Input() routePrefix: string = '';
+  @Input() type: EntityType = 'story';
   
   @Output() itemToggled = new EventEmitter<{id: string, isChecked: boolean}>();
+
+  get routePrefix(): string {
+    return this.type;
+  }
 
   onItemChange(event: Event, itemId: string) {
     if (event.target instanceof HTMLInputElement) {

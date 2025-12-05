@@ -10,7 +10,7 @@ import { WorldEventInfo } from '../../worldevent';
 import { WorldLocationInfo } from '../../worldlocation';
 import { WorldStoryService } from '../../services/world-story.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
-import { AssociationList, AssociationItem } from '../../components/association-list/association-list';
+import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { Subscription } from 'rxjs';
 
 @Component({

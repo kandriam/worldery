@@ -11,10 +11,11 @@ import { WorldLocationInfo } from '../../worldlocation';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Timeline } from "src/app/components/timeline/timeline/timeline";
+import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, Timeline],
+  imports: [ReactiveFormsModule, RouterLink, Timeline, AssociationList],
   templateUrl: 'event-details.html',
   styleUrls: ["event-details.css", "../details.css", "../../../styles.css"],
 })
@@ -154,6 +155,51 @@ export class WorldEventDetails implements OnInit, OnDestroy {
 
   isLocationInEvent(locationName: string): boolean {
     return this.worldEvent?.location?.includes(locationName) || false;
+  }
+
+  getCharactersAssociationList(): AssociationItem[] {
+    return this.characterList.map(character => ({
+      id: character.id,
+      name: `${character.firstName} ${character.lastName}`,
+      isAssociated: this.isCharacterInEvent(`${character.firstName} ${character.lastName}`)
+    }));
+  }
+
+  getStoriesAssociationList(): AssociationItem[] {
+    return this.storyList.map(story => ({
+      id: story.id,
+      name: story.title,
+      isAssociated: this.isStoryInEvent(story.title)
+    }));
+  }
+
+  getLocationsAssociationList(): AssociationItem[] {
+    return this.locationList.map(location => ({
+      id: location.id,
+      name: location.name,
+      isAssociated: this.isLocationInEvent(location.name)
+    }));
+  }
+
+  onCharacterToggle(event: {id: string, isChecked: boolean}) {
+    const character = this.characterList.find(c => c.id === event.id);
+    if (character) {
+      console.log(`Character ${character.firstName} ${character.lastName} ${event.isChecked ? 'added to' : 'removed from'} event`);
+    }
+  }
+
+  onStoryToggle(event: {id: string, isChecked: boolean}) {
+    const story = this.storyList.find(s => s.id === event.id);
+    if (story) {
+      console.log(`Story ${story.title} ${event.isChecked ? 'added to' : 'removed from'} event`);
+    }
+  }
+
+  onLocationToggle(event: {id: string, isChecked: boolean}) {
+    const location = this.locationList.find(l => l.id === event.id);
+    if (location) {
+      console.log(`Location ${location.name} ${event.isChecked ? 'added to' : 'removed from'} event`);
+    }
   }
 
   onCharacterChange(event: Event, character: WorldCharacterInfo) {
