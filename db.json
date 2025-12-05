@@ -177,6 +177,16 @@
       "tags": [
         "Backstory"
       ]
+    },
+    {
+      "id": 11,
+      "name": "New Event",
+      "date": "",
+      "description": "",
+      "location": [],
+      "characters": [],
+      "stories": [],
+      "tags": []
     }
   ],
   "worldlocations": [

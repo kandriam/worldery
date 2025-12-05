@@ -20,6 +20,8 @@ export class Timeline implements AfterViewInit {
   @Output() addElement = new EventEmitter<void>();
   @Output() tagClicked = new EventEmitter<string>();
   
+  private hasScrolledToCurrentEvent = false;
+  
   // Display toggles
   showDate = true;
   showLocation = true;
@@ -28,10 +30,12 @@ export class Timeline implements AfterViewInit {
   
   get sortedEvents(): WorldEventInfo[] {
     const sorted = [...this.events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    // If we have events and a current event ID, trigger scroll after a brief delay
-    if (sorted.length > 0 && this.currentEventId && this.timelineContainer) {
+    
+    // Check if we need to scroll to current event after events are loaded
+    if (sorted.length > 0 && this.currentEventId && this.timelineContainer && !this.hasScrolledToCurrentEvent) {
       setTimeout(() => this.scrollToCurrentEvent(), 100);
     }
+    
     return sorted;
   }
   
@@ -67,14 +71,16 @@ export class Timeline implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Use setTimeout to ensure DOM is fully rendered
+    // Try to scroll on initial load if data is already available
     setTimeout(() => {
-      this.scrollToCurrentEvent();
-    }, 100);
+      if (this.currentEventId && this.events.length > 0 && !this.hasScrolledToCurrentEvent) {
+        this.scrollToCurrentEvent();
+      }
+    }, 300);
   }
 
   scrollToCurrentEvent() {
-    if (!this.currentEventId || !this.timelineContainer) {
+    if (!this.currentEventId || !this.timelineContainer || this.hasScrolledToCurrentEvent) {
       return;
     }
 
@@ -82,6 +88,8 @@ export class Timeline implements AfterViewInit {
     const currentEventElement = timelineElement.querySelector(`[data-event-id="${this.currentEventId}"]`);
     
     if (currentEventElement) {
+      this.hasScrolledToCurrentEvent = true;
+      
       const containerRect = timelineElement.getBoundingClientRect();
       const eventRect = currentEventElement.getBoundingClientRect();
       
