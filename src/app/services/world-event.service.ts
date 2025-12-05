@@ -11,18 +11,19 @@ export class WorldEventService {
     return await data.json() ?? [];
   }
 
-  async getWorldEventById(id: number): Promise<WorldEventInfo | undefined> {
+  async getWorldEventById(id: string): Promise<WorldEventInfo | undefined> {
       const data = await fetch(`${this.url}?id=${id}`);
       const locationJson = await data.json();
       return locationJson[0] ?? {};
     }
 
-  updateWorldEvent(eventID: number, eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
+  updateWorldEvent(eventID: string, eventTitle: string, eventDate: string, eventEndDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
     console.log(
       `Event edited:
       eventID: ${eventID},
       eventTitle: ${eventTitle},
       eventDate: ${eventDate},
+      eventEndDate: ${eventEndDate},
       eventDescription: ${eventDescription},
       eventLocation: ${eventLocation},
       eventCharacters: ${eventCharacters},
@@ -38,6 +39,7 @@ export class WorldEventService {
         id: eventID,
         name: eventTitle,
         date: eventDate,
+        endDate: eventEndDate || undefined,
         description: eventDescription,
         location: eventLocation,
         characters: eventCharacters,
@@ -47,11 +49,12 @@ export class WorldEventService {
     });
   }
 
-  createWorldEvent(eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
+  createWorldEvent(eventTitle: string, eventDate: string, eventEndDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
     console.log(
       `Event created:
       eventTitle: ${eventTitle},
       eventDate: ${eventDate},
+      eventEndDate: ${eventEndDate},
       eventDescription: ${eventDescription},
       eventLocation: ${eventLocation},
       eventCharacters: ${eventCharacters},
@@ -61,9 +64,9 @@ export class WorldEventService {
 
     this.getAllWorldEvents().then(events => {
       console.log(events.length);
-      // determine next id
-      const maxId = events.length > 0 ? Math.max(...events.map(e => e.id)) : 0;
-      const newId = String(maxId + 1);
+      // determine next id as string
+      const maxId = events.length > 0 ? Math.max(...events.map(e => parseInt(e.id.toString()))) : 0;
+      const newId = (maxId + 1).toString();
       fetch(this.url, {
         method: 'POST',
         headers: {
@@ -73,6 +76,7 @@ export class WorldEventService {
           id: newId,
           name: eventTitle,
           date: eventDate,
+          endDate: eventEndDate || undefined,
           description: eventDescription,
           location: eventLocation,
           characters: eventCharacters,
@@ -84,7 +88,7 @@ export class WorldEventService {
     });
   }
 
-  deleteWorldEvent(eventID: number) {
+  deleteWorldEvent(eventID: string) {
     console.log(`Event deleted: eventID: ${eventID}.`);
     fetch(`${this.url}/${eventID}`, {
       method: 'DELETE',

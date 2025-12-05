@@ -177,16 +177,6 @@
       "tags": [
         "Backstory"
       ]
-    },
-    {
-      "id": 11,
-      "name": "New Event",
-      "date": "",
-      "description": "",
-      "location": [],
-      "characters": [],
-      "stories": [],
-      "tags": []
     }
   ],
   "worldlocations": [
@@ -245,7 +235,9 @@
         "Fire & Ice",
         "Blood & Water"
       ],
-      "relatedLocations": [],
+      "relatedLocations": [
+        "Hampton, MN"
+      ],
       "tags": [
         "Soldiers of Rebellion"
       ]
@@ -288,15 +280,6 @@
       ]
     },
     {
-      "id": "6",
-      "name": "New Location",
-      "description": "",
-      "characters": [],
-      "stories": [],
-      "relatedLocations": [],
-      "tags": []
-    },
-    {
       "id": "7",
       "name": "St Paul, Minnesota",
       "description": "",
@@ -334,6 +317,36 @@
       "relatedLocations": [
         "St Paul, Minnesota"
       ],
+      "tags": []
+    },
+    {
+      "id": "9",
+      "name": "Hampton, MN",
+      "description": "",
+      "characters": [
+        "Kiara Ravao",
+        "Judy Han"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water",
+        "Room 4"
+      ],
+      "relatedLocations": [
+        "SafeHouse"
+      ],
+      "tags": []
+    },
+    {
+      "id": "10",
+      "name": "California",
+      "description": "California",
+      "characters": [
+        "Cassandra Edwards",
+        "Rudy Edwards"
+      ],
+      "stories": [],
+      "relatedLocations": [],
       "tags": []
     }
   ],
@@ -513,12 +526,76 @@
       ],
       "relationships": [
         {
+          "relatedCharacterID": "1",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "2",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
           "relatedCharacterID": "4",
-          "hasRelationship": true,
           "relationshipType": [
             "Twin Sister"
           ],
+          "hasRelationship": true,
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "8",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "9",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "10",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
@@ -883,6 +960,105 @@
       "nonPhysicalDescription": "",
       "stories": [],
       "tags": []
+    },
+    {
+      "id": "10",
+      "firstName": "William",
+      "lastName": "Hardin",
+      "altNames": [
+        "Will"
+      ],
+      "birthdate": "2201-02-16",
+      "pronouns": "he/him",
+      "roles": [
+        "Safehouse educator"
+      ],
+      "affiliations": [
+        "SafeHouse"
+      ],
+      "relationships": [
+        {
+          "relatedCharacterID": "1",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "2",
+          "relationshipType": [
+            "Friend"
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "3",
+          "relationshipType": [
+            "Best friend",
+            "mutually attracted"
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": "Works"
+        },
+        {
+          "relatedCharacterID": "4",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "8",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "9",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        }
+      ],
+      "physicalDescription": "Black American man with glasses",
+      "nonPhysicalDescription": "He cares for children",
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water",
+        "Room 4"
+      ],
+      "tags": []
     }
   ],
   "worldstories": [
@@ -897,7 +1073,8 @@
         "Rudy Edwards",
         "Willow Rivera-Anderson",
         "Matthew Rivera-Anderson",
-        "Leo Deng"
+        "Leo Deng",
+        "New Character"
       ],
       "locations": [
         "Jayara Apartment",
@@ -924,7 +1101,8 @@
         "Rudy Edwards",
         "Willow Rivera-Anderson",
         "Matthew Rivera-Anderson",
-        "Leo Deng"
+        "Leo Deng",
+        "New Character"
       ],
       "locations": [
         "Jayara Apartment",
@@ -956,7 +1134,9 @@
       "id": "4",
       "title": "Room 4",
       "description": "",
-      "characters": [],
+      "characters": [
+        "New Character"
+      ],
       "locations": [],
       "tags": [
         "Dystopian",

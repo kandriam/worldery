@@ -1,5 +1,5 @@
 export interface WorldLocationInfo {
-    id: number;
+    id: string;
     name: string;
     description: string;
     characters: string[];

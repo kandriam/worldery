@@ -2,10 +2,12 @@ import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
 import { WorldEventService } from '../../services/world-event.service';
+import { WorldLocationService } from '../../services/world-location.service';
 import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo } from '../../worldstory';
 import { WorldEventInfo } from '../../worldevent';
+import { WorldLocationInfo } from '../../worldlocation';
 import { WorldStoryService } from '../../services/world-story.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { Subscription } from 'rxjs';
@@ -22,10 +24,12 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   router: Router = inject(Router);
   worldCharacterService = inject(WorldCharacterService);
   worldEventService = inject(WorldEventService);
+  worldLocationService = inject(WorldLocationService);
   worldCharacter: WorldCharacterInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
   worldStoryService = inject(WorldStoryService);
   storyList = Array<WorldStoryInfo>();
+  locationList = Array<WorldLocationInfo>();
   eventList = Array<WorldEventInfo>();
   filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
@@ -129,6 +133,10 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       this.storyList = stories;
     });
 
+    this.worldLocationService.getAllWorldLocations().then((locations) => {
+      this.locationList = locations;
+    });
+
     this.worldEventService.getAllWorldEvents().then((events) => {
       this.eventList = events;
       this.updateFilteredEvents();
@@ -170,6 +178,23 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return this.worldCharacter?.relationships?.find(r => r.relatedCharacterID === characterID.toString());
   }
 
+  isLocationAssociatedWithCharacter(locationName: string): boolean {
+    if (!this.worldCharacter) return false;
+    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
+    return this.locationList.some(location => 
+      location.name === locationName && 
+      location.characters.includes(characterName)
+    );
+  }
+
+  getCharacterLocations(): WorldLocationInfo[] {
+    if (!this.worldCharacter) return [];
+    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
+    return this.locationList.filter(location => 
+      location.characters.includes(characterName)
+    );
+  }
+
   isStoryInCharacter(storyTitle: string): boolean {
     return this.worldCharacter?.stories?.includes(storyTitle) || false;
   }
@@ -207,7 +232,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     };
   }
 
-  onStoryChange(event: Event, storyId: number) {
+  onStoryChange(event: Event, storyId: string) {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
       const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
@@ -237,6 +262,43 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
             updatedCharacters,
             story.locations || [],
             story.tags || []
+          );
+        }
+      });
+    }
+  }
+
+  onLocationChange(event: Event, locationId: string) {
+    if (event.target instanceof HTMLInputElement) {
+      const isChecked = event.target.checked;
+      const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+      
+      this.worldLocationService.getWorldLocationById(locationId).then((location) => {
+        if (location) {
+          console.log(`Location ${location.name} ${isChecked ? 'associated with' : 'disassociated from'} character`);
+          
+          // Update the location's characters list
+          let updatedCharacters = location.characters || [];
+          
+          if (isChecked) {
+            // Add character if not already present
+            if (!updatedCharacters.includes(characterName)) {
+              updatedCharacters.push(characterName);
+            }
+          } else {
+            // Remove character
+            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+          }
+          
+          // Update the location
+          this.worldLocationService.updateWorldLocation(
+            location.id,
+            location.name,
+            location.description,
+            updatedCharacters,
+            location.stories,
+            location.relatedLocations,
+            location.tags
           );
         }
       });

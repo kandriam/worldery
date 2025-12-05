@@ -20,7 +20,7 @@ export class EventThumbnail {
   
   tagClicked = output<string>();
 
-  deleteEvent(id: number, event: Event) {
+  deleteEvent(id: string, event: Event) {
     event.stopPropagation();
     console.log(`Delete event with ID: ${id}`);
     this.worldEventService.deleteWorldEvent(id);

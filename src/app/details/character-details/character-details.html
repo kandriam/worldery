@@ -103,6 +103,23 @@
                     <textarea class="small-textarea" id="character-tags" formControlName="characterTags" placeholder="Enter tags separated by commas..."></textarea>
                 </div>
             </div>
+            
+            <!-- Character Locations Section -->
+            <div class="details-section primary-section horizontal-section">
+                <div class="details-section secondary-section full-width">
+                    <label class="primary-label">Associated Locations</label>
+                    <div class="wrap-section">
+                        @for(location of locationList; track location) {
+                            <div class="form-field">
+                                <input type="checkbox" id="location-checkbox-{{location.id}}" [value]="location.id" (change)="onLocationChange($event, location.id)" [checked]="isLocationAssociatedWithCharacter(location.name)" />
+                                <button class="linked-location" [routerLink]="['/location', location.id]" type="button">
+                                    <label class="secondary-label">{{ location.name }}</label>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </section>
         
         <!-- Character Timeline Section -->

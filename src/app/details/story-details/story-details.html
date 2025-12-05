@@ -62,14 +62,14 @@
         </section>
         
         <!-- Story Timeline Section -->
-        <section class="details-section primary-section vertical-section">
+        <!-- <section class="details-section primary-section vertical-section"> -->
             <app-timeline 
                 [events]="filteredEventList" 
                 [title]="'Events in ' + (worldStory?.title || '')"
                 [noResultsMessage]="'No events found for this story'"
                 (tagClicked)="onTimelineTagClicked($event)">
             </app-timeline>
-        </section>
+        <!-- </section> -->
         
         <button type="submit" class="save-button primary">Save</button>
     </form>

@@ -51,7 +51,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   ngOnInit() {
     // Subscribe to route parameter changes
     this.routeSubscription = this.route.params.subscribe(params => {
-      const worldLocationId = parseInt(params['id'], 10);
+      const worldLocationId = params['id'];
       this.loadLocationData(worldLocationId);
     });
     
@@ -85,7 +85,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     });
   }
 
-  private loadLocationData(worldLocationId: number) {
+  private loadLocationData(worldLocationId: string) {
     this.worldLocationService.getWorldLocationById(worldLocationId).then((worldLocation) => {
       this.worldLocation = worldLocation;
       this.applyForm.patchValue({

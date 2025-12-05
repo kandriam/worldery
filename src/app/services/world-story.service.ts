@@ -12,13 +12,13 @@ export class WorldStoryService {
     return await data.json() ?? [];
   }
 
-  async getWorldStoryById(id: number): Promise<WorldStoryInfo | undefined> {
+  async getWorldStoryById(id: string): Promise<WorldStoryInfo | undefined> {
     const data = await fetch(`${this.url}?id=${id}`);
     const locationJson = await data.json();
     return locationJson[0] ?? {};
   }
 
-  async updateWorldStory(storyID: number, storyTitle: string, storyDescription: string, storyCharacters: string[], storyLocations: string[], storyTags: string[]) {
+  async updateWorldStory(storyID: string, storyTitle: string, storyDescription: string, storyCharacters: string[], storyLocations: string[], storyTags: string[]) {
     console.log(
       `Story edited:
       storyID: ${storyID},
@@ -88,9 +88,9 @@ export class WorldStoryService {
       const stories = await this.getAllWorldStories();
       console.log('Current stories count:', stories.length);
       
-      // determine next id
-      const maxId = stories.length > 0 ? Math.max(...stories.map(e => e.id)) : 0;
-      const newId = maxId + 1;
+      // determine next id as string
+      const maxId = stories.length > 0 ? Math.max(...stories.map(e => parseInt(e.id.toString()))) : 0;
+      const newId = (maxId + 1).toString();
       
       const response = await fetch(this.url, {
         method: 'POST',
@@ -125,7 +125,7 @@ export class WorldStoryService {
     }
   }
 
-  async deleteWorldStory(storyID: number) {
+  async deleteWorldStory(storyID: string) {
     console.log(`Deleting story with ID: ${storyID}`);
     try {
       // Get story being deleted to clean up relationships
@@ -277,7 +277,7 @@ export class WorldStoryService {
     }
   }
 
-  private async updateCharacterStories(characterId: number, character: any, stories: string[]) {
+  private async updateCharacterStories(characterId: string, character: any, stories: string[]) {
     try {
       const response = await fetch(`http://localhost:3000/worldcharacters/${characterId}`, {
         method: 'PUT',
@@ -298,7 +298,7 @@ export class WorldStoryService {
     }
   }
 
-  private async updateLocationStories(locationId: number, location: any, stories: string[]) {
+  private async updateLocationStories(locationId: string, location: any, stories: string[]) {
     try {
       const response = await fetch(`http://localhost:3000/worldlocations/${locationId}`, {
         method: 'PUT',

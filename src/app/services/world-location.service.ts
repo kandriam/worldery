@@ -12,13 +12,13 @@ export class WorldLocationService {
     return await data.json() ?? [];
   }
 
-  async getWorldLocationById(id: number): Promise<WorldLocationInfo | undefined> {
+  async getWorldLocationById(id: string): Promise<WorldLocationInfo | undefined> {
     const data = await fetch(`${this.url}?id=${id}`);
     const locationJson = await data.json();
     return locationJson[0] ?? {};
   }
 
-  async updateWorldLocation(locationID: number, locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationRelatedLocations: string[], locationTags: string[]) {
+  async updateWorldLocation(locationID: string, locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationRelatedLocations: string[], locationTags: string[]) {
     console.log(
       `Location edited:
       locationID: ${locationID},
@@ -136,7 +136,7 @@ export class WorldLocationService {
     }
   }
 
-  private async updateLocationRelationshipsOnly(locationID: number, relatedLocations: string[]) {
+  private async updateLocationRelationshipsOnly(locationID: string, relatedLocations: string[]) {
     try {
       const location = await this.getWorldLocationById(locationID);
       if (!location) return;
@@ -179,9 +179,9 @@ export class WorldLocationService {
       const locations = await this.getAllWorldLocations();
       console.log('Current locations count:', locations.length);
       
-      // determine next id
-      const maxId = locations.length > 0 ? Math.max(...locations.map(e => e.id)) : 0;
-      const newId = maxId + 1;
+      // determine next id as string
+      const maxId = locations.length > 0 ? Math.max(...locations.map(e => parseInt(e.id.toString()))) : 0;
+      const newId = (maxId + 1).toString();
       
       const response = await fetch(this.url, {
         method: 'POST',
@@ -213,7 +213,7 @@ export class WorldLocationService {
     }
   }
 
-  async deleteWorldLocation(locationID: number) {
+  async deleteWorldLocation(locationID: string) {
     console.log(`Deleting location with ID: ${locationID}`);
     try {
       // Get the location being deleted to clean up relationships

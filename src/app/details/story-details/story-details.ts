@@ -49,7 +49,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   ngOnInit() {
     // Subscribe to route parameter changes
     this.routeSubscription = this.route.params.subscribe(params => {
-      const worldStoryId = parseInt(params['id'], 10);
+      const worldStoryId = params['id'];
       this.loadStoryData(worldStoryId);
     });
     
@@ -79,7 +79,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     });
   }
 
-  private loadStoryData(worldStoryId: number) {
+  private loadStoryData(worldStoryId: string) {
     this.worldStoryService.getWorldStoryById(worldStoryId).then((worldStory) => {
       this.worldStory = worldStory;
       this.applyForm.patchValue({

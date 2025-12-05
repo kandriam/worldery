@@ -162,7 +162,7 @@ export class Home {
   }
   
   async addWorldElement(entityType: EntityType) {
-    let newId: number | string;
+    let newId: string;
     
     switch(entityType) {
       case 'event':
@@ -190,10 +190,10 @@ export class Home {
     }
   }
   
-  private async createEventAndGetId(): Promise<number> {
+  private async createEventAndGetId(): Promise<string> {
     const events = await this.eventService.getAllWorldEvents();
-    const maxId = events.length > 0 ? Math.max(...events.map(e => e.id)) : 0;
-    const newId = maxId + 1;
+    const maxId = events.length > 0 ? Math.max(...events.map(e => parseInt(e.id.toString()))) : 0;
+    const newId = (maxId + 1).toString();
     
     await fetch('http://localhost:3000/worldevents', {
       method: 'POST',
@@ -215,10 +215,10 @@ export class Home {
     return newId;
   }
   
-  private async createLocationAndGetId(): Promise<number> {
+  private async createLocationAndGetId(): Promise<string> {
     const locations = await this.locationService.getAllWorldLocations();
-    const maxId = locations.length > 0 ? Math.max(...locations.map(l => l.id)) : 0;
-    const newId = maxId + 1;
+    const maxId = locations.length > 0 ? Math.max(...locations.map(l => parseInt(l.id.toString()))) : 0;
+    const newId = (maxId + 1).toString();
     
     await fetch('http://localhost:3000/worldlocations', {
       method: 'POST',
@@ -268,10 +268,10 @@ export class Home {
     return newId;
   }
   
-  private async createStoryAndGetId(): Promise<number> {
+  private async createStoryAndGetId(): Promise<string> {
     const stories = await this.storyService.getAllWorldStories();
-    const maxId = stories.length > 0 ? Math.max(...stories.map(s => s.id)) : 0;
-    const newId = maxId + 1;
+    const maxId = stories.length > 0 ? Math.max(...stories.map(s => parseInt(s.id.toString()))) : 0;
+    const newId = (maxId + 1).toString();
     
     await fetch('http://localhost:3000/worldstories', {
       method: 'POST',

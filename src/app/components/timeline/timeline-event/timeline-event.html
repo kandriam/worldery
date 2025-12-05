@@ -7,7 +7,7 @@
   <div class="timeline-connector"></div>
   <div class="timeline-content-wrapper">
     <div class="timeline-date">
-      {{ formatDate(event().date) }}
+      {{ formatDateRange() }}
     </div>
     <div class="timeline-event"  [routerLink]="['/event', event().id]">
       <div class="event-header">

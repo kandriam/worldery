@@ -18,7 +18,7 @@ export class LocationThumbnail {
   
   tagClicked = output<string>();
 
-  deleteLocation(id: number, event: Event) {
+  deleteLocation(id: string, event: Event) {
     event.stopPropagation();
     console.log(`Delete location with ID: ${id}`);
     this.locationService.deleteWorldLocation(id);

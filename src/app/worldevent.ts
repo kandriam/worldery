@@ -1,7 +1,8 @@
 export interface WorldEventInfo {
-  id: number;
+  id: string;
   name: string;
   date: string;
+  endDate?: string;
   description: string;
 
   location: string[];

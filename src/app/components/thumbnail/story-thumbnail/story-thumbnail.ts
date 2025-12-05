@@ -20,7 +20,7 @@ export class StoryThumbnail {
   
   tagClicked = output<string>();
 
-  deleteStory(id: number, event: Event) {
+  deleteStory(id: string, event: Event) {
     event.stopPropagation();
     console.log(`Delete story with ID: ${id}`);
     this.storyService.deleteWorldStory(id);

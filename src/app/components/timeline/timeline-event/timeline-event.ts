@@ -37,6 +37,21 @@ export class TimelineEvent {
     });
   }
   
+  formatDateRange(): string {
+    const event = this.event();
+    const startDate = this.formatDate(event.date);
+    
+    if (event.endDate) {
+      const endDate = this.formatDate(event.endDate);
+      if (event.date === event.endDate) {
+        return startDate; // Same day, show only once
+      }
+      return `${startDate} - ${endDate}`;
+    }
+    
+    return startDate;
+  }
+  
   getYear(dateString: string): string {
     const [year] = dateString.split('-').map(num => parseInt(num, 10));
     return year.toString();

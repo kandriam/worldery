@@ -44,6 +44,9 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     eventYear: new FormControl(''),
     eventMonth: new FormControl(''),
     eventDay: new FormControl(''),
+    eventEndYear: new FormControl(''),
+    eventEndMonth: new FormControl(''),
+    eventEndDay: new FormControl(''),
     eventDescription: new FormControl(''),
     eventLocation: new FormControl(''),
     eventCharacters: new FormControl(''),
@@ -58,7 +61,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   ngOnInit() {
     // Subscribe to route parameter changes
     this.routeSubscription = this.route.params.subscribe(params => {
-      const worldEventId = parseInt(params['id'], 10);
+      const worldEventId = params['id'];
       this.loadEventData(worldEventId);
     });
     
@@ -92,7 +95,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     });
   }
 
-  private loadEventData(worldEventId: number) {
+  private loadEventData(worldEventId: string) {
     this.worldEventService.getWorldEventById(worldEventId).then((worldEvent) => {
       this.worldEvent = worldEvent;
       
@@ -108,12 +111,28 @@ export class WorldEventDetails implements OnInit, OnDestroy {
           day = parseInt(dateParts[2]).toString();
         }
       }
+
+      // Parse end date into separate components
+      const eventEndDate = worldEvent?.endDate || '';
+      let endYear = '', endMonth = '', endDay = '';
+      
+      if (eventEndDate) {
+        const endDateParts = eventEndDate.split('-');
+        if (endDateParts.length === 3) {
+          endYear = endDateParts[0];
+          endMonth = this.getMonthName(parseInt(endDateParts[1]));
+          endDay = parseInt(endDateParts[2]).toString();
+        }
+      }
       
       this.applyForm.patchValue({
         eventTitle: worldEvent?.name || '',
         eventYear: year,
         eventMonth: month,
         eventDay: day,
+        eventEndYear: endYear,
+        eventEndMonth: endMonth,
+        eventEndDay: endDay,
         eventDescription: worldEvent?.description || '',
         eventLocation: worldEvent?.location?.join(', ') || '',
         eventCharacters: worldEvent?.characters?.join(', ') || '',
@@ -202,11 +221,18 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         this.applyForm.value.eventMonth || '',
         this.applyForm.value.eventDay || ''
       );
+
+      const formattedEndDate = this.formatEventDate(
+        this.applyForm.value.eventEndYear || '',
+        this.applyForm.value.eventEndMonth || '',
+        this.applyForm.value.eventEndDay || ''
+      );
       
       this.worldEventService.updateWorldEvent(
         this.worldEvent.id,
         this.applyForm.value.eventTitle ?? '',
         formattedDate,
+        formattedEndDate,
         this.applyForm.value.eventDescription ?? '',
         selectedLocations,
         selectedCharacters,
