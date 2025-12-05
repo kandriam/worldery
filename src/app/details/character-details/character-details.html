@@ -96,11 +96,7 @@
                     <label class="primary-label" for="character-tags">Tags</label>
                     <textarea class="small-textarea" id="character-tags" formControlName="characterTags" placeholder="Enter tags separated by commas..."></textarea>
                 </div>
-            </div>
-            
-            <!-- Character Locations Section -->
-            <div class="details-section primary-section horizontal-section">
-                <div class="details-section secondary-section full-width">
+                 <div class="details-section secondary-section full-width">
                     <app-association-list
                         [items]="getLocationsAssociationList()"
                         [label]="'Associated Locations'"

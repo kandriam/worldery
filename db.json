@@ -189,7 +189,8 @@
         "Judy Han"
       ],
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "relatedLocations": [
         "St Paul, Minnesota"
@@ -522,7 +523,8 @@
       "physicalDescription": "Straight, white hair, gray eyes, Korean-American",
       "nonPhysicalDescription": "cryokinetic abilities.",
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "tags": [
         "Gifted"
@@ -1081,9 +1083,12 @@
       "title": "Fire & Ice",
       "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.\n\nBut over the past few decades, Gifteds have become more common. They’re unpredictable, dangerous “Freaks”.\n\nThe Soldiers of Rebellion is a small vigilante “villain” group. For the past five years, they’ve been abducting Gifted children from their homes.\n",
       "characters": [
-        "Kiara Ravao"
+        "Kiara Ravao",
+        "Judy Han"
       ],
-      "locations": [],
+      "locations": [
+        "Jayara Apartment"
+      ],
       "tags": [
         "Fire & Ice",
         "Book 1",
