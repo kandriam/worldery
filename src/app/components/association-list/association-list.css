@@ -1,0 +1,33 @@
+.association-section {
+  width: 100%;
+}
+
+.linked-item {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.linked-item:hover {
+  color: var(--accent-color, #007acc);
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-field input[type="checkbox"] {
+  margin: 0;
+}
+
+.secondary-label {
+  cursor: pointer;
+  margin: 0;
+}

@@ -85,18 +85,12 @@
             </div>
             <div class="details-section primary-section horizontal-section">                
                 <div class="details-section secondary-section">
-                    <label class="primary-label" for="character-stories">Stories</label>
-                    <!-- <input id="character-stories" type="text" formControlName="characterStories" /> -->
-                    <div class="wrap-section">
-                        @for(story of storyList; track story) {
-                            <div class="form-field">
-                                <input type="checkbox" id="story-checkbox-{{story.id}}" [value]="story.id" (change)="onStoryChange($event, story.id)" [checked]="isStoryInCharacter(story.title)" />
-                                <button class="linked-story" [routerLink]="['/story', story.id]" type="button">
-                                    <label class="secondary-label">{{ story.title }}</label>
-                                </button>
-                            </div>
-                        }
-                    </div>
+                    <app-association-list
+                        [items]="getStoriesAssociationList()"
+                        [label]="'Stories'"
+                        [routePrefix]="'story'"
+                        (itemToggled)="onStoryToggle($event)">
+                    </app-association-list>
                 </div>
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-tags">Tags</label>
@@ -107,17 +101,12 @@
             <!-- Character Locations Section -->
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section full-width">
-                    <label class="primary-label">Associated Locations</label>
-                    <div class="wrap-section">
-                        @for(location of locationList; track location) {
-                            <div class="form-field">
-                                <input type="checkbox" id="location-checkbox-{{location.id}}" [value]="location.id" (change)="onLocationChange($event, location.id)" [checked]="isLocationAssociatedWithCharacter(location.name)" />
-                                <button class="linked-location" [routerLink]="['/location', location.id]" type="button">
-                                    <label class="secondary-label">{{ location.name }}</label>
-                                </button>
-                            </div>
-                        }
-                    </div>
+                    <app-association-list
+                        [items]="getLocationsAssociationList()"
+                        [label]="'Associated Locations'"
+                        [routePrefix]="'location'"
+                        (itemToggled)="onLocationToggle($event)">
+                    </app-association-list>
                 </div>
             </div>
         </section>

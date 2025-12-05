@@ -189,7 +189,6 @@
         "Judy Han"
       ],
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "relatedLocations": [
@@ -210,7 +209,6 @@
         "Rudy Edwards"
       ],
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "relatedLocations": [
@@ -229,10 +227,10 @@
       "characters": [
         "Cassandra Edwards",
         "Judy Han",
-        "William Hardin"
+        "William Hardin",
+        "Kiara Ravao"
       ],
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "relatedLocations": [
@@ -248,10 +246,10 @@
       "description": "The family home of the Rivera-Andersons located in Minnesota.",
       "characters": [
         "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson"
+        "Matthew Rivera-Anderson",
+        "Kiara Ravao"
       ],
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "relatedLocations": [
@@ -269,9 +267,7 @@
         "Matthew Rivera-Anderson",
         "Leo Deng"
       ],
-      "stories": [
-        "Fire & Ice"
-      ],
+      "stories": [],
       "relatedLocations": [
         "St Paul, Minnesota"
       ],
@@ -419,6 +415,30 @@
           ],
           "hasRelationship": true,
           "relationshipDescription": "Kiara met Leo at Cat's Tea, where Leo worked."
+        },
+        {
+          "relatedCharacterID": "8",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "9",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "10",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
@@ -502,7 +522,6 @@
       "physicalDescription": "Straight, white hair, gray eyes, Korean-American",
       "nonPhysicalDescription": "cryokinetic abilities.",
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "tags": [
@@ -601,7 +620,6 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "illusionist abilities.",
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "tags": [
@@ -676,7 +694,6 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "telepathic abilities.",
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "tags": [
@@ -727,7 +744,6 @@
       "physicalDescription": "Red hair, green eyes, mixed white and Latina",
       "nonPhysicalDescription": "Non-Gift.",
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "tags": [
@@ -762,7 +778,6 @@
       "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
       "nonPhysicalDescription": "invisibility abilities.",
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "tags": [
@@ -794,7 +809,6 @@
       "physicalDescription": "Black hair, brown eyes, Asian-American",
       "nonPhysicalDescription": "super strength and hyposensitivity.",
       "stories": [
-        "Fire & Ice",
         "Blood & Water"
       ],
       "tags": [
@@ -1067,22 +1081,9 @@
       "title": "Fire & Ice",
       "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.\n\nBut over the past few decades, Gifteds have become more common. They’re unpredictable, dangerous “Freaks”.\n\nThe Soldiers of Rebellion is a small vigilante “villain” group. For the past five years, they’ve been abducting Gifted children from their homes.\n",
       "characters": [
-        "Kiara Ravao",
-        "Judy Han",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson",
-        "Leo Deng",
-        "New Character"
+        "Kiara Ravao"
       ],
-      "locations": [
-        "Jayara Apartment",
-        "Sunday Brunch",
-        "SafeHouse",
-        "Rivera-Anderson Family House",
-        "Cat's Tea"
-      ],
+      "locations": [],
       "tags": [
         "Fire & Ice",
         "Book 1",
