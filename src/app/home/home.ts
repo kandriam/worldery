@@ -162,7 +162,7 @@ export class Home {
   }
   
   async addWorldElement(entityType: EntityType) {
-    let newId: number;
+    let newId: number | string;
     
     switch(entityType) {
       case 'event':
@@ -238,10 +238,10 @@ export class Home {
     return newId;
   }
   
-  private async createCharacterAndGetId(): Promise<number> {
+  private async createCharacterAndGetId(): Promise<string> {
     const characters = await this.characterService.getAllWorldCharacters();
-    const maxId = characters.length > 0 ? Math.max(...characters.map(c => c.id)) : 0;
-    const newId = maxId + 1;
+    const maxId = characters.length > 0 ? Math.max(...characters.map(c => parseInt(c.id))) : 0;
+    const newId = (maxId + 1).toString();
     
     await fetch('http://localhost:3000/worldcharacters', {
       method: 'POST',

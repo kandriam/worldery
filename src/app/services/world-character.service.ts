@@ -11,7 +11,7 @@ export class WorldCharacterService {
     return await data.json() ?? [];
   }
 
-  async getWorldCharacterById(id: number): Promise<WorldCharacterInfo | undefined> {
+  async getWorldCharacterById(id: string): Promise<WorldCharacterInfo | undefined> {
     const data = await fetch(`${this.url}?id=${id}`);
     const characterJson = await data.json();
     return characterJson[0] ?? {};
@@ -22,7 +22,7 @@ export class WorldCharacterService {
     return await data.json() ?? [];
   }
 
-  async updateWorldCharacter(characterID: number, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async updateWorldCharacter(characterID: string, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
@@ -96,9 +96,9 @@ export class WorldCharacterService {
       const characters = await this.getAllWorldCharacters();
       console.log('Current characters count:', characters.length);
       
-      // determine next id
-      const maxId = characters.length > 0 ? Math.max(...characters.map(e => e.id)) : 0;
-      const newId = maxId + 1;
+      // determine next id - convert to numbers for comparison, then back to string
+      const maxId = characters.length > 0 ? Math.max(...characters.map(e => parseInt(e.id))) : 0;
+      const newId = (maxId + 1).toString();
       
       const response = await fetch(this.url, {
         method: 'POST',
@@ -136,7 +136,7 @@ export class WorldCharacterService {
     }
   }
 
-  async deleteWorldCharacter(characterID: number) {
+  async deleteWorldCharacter(characterID: string) {
     console.log(`Deleting character with ID: ${characterID}`);
     try {
       const response = await fetch(`${this.url}/${characterID}`, {
@@ -155,7 +155,7 @@ export class WorldCharacterService {
     }
   }
   
-  updateCharacterRelationships(characterID: number, relatedCharacterName: string, relationships: worldCharacterRelationship[]) {
+  updateCharacterRelationships(characterID: string, relatedCharacterName: string, relationships: worldCharacterRelationship[]) {
     console.log(`Updating relationships for character ID: ${characterID} with relationships: ${JSON.stringify(relationships)}`);
     fetch(`${this.url}/${characterID}`, {
       method: 'PUT',

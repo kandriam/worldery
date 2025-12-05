@@ -20,7 +20,7 @@ export class CharacterThumbnail {
   
   tagClicked = output<string>();
 
-  deleteCharacter(id: number, event: Event) {
+  deleteCharacter(id: string, event: Event) {
     event.stopPropagation();
     console.log(`Delete character with ID: ${id}`);
     this.characterService.deleteWorldCharacter(id);

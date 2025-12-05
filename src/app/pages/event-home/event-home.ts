@@ -110,7 +110,7 @@ export class EventHome {
 
   addWorldEvent() {
     console.log('Adding new event');
-    this.eventService.createWorldEvent('New Event', '', '', '', '', '', []);
+    this.eventService.createWorldEvent('New Event', '', '', [], [], [], []);
   }
 
   onTagClicked(tag: string) {

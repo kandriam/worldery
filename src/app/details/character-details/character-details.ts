@@ -1,15 +1,18 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
+import { WorldEventService } from '../../services/world-event.service';
 import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo } from '../../worldstory';
+import { WorldEventInfo } from '../../worldevent';
 import { WorldStoryService } from '../../services/world-story.service';
+import { Timeline } from '../../components/timeline/timeline/timeline';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, Timeline],
   templateUrl: "character-details.html",
   styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
@@ -18,10 +21,13 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);
   worldCharacterService = inject(WorldCharacterService);
+  worldEventService = inject(WorldEventService);
   worldCharacter: WorldCharacterInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
   worldStoryService = inject(WorldStoryService);
   storyList = Array<WorldStoryInfo>();
+  eventList = Array<WorldEventInfo>();
+  filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
 
   // Date dropdown options
@@ -55,7 +61,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   ngOnInit() {
     // Subscribe to route parameter changes
     this.routeSubscription = this.route.params.subscribe(params => {
-      const worldCharacterId = parseInt(params['id'], 10);
+      const worldCharacterId = params['id']; // Keep as string
       this.loadCharacterData(worldCharacterId);
     });
 
@@ -70,7 +76,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     }
   }
 
-  private loadCharacterData(worldCharacterId: number) {
+  private loadCharacterData(worldCharacterId: string) {
     this.worldCharacterService.getWorldCharacterById(worldCharacterId).then((worldCharacter) => {
       this.worldCharacter = worldCharacter;
       
@@ -106,6 +112,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       
       // Update relationship checkboxes after character data loads
       this.updateRelationshipUI();
+      // Update filtered events after character data loads
+      this.updateFilteredEvents();
     });
 
     console.log("Character data loaded for ID:", worldCharacterId);
@@ -119,6 +127,11 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
     this.worldStoryService.getAllWorldStories().then((stories) => {
       this.storyList = stories;
+    });
+
+    this.worldEventService.getAllWorldEvents().then((events) => {
+      this.eventList = events;
+      this.updateFilteredEvents();
     });
   }
 
@@ -135,7 +148,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     }
   }
 
-  toggleRelationship(event: Event, characterId: number) {
+  toggleRelationship(event: Event, characterId: string) {
     console.log(`Toggling relationship for character ID: ${characterId}`);
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
@@ -153,7 +166,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     }
   }
 
-  getRelationship(characterID: number): worldCharacterRelationship | undefined {
+  getRelationship(characterID: string): worldCharacterRelationship | undefined {
     return this.worldCharacter?.relationships?.find(r => r.relatedCharacterID === characterID.toString());
   }
 
@@ -161,7 +174,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return this.worldCharacter?.stories?.includes(storyTitle) || false;
   }
 
-  onRelationshipChange(event: Event, characterId: number) {
+  onRelationshipChange(event: Event, characterId: string) {
     this.worldCharacterService.getWorldCharacterById(characterId).then((character) => {
       if (event.target instanceof HTMLInputElement) {
         const isChecked = event.target.checked;
@@ -178,7 +191,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     });
   }
 
-  getFormRelationship(characterID: number): worldCharacterRelationship | undefined {
+  getFormRelationship(characterID: string): worldCharacterRelationship | undefined {
     let relationshipCheckbox = document.getElementById(`relationship-checkbox-${characterID}`) as HTMLInputElement;
     let isChecked = relationshipCheckbox.checked;
     let relationshipTypeInput = document.getElementById(`relationship-type-${characterID}`) as HTMLInputElement;
@@ -241,7 +254,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return stories;
   }
 
-  submitApplication() {
+  updateCharacter() {
+    console.log('Starting character update...');
+    console.log('Current character:', this.worldCharacter);
+    
+    if (!this.worldCharacter?.id) {
+      console.error('No character ID found!');
+      alert('Error: No character selected for update.');
+      return;
+    }
+    
     let relationships: worldCharacterRelationship[] = [];
     for (let character of this.characterList) {
       if (character.id !== this.worldCharacter?.id) {
@@ -262,21 +284,47 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.applyForm.value.characterBirthDay || ''
       );
       
-      this.worldCharacterService.updateWorldCharacter(
-        this.worldCharacter.id,
-        this.applyForm.value.characterFirstName ?? '',
-        this.applyForm.value.characterLastName ?? '',
-        this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [],
-        formattedBirthdate,
-        this.applyForm.value.characterPronouns ?? '',
-        this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [],
-        this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [],
-        relationships,
-        this.applyForm.value.characterPhysicalDescription ?? '',
-        this.applyForm.value.characterNonPhysicalDescription ?? '',
-        selectedStories,
-        this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
-      );
+      console.log('Form data:', {
+        id: this.worldCharacter.id,
+        firstName: this.applyForm.value.characterFirstName,
+        lastName: this.applyForm.value.characterLastName,
+        birthdate: formattedBirthdate,
+        pronouns: this.applyForm.value.characterPronouns,
+        relationships: relationships.length
+      });
+      
+      try {
+        const result = this.worldCharacterService.updateWorldCharacter(
+          this.worldCharacter.id,
+          this.applyForm.value.characterFirstName ?? '',
+          this.applyForm.value.characterLastName ?? '',
+          this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [],
+          formattedBirthdate,
+          this.applyForm.value.characterPronouns ?? '',
+          this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [],
+          this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [],
+          relationships,
+          this.applyForm.value.characterPhysicalDescription ?? '',
+          this.applyForm.value.characterNonPhysicalDescription ?? '',
+          selectedStories,
+          this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
+        );
+        console.log('Character update called successfully', result);
+        
+        if (result && typeof result.then === 'function') {
+          result.then(() => {
+            console.log('Character update completed successfully');
+            alert('Character updated successfully!');
+            window.location.reload();
+          }).catch((error: any) => {
+            console.error('Character update promise failed:', error);
+            alert('Failed to update character: ' + error.message);
+          });
+        }
+      } catch (error) {
+        console.error('Error updating character:', error);
+        alert('Failed to update character: ' + (error as Error).message);
+      }
       
       // Ensure all story records are updated to reflect their association with this character
       for (let story of this.storyList) {
@@ -333,7 +381,31 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return index >= 0 ? index + 1 : 0;
   }
 
+  private updateFilteredEvents() {
+    if (!this.worldCharacter || this.eventList.length === 0) {
+      this.filteredEventList = [];
+      return;
+    }
+
+    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
+    
+    this.filteredEventList = this.eventList.filter(event => 
+      event.characters.includes(characterName)
+    );
+  }
+
+  onTimelineTagClicked(tag: string) {
+    console.log('Timeline tag clicked:', tag);
+    // You can implement tag filtering logic here if needed
+  }
+
   private formatBirthdate(year: string, monthName: string, day: string): string {
+    // Allow empty birthdate
+    if (!year && !monthName && !day) {
+      return '';
+    }
+    
+    // If any part is missing, return empty string
     if (!year || !monthName || !day) {
       return '';
     }
@@ -343,8 +415,14 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       return '';
     }
     
-    const paddedMonth = monthNumber.toString().padStart(2, '0');
-    const paddedDay = day.padStart(2, '0');
+    // Ensure day is a valid number
+    const dayNumber = parseInt(day);
+    if (isNaN(dayNumber) || dayNumber < 1 || dayNumber > 31) {
+      return '';
+    }
+    
+    const paddedMonth = monthNumber < 10 ? '0' + monthNumber : monthNumber.toString();
+    const paddedDay = dayNumber < 10 ? '0' + dayNumber : dayNumber.toString();
     
     return `${year}-${paddedMonth}-${paddedDay}`;
   }

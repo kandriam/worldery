@@ -1,17 +1,20 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { WorldStoryService } from '../../services/world-story.service';
+import { WorldEventService } from '../../services/world-event.service';
 import { WorldStoryInfo } from '../../worldstory';
 import { WorldCharacterService } from '../../services/world-character.service';
 import { WorldCharacterInfo } from '../../worldcharacter';
 import { WorldLocationService } from '../../services/world-location.service';
 import { WorldLocationInfo } from '../../worldlocation';
+import { WorldEventInfo } from '../../worldevent';
+import { Timeline } from '../../components/timeline/timeline/timeline';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, Timeline],
   templateUrl: 'story-details.html',
   styleUrls: ["story-details.css", "../details.css", "../../../styles.css"],
 })
@@ -20,11 +23,14 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);
   worldStoryService = inject(WorldStoryService);
+  worldEventService = inject(WorldEventService);
   worldCharacterService = inject(WorldCharacterService);
   worldLocationService = inject(WorldLocationService);
   worldStory: WorldStoryInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
   locationList = Array<WorldLocationInfo>();
+  eventList = Array<WorldEventInfo>();
+  filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
 
   applyForm = new FormGroup({
@@ -66,6 +72,11 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     this.worldLocationService.getAllWorldLocations().then((locations) => {
       this.locationList = locations;
     });
+
+    this.worldEventService.getAllWorldEvents().then((events) => {
+      this.eventList = events;
+      this.updateFilteredEvents();
+    });
   }
 
   private loadStoryData(worldStoryId: number) {
@@ -78,6 +89,9 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         storyLocations: worldStory?.locations?.join(', ') || '',
         storyTags: worldStory?.tags?.join(', ') || '',
       });
+      
+      // Update filtered events after story data loads
+      this.updateFilteredEvents();
     });
 
     console.log("Story data loaded for ID:", worldStoryId);
@@ -215,6 +229,22 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         // Optionally show an error message to the user
       }
     }
+  }
+  
+  private updateFilteredEvents() {
+    if (!this.worldStory || this.eventList.length === 0) {
+      this.filteredEventList = [];
+      return;
+    }
+
+    this.filteredEventList = this.eventList.filter(event => 
+      event.stories.includes(this.worldStory?.title || '')
+    );
+  }
+
+  onTimelineTagClicked(tag: string) {
+    console.log('Timeline tag clicked:', tag);
+    // You can implement tag filtering logic here if needed
   }
   
   async deleteStory() {

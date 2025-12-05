@@ -1,13 +1,11 @@
 <section class="timeline-container">
   <div class="timeline-header">
     <h2 class="timeline-title">{{ title }}</h2>
-    <div class="timeline-controls">
-      <div class="display-container">
-        <!-- <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button> -->
-        <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
-        <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
-        <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
-      </div>
+    <div class="display-container">
+      <!-- <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button> -->
+      <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
+      <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
+      <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
     </div>
     <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
   </div>
@@ -15,9 +13,10 @@
   <div class="timeline-content">
     @if (sortedEvents.length > 0) {
       <div class="timeline-line"></div>
-      <div class="timeline">
+      <div class="timeline" #timelineContainer>
         @for (event of sortedEvents; track event.id; let i = $index) {
           <app-timeline-event 
+            [attr.data-event-id]="event.id.toString()"
             [event]="event"
             [index]="i"
             [currentEventId]="currentEventId"

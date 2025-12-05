@@ -103,15 +103,18 @@
       "id": "7",
       "name": "Jay moves in with Kiara",
       "date": "2223-07-05",
+      "description": "Jay moves in with Kiara",
+      "location": [
+        "Jayara Apartment",
+        "St Paul, Minnesota"
+      ],
       "characters": [
         "Kiara Ravao",
         "Judy Han"
       ],
-      "location": [],
       "stories": [
         "Fire & Ice"
       ],
-      "description": "Jay moves in with Kiara",
       "tags": [
         "Book 1; Chapter 1",
         "Jayara"
@@ -710,6 +713,166 @@
       "tags": [
         "Gifted"
       ]
+    },
+    {
+      "id": "8",
+      "firstName": "Melissa",
+      "lastName": "Joore",
+      "altNames": [
+        "Messie"
+      ],
+      "birthdate": "2200-01-01",
+      "pronouns": "they/she",
+      "roles": [
+        "Student"
+      ],
+      "affiliations": [],
+      "relationships": [
+        {
+          "relatedCharacterID": "1",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "2",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "3",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "4",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        }
+      ],
+      "physicalDescription": "Short, brown hair",
+      "nonPhysicalDescription": "NonGifted",
+      "stories": [
+        "Prophet's Gift"
+      ],
+      "tags": []
+    },
+    {
+      "id": "9",
+      "firstName": "Sandra",
+      "lastName": "Jackson",
+      "altNames": [
+        "Sandy"
+      ],
+      "birthdate": "2222-07-01",
+      "pronouns": "she/they",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [
+        {
+          "relatedCharacterID": "1",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "2",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "3",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "4",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "8",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        }
+      ],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [],
+      "tags": []
     }
   ],
   "worldstories": [
@@ -770,7 +933,9 @@
       "id": "3",
       "title": "Prophet's Gift",
       "description": "",
-      "characters": [],
+      "characters": [
+        "Melissa Joore"
+      ],
       "locations": [],
       "tags": [
         "Dystopian",

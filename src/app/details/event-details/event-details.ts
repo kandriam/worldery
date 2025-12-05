@@ -208,9 +208,9 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         this.applyForm.value.eventTitle ?? '',
         formattedDate,
         this.applyForm.value.eventDescription ?? '',
-        selectedLocations.join(', '),
-        selectedCharacters.join(', '),
-        selectedStories.join(', '),
+        selectedLocations,
+        selectedCharacters,
+        selectedStories,
         this.applyForm.value.eventTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
       );
     }

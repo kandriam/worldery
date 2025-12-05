@@ -1,5 +1,5 @@
 export interface WorldCharacterInfo {
-    id: number;
+    id: string;
     // name: string;
     firstName: string;
     lastName: string;

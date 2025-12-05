@@ -6,7 +6,7 @@
         }
         <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
     </section>
-    <form [formGroup]="applyForm" (submit)="submitApplication()">
+    <form [formGroup]="applyForm" (submit)="updateCharacter()">
         <section class="edit-character-form character-page-body">
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
@@ -104,6 +104,17 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Character Timeline Section -->
+        <section class="details-section primary-section vertical-section">
+            <app-timeline 
+                [events]="filteredEventList" 
+                [title]="'Events for ' + (worldCharacter?.firstName || '') + ' ' + (worldCharacter?.lastName || '')"
+                [noResultsMessage]="'No events found for this character'"
+                (tagClicked)="onTimelineTagClicked($event)">
+            </app-timeline>
+        </section>
+        
         <button type="submit" class="save-button primary">Save</button>
     </form>
 </article>

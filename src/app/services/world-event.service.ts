@@ -17,7 +17,7 @@ export class WorldEventService {
       return locationJson[0] ?? {};
     }
 
-  updateWorldEvent(eventID: number, eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string, eventCharacters: string, eventStories: string, eventTags: string[]) {
+  updateWorldEvent(eventID: number, eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
     console.log(
       `Event edited:
       eventID: ${eventID},
@@ -39,15 +39,15 @@ export class WorldEventService {
         name: eventTitle,
         date: eventDate,
         description: eventDescription,
-        location: eventLocation.split(', '),
-        characters: eventCharacters.split(', '),
-        stories: eventStories.split(', '),
+        location: eventLocation,
+        characters: eventCharacters,
+        stories: eventStories,
         tags: eventTags,
       }),
     });
   }
 
-  createWorldEvent(eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string, eventCharacters: string, eventStories: string, eventTags: string[]) {
+  createWorldEvent(eventTitle: string, eventDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
     console.log(
       `Event created:
       eventTitle: ${eventTitle},
@@ -74,9 +74,9 @@ export class WorldEventService {
           name: eventTitle,
           date: eventDate,
           description: eventDescription,
-          location: eventLocation.split(', '),
-          characters: eventCharacters.split(', '),
-          stories: eventStories.split(', '),
+          location: eventLocation,
+          characters: eventCharacters,
+          stories: eventStories,
           tags: eventTags,
         }),
       });

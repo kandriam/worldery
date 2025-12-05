@@ -75,6 +75,17 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Location Timeline Section -->
+        <section class="details-section primary-section vertical-section">
+            <app-timeline 
+                [events]="filteredEventList" 
+                [title]="'Events at ' + (worldLocation?.name || '')"
+                [noResultsMessage]="'No events found at this location'"
+                (tagClicked)="onTimelineTagClicked($event)">
+            </app-timeline>
+        </section>
+        
         <button type="submit" class="save-button primary">Save</button>
     </form>
 </article>
