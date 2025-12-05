@@ -9,12 +9,13 @@ import { WorldLocationService } from '../../services/world-location.service';
 import { WorldLocationInfo } from '../../worldlocation';
 import { WorldEventInfo } from '../../worldevent';
 import { Timeline } from '../../components/timeline/timeline/timeline';
+import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, Timeline],
+  imports: [ReactiveFormsModule, RouterLink, Timeline, AssociationList],
   templateUrl: 'story-details.html',
   styleUrls: ["story-details.css", "../details.css", "../../../styles.css"],
 })
@@ -82,6 +83,14 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   private loadStoryData(worldStoryId: string) {
     this.worldStoryService.getWorldStoryById(worldStoryId).then((worldStory) => {
       this.worldStory = worldStory;
+      
+      // Ensure arrays are initialized
+      if (this.worldStory) {
+        this.worldStory.characters = this.worldStory.characters || [];
+        this.worldStory.locations = this.worldStory.locations || [];
+        this.worldStory.tags = this.worldStory.tags || [];
+      }
+      
       this.applyForm.patchValue({
         storyTitle: worldStory?.title || '',
         storyDescription: worldStory?.description || '',
@@ -103,6 +112,51 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
 
   isLocationInStory(locationName: string): boolean {
     return this.worldStory?.locations?.includes(locationName) || false;
+  }
+
+  getCharactersAssociationList(): AssociationItem[] {
+    return this.characterList.map(character => ({
+      id: character.id,
+      name: `${character.firstName} ${character.lastName}`,
+      isAssociated: this.isCharacterInStory(`${character.firstName} ${character.lastName}`)
+    }));
+  }
+
+  getLocationsAssociationList(): AssociationItem[] {
+    return this.locationList.map(location => ({
+      id: location.id,
+      name: location.name,
+      isAssociated: this.isLocationInStory(location.name)
+    }));
+  }
+
+  onCharacterToggle(event: {id: string, isChecked: boolean}) {
+    const character = this.characterList.find(c => c.id === event.id);
+    if (character && this.worldStory) {
+      const characterName = `${character.firstName} ${character.lastName}`;
+      if (event.isChecked) {
+        if (!this.worldStory.characters.includes(characterName)) {
+          this.worldStory.characters.push(characterName);
+        }
+      } else {
+        this.worldStory.characters = this.worldStory.characters.filter(name => name !== characterName);
+      }
+      console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} story`);
+    }
+  }
+
+  onLocationToggle(event: {id: string, isChecked: boolean}) {
+    const location = this.locationList.find(l => l.id === event.id);
+    if (location && this.worldStory) {
+      if (event.isChecked) {
+        if (!this.worldStory.locations.includes(location.name)) {
+          this.worldStory.locations.push(location.name);
+        }
+      } else {
+        this.worldStory.locations = this.worldStory.locations.filter(name => name !== location.name);
+      }
+      console.log(`Location ${location.name} ${event.isChecked ? 'added to' : 'removed from'} story`);
+    }
   }
 
   onCharacterChange(event: Event, character: WorldCharacterInfo) {
@@ -206,18 +260,15 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   }
 
   async submitApplication() {
-    const selectedCharacters = this.getFormCharacters();
-    const selectedLocations = this.getFormLocations();
-    
     if (this.worldStory?.id !== undefined) {
       try {
-        // The service now handles bidirectional relationships automatically
+        // Use the story data directly instead of reading from DOM
         await this.worldStoryService.updateWorldStory(
           this.worldStory.id,
           this.applyForm.value.storyTitle ?? '',
           this.applyForm.value.storyDescription ?? '',
-          selectedCharacters,
-          selectedLocations,
+          this.worldStory.characters,
+          this.worldStory.locations,
           this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
         );
         

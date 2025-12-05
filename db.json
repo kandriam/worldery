@@ -228,7 +228,8 @@
         "Rudy Edwards"
       ],
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "relatedLocations": [
         "St Paul, Minnesota",
@@ -273,7 +274,8 @@
         "Matthew Rivera-Anderson"
       ],
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "relatedLocations": [
         "St Paul, Minnesota"
@@ -290,7 +292,9 @@
         "Matthew Rivera-Anderson",
         "Leo Deng"
       ],
-      "stories": [],
+      "stories": [
+        "Fire & Ice"
+      ],
       "relatedLocations": [
         "St Paul, Minnesota"
       ],
@@ -643,7 +647,8 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "illusionist abilities.",
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "tags": [
         "Gifted"
@@ -717,7 +722,8 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "telepathic abilities.",
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "tags": [
         "Gifted"
@@ -767,7 +773,8 @@
       "physicalDescription": "Red hair, green eyes, mixed white and Latina",
       "nonPhysicalDescription": "Non-Gift.",
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "tags": [
         "Non-Gifted"
@@ -801,7 +808,8 @@
       "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
       "nonPhysicalDescription": "invisibility abilities.",
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "tags": [
         "Gifted"
@@ -832,7 +840,8 @@
       "physicalDescription": "Black hair, brown eyes, Asian-American",
       "nonPhysicalDescription": "super strength and hyposensitivity.",
       "stories": [
-        "Blood & Water"
+        "Blood & Water",
+        "Fire & Ice"
       ],
       "tags": [
         "Gifted"
@@ -1105,10 +1114,23 @@
       "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.\n\nBut over the past few decades, Gifteds have become more common. They’re unpredictable, dangerous “Freaks”.\n\nThe Soldiers of Rebellion is a small vigilante “villain” group. For the past five years, they’ve been abducting Gifted children from their homes.\n",
       "characters": [
         "Kiara Ravao",
-        "Judy Han"
+        "Judy Han",
+        "Cassandra Edwards",
+        "Rudy Edwards",
+        "Willow Rivera-Anderson",
+        "Matthew Rivera-Anderson",
+        "Leo Deng",
+        "William Hardin"
       ],
       "locations": [
-        "Jayara Apartment"
+        "Jayara Apartment",
+        "St Paul, Minnesota",
+        "Pages & Paragraphs",
+        "Cat's Tea",
+        "Rivera-Anderson Family House",
+        "Sunday Brunch",
+        "SafeHouse",
+        "Hampton, Minnesota"
       ],
       "tags": [
         "Fire & Ice",
