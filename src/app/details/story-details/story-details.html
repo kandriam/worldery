@@ -28,9 +28,6 @@
                         (itemToggled)="onCharacterToggle($event)">
                     </app-association-list>
                 </div>
-            </div>
-            
-            <div class="details-section primary-section spanning-section">
                 <div class="details-section secondary-section">
                     <app-association-list
                         [items]="getLocationsAssociationList()"
@@ -39,9 +36,6 @@
                         (itemToggled)="onLocationToggle($event)">
                     </app-association-list>
                 </div>
-            </div>
-            
-            <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="story-tags">Story Tags</label>
                     <textarea class="small-textarea" id="story-tags" formControlName="storyTags" placeholder="Enter tags separated by commas..."></textarea>

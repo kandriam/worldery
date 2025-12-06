@@ -1,4 +1,6 @@
 .location-thumbnail {
-  width: fit-content;
-  min-height: 8rem;
+  /* width: fit-content; */
+  width: 15rem;
+  /* min-height: 8rem; */
+  height: 15rem;
 }
