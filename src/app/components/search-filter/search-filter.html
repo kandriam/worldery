@@ -3,23 +3,24 @@
   <div class="collapsible-header" (click)="toggleFilters()">
     <h3 class="filter-header">{{ searchLabel}}</h3>
   </div>
+  <button class="primary clear-button" 
+          (click)="clearSearchBar()" 
+          title="Clear search">
+    Clear Search
+  </button>
   <div class="search-container">
     <input type="text" 
            class="search-input" 
            [placeholder]="searchPlaceholder" 
            #searchInput 
            (input)="onSearchChange()"/>
-    <button class="clear-search-btn" 
-            (click)="clearSearchBar()" 
-            title="Clear search">
-      ×
-    </button>
   </div>
   
   <div class="collapsible-header" (click)="toggleFilters()">
-    <h3 class="filter-header">Filter By</h3>
+    <h3 class="filter-header clear-button">Filter By</h3>
   </div>
-  <div>
+    <button class="secondary" (click)="clearAllFilters()">Clear Filters</button>
+  <div class="filter-container">
     <div>
       @if (filterConfig.showCharacters) {
         <div class="filter-group">
@@ -109,7 +110,5 @@
         </div>
       }
     </div>
-    
-    <button class="secondary" (click)="clearAllFilters()">Clear Filters</button>
   </div>
 </section>

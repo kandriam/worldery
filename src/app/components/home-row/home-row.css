@@ -1,7 +1,23 @@
 /* Home Row Component Styles */
 .home-row {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  
+  &.event {
+    scrollbar-color: var(--event-color) var(--g4-color);
+  }
+  &.location {
+    scrollbar-color: var(--location-color) var(--g4-color);
+  }
+  &.character {
+    scrollbar-color: var(--character-color) var(--g4-color);
+  }
+  &.story {
+    scrollbar-color: var(--story-color) var(--g4-color);
+  }
+  
 }
 .home-row-header {
   font: italic;
@@ -95,12 +111,6 @@
     color: var(--g5-color);
     font-weight: bold;
     }
-}
-
-
-
-.add-button {
-  background: var(--g1-color);
 }
 
 .toggle-button::after {

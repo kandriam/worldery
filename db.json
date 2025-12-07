@@ -280,7 +280,7 @@
       ],
       "relatedLocations": [
         "Sunday Brunch",
-        "St Paul, Minnesota"
+        "Hampton, Minnesota"
       ],
       "tags": [
         "Soldiers of Rebellion"
@@ -321,7 +321,7 @@
         "St Paul, Minnesota"
       ],
       "tags": [
-        "tea"
+        "cafe"
       ]
     },
     {
@@ -346,8 +346,7 @@
         "Jayara Apartment",
         "Sunday Brunch",
         "Rivera-Anderson Family House",
-        "Cat's Tea",
-        "SafeHouse"
+        "Cat's Tea"
       ],
       "tags": []
     },
@@ -393,7 +392,9 @@
         "Blood & Water",
         "Room 4"
       ],
-      "relatedLocations": [],
+      "relatedLocations": [
+        "SafeHouse"
+      ],
       "tags": []
     },
     {
@@ -565,6 +566,94 @@
         },
         {
           "relatedCharacterID": "16",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "17",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "18",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "19",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "20",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "21",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "22",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "23",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "24",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "25",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "26",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "28",
           "relationshipType": [
             ""
           ],
@@ -1257,11 +1346,157 @@
           ],
           "hasRelationship": false,
           "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "10",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "11",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "12",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "13",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "14",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "15",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "16",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "17",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "18",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "19",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "20",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "21",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "22",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "23",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "24",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "25",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "26",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "27",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
-      "stories": [],
+      "stories": [
+        "Prophet's Gift"
+      ],
       "tags": []
     },
     {
@@ -4042,18 +4277,229 @@
       "tags": []
     },
     {
-      "id": "27",
-      "firstName": "New",
-      "lastName": "Character",
+      "id": "28",
+      "firstName": "Benny",
+      "lastName": "",
       "altNames": [],
-      "birthdate": "",
-      "pronouns": "",
+      "birthdate": "2200-01-01",
+      "pronouns": "any/all",
       "roles": [],
       "affiliations": [],
-      "relationships": [],
-      "physicalDescription": "",
-      "nonPhysicalDescription": "",
-      "stories": [],
+      "relationships": [
+        {
+          "relatedCharacterID": "1",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "2",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "3",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "4",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "5",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "8",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "9",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "10",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "11",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "12",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "13",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "14",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "15",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "16",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "17",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "18",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "19",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "20",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "21",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "22",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "23",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "24",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "25",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "26",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        }
+      ],
+      "physicalDescription": "Their primary appearance is that of a genderless youth with short, curly, black hair and brown eyes.",
+      "nonPhysicalDescription": "Benny's Gift allows them to change their face as they wish.",
+      "stories": [
+        "Stray Kids (Working Title)"
+      ],
       "tags": []
     }
   ],
@@ -4149,7 +4595,8 @@
       "title": "Prophet's Gift",
       "description": "",
       "characters": [
-        "Melissa Joore"
+        "Melissa Joore",
+        "Sandra Jackson"
       ],
       "locations": [],
       "tags": [
@@ -4182,7 +4629,9 @@
       "id": "5",
       "title": "Stray Kids (Working Title)",
       "description": "",
-      "characters": [],
+      "characters": [
+        "Benny "
+      ],
       "locations": [],
       "tags": []
     }

@@ -7,9 +7,9 @@
       <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
       <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
     </div>
-    <div class="display-container">
-      <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
-    </div>
+    <!-- <div class="display-container"> -->
+    <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
+    <!-- </div> -->
   </div>
   <div class="timeline-content">
     @if (sortedEvents.length > 0) {

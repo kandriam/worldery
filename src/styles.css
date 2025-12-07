@@ -156,6 +156,27 @@ button{
   }
 }
 
+.add-button {
+  /* background-color: pink !important; */
+  background: var(--g3-color) !important;
+  
+  &:hover {
+    background-color: var(--g2-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &.add-button::after {
+    content: '+';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-size: 1.1rem;
+  }
+}
+
 .linked-character, .linked-story, .linked-location {
   border: 0px;
   background-color: inherit;
@@ -414,20 +435,24 @@ textarea {
    LAYOUT SECTIONS
    ============================================================================ */
 .details-section {
-  margin: 10px;
-  padding: 10px;
-  border-bottom: 2px solid;
-  border-top: 2px solid;
+  margin: 5px;
+  padding: 5px;
+  /* border-bottom: 2px solid;
+  border-top: 2px solid; */
   border-radius: 5px;
   width: fit-content;
 }
 
 .primary-section {
+  border-bottom: 2px solid;
+  border-top: 2px solid;
   border-color: var(--g3-color);
   /* display: inline-flex; */
 }
 
 .secondary-section {
+  border-bottom: 2px solid;
+  border-top: 2px solid;
   border-color: var(--g4-color);
 }
 

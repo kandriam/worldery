@@ -11,6 +11,9 @@ Event
 [ ] Recurring dates (Yearly)
 [ ] Event types
     [ ] Birthday (Associated with a character)
+Timeline
+[ ] Calendar view
+[ ] On a selected day... calculate days between it and another day
 
 Characters
 [ ] Age
@@ -30,6 +33,8 @@ General
 # Distant
 General
 [ ] Multiple worlds!
+
+[ ]
 
 # Bugs
 [ ] When association list is added (a box is checked) it already updates in database - which means if the name is changed, it updates wrong name

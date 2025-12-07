@@ -98,33 +98,6 @@
   content: '📖';
 }
 
-.add-button {
-  background: var(--g1-color);
-  color: var(--g5-color);
-  border: 2px solid var(--g1-color);
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.add-button:hover {
-  background: var(--g2-color);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.add-button::after {
-  content: '+';
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  margin-left: 8px;
-  vertical-align: middle;
-  font-size: 1.1rem;
-}
-
 /* Timeline Structure - Horizontal */
 .timeline-content {
   position: relative;
@@ -255,18 +228,9 @@
     padding: 15px 0;
   }
   
-  .timeline-header {
-    padding: 0 10px;
-  }
-  
   .display-button {
     padding: 4px 8px;
     font-size: 0.75rem;
-  }
-  
-  .add-button {
-    padding: 6px 12px;
-    font-size: 0.9rem;
   }
   
   .timeline {

@@ -24,11 +24,12 @@ export class LocationHome {
   worldLocationList: WorldLocationInfo[] = [];
   allCharacters: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
+  allLocations: WorldLocationInfo[] = [];
   
   filterConfig: FilterConfig = {
     showCharacters: true,
     showStories: true,
-    showLocations: false,
+    showLocations: true,
     showDateRange: false
   };
 
@@ -41,6 +42,7 @@ export class LocationHome {
       this.worldLocationList = locations;
       this.filteredLocationList = locations;
       this.allCharacters = characters;
+      this.allLocations = locations;
       this.allStories = stories;
     });
   }
@@ -58,9 +60,33 @@ export class LocationHome {
       );
     }
     
-    // Note: Locations don't typically have direct character/story relationships
-    // This filtering would work based on which characters/stories are associated with locations
-    // For now, keeping the structure for potential future enhancement
+    // Character filter - show locations that have these characters
+    if (filterState.selectedCharacters.length > 0) {
+      filtered = filtered.filter((worldLocation) =>
+        filterState.selectedCharacters.some(characterName =>
+          worldLocation.characters.includes(characterName)
+        )
+      );
+    }
+    
+    // Story filter - show locations that are part of these stories
+    if (filterState.selectedStories.length > 0) {
+      filtered = filtered.filter((worldLocation) =>
+        filterState.selectedStories.some(storyName =>
+          worldLocation.stories.includes(storyName)
+        )
+      );
+    }
+    
+    // Location filter - show locations that are related to these locations
+    if (filterState.selectedLocations.length > 0) {
+      filtered = filtered.filter((worldLocation) =>
+        filterState.selectedLocations.some(locationName =>
+          worldLocation.relatedLocations.includes(locationName) ||
+          worldLocation.name === locationName
+        )
+      );
+    }
     
     this.filteredLocationList = filtered;
   }
