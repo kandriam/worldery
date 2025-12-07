@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 
 export interface SettingsData {
   theme: string;
@@ -22,7 +23,8 @@ export interface SettingsData {
   providedIn: 'root'
 })
 export class SettingsService {
-  private readonly STORAGE_KEY = 'worldery-settings';
+  private readonly API_URL = 'http://localhost:3000';
+  private readonly SETTINGS_ENDPOINT = `${this.API_URL}/settings`;
   
   private defaultSettings: SettingsData = {
     theme: 'default',
@@ -47,7 +49,7 @@ export class SettingsService {
   // Observable for components to subscribe to settings changes
   public settings$ = this.settingsSubject.asObservable();
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadSettings();
   }
 
@@ -63,30 +65,51 @@ export class SettingsService {
 
   // Save settings
   saveSettings(settings: SettingsData): void {
-    try {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(settings));
-      this.settingsSubject.next(settings);
-      console.log('Settings saved successfully');
-    } catch (error) {
-      console.error('Error saving settings:', error);
-    }
+    this.http.put(this.SETTINGS_ENDPOINT, settings)
+      .pipe(
+        catchError(error => {
+          console.error('Error saving settings:', error);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            this.settingsSubject.next(settings);
+            console.log('Settings saved successfully');
+          }
+        },
+        error: (error) => {
+          console.error('Error saving settings:', error);
+        }
+      });
   }
 
-  // Load settings from localStorage
+  // Load settings from JSON server
   private loadSettings(): void {
-    try {
-      const savedSettings = localStorage.getItem(this.STORAGE_KEY);
-      if (savedSettings) {
-        const parsedSettings = JSON.parse(savedSettings);
-        const mergedSettings = { ...this.defaultSettings, ...parsedSettings };
-        this.settingsSubject.next(mergedSettings);
-      } else {
-        this.settingsSubject.next(this.defaultSettings);
-      }
-    } catch (error) {
-      console.error('Error loading settings:', error);
-      this.settingsSubject.next(this.defaultSettings);
-    }
+    this.http.get<SettingsData>(this.SETTINGS_ENDPOINT)
+      .pipe(
+        catchError(error => {
+          console.error('Error loading settings:', error);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (settings) => {
+          if (settings) {
+            const mergedSettings = { ...this.defaultSettings, ...settings };
+            this.settingsSubject.next(mergedSettings);
+          } else {
+            // If no settings found, save and use defaults
+            this.settingsSubject.next(this.defaultSettings);
+            this.saveSettings(this.defaultSettings);
+          }
+        },
+        error: (error) => {
+          console.error('Error loading settings:', error);
+          this.settingsSubject.next(this.defaultSettings);
+        }
+      });
   }
 
   // Reset to default settings

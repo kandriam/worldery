@@ -1,5 +1,8 @@
 <section class="filter-section">
-  <h2>{{searchLabel}}</h2>
+
+  <div class="collapsible-header" (click)="toggleFilters()">
+    <h3 class="filter-header">{{ searchLabel}}</h3>
+  </div>
   <div class="search-container">
     <input type="text" 
            class="search-input" 
@@ -15,11 +18,9 @@
   
   <div class="collapsible-header" (click)="toggleFilters()">
     <h3 class="filter-header">Filter By</h3>
-    <span class="toggle-icon" [class.expanded]="isFiltersExpanded">▼</span>
   </div>
-  
-  <div class="filter-content" [class.hidden]="!isFiltersExpanded">
-    <div class="grid-section">
+  <div>
+    <div>
       @if (filterConfig.showCharacters) {
         <div class="filter-group">
           <label class="secondary-label">Characters</label>

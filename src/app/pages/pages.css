@@ -20,6 +20,14 @@
   margin: 0;
 }
 
+.page-container {
+  display: flex;
+}
+
+.main-article {
+  width: 75%;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .results {

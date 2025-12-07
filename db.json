@@ -4186,5 +4186,21 @@
       "locations": [],
       "tags": []
     }
-  ]
+  ],
+  "settings": {
+    "theme": "default",
+    "autoSave": true,
+    "showThumbnails": true,
+    "itemsPerPage": 12,
+    "defaultSort": "name",
+    "fontSize": "medium",
+    "eventColor": "blue",
+    "locationColor": "green",
+    "characterColor": "orange",
+    "storyColor": "purple",
+    "exportFormat": "json",
+    "includeImages": false,
+    "rememberFilters": true,
+    "showAdvancedFilters": false
+  }
 }

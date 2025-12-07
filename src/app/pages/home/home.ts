@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
   selector: 'app-home',
   imports: [SearchFilter, HomeRow],
   templateUrl: 'home.html',
-  styleUrls: ['./home.css', '../../../styles.css'],
+  styleUrls: ['./home.css', '../pages.css', '../../../styles.css'],
 })
 
 export class Home {

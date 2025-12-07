@@ -70,8 +70,8 @@
   
   padding: 10px;
   border: none;
-  border-bottom: 2px solid;
-  border-top: 2px solid;
+  /* border-bottom: 2px solid;
+  border-top: 2px solid; */
 }
 
 /* Collapsible Filter Styles */
@@ -150,7 +150,8 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  font-size: 14px;
+  /* font-size: 14px; */
+  font-size: x-small;
   color: var(--g1-color);
   text-transform: none;
   font-weight: normal;

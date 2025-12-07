@@ -8,7 +8,7 @@ import { WorldEventInfo } from '../../../worldevent';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './timeline-event.html',
-  styleUrls: ['./timeline-event.css']
+  styleUrls: ['./timeline-event.css', '../../../../styles.css']
 })
 export class TimelineEvent {
   event = input.required<WorldEventInfo>();

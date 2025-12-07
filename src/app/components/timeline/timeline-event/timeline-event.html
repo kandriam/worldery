@@ -5,6 +5,7 @@
     </div>
   }
   <div class="timeline-connector"></div>
+
   <div class="timeline-content-wrapper">
     <div class="timeline-date">
       {{ formatDateRange() }}
@@ -13,27 +14,29 @@
       <div class="event-header">
         <h3 class="event-title">{{ event().name }}</h3>
       </div>
-      
-      @if (showLocation() && event().location.length > 0) {
-        <div class="event-info event-location">
-          {{ event().location.join(', ') }}
+
+      <div class="event-details">
+        @if (showLocation() && event().location.length > 0) {
+          <div class="event-info event-location">
+            {{ event().location.join(', ') }}
+          </div>
+        }
+        
+        @if (showCharacters() && event().characters.length > 0) {
+          <div class="event-info event-characters">
+            {{ event().characters.join(', ') }}
+          </div>
+        }
+        
+        @if (showStories() && event().stories.length > 0) {
+          <div class="event-info event-stories">
+            {{ event().stories.join(', ') }}
+          </div>
+        }
+        
+        <div class="event-description">
+          {{ event().description }}
         </div>
-      }
-      
-      @if (showCharacters() && event().characters.length > 0) {
-        <div class="event-info event-characters">
-          {{ event().characters.join(', ') }}
-        </div>
-      }
-      
-      @if (showStories() && event().stories.length > 0) {
-        <div class="event-info event-stories">
-          {{ event().stories.join(', ') }}
-        </div>
-      }
-      
-      <div class="event-description">
-        {{ event().description }}
       </div>
       
       @if (event().tags.length > 0) {

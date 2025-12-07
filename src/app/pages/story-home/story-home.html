@@ -1,6 +1,6 @@
-<article>
-  <h1>Stories</h1>
-  
+<h1>Stories</h1>
+<div class="page-container">
+  <aside class="side-menu">
   <app-search-filter 
     searchLabel="Search stories"
     searchPlaceholder="Search"
@@ -9,7 +9,8 @@
     [allLocations]="allLocations"
     (filterChange)="onFilterChange($event)">
   </app-search-filter>
-  
+  </aside>
+  <article class="main-article">
   <app-home-row
     entityType="story"
     title="Stories"
@@ -19,4 +20,5 @@
     (addElement)="addWorldStory()"
     (tagClicked)="onTagClicked($event)">
   </app-home-row>
-</article>
+  </article>
+</div>

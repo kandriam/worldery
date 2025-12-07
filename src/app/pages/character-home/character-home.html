@@ -1,21 +1,23 @@
-<article>
-  <h1>Characters</h1>
-  
-  <app-search-filter 
-    searchLabel="Search characters"
-    searchPlaceholder="Search"
-    [filterConfig]="filterConfig"
-    [allStories]="allStories"
-    (filterChange)="onFilterChange($event)">
-  </app-search-filter>
-  
-  <app-home-row
-    entityType="character"
-    title="Characters"
-    routePath="/characters"
-    [entities]="filteredCharacterList"
-    noResultsMessage="No characters found. Try adjusting your search or add a new character."
-    (addElement)="addWorldCharacter()"
-    (tagClicked)="onTagClicked($event)">
-  </app-home-row>
-</article>
+<h1>Characters</h1>
+<div class="page-container">
+  <aside class="side-menu">
+    <app-search-filter 
+      searchLabel="Search characters"
+      searchPlaceholder="Search"
+      [filterConfig]="filterConfig"
+      [allStories]="allStories"
+      (filterChange)="onFilterChange($event)">
+    </app-search-filter>
+  </aside>
+  <article class="main-article">
+    <app-home-row
+      entityType="character"
+      title="Characters"
+      routePath="/characters"
+      [entities]="filteredCharacterList"
+      noResultsMessage="No characters found. Try adjusting your search or add a new character."
+      (addElement)="addWorldCharacter()"
+      (tagClicked)="onTagClicked($event)">
+    </app-home-row>
+  </article>
+</div>

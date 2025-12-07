@@ -453,6 +453,15 @@ textarea {
   gap: 15px;
 }
 
+.side-menu {
+  height: 100vh;
+  /* position: sticky; */
+  top: 0;
+  align-self: flex-start;
+  /* background-color: var(--g5-color); */
+  width: 25%;
+}
+
 /* ===========================================================================
    TAG STYLES
    ============================================================================ */

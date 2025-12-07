@@ -1,43 +1,48 @@
-<article>
-  <h1>Timeline</h1>
-  
-  <app-search-filter 
-    searchLabel="Search events"
-    searchPlaceholder="Search"
-    [filterConfig]="filterConfig"
-    [allCharacters]="allCharacters"
-    [allStories]="allStories"
-    [allLocations]="allLocations"
-    (filterChange)="onFilterChange($event)">
-  </app-search-filter>
-  
-  <div class="view-toggle">
-    <button [class.active]="viewMode === 'timeline'" (click)="setViewMode('timeline')" class="view-button">
-      📅 Timeline View
-    </button>
-    <button [class.active]="viewMode === 'grid'" (click)="setViewMode('grid')" class="view-button">
-      📋 Grid View
-    </button>
-  </div>
-  
-  @if (viewMode === 'timeline') {
-    <app-timeline
-      [events]="filteredEventList"
-      title="Events Timeline"
-      noResultsMessage="No events found. Try adjusting your search or add a new event."
-      (addElement)="addWorldEvent()"
-      (tagClicked)="onTagClicked($event)">
-    </app-timeline>
-  } @else {
-    <app-home-row
-      entityType="event"
-      title="Events"
-      routePath="/events"
-      [entities]="filteredEventList"
-      noResultsMessage="No events found. Try adjusting your search or add a new event."
-      (addElement)="addWorldEvent()"
-      (tagClicked)="onTagClicked($event)">
-    </app-home-row>
-  }
+<h1>Timeline</h1>
+<div class="page-container">
+  <aside class="side-menu">
+    <app-search-filter 
+      searchLabel="Search events"
+      searchPlaceholder="Search"
+      [filterConfig]="filterConfig"
+      [allCharacters]="allCharacters"
+      [allStories]="allStories"
+      [allLocations]="allLocations"
+      (filterChange)="onFilterChange($event)">
+    </app-search-filter>
+  </aside>
+  <article class="main-article">
+    <div class="view-toggle">
+      <button [class.active]="viewMode === 'timeline'" (click)="setViewMode('timeline')" class="view-button">
+        📅 Timeline View
+      </button>
+      <button [class.active]="viewMode === 'grid'" (click)="setViewMode('grid')" class="view-button">
+        📋 Grid View
+      </button>
+      <button class="view-button disabled">
+        Calendar View (Coming Soon)
+      </button>
+    </div>
+    
+    @if (viewMode === 'timeline') {
+      <app-timeline
+        [events]="filteredEventList"
+        title="Events Timeline"
+        noResultsMessage="No events found. Try adjusting your search or add a new event."
+        (addElement)="addWorldEvent()"
+        (tagClicked)="onTagClicked($event)">
+      </app-timeline>
+    } @else {
+      <app-home-row
+        entityType="event"
+        title="Events"
+        routePath="/events"
+        [entities]="filteredEventList"
+        noResultsMessage="No events found. Try adjusting your search or add a new event."
+        (addElement)="addWorldEvent()"
+        (tagClicked)="onTagClicked($event)">
+      </app-home-row>
+    }
+  </article>
+</div>
 
-</article>
