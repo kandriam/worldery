@@ -1,24 +1,24 @@
 import {Component, inject, ViewChild} from '@angular/core';
-import {WorldEventInfo} from '../worldevent';
-import {WorldEventService} from '../services/world-event.service';
+import {WorldEventInfo} from '../../worldevent';
+import {WorldEventService} from '../../services/world-event.service';
 
-import { WorldLocationInfo } from '../worldlocation';
-import { WorldLocationService } from '../services/world-location.service';
+import { WorldLocationInfo } from '../../worldlocation';
+import { WorldLocationService } from '../../services/world-location.service';
 
-import { WorldCharacterInfo } from '../worldcharacter';
-import { WorldCharacterService } from '../services/world-character.service';
+import { WorldCharacterInfo } from '../../worldcharacter';
+import { WorldCharacterService } from '../../services/world-character.service';
 
-import { WorldStoryInfo } from '../worldstory';
-import { WorldStoryService } from '../services/world-story.service';
-import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../components/search-filter/search-filter';
-import {HomeRow, EntityType} from '../components/home-row/home-row';
+import { WorldStoryInfo } from '../../worldstory';
+import { WorldStoryService } from '../../services/world-story.service';
+import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import {HomeRow, EntityType} from '../../components/home-row/home-row';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   imports: [SearchFilter, HomeRow],
   templateUrl: 'home.html',
-  styleUrls: ['./home.css', '../../styles.css'],
+  styleUrls: ['./home.css', '../../../styles.css'],
 })
 
 export class Home {

@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {Home} from './home/home';
+import {Home} from './pages/home/home';
 import {WorldEventDetails} from './details/event-details/event-details';
 import { WorldLocationDetails } from './details/location-details/location-details';
 import { WorldCharacterDetails } from './details/character-details/character-details';
