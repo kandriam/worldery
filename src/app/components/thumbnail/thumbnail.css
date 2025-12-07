@@ -38,7 +38,7 @@
   background: var(--g4-color);
   border-radius: 15px;
   margin: 5px;
-  height: fit-content;
+  /* height: fit-content; */
   padding: 10px;
   transition: all 0.3s ease-in-out;
   

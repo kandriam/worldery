@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
+import { Router } from '@angular/router'; 
 import {WorldCharacterInfo, worldCharacterRelationship } from '../worldcharacter';
 @Injectable({
   providedIn: 'root',
 })
 export class WorldCharacterService {
   url = 'http://localhost:3000/worldcharacters';
+  
+  constructor(private router: Router) {}
 
   async getAllWorldCharacters(): Promise<WorldCharacterInfo[]> {
     const data = await fetch(this.url)
@@ -128,7 +131,8 @@ export class WorldCharacterService {
       
       console.log('Character created successfully');
       const newCharacter = await response.json();
-      window.location.reload();
+      this.router.navigate([`/character/${newCharacter.id}`]);
+      // window.location.reload();
       return newCharacter;
     } catch (error) {
       console.error('Error creating character:', error);

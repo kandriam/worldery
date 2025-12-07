@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { WorldLocationInfo } from '../worldlocation';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorldLocationService {
   url = 'http://localhost:3000/worldlocations';
+  
+  constructor(private router: Router) {}
 
   async getAllWorldLocations(): Promise<WorldLocationInfo[]> {
     const data = await fetch(this.url);
@@ -205,7 +208,8 @@ export class WorldLocationService {
       
       console.log('Location created successfully');
       const newLocation = await response.json();
-      window.location.reload();
+      this.router.navigate([`/location/${newLocation.id}`]);
+      // window.location.reload();
       return newLocation;
     } catch (error) {
       console.error('Error creating location:', error);

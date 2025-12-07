@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { WorldStoryInfo } from '../worldstory';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorldStoryService {
   url = 'http://localhost:3000/worldstories';
+  
+  constructor(private router: Router) {}
 
   async getAllWorldStories(): Promise<WorldStoryInfo[]> {
     const data = await fetch(this.url);
@@ -117,7 +120,8 @@ export class WorldStoryService {
       
       console.log('Story created successfully with bidirectional relationships');
       const newStory = await response.json();
-      window.location.reload();
+      this.router.navigate([`/story/${newStory.id}`]);
+      // window.location.reload();
       return newStory;
     } catch (error) {
       console.error('Error creating story:', error);

@@ -5,6 +5,7 @@ import {WorldCharacterService} from '../../services/world-character.service';
 import {WorldStoryService} from '../../services/world-story.service';
 import {WorldStoryInfo} from '../../worldstory';
 import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-home',
@@ -27,6 +28,8 @@ export class CharacterHome {
     showLocations: false,
     showDateRange: false
   };
+
+  router: Router = inject(Router);
 
   constructor() {
     Promise.all([
@@ -67,7 +70,7 @@ export class CharacterHome {
 
   addWorldCharacter() {
     console.log('Adding new character');
-    this.characterService.createWorldCharacter('New Character', '', [], '', '', [], [], [], '', '', [], []);
+    this.characterService.createWorldCharacter('New', 'Character', [], '', '', [], [], [], '', '', [], []);
   }
 
   onTagClicked(tag: string) {

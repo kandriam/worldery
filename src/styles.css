@@ -388,49 +388,27 @@ textarea {
   cursor: pointer;
   z-index: 1000; /* Ensure it stays on top */
   transition: all 0.3s ease;
-
-  .primary {
-    background-color: var(--g2-color);
-    color: var(--g5-color);
-
-    &:hover {
-      background-color: var(--g3-color);
-      color: var(--g2-color);
-    }
-  }
-  
-  &.primary {
-    background-color: var(--g2-color);
-    color: var(--g5-color);
-
-    &:hover {
-      background-color: var(--g3-color);
-      color: var(--g2-color);
-    }
-  }
-
-  .secondary {
-    background-color: var(--b2-color);
-    color: var(--g5-color);
-
-    &:hover {
-      background-color: var(--b3-color);
-      color: var(--g2-color);
-    }
-  }
-
-  &.secondary {
-    background-color: var(--b2-color);
-    color: var(--g5-color);
-
-    &:hover {
-      background-color: var(--b3-color);
-      color: var(--g2-color);
-    }
-  }
-  
-
 } 
+
+.primary {
+  background-color: var(--g2-color);
+  color: var(--g5-color);
+
+  &:hover {
+    background-color: var(--g3-color);
+    color: var(--g2-color);
+  }
+}
+
+.secondary {
+  background-color: var(--b2-color);
+  color: var(--g5-color);
+
+  &:hover {
+    background-color: var(--b3-color);
+    color: var(--g2-color);
+  }
+}
 
 /* ============================================================================
    LAYOUT SECTIONS
@@ -512,5 +490,5 @@ textarea {
  */
 
 .hidden {
-  display: none;
+  display: none !important;
 }

@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
+import { Router } from '@angular/router';
 import {WorldEventInfo} from '../worldevent';
 @Injectable({
   providedIn: 'root',
 })
 export class WorldEventService {
   url = 'http://localhost:3000/worldevents';
+  
+  constructor(private router: Router) {}
 
   async getAllWorldEvents(): Promise<WorldEventInfo[]> {
     const data = await fetch(this.url)
@@ -84,7 +87,8 @@ export class WorldEventService {
           tags: eventTags,
         }),
       });
-      window.location.reload();
+      this.router.navigate([`/event/${newId}`]);
+      // window.location.reload();
     });
   }
 
