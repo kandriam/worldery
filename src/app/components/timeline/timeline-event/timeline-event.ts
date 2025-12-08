@@ -19,6 +19,7 @@ export class TimelineEvent {
   showCharacters = input<boolean>(true);
   showStories = input<boolean>(true);
   shouldShowYear = input<boolean>(false);
+  orientation = input<'horizontal' | 'vertical'>('vertical');
   
   tagClicked = output<string>();
   

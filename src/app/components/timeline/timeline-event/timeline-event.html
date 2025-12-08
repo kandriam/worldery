@@ -1,4 +1,4 @@
-<div class="timeline-item" [class.current-event]="isCurrentEvent()">
+<div class="timeline-item" [class.current-event]="isCurrentEvent()" [class.horizontal]="orientation() === 'horizontal'" [class.vertical]="orientation() === 'vertical'">
   @if (shouldShowYear()) {
     <div class="year-marker">
       <span class="year-label">{{ getYear(event().date) }}</span>

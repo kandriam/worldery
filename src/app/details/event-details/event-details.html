@@ -1,91 +1,99 @@
-<section class="details-heading">
+<div class="details-heading">
     <h2 class="event-title">{{ worldEvent?.name }}</h2>
     <button class="delete-button secondary" (click)="deleteEvent()">Delete Event</button>
-</section>
-<article>
-    <form [formGroup]="applyForm" (submit)="submitApplication()">
-        <section class="edit-event-form event-page-body">
-            <div class="details-section primary-section horizontal-section">
-                <div class="details-section secondary-section">
-                    <label class="primary-label" for="event-title">Title</label>
-                    <input id="event-title" type="text" formControlName="eventTitle" placeholder="Enter event name..." />
-                </div>
-                <div class="details-section secondary-section">
-                    <label class="primary-label">Date</label>
-                    <div class="date-selector">
-                        <input id="event-year" type="number" formControlName="eventYear" placeholder="Year" min="1800" max="3000" />
-                        <select id="event-month" formControlName="eventMonth">
-                            <option value="">Month</option>
-                            @for (month of months; track month) {
-                                <option value="{{ month }}">{{ month }}</option>
-                            }
-                        </select>
-                        <input id="event-day" type="number" formControlName="eventDay" placeholder="Day" min="1" max="31" />
-                    </div>
-                    <label class="primary-label">End Date (Optional)</label>
-                    <div class="date-selector">
-                        <input id="event-end-year" type="number" formControlName="eventEndYear" placeholder="Year" min="1800" max="3000" />
-                        <select id="event-end-month" formControlName="eventEndMonth">
-                            <option value="">Month</option>
-                            @for (month of months; track month) {
-                                <option value="{{ month }}">{{ month }}</option>
-                            }
-                        </select>
-                        <input id="event-end-day" type="number" formControlName="eventEndDay" placeholder="Day" min="1" max="31" />
-                    </div>
-                </div>
-            </div>
-            
-            <div class="details-section primary-section spanning-section">
-                <div class="details-section secondary-section">
-                    <label class="primary-label" for="event-description">Description</label>
-                    <textarea id="event-description" class="medium-textarea" formControlName="eventDescription" placeholder="Describe what happened during this event..."></textarea>
-                </div>
-            </div>
-            
-            <div class="details-section primary-section spanning-section">
-                <div class="details-section secondary-section">
-                    <app-association-list
-                        [items]="getLocationsAssociationList()"
-                        [label]="'Location'"
-                        [type]="'location'"
-                        (itemToggled)="onLocationToggle($event)">
-                    </app-association-list>
-                </div>
-                <div class="details-section secondary-section">
-                    <app-association-list
-                        [items]="getStoriesAssociationList()"
-                        [label]="'Stories'"
-                        [type]="'story'"
-                        (itemToggled)="onStoryToggle($event)">
-                    </app-association-list>
-                </div>
-                <div class="details-section secondary-section">
-                    <app-association-list
-                        [items]="getCharactersAssociationList()"
-                        [label]="'Characters'"
-                        [type]="'character'"
-                        (itemToggled)="onCharacterToggle($event)">
-                    </app-association-list>
-                </div>
-            </div>
-            
-            <div class="details-section primary-section spanning-section">
-                <div class="details-section secondary-section">
-                    <label class="primary-label" for="event-tags">Tags</label>
-                    <textarea class="small-textarea" id="event-tags" formControlName="eventTags" placeholder="Enter tags separated by commas..."></textarea>
-                </div>
-            </div>
-        </section>
-        <button type="submit" class="save-button primary">Save</button>
-    </form>
+</div>
 
-    <app-timeline
-      [events]="filteredEventList"
-      [currentEventId]="worldEvent?.id?.toString()"
-      title="Events Timeline"
-      noResultsMessage="No events found. Try adjusting your search or add a new event."
-      (addElement)="addWorldEvent()"
-      (tagClicked)="onTagClicked($event)">
-    </app-timeline>
-</article>
+<div class="event-page-layout">
+    <!-- Main Content Area -->
+    <div class="event-main-content">
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
+            <section class="edit-event-form page-body">
+                <div class="details-section primary-section horizontal-section">
+                    <div class="details-section secondary-section">
+                        <label class="primary-label" for="event-title">Title</label>
+                        <input id="event-title" type="text" formControlName="eventTitle" placeholder="Enter event name..." />
+                    </div>
+                    <div class="details-section secondary-section">
+                        <label class="primary-label">Date</label>
+                        <div class="date-selector">
+                            <input id="event-year" type="number" formControlName="eventYear" placeholder="Year" min="1800" max="3000" />
+                            <select id="event-month" formControlName="eventMonth">
+                                <option value="">Month</option>
+                                @for (month of months; track month) {
+                                    <option value="{{ month }}">{{ month }}</option>
+                                }
+                            </select>
+                            <input id="event-day" type="number" formControlName="eventDay" placeholder="Day" min="1" max="31" />
+                        </div>
+                        <label class="primary-label">End Date (Optional)</label>
+                        <div class="date-selector">
+                            <input id="event-end-year" type="number" formControlName="eventEndYear" placeholder="Year" min="1800" max="3000" />
+                            <select id="event-end-month" formControlName="eventEndMonth">
+                                <option value="">Month</option>
+                                @for (month of months; track month) {
+                                    <option value="{{ month }}">{{ month }}</option>
+                                }
+                            </select>
+                            <input id="event-end-day" type="number" formControlName="eventEndDay" placeholder="Day" min="1" max="31" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="details-section primary-section spanning-section">
+                    <div class="details-section secondary-section">
+                        <label class="primary-label" for="event-description">Description</label>
+                        <textarea id="event-description" class="medium-textarea" formControlName="eventDescription" placeholder="Describe what happened during this event..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="details-section primary-section spanning-section">
+                    <div class="details-section secondary-section">
+                        <app-association-list
+                            [items]="getLocationsAssociationList()"
+                            [label]="'Location'"
+                            [type]="'location'"
+                            (itemToggled)="onLocationToggle($event)">
+                        </app-association-list>
+                    </div>
+                    <div class="details-section secondary-section">
+                        <app-association-list
+                            [items]="getStoriesAssociationList()"
+                            [label]="'Stories'"
+                            [type]="'story'"
+                            (itemToggled)="onStoryToggle($event)">
+                        </app-association-list>
+                    </div>
+                    <div class="details-section secondary-section">
+                        <app-association-list
+                            [items]="getCharactersAssociationList()"
+                            [label]="'Characters'"
+                            [type]="'character'"
+                            (itemToggled)="onCharacterToggle($event)">
+                        </app-association-list>
+                    </div>
+                </div>
+                
+                <div class="details-section primary-section spanning-section">
+                    <div class="details-section secondary-section">
+                        <label class="primary-label" for="event-tags">Tags</label>
+                        <textarea class="small-textarea" id="event-tags" formControlName="eventTags" placeholder="Enter tags separated by commas..."></textarea>
+                    </div>
+                </div>
+            </section>
+            <button type="submit" class="save-button primary">Save</button>
+        </form>
+    </div>
+
+    <!-- Timeline Sidebar -->
+    <div class="event-timeline-sidebar">
+        <app-timeline
+          [events]="filteredEventList"
+          [currentEventId]="worldEvent?.id?.toString()"
+          title="Events Timeline"
+          orientation="vertical"
+          noResultsMessage="No events found. Try adjusting your search or add a new event."
+          (addElement)="addWorldEvent()"
+          (tagClicked)="onTagClicked($event)">
+        </app-timeline>
+    </div>
+</div>

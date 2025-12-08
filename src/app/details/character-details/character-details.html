@@ -1,12 +1,15 @@
-<div class="details-heading horizontal-section">
+<div class="details-heading">
     <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
     @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {
         <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>
     }
     <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
 </div>
-<div>
-    <form [formGroup]="applyForm" (submit)="updateCharacter()">
+
+<div class="character-page-layout">
+    <!-- Main Content Area -->
+    <div class="character-main-content">
+        <form [formGroup]="applyForm" (submit)="updateCharacter()">
         <section class="edit-character-form page-body">
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
@@ -127,17 +130,19 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Character Timeline Section -->
-        <section class="details-section primary-section vertical-section">
-            <app-timeline 
-                [events]="filteredEventList" 
-                [title]="'Events for ' + (worldCharacter?.firstName || '') + ' ' + (worldCharacter?.lastName || '')"
-                [noResultsMessage]="'No events found for this character'"
-                (tagClicked)="onTimelineTagClicked($event)">
-            </app-timeline>
-        </section>
-        
-        <button type="submit" class="save-button primary">Save</button>
-    </form>
+            
+            <button type="submit" class="save-button primary">Save</button>
+        </form>
+    </div>
+    
+    <!-- Timeline Sidebar -->
+    <div class="character-timeline-sidebar">
+        <app-timeline 
+            [events]="filteredEventList" 
+            [title]="'Events for ' + (worldCharacter?.firstName || '') + ' ' + (worldCharacter?.lastName || '')"
+            [noResultsMessage]="'No events found for this character'"
+            orientation="vertical"
+            (tagClicked)="onTimelineTagClicked($event)">
+        </app-timeline>
+    </div>
 </div>

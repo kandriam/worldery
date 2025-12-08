@@ -98,7 +98,7 @@
   content: '📖';
 }
 
-/* Timeline Structure - Horizontal */
+/* Timeline Structure - Default Horizontal */
 .timeline-content {
   position: relative;
   margin: 0 auto;
@@ -110,6 +110,7 @@
   overflow: hidden;
 }
 
+/* Horizontal Timeline (Default) */
 .timeline {
   position: relative;
   display: flex;
@@ -121,6 +122,36 @@
   scrollbar-width: thin;
   scrollbar-color: var(--event-color) var(--g4-color);
   gap: 20px;
+}
+
+/* Vertical Timeline Override */
+.timeline-container.vertical .timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 20px 20px 60px;
+  gap: 0;
+  overflow-x: visible;
+  overflow-y: visible;
+  scroll-snap-type: none;
+}
+
+.timeline-container.vertical .timeline-line {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  bottom: 20px;
+  width: 4px;
+  height: auto;
+  transform: none;
+  background: linear-gradient(
+    to bottom,
+    var(--event-color) 0%,
+    var(--character-color) 25%,
+    var(--location-color) 50%,
+    var(--story-color) 75%,
+    var(--event-color) 100%
+  );
 }
 
 .timeline::-webkit-scrollbar {

@@ -1,9 +1,13 @@
+<div class="details-heading">
+    <h2 class="location-title">{{ worldLocation?.name }}</h2>
+    <button class="delete-button secondary" (click)="deleteLocation()">Delete Location</button>
+</div>
+
 <article>
-    <section class="details-heading horizontal-section">
-        <h2 class="location-title">{{ worldLocation?.name }}</h2>
-        <button class="delete-button secondary" (click)="deleteLocation()">Delete Location</button>
-    </section>
-    <form [formGroup]="applyForm" (submit)="submitApplication()">
+    <div class="location-page-layout">
+        <!-- Main Content Area -->
+        <div class="location-main-content">
+            <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-location-form location-page-body">
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
@@ -51,19 +55,22 @@
                     <label class="primary-label" for="location-tags">Location Tags</label>
                     <textarea class="small-textarea" id="location-tags" formControlName="locationTags" placeholder="Enter tags separated by commas..."></textarea>
                 </div>
-            </div>
-        </section>
+                </div>
+            </section>
+            
+            <button type="submit" class="save-button primary">Save</button>
+            </form>
+        </div>
         
-        <!-- Location Timeline Section -->
-        <section class="details-section primary-section vertical-section">
+        <!-- Timeline Sidebar -->
+        <div class="location-timeline-sidebar">
             <app-timeline 
                 [events]="filteredEventList" 
                 [title]="'Events at ' + (worldLocation?.name || '')"
                 [noResultsMessage]="'No events found at this location'"
+                orientation="vertical"
                 (tagClicked)="onTimelineTagClicked($event)">
             </app-timeline>
-        </section>
-        
-        <button type="submit" class="save-button primary">Save</button>
-    </form>
+        </div>
+    </div>
 </article>

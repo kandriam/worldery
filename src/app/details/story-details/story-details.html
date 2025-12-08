@@ -1,9 +1,13 @@
+<div class="details-heading">
+    <h2 class="story-title">{{ worldStory?.title }}</h2>
+    <button class="delete-button secondary" (click)="deleteStory()">Delete Story</button>
+</div>
+
 <article>
-    <section class="details-heading horizontal-section">
-        <h2 class="story-title">{{ worldStory?.title }}</h2>
-        <button class="delete-button secondary" (click)="deleteStory()">Delete Story</button>
-    </section>
-    <form [formGroup]="applyForm" (submit)="submitApplication()">
+    <div class="story-page-layout">
+        <!-- Main Content Area -->
+        <div class="story-main-content">
+            <form [formGroup]="applyForm" (submit)="submitApplication()">
         <section class="edit-story-form story-page-body">
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
@@ -40,19 +44,22 @@
                     <label class="primary-label" for="story-tags">Story Tags</label>
                     <textarea class="small-textarea" id="story-tags" formControlName="storyTags" placeholder="Enter tags separated by commas..."></textarea>
                 </div>
-            </div>
-        </section>
+                </div>
+            </section>
+            
+            <button type="submit" class="save-button primary">Save</button>
+            </form>
+        </div>
         
-        <!-- Story Timeline Section -->
-        <!-- <section class="details-section primary-section vertical-section"> -->
+        <!-- Timeline Sidebar -->
+        <div class="story-timeline-sidebar">
             <app-timeline 
                 [events]="filteredEventList" 
                 [title]="'Events in ' + (worldStory?.title || '')"
                 [noResultsMessage]="'No events found for this story'"
+                orientation="vertical"
                 (tagClicked)="onTimelineTagClicked($event)">
             </app-timeline>
-        <!-- </section> -->
-        
-        <button type="submit" class="save-button primary">Save</button>
-    </form>
+        </div>
+    </div>
 </article>

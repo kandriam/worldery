@@ -16,6 +16,7 @@ export class Timeline implements AfterViewInit {
   @ViewChild('timelineContainer', { static: false }) timelineContainer!: ElementRef<HTMLElement>;
   @Input() title: string = 'Timeline';
   @Input() noResultsMessage: string = 'No events found';
+  @Input() orientation: 'horizontal' | 'vertical' = 'vertical';
   
   @Output() addElement = new EventEmitter<void>();
   @Output() tagClicked = new EventEmitter<string>();

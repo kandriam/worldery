@@ -1,4 +1,4 @@
-<section class="timeline-container">
+<section class="timeline-container" [class.horizontal]="orientation === 'horizontal'" [class.vertical]="orientation === 'vertical'">
   <div class="timeline-header">
     <h2 class="timeline-title">{{ title }}</h2>
     <div class="display-container">
@@ -26,6 +26,7 @@
             [showCharacters]="showCharacters"
             [showStories]="showStories"
             [shouldShowYear]="shouldShowYearMarker(event, i)"
+            [orientation]="orientation"
             (tagClicked)="onTagClick($event)">
           </app-timeline-event>
         }
