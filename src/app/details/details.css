@@ -3,6 +3,12 @@
     margin-bottom: 15px;
 }
 
+.page-body {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+}
+
 .description {
     margin-bottom: 25px;
 }

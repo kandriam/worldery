@@ -66,12 +66,15 @@ export class Home {
       this.filteredEventList = this.worldEventList;
       
       this.worldLocationList = locations;
+      // this.worldLocationList = locations.sort((a, b) => (a.name > b.name ? 1 : -1));
       this.filteredLocationList = locations;
       
       this.worldCharacterList = characters;
+      // this.worldCharacterList = characters.sort((a, b) => (a.firstName > b.firstName ? 1 : -1))
       this.filteredCharacterList = characters;
       
       this.worldStoryList = stories;
+      // this.worldStoryList = stories.sort((a, b) => (a.title > b.title ? 1 : -1));
       this.filteredStoryList = stories;
       
       // Populate filter arrays

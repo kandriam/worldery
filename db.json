@@ -473,7 +473,7 @@
           "relationshipType": [
             ""
           ],
-          "hasRelationship": true,
+          "hasRelationship": false,
           "relationshipDescription": ""
         },
         {
@@ -3852,7 +3852,9 @@
       "id": "25",
       "firstName": "Joan",
       "lastName": "Miller",
-      "altNames": [],
+      "altNames": [
+        "Jack (Formerly)"
+      ],
       "birthdate": "2212-10-01",
       "pronouns": "they/them",
       "roles": [],
@@ -4044,6 +4046,22 @@
         },
         {
           "relatedCharacterID": "24",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "26",
+          "relationshipType": [
+            ""
+          ],
+          "hasRelationship": false,
+          "relationshipDescription": ""
+        },
+        {
+          "relatedCharacterID": "28",
           "relationshipType": [
             ""
           ],

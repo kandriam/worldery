@@ -437,8 +437,6 @@ textarea {
 .details-section {
   margin: 5px;
   padding: 5px;
-  /* border-bottom: 2px solid;
-  border-top: 2px solid; */
   border-radius: 5px;
   width: fit-content;
 }

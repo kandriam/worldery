@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorldEventService } from '../../services/world-event.service';
 import { WorldEventInfo } from '../../worldevent';
 import { WorldCharacterService } from '../../services/world-character.service';
@@ -15,7 +15,7 @@ import { AssociationList, AssociationItem, EntityType } from '../../components/a
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, Timeline, AssociationList],
+  imports: [ReactiveFormsModule, Timeline, AssociationList],
   templateUrl: 'event-details.html',
   styleUrls: ["event-details.css", "../details.css", "../../../styles.css"],
 })

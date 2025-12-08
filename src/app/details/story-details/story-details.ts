@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorldStoryService } from '../../services/world-story.service';
 import { WorldEventService } from '../../services/world-event.service';
 import { WorldStoryInfo } from '../../worldstory';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, Timeline, AssociationList],
+  imports: [ReactiveFormsModule, Timeline, AssociationList],
   templateUrl: 'story-details.html',
   styleUrls: ["story-details.css", "../details.css", "../../../styles.css"],
 })

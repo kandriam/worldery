@@ -28,6 +28,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   worldLocationService = inject(WorldLocationService);
   worldCharacter: WorldCharacterInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
+  filteredCharacterList = Array<WorldCharacterInfo>();
+  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';
+  storyFilter: string = 'all';
   worldStoryService = inject(WorldStoryService);
   storyList = Array<WorldStoryInfo>();
   locationList = Array<WorldLocationInfo>();
@@ -127,6 +130,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   private loadSharedData() {
     this.worldCharacterService.getAllWorldCharacters().then((characters) => {
       this.characterList = characters;
+      this.applyFilters();
       this.updateRelationshipUI();
     });
 
@@ -177,6 +181,56 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
   getRelationship(characterID: string): worldCharacterRelationship | undefined {
     return this.worldCharacter?.relationships?.find(r => r.relatedCharacterID === characterID.toString());
+  }
+
+  // Filter methods
+  applyFilters(): void {
+    if (!this.characterList || !this.worldCharacter) {
+      this.filteredCharacterList = [];
+      return;
+    }
+
+    this.filteredCharacterList = this.characterList.filter(character => {
+      if (character.id === this.worldCharacter?.id) return false;
+
+      // Relationship filter
+      const hasRelationship = this.getRelationship(character.id)?.hasRelationship;
+      if (this.relationshipFilter === 'with-relationship' && !hasRelationship) return false;
+      if (this.relationshipFilter === 'without-relationship' && hasRelationship) return false;
+
+      // Story filter
+      if (this.storyFilter !== 'all') {
+        const characterStories = character.stories || [];
+        if (!characterStories.includes(this.storyFilter)) return false;
+      }
+
+      return true;
+    });
+  }
+
+  setRelationshipFilter(filter: 'all' | 'with-relationship' | 'without-relationship'): void {
+    this.relationshipFilter = filter;
+    this.applyFilters();
+  }
+
+  setStoryFilter(story: string): void {
+    this.storyFilter = story;
+    this.applyFilters();
+  }
+
+  onStoryFilterChange(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    this.setStoryFilter(select?.value || 'all');
+  }
+
+  getUniqueStories(): string[] {
+    const stories = new Set<string>();
+    this.characterList.forEach(character => {
+      if (character.stories) {
+        character.stories.forEach(story => stories.add(story));
+      }
+    });
+    return Array.from(stories).sort();
   }
 
   isLocationAssociatedWithCharacter(locationName: string): boolean {
@@ -407,9 +461,21 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     let relationships: worldCharacterRelationship[] = [];
     for (let character of this.characterList) {
       if (character.id !== this.worldCharacter?.id) {
-        let updatedRelationship = this.getFormRelationship(character.id);
-        if (updatedRelationship) {
-          relationships.push(updatedRelationship);
+        // Check if this character is currently displayed (has DOM elements)
+        let relationshipCheckbox = document.getElementById(`relationship-checkbox-${character.id}`) as HTMLInputElement;
+        
+        if (relationshipCheckbox) {
+          // Character is displayed, get form data
+          let updatedRelationship = this.getFormRelationship(character.id);
+          if (updatedRelationship) {
+            relationships.push(updatedRelationship);
+          }
+        } else {
+          // Character is not displayed, preserve existing relationship data
+          let existingRelationship = this.getRelationship(character.id);
+          if (existingRelationship) {
+            relationships.push(existingRelationship);
+          }
         }
       }
     }

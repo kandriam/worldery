@@ -1,13 +1,13 @@
-<article>
-    <section class="details-heading horizontal-section">
-        <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
-        @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {
-            <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>
-        }
-        <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
-    </section>
+<div class="details-heading horizontal-section">
+    <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
+    @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {
+        <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>
+    }
+    <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
+</div>
+<div>
     <form [formGroup]="applyForm" (submit)="updateCharacter()">
-        <section class="edit-character-form character-page-body">
+        <section class="edit-character-form page-body">
             <div class="details-section primary-section horizontal-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-first-name">Name</label>
@@ -56,14 +56,34 @@
                     <input id="character-affiliations" type="text" formControlName="characterAffiliations" placeholder="Groups, organizations, factions..." />
                 </div>
             </div>
-            <div class="details-section primary-section vertical-section">
-                <label class="primary-label" for="character-relationships">Relationships</label>
+            <div class="details-section primary-section">
+                <label class="primary-label">Relationships</label>
+                
+                <!-- Filter buttons -->
+                <div class="relationship-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Show:</label>
+                        <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'all'" (click)="setRelationshipFilter('all')">All</button>
+                        <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'with-relationship'" (click)="setRelationshipFilter('with-relationship')">With Relationship</button>
+                        <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'without-relationship'" (click)="setRelationshipFilter('without-relationship')">Without Relationship</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Story:</label>
+                        <select class="story-filter-select" [value]="storyFilter" (change)="onStoryFilterChange($event)">
+                            <option value="all">All Stories</option>
+                            @for (story of getUniqueStories(); track story) {
+                                <option [value]="story">{{ story }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                
                 <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
-                <div class="details-section secondary-section grid-section">
-                    @for(character of characterList; track character) {
-                        <!-- If not the current character -->
-                        @if(worldCharacter?.id !== character.id) {
-                            <div class="relationship-section" id="relationship-{{character.id}}">
+                <div class="details-section relationship-section vertical-section">
+
+                    @for(character of filteredCharacterList; track character) {
+                        <div class="relationship" id="relationship-{{character.id}}">
                                 <div class="relationship-header">
                                     <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
                                     <button class="linked-character" [routerLink]="['/character', character.id]">
@@ -81,7 +101,6 @@
                                     <textarea class="medium-textarea relationship-textarea hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
                                 }
                             </div>
-                        }
                     }
                 </div>
             </div>
@@ -121,4 +140,4 @@
         
         <button type="submit" class="save-button primary">Save</button>
     </form>
-</article>
+</div>
