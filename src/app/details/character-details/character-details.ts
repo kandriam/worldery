@@ -520,7 +520,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         if (result && typeof result.then === 'function') {
           result.then(() => {
             console.log('Character update completed successfully');
-            alert('Character updated successfully!');
+            // alert('Character updated successfully!');
             window.location.reload();
           }).catch((error: any) => {
             console.error('Character update promise failed:', error);

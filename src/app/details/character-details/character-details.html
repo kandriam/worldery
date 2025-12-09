@@ -11,7 +11,7 @@
     <div class="character-main-content">
         <form [formGroup]="applyForm" (submit)="updateCharacter()">
         <section class="edit-character-form page-body">
-            <div class="details-section primary-section horizontal-section">
+            <div class="details-section primary-section character-page-grid-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-first-name">Name</label>
                     <input id="character-first-name" type="text" formControlName="characterFirstName" placeholder="First name" />
@@ -36,8 +36,8 @@
                         <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
                     </div>
                 </div>
-            </div>
-            <div class="details-section primary-section horizontal-section">
+            <!-- </div>
+            <div class="details-section primary-section horizontal-section"> -->
                 <!-- <div class="details-section secondary-section"> -->
                 <div>
                     <label class="primary-label" for="character-physical-description">Physical Description</label>
@@ -98,10 +98,10 @@
                                 }
                                 @if (getRelationship(character.id)?.hasRelationship) {
                                     <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-                                    <textarea class="medium-textarea relationship-textarea" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+                                    <textarea id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
                                 } @else {
                                     <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-                                    <textarea class="medium-textarea relationship-textarea hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+                                    <textarea class="hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
                                 }
                             </div>
                     }

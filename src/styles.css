@@ -319,11 +319,18 @@ input[type="text"] {
 }
 
 textarea {
-  padding: 10px;
+  padding: 15px;
   /* height: fit-content; */
   resize: none;
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  min-height: 150px;
+  height: auto;
+  box-sizing: border-box;
+  margin: 0 auto;
 
-  &.small-textarea {
+  /* &.small-textarea {
     min-width: 12.5rem;
     min-height: 3.125rem;
   }
@@ -336,13 +343,18 @@ textarea {
   &.large-textarea {
     min-width: 31.25rem;
     min-height: 18.75rem;
-  }
+  } */
 
 }
 
 .form-field {
   display: flex;
-  width: fit-content;
+  flex-direction: column;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
 }
 
 .date-selector {
