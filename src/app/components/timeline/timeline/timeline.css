@@ -2,7 +2,8 @@
 
 .timeline-container {
   width: 100%;
-  padding: 20px 0;
+  /* padding: 20px 0; */
+  /* background-color: transparent; */
 }
 
 .timeline-header {
@@ -120,7 +121,7 @@
   padding: 80px 20px 40px;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
-  scrollbar-color: var(--event-color) var(--g4-color);
+  scrollbar-color: var(--event-color) transparent;
   gap: 20px;
 }
 
@@ -129,7 +130,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px 20px 20px 60px;
+  padding: 20px 20px 20px 140px;
   gap: 0;
   overflow-x: visible;
   overflow-y: visible;
@@ -138,7 +139,7 @@
 
 .timeline-container.vertical .timeline-line {
   position: absolute;
-  left: 30px;
+  left: 110px;
   top: 20px;
   bottom: 20px;
   width: 4px;

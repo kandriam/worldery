@@ -140,6 +140,8 @@
   border: 1px solid var(--g4-color);
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.05);
+  scrollbar-width: thin;
+  scrollbar-color: var(--b3-color) transparent;
 }
 
 .checkbox-label {

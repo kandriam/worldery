@@ -10,8 +10,8 @@
     <!-- Main Content Area -->
     <div class="character-main-content">
         <form [formGroup]="applyForm" (submit)="updateCharacter()">
-        <section class="edit-character-form page-body">
-            <div class="details-section primary-section character-page-grid-section">
+        <section class="page-body">
+            <div class="details-section primary-section details-grid-section">
                 <div class="details-section secondary-section">
                     <label class="primary-label" for="character-first-name">Name</label>
                     <input id="character-first-name" type="text" formControlName="characterFirstName" placeholder="First name" />
@@ -36,77 +36,35 @@
                         <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
                     </div>
                 </div>
-            <!-- </div>
-            <div class="details-section primary-section horizontal-section"> -->
-                <!-- <div class="details-section secondary-section"> -->
                 <div>
                     <label class="primary-label" for="character-physical-description">Physical Description</label>
                     <textarea id="character-physical-description" class="medium-textarea" formControlName="characterPhysicalDescription" placeholder="Describe their appearance, height, build, distinguishing features..."></textarea>
                 </div>
-                <!-- <div class="details-section secondary-section"> -->
                 <div>
                     <label class="primary-label" for="character-non-physical-description">Non-Physical Description</label>
                     <textarea id="character-non-physical-description" class="medium-textarea" formControlName="characterNonPhysicalDescription" placeholder="Describe their personality, mannerisms, speech patterns..."></textarea>
                 </div>
-            </div>
-            <div class="details-section primary-section horizontal-section">
-                <div class="details-section secondary-section">
+                <div>
                     <label class="primary-label" for="roles">Roles</label>
-                    <input id="roles" type="text" formControlName="characterRoles" placeholder="Job, title, function in story..." />
+                    <textarea id="roles" formControlName="characterRoles" placeholder="Job, title, function in story..."></textarea>
                 </div>
-                <div class="details-section secondary-section">
+                <div>
                     <label class="primary-label" for="character-affiliations">Affiliations</label>
-                    <input id="character-affiliations" type="text" formControlName="characterAffiliations" placeholder="Groups, organizations, factions..." />
+                    <textarea id="character-affiliations" formControlName="characterAffiliations" placeholder="Groups, organizations, factions..."></textarea>
                 </div>
             </div>
-            <div class="details-section primary-section">
-                <label class="primary-label">Relationships</label>
-                
-                <!-- Filter buttons -->
-                <div class="relationship-filters">
-                    <div class="filter-group">
-                        <label class="filter-label">Show:</label>
-                        <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'all'" (click)="setRelationshipFilter('all')">All</button>
-                        <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'with-relationship'" (click)="setRelationshipFilter('with-relationship')">With Relationship</button>
-                        <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'without-relationship'" (click)="setRelationshipFilter('without-relationship')">Without Relationship</button>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label class="filter-label">Story:</label>
-                        <select class="story-filter-select" [value]="storyFilter" (change)="onStoryFilterChange($event)">
-                            <option value="all">All Stories</option>
-                            @for (story of getUniqueStories(); track story) {
-                                <option [value]="story">{{ story }}</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                
-                <!-- <input id="character-relationships" type="text" formControlName="characterRelationships" /> -->
-                <div class="details-section relationship-section vertical-section">
-
-                    @for(character of filteredCharacterList; track character) {
-                        <div class="relationship" id="relationship-{{character.id}}">
-                                <div class="relationship-header">
-                                    <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
-                                    <button class="linked-character" [routerLink]="['/character', character.id]">
-                                        <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
-                                    </button>
-                                </div>
-                                @if(character.altNames && character.altNames.length > 0) {           
-                                    <p class="alt-names">( {{ character.altNames.join(', ') }} )</p>
-                                }
-                                @if (getRelationship(character.id)?.hasRelationship) {
-                                    <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-                                    <textarea id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
-                                } @else {
-                                    <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-                                    <textarea class="hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
-                                }
-                            </div>
-                    }
-                </div>
-            </div>
+            
+            <app-relationship-list
+                [filteredCharacterList]="filteredCharacterList"
+                [relationshipFilter]="relationshipFilter"
+                [storyFilter]="storyFilter"
+                [availableStories]="getUniqueStories()"
+                [getRelationshipFn]="getRelationship.bind(this)"
+                (relationshipToggled)="onRelationshipToggled($event)"
+                (relationshipFilterChanged)="onRelationshipFilterChanged($event)"
+                (storyFilterChanged)="onStoryFilterChanged($event)">
+            </app-relationship-list>
+            
             <div class="details-section primary-section horizontal-section">                
                 <div class="details-section secondary-section">
                     <app-association-list
@@ -136,10 +94,10 @@
     </div>
     
     <!-- Timeline Sidebar -->
-    <div class="character-timeline-sidebar">
+    <div class="timeline-sidebar">
         <app-timeline 
             [events]="filteredEventList" 
-            [title]="'Events for ' + (worldCharacter?.firstName || '') + ' ' + (worldCharacter?.lastName || '')"
+            [title]="'Relevant Events'"
             [noResultsMessage]="'No events found for this character'"
             orientation="vertical"
             (tagClicked)="onTimelineTagClicked($event)">

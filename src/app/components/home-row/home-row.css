@@ -6,16 +6,16 @@
   scrollbar-width: thin;
   
   &.event {
-    scrollbar-color: var(--event-color) var(--g4-color);
+    scrollbar-color: var(--event-color) transparent;
   }
   &.location {
-    scrollbar-color: var(--location-color) var(--g4-color);
+    scrollbar-color: var(--location-color) transparent;
   }
   &.character {
-    scrollbar-color: var(--character-color) var(--g4-color);
+    scrollbar-color: var(--character-color) transparent;
   }
   &.story {
-    scrollbar-color: var(--story-color) var(--g4-color);
+    scrollbar-color: var(--story-color) transparent;
   }
   
 }
@@ -38,6 +38,7 @@
   justify-content: space-around;
   border: 2px solid var(--g1-color);
   border-radius: 1px 1px 7px 7px;
+  scrollbar-width: thin;
 }
 
 .home-row-title {

@@ -329,22 +329,6 @@ textarea {
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
-
-  /* &.small-textarea {
-    min-width: 12.5rem;
-    min-height: 3.125rem;
-  }
-  
-  &.medium-textarea {
-    min-width: 25rem;
-    min-height: 9.375rem;
-  }
-
-  &.large-textarea {
-    min-width: 31.25rem;
-    min-height: 18.75rem;
-  } */
-
 }
 
 .form-field {
@@ -457,7 +441,6 @@ textarea {
   border-bottom: 2px solid;
   border-top: 2px solid;
   border-color: var(--g3-color);
-  /* display: inline-flex; */
 }
 
 .secondary-section {
@@ -477,23 +460,10 @@ textarea {
   flex-wrap: wrap;
 }
 
-.spanning-section {
-  /* width: 100%; */
-  display: flex;
-}
-
-.grid-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 15px;
-}
-
 .side-menu {
   height: 100vh;
-  /* position: sticky; */
   top: 0;
   align-self: flex-start;
-  /* background-color: var(--g5-color); */
   width: 25%;
 }
 

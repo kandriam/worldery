@@ -201,7 +201,7 @@
     {
       "id": "1",
       "name": "Jayara Apartment",
-      "description": "A cozy apartment located in the heart of St Paul, Minnesota.",
+      "description": "A cozy apartment located in the heart of St Paul, Minnesota. Kiara and Jay live here.",
       "characters": [
         "Kiara Ravao",
         "Judy Han"
@@ -444,7 +444,8 @@
       "roles": [
         "Protagonist",
         "Superhero",
-        "Student"
+        "Student",
+        "book"
       ],
       "affiliations": [
         "Team Phoenix (Book 1)",
@@ -471,10 +472,10 @@
         {
           "relatedCharacterID": "4",
           "relationshipType": [
-            ""
+            "Rudy"
           ],
           "hasRelationship": false,
-          "relationshipDescription": ""
+          "relationshipDescription": "RUdy"
         },
         {
           "relatedCharacterID": "5",
@@ -1092,35 +1093,35 @@
       ],
       "relationships": [
         {
-          "relatedCharacterID": "6",
-          "hasRelationship": true,
-          "relationshipType": [
-            "Sibling"
-          ],
-          "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
-        },
-        {
-          "relatedCharacterID": "7",
-          "hasRelationship": true,
-          "relationshipType": [
-            "Romantic Partner"
-          ],
-          "relationshipDescription": "Willow and Leo have been in a romantic relationship, supporting each other through their challenges and adventures."
-        },
-        {
           "relatedCharacterID": "1",
-          "hasRelationship": true,
           "relationshipType": [
             "Best Friend"
           ],
+          "hasRelationship": true,
           "relationshipDescription": "Willow and Kiara have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
+        },
+        {
+          "relatedCharacterID": "6",
+          "relationshipType": [
+            "Sibling"
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": "Willow and Matthew are siblings who share a close bond. Although Matthew is older, Willow would protect him when they were children as Matt was quiet, shy and often bullied."
+        },
+        {
+          "relatedCharacterID": "7",
+          "relationshipType": [
+            "Romantic Partner"
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": "Willow and Leo began dating after Kiara introduced them to one another."
         }
       ],
       "physicalDescription": "Red hair, green eyes, mixed white and Latina",
-      "nonPhysicalDescription": "Non-Gift.",
+      "nonPhysicalDescription": "Non-Gifted",
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Non-Gifted"
@@ -4660,7 +4661,7 @@
     "showThumbnails": true,
     "itemsPerPage": 12,
     "defaultSort": "name",
-    "fontSize": "medium",
+    "fontSize": "small",
     "eventColor": "blue",
     "locationColor": "green",
     "characterColor": "orange",

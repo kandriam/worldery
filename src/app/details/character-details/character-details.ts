@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
 import { WorldEventService } from '../../services/world-event.service';
 import { WorldLocationService } from '../../services/world-location.service';
@@ -11,11 +11,12 @@ import { WorldLocationInfo } from '../../worldlocation';
 import { WorldStoryService } from '../../services/world-story.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
+import { RelationshipList } from '../../components/relationship-list/relationship-list';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, Timeline, AssociationList],
+  imports: [ReactiveFormsModule, Timeline, AssociationList, RelationshipList],
   templateUrl: "character-details.html",
   styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
@@ -231,6 +232,19 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       }
     });
     return Array.from(stories).sort();
+  }
+
+  // Relationship component event handlers
+  onRelationshipToggled(event: {event: Event, characterId: string}) {
+    this.toggleRelationship(event.event, event.characterId);
+  }
+
+  onRelationshipFilterChanged(filter: 'all' | 'with-relationship' | 'without-relationship') {
+    this.setRelationshipFilter(filter);
+  }
+
+  onStoryFilterChanged(story: string) {
+    this.setStoryFilter(story);
   }
 
   isLocationAssociatedWithCharacter(locationName: string): boolean {
@@ -602,6 +616,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
   onTimelineTagClicked(tag: string) {
     console.log('Timeline tag clicked:', tag);
+    this.router.navigate(['/events'], { queryParams: { tag: tag } });
     // You can implement tag filtering logic here if needed
   }
 
