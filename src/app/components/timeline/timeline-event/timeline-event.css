@@ -39,35 +39,16 @@
 
 /* Year Markers - Vertical Override */
 .timeline-item.vertical .year-marker {
-  top: 50%;
-  left: -120px;
+  top: 1rem;
+  left: -5rem;
   transform: translateY(-50%);
-}
-
-/* Remove alternating positioning for straight up-down flow */
-.timeline-item.vertical:nth-child(even) .year-marker {
-  left: -120px;
-  right: auto;
-}
-
-.year-label {
-  background: var(--event-color);
-  color: var(--g1-color);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.0625rem;
-  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
 }
 
 /* Vertical Timeline Items - Straight up/down layout */
 .timeline-item.vertical {
   position: relative;
-  width: 5rem;
-  max-width: 175px;
+  width: 6.5rem;
+  /* max-width: 175px; */
   margin: 0 auto 10px auto;
   display: block;
 }
@@ -76,7 +57,7 @@
 .timeline-item.vertical .timeline-connector {
   position: absolute;
   left: -20px;
-  top: 10px;
+  top: 50px;
   width: 8px;
   height: 8px;
   background: var(--g3-color);
@@ -105,12 +86,12 @@
 .year-label {
   background: var(--event-color);
   color: var(--g1-color);
-  padding: 8px 16px;
+  padding: 5px 10px;
   border-radius: 20px;
   font-weight: bold;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.0625rem;
+  letter-spacing: 0.05rem;
   box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.2);
   white-space: nowrap;
 }
@@ -134,9 +115,9 @@
   box-shadow: 0 6px 25px var(--event-color);
   border-color: var(--event-color);
   transform: translateY(-2px);
-  height: auto;
-  min-height: 180px;
-  max-height: 300px;
+  /* height: auto; */
+  /* min-height: 180px; */
+  max-height: 200px;
   overflow-y: auto;
 }
 
@@ -180,32 +161,6 @@
   -webkit-line-clamp: unset;
   line-clamp: unset;
   overflow: visible;
-}
-
-.event-link {
-  background: var(--event-color);
-  color: var(--g5-color);
-  border: none;
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.6rem;
-  font-size: 0.6rem;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.timeline-item:hover .event-link {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.event-link:hover {
-  background: var(--g1-color);
-  transform: scale(1.05);
 }
 
 /* Hide details until hover */
@@ -280,4 +235,8 @@
   background: var(--g1-color);
   transform: translateX(-50%) scale(1.3);
   box-shadow: 0 0 15px var(--event-color);
+}
+
+.timeline-item.vertical:hover .timeline-connector {
+    transform: scale(1.3);
 }

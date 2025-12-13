@@ -1,5 +1,7 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SettingsService } from '../../services/settings.service';
 import { WorldEventService } from '../../services/world-event.service';
 import { WorldEventInfo } from '../../worldevent';
 import { WorldCharacterService } from '../../services/world-character.service';
@@ -15,7 +17,7 @@ import { AssociationList, AssociationItem, EntityType } from '../../components/a
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, Timeline, AssociationList],
+  imports: [CommonModule, ReactiveFormsModule, Timeline, AssociationList],
   templateUrl: 'event-details.html',
   styleUrls: ["event-details.css", "../details.css", "../../../styles.css"],
 })
@@ -28,6 +30,16 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   worldStoryService = inject(WorldStoryService);
   worldLocationService = inject(WorldLocationService);
   worldEvent: WorldEventInfo | undefined;
+  settingsService = inject(SettingsService);
+    getFormattedEventDate(): string {
+      if (!this.worldEvent?.date) return '';
+      return this.settingsService.formatDate(this.worldEvent.date);
+    }
+
+    getFormattedEventEndDate(): string {
+      if (!this.worldEvent?.endDate) return '';
+      return this.settingsService.formatDate(this.worldEvent.endDate);
+    }
   characterList = Array<WorldCharacterInfo>();
   storyList = Array<WorldStoryInfo>();
   locationList = Array<WorldLocationInfo>();
@@ -308,7 +320,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     return index >= 0 ? index + 1 : 0;
   }
 
-  private formatEventDate(year: string, monthName: string, day: string): string {
+  formatEventDate(year: string, monthName: string, day: string): string {
     if (!year || !monthName || !day) {
       return '';
     }

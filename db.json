@@ -4687,6 +4687,8 @@
     "exportFormat": "json",
     "includeImages": false,
     "rememberFilters": true,
-    "showAdvancedFilters": false
+    "showAdvancedFilters": false,
+    "timeMeasurement": "gregorian",
+    "dateFormat": "MMMM D, YYYY"
   }
 }

@@ -17,6 +17,8 @@ export interface SettingsData {
   includeImages: boolean;
   rememberFilters: boolean;
   showAdvancedFilters: boolean;
+  timeMeasurement?: 'gregorian' | 'custom' | 'none';
+  dateFormat?: string; // e.g. 'YYYY-MM-DD', 'MMMM D, YYYY', etc.
 }
 
 @Injectable({
@@ -40,8 +42,34 @@ export class SettingsService {
     exportFormat: 'json',
     includeImages: false,
     rememberFilters: true,
-    showAdvancedFilters: false
+    showAdvancedFilters: false,
+    timeMeasurement: 'gregorian',
+    dateFormat: 'MMMM D, YYYY'
   };
+  // Format a date string using settings
+  formatDate(date: string, settings?: SettingsData): string {
+    const opts = settings || this.getCurrentSettings();
+    if (!date) return '';
+    const [year, month, day] = date.split('-');
+    if (!year) return '';
+    let formatted = '';
+    // Use custom format if provided
+    switch (opts.dateFormat) {
+      case 'YYYY-MM-DD':
+        formatted = `${year}-${month || '01'}-${day || '01'}`;
+        break;
+      case 'MMMM D, YYYY':
+      default:
+        const monthNames = [
+          'January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const m = month ? monthNames[parseInt(month, 10) - 1] : '';
+        formatted = m && day ? `${m} ${parseInt(day, 10)}, ${year}` : m ? `${m} ${year}` : year;
+        break;
+    }
+    return formatted;
+  }
 
   // BehaviorSubject to emit settings changes
   private settingsSubject = new BehaviorSubject<SettingsData>(this.defaultSettings);

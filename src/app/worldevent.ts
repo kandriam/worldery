@@ -10,3 +10,11 @@ export interface WorldEventInfo {
   stories: string[];
   tags: string[];
 }
+
+export interface WorldTimeMeasurements {
+  months: string[];
+  daysInMonth: number;
+  // hoursInDay: number;
+  // minutesInHour: number;
+  // secondsInMinute: number
+}

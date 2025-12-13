@@ -1,5 +1,10 @@
 <div class="details-heading">
     <h2 class="event-title">{{ worldEvent?.name }}</h2>
+    <h3 class="event-dates" *ngIf="getFormattedEventDate() || getFormattedEventEndDate()">
+        <ng-container *ngIf="getFormattedEventDate()">{{ getFormattedEventDate() }}</ng-container>
+        <ng-container *ngIf="getFormattedEventDate() && getFormattedEventEndDate()"> – </ng-container>
+        <ng-container *ngIf="getFormattedEventEndDate()">{{ getFormattedEventEndDate() }}</ng-container>
+    </h3>
     <button class="delete-button secondary" (click)="deleteEvent()">Delete Event</button>
 </div>
 
@@ -49,6 +54,14 @@
                 <div class="details-section primary-section spanning-section">
                     <div class="details-section secondary-section">
                         <app-association-list
+                            [items]="getCharactersAssociationList()"
+                            [label]="'Characters'"
+                            [type]="'character'"
+                            (itemToggled)="onCharacterToggle($event)">
+                        </app-association-list>
+                    </div>
+                    <div class="details-section secondary-section">
+                        <app-association-list
                             [items]="getLocationsAssociationList()"
                             [label]="'Location'"
                             [type]="'location'"
@@ -61,14 +74,6 @@
                             [label]="'Stories'"
                             [type]="'story'"
                             (itemToggled)="onStoryToggle($event)">
-                        </app-association-list>
-                    </div>
-                    <div class="details-section secondary-section">
-                        <app-association-list
-                            [items]="getCharactersAssociationList()"
-                            [label]="'Characters'"
-                            [type]="'character'"
-                            (itemToggled)="onCharacterToggle($event)">
                         </app-association-list>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SettingsService } from '../../services/settings.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorldCharacterService } from '../../services/world-character.service';
 import { WorldEventService } from '../../services/world-event.service';
@@ -16,7 +18,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, Timeline, AssociationList, RelationshipList],
+  imports: [CommonModule, ReactiveFormsModule, Timeline, AssociationList, RelationshipList],
   templateUrl: "character-details.html",
   styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
@@ -28,6 +30,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   worldEventService = inject(WorldEventService);
   worldLocationService = inject(WorldLocationService);
   worldCharacter: WorldCharacterInfo | undefined;
+  settingsService = inject(SettingsService);
+    getFormattedBirthdate(): string {
+      if (!this.worldCharacter?.birthdate) return '';
+      return this.settingsService.formatDate(this.worldCharacter.birthdate);
+    }
+
+    getFormattedDeathdate(): string {
+      if (!this.worldCharacter?.deathdate) return '';
+      return this.settingsService.formatDate(this.worldCharacter.deathdate);
+    }
   characterList = Array<WorldCharacterInfo>();
   filteredCharacterList = Array<WorldCharacterInfo>();
   relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';

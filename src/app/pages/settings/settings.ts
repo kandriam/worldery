@@ -29,6 +29,9 @@ export class Settings implements OnInit, OnDestroy {
   // Export/Import settings
   exportFormat: string = 'json';
   includeImages: boolean = false;
+
+  // Date format
+  dateFormat: string = 'MMMM D, YYYY';
   
   // Filter settings
   rememberFilters: boolean = true;
@@ -69,6 +72,7 @@ export class Settings implements OnInit, OnDestroy {
     this.includeImages = settings.includeImages;
     this.rememberFilters = settings.rememberFilters;
     this.showAdvancedFilters = settings.showAdvancedFilters;
+    this.dateFormat = settings.dateFormat || 'MMMM D, YYYY';
   }
   
   saveSettings() {
@@ -86,9 +90,9 @@ export class Settings implements OnInit, OnDestroy {
       exportFormat: this.exportFormat,
       includeImages: this.includeImages,
       rememberFilters: this.rememberFilters,
-      showAdvancedFilters: this.showAdvancedFilters
+      showAdvancedFilters: this.showAdvancedFilters,
+      dateFormat: this.dateFormat
     };
-    
     this.settingsService.saveSettings(settings);
     this.settingsService.applyColors(settings);
   }
@@ -114,9 +118,9 @@ export class Settings implements OnInit, OnDestroy {
       exportFormat: this.exportFormat,
       includeImages: this.includeImages,
       rememberFilters: this.rememberFilters,
-      showAdvancedFilters: this.showAdvancedFilters
+      showAdvancedFilters: this.showAdvancedFilters,
+      dateFormat: this.dateFormat
     };
-    
     this.settingsService.applyColors(currentSettings);
   }
   

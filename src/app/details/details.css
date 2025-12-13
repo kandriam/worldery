@@ -28,7 +28,7 @@
     align-items: center;
     margin: -20px -20px 20px -20px;
     position: sticky;
-    top: 65px;
+    top: 60px;
     background-color: var(--g5-color);
     z-index: 999;
     padding: 15px 20px 15px 20px;
