@@ -7,15 +7,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-/* Character Page Sidebar Layout */
-.character-page-layout {
-  display: flex;
-  gap: 20px;
-  min-height: calc(100vh - 200px);
-}
-
-.character-main-content {
-  flex: 1;
-  min-width: 0; /* Prevents overflow issues */
-}

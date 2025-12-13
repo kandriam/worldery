@@ -1,27 +1,31 @@
-.association-section {
-  width: 100%;
+.association-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .linked-item {
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
   color: inherit;
   text-decoration: underline;
   cursor: pointer;
+  
 }
 
 .linked-item:hover {
-  color: var(--accent-color, #007acc);
+  color: var(--accent-color);
 }
 
 .form-field {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 5px;
+  border: 2px solid var(--g4-color);
+  border-radius: 0.5rem;
 }
 
 .form-field input[type="checkbox"] {
@@ -31,4 +35,20 @@
 .secondary-label {
   cursor: pointer;
   margin: 0;
+  font-size: x-small;
+}
+
+.association-list {
+  padding: 10px;
+  /* margin: ; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+
+  border: 2px solid var(--g4-color);
+  border-radius: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--g3-color) transparent;
 }

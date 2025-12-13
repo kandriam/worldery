@@ -6,79 +6,72 @@
     <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
 </div>
 
-<div class="character-page-layout">
+<div class="page-layout">
     <!-- Main Content Area -->
-    <div class="character-main-content">
+    <div class="main-content">
         <form [formGroup]="applyForm" (submit)="updateCharacter()">
-        <section class="page-body">
-            <div class="details-section primary-section details-grid-section">
-                <div class="details-section secondary-section">
-                    <label class="primary-label" for="character-first-name">Name</label>
-                    <input id="character-first-name" type="text" formControlName="characterFirstName" placeholder="First name" />
-                    <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Last name" required="true"/>
-                    
-                    <label class="primary-label" for="character-alt-names">Alternate Names</label>
-                    <input id="character-alt-names" type="text" formControlName="characterAltNames" placeholder="Nicknames, aliases, etc..." />
-                </div>
-                <div class="details-section secondary-section">
-                    <label class="primary-label" for="character-pronouns">Pronouns</label>
-                    <input id="character-pronouns" type="text" formControlName="characterPronouns" placeholder="he/him, she/her, they/them, etc..." />
-                    
-                    <label class="primary-label">Birthdate</label>
-                    <div class="date-selector">
-                        <input id="character-birth-year" type="number" formControlName="characterBirthYear" placeholder="Year" min="1800" max="3000" />
-                        <select id="character-birth-month" formControlName="characterBirthMonth">
-                            <option value="">Month</option>
-                            @for (month of months; track month) {
-                                <option value="{{ month }}">{{ month }}</option>
-                            }
-                        </select>
-                        <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
+            <section class="page-body">
+                <div class="details-section primary-section details-grid-section">
+                    <div class="details-section secondary-section">
+                        <label class="primary-label" for="character-first-name">Name</label>
+                        <input id="character-first-name" type="text" formControlName="characterFirstName" placeholder="First name" />
+                        <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Last name" required="true"/>
+                        
+                        <label class="primary-label" for="character-alt-names">Alternate Names</label>
+                        <input id="character-alt-names" type="text" formC ontrolName="characterAltNames" placeholder="Nicknames, aliases, etc..." />
+                    </div>
+                    <div class="details-section secondary-section">
+                        <label class="primary-label" for="character-pronouns">Pronouns</label>
+                        <input id="character-pronouns" type="text" formControlName="characterPronouns" placeholder="he/him, she/her, they/them, etc..." />
+                        
+                        <label class="primary-label">Birthdate</label>
+                        <div class="date-selector">
+                            <input id="character-birth-year" type="number" formControlName="characterBirthYear" placeholder="Year" min="1800" max="3000" />
+                            <select id="character-birth-month" formControlName="characterBirthMonth">
+                                <option value="">Month</option>
+                                @for (month of months; track month) {
+                                    <option value="{{ month }}">{{ month }}</option>
+                                }
+                            </select>
+                            <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="primary-label" for="character-physical-description">Physical Description</label>
+                        <textarea id="character-physical-description" class="medium-textarea" formControlName="characterPhysicalDescription" placeholder="Describe their appearance, height, build, distinguishing features..."></textarea>
+                    </div>
+                    <div>
+                        <label class="primary-label" for="character-non-physical-description">Non-Physical Description</label>
+                        <textarea id="character-non-physical-description" class="medium-textarea" formControlName="characterNonPhysicalDescription" placeholder="Describe their personality, mannerisms, speech patterns..."></textarea>
+                    </div>
+                    <div>
+                        <label class="primary-label" for="roles">Roles</label>
+                        <textarea id="roles" formControlName="characterRoles" placeholder="Job, title, function in story..."></textarea>
+                    </div>
+                    <div>
+                        <label class="primary-label" for="character-affiliations">Affiliations</label>
+                        <textarea id="character-affiliations" formControlName="characterAffiliations" placeholder="Groups, organizations, factions..."></textarea>
                     </div>
                 </div>
-                <div>
-                    <label class="primary-label" for="character-physical-description">Physical Description</label>
-                    <textarea id="character-physical-description" class="medium-textarea" formControlName="characterPhysicalDescription" placeholder="Describe their appearance, height, build, distinguishing features..."></textarea>
-                </div>
-                <div>
-                    <label class="primary-label" for="character-non-physical-description">Non-Physical Description</label>
-                    <textarea id="character-non-physical-description" class="medium-textarea" formControlName="characterNonPhysicalDescription" placeholder="Describe their personality, mannerisms, speech patterns..."></textarea>
-                </div>
-                <div>
-                    <label class="primary-label" for="roles">Roles</label>
-                    <textarea id="roles" formControlName="characterRoles" placeholder="Job, title, function in story..."></textarea>
-                </div>
-                <div>
-                    <label class="primary-label" for="character-affiliations">Affiliations</label>
-                    <textarea id="character-affiliations" formControlName="characterAffiliations" placeholder="Groups, organizations, factions..."></textarea>
-                </div>
-            </div>
-            
-            <app-relationship-list
-                [filteredCharacterList]="filteredCharacterList"
-                [relationshipFilter]="relationshipFilter"
-                [storyFilter]="storyFilter"
-                [availableStories]="getUniqueStories()"
-                [getRelationshipFn]="getRelationship.bind(this)"
-                (relationshipToggled)="onRelationshipToggled($event)"
-                (relationshipFilterChanged)="onRelationshipFilterChanged($event)"
-                (storyFilterChanged)="onStoryFilterChanged($event)">
-            </app-relationship-list>
-            
-            <div class="details-section primary-section horizontal-section">                
-                <div class="details-section secondary-section">
+                
+                <app-relationship-list
+                    [filteredCharacterList]="filteredCharacterList"
+                    [relationshipFilter]="relationshipFilter"
+                    [storyFilter]="storyFilter"
+                    [availableStories]="getUniqueStories()"
+                    [getRelationshipFn]="getRelationship.bind(this)"
+                    (relationshipToggled)="onRelationshipToggled($event)"
+                    (relationshipFilterChanged)="onRelationshipFilterChanged($event)"
+                    (storyFilterChanged)="onStoryFilterChanged($event)">
+                </app-relationship-list>
+                
+                <div class="details-section primary-section association-list-section">
                     <app-association-list
                         [items]="getStoriesAssociationList()"
                         [label]="'Stories'"
                         [type]="'story'"
                         (itemToggled)="onStoryToggle($event)">
                     </app-association-list>
-                </div>
-                <div class="details-section secondary-section">
-                    <label class="primary-label" for="character-tags">Tags</label>
-                    <textarea class="small-textarea" id="character-tags" formControlName="characterTags" placeholder="Enter tags separated by commas..."></textarea>
-                </div>
-                 <div class="details-section secondary-section full-width">
                     <app-association-list
                         [items]="getLocationsAssociationList()"
                         [label]="'Associated Locations'"
@@ -86,8 +79,11 @@
                         (itemToggled)="onLocationToggle($event)">
                     </app-association-list>
                 </div>
-            </div>
-        </section>
+                <div class="details-section secondary-section">
+                    <label class="primary-label" for="character-tags">Tags</label>
+                    <textarea class="small-textarea" id="character-tags" formControlName="characterTags" placeholder="Enter tags separated by commas..."></textarea>
+                </div>
+            </section>
             
             <button type="submit" class="save-button primary">Save</button>
         </form>

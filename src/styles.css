@@ -290,7 +290,7 @@ textarea, input[type="text"] {
   background-color: inherit;
   border: none;
   border-bottom: solid 1px var(--g3-color);
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   border-radius: 8px;
 
   font-family: var(--input-font-family);
@@ -309,8 +309,8 @@ textarea, input[type="text"] {
 
 input[type="text"] {
   padding: 10px;
-  width: 18.75rem;
-
+  /* width: 100%; */
+  width: calc(100% - 20px);
   &:required::after {
     content: "*";
     color: red;
@@ -319,7 +319,7 @@ input[type="text"] {
 }
 
 textarea {
-  padding: 15px;
+  padding: 10px;
   /* height: fit-content; */
   resize: none;
   display: block;
@@ -452,12 +452,7 @@ textarea {
 .horizontal-section {
   display: flex;
   gap: 20px;
-}
-
-.wrap-section {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .side-menu {

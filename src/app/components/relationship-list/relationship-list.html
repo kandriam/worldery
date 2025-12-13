@@ -21,7 +21,7 @@
     </div>
   </div>
   
-  <div class="details-section relationship-section vertical-section relationship-grid-container">
+  <div class="details-section relationship-section relationship-grid-container">
     @for(character of filteredCharacterList; track character) {
       <div class="relationship relationship-grid-item" id="relationship-{{character.id}}">
         <div class="relationship-header">
@@ -34,7 +34,7 @@
           <p class="alt-names">( {{ character.altNames.join(', ') }} )</p>
         }
         @if (getRelationship(character.id)?.hasRelationship) {
-          <input type="text" class="relationship-type-input" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
+          <input type="text" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
           <textarea id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
         } @else {
           <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>

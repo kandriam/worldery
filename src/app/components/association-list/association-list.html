@@ -1,6 +1,6 @@
-<div class="association-section">
+<div class="association-list-container">
     <label class="primary-label">{{ label }}</label>
-    <div class="wrap-section">
+    <div class="association-list">
         @for(item of items; track item.id) {
             <div class="form-field">
                 <input 
@@ -16,6 +16,9 @@
                     type="button"
                 >
                     <label class="secondary-label">{{ item.name }}</label>
+                    <!-- @if (item.altNames && item.altNames?.length > 0) {
+                        <span class="alt-names">( {{ item.altNames?.join(', ') }} )</span>
+                    } -->
                 </button>
             </div>
         }
