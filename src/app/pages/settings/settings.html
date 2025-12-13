@@ -51,17 +51,27 @@
             </select>
         </div>
 
+        <h3 class="section-header">Date Formatting</h3>
+        <div class="form-field">
+            <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="weekDay" name="weekDay">
+            Show Week Day
+            </label>
+        </div>
+
         <div class="form-field">
             <label class="primary-label" for="dateFormat">Date Format</label>
             <select id="dateFormat" [(ngModel)]="dateFormat" name="dateFormat" class="filter-select">
+                <option value="D MMMM YYYY">D MMMM YYYY (e.g., 1 January 2024)</option>
                 <option value="MMMM D, YYYY">MMMM D, YYYY (e.g., January 1, 2024)</option>
+                <option value="D MMMM YYYY">D MMMM YYYY (e.g., 1 January 2024)</option>
                 <option value="MM/DD/YYYY">MM/DD/YYYY (e.g., 01/01/2024)</option>
                 <option value="DD/MM/YYYY">DD/MM/YYYY (e.g., 01/01/2024)</option>
                 <option value="YYYY-MM-DD">YYYY-MM-DD (e.g., 2024-01-01)</option>
             </select>
         </div>
       
-      <h3 class="color-section-header">Entity Colors</h3>
+      <h3 class="section-header">Entity Colors</h3>
       
       <div class="form-field">
         <label class="primary-label" for="eventColor">Timeline/Events Color</label>

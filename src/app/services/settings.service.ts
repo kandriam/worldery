@@ -19,6 +19,7 @@ export interface SettingsData {
   showAdvancedFilters: boolean;
   timeMeasurement?: 'gregorian' | 'custom' | 'none';
   dateFormat?: string; // e.g. 'YYYY-MM-DD', 'MMMM D, YYYY', etc.
+  weekDay?: boolean; // Show weekday in formatted date
 }
 
 @Injectable({
@@ -44,8 +45,18 @@ export class SettingsService {
     rememberFilters: true,
     showAdvancedFilters: false,
     timeMeasurement: 'gregorian',
-    dateFormat: 'MMMM D, YYYY'
+    dateFormat: 'MMMM D, YYYY',
+    weekDay: false
   };
+
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  weekDays: string[] = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+  ];
   // Format a date string using settings
   formatDate(date: string, settings?: SettingsData): string {
     const opts = settings || this.getCurrentSettings();
@@ -53,20 +64,36 @@ export class SettingsService {
     const [year, month, day] = date.split('-');
     if (!year) return '';
     let formatted = '';
+    let dateObj: Date | undefined = undefined;
+    if (year && month && day) {
+      dateObj = new Date(Number(year), Number(month) - 1, Number(day));
+    }
     // Use custom format if provided
     switch (opts.dateFormat) {
       case 'YYYY-MM-DD':
         formatted = `${year}-${month || '01'}-${day || '01'}`;
         break;
+      case 'MM/DD/YYYY':
+        formatted = `${month?.padStart(2, '0') || '01'}/${day?.padStart(2, '0') || '01'}/${year}`;
+        break;
+      case 'DD/MM/YYYY':
+        formatted = `${day?.padStart(2, '0') || '01'}/${month?.padStart(2, '0') || '01'}/${year}`;
+        break;
+      case 'D MMMM YYYY':
+        {
+          const m = month ? this.months[parseInt(month, 10) - 1] : '';
+          formatted = m && day ? `${parseInt(day, 10)} ${m} ${year}` : m ? `${m} ${year}` : year;
+        }
+        break;
       case 'MMMM D, YYYY':
       default:
-        const monthNames = [
-          'January', 'February', 'March', 'April', 'May', 'June',
-          'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-        const m = month ? monthNames[parseInt(month, 10) - 1] : '';
+        const m = month ? this.months[parseInt(month, 10) - 1] : '';
         formatted = m && day ? `${m} ${parseInt(day, 10)}, ${year}` : m ? `${m} ${year}` : year;
         break;
+    }
+    if (opts.weekDay && dateObj && !isNaN(dateObj.getTime())) {
+      const weekDayStr = this.weekDays[dateObj.getDay()];
+      formatted = `${weekDayStr}, ${formatted}`;
     }
     return formatted;
   }

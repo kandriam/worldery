@@ -32,6 +32,7 @@ export class Settings implements OnInit, OnDestroy {
 
   // Date format
   dateFormat: string = 'MMMM D, YYYY';
+  weekDay: boolean = false;
   
   // Filter settings
   rememberFilters: boolean = true;
@@ -73,6 +74,7 @@ export class Settings implements OnInit, OnDestroy {
     this.rememberFilters = settings.rememberFilters;
     this.showAdvancedFilters = settings.showAdvancedFilters;
     this.dateFormat = settings.dateFormat || 'MMMM D, YYYY';
+    this.weekDay = settings.weekDay ?? false;
   }
   
   saveSettings() {
@@ -91,7 +93,8 @@ export class Settings implements OnInit, OnDestroy {
       includeImages: this.includeImages,
       rememberFilters: this.rememberFilters,
       showAdvancedFilters: this.showAdvancedFilters,
-      dateFormat: this.dateFormat
+      dateFormat: this.dateFormat,
+      weekDay: this.weekDay
     };
     this.settingsService.saveSettings(settings);
     this.settingsService.applyColors(settings);
@@ -119,7 +122,8 @@ export class Settings implements OnInit, OnDestroy {
       includeImages: this.includeImages,
       rememberFilters: this.rememberFilters,
       showAdvancedFilters: this.showAdvancedFilters,
-      dateFormat: this.dateFormat
+      dateFormat: this.dateFormat,
+      weekDay: this.weekDay
     };
     this.settingsService.applyColors(currentSettings);
   }

@@ -72,7 +72,7 @@ input[type="file"]:focus {
 }
 
 /* Color section styling */
-.color-section-header {
+.section-header {
   margin: 25px 0 15px 0;
   padding-top: 15px;
   border-top: 1px solid var(--g4-color);

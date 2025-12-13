@@ -4688,7 +4688,7 @@
     "includeImages": false,
     "rememberFilters": true,
     "showAdvancedFilters": false,
-    "timeMeasurement": "gregorian",
-    "dateFormat": "MMMM D, YYYY"
+    "dateFormat": "D MMMM YYYY",
+    "weekDay": true
   }
 }

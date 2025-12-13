@@ -11,10 +11,10 @@ export interface WorldEventInfo {
   tags: string[];
 }
 
-export interface WorldTimeMeasurements {
-  months: string[];
-  daysInMonth: number;
+// export interface WorldTimeMeasurements {
+//   months: string[];
+//   daysInMonth: number;
   // hoursInDay: number;
   // minutesInHour: number;
   // secondsInMinute: number
-}
+// }
