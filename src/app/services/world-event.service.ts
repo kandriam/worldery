@@ -107,6 +107,6 @@ export class WorldEventService {
     fetch(`${this.url}/${eventID}`, {
       method: 'DELETE',
     });
-    window.location.reload();
+    this.router.navigate(['/events']);
   }
 }

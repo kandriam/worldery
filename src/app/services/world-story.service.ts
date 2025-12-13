@@ -161,7 +161,7 @@ export class WorldStoryService {
       }
       
       console.log('Story deleted successfully with relationship cleanup');
-      window.location.reload();
+      this.router.navigate(['/stories']);
     } catch (error) {
       console.error('Error deleting story:', error);
       throw error;

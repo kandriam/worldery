@@ -108,6 +108,8 @@
             [events]="filteredEventList" 
             [title]="'Relevant Events'"
             [noResultsMessage]="'No events found for this character'"
+            [allowAddElement]="false"
+            [showDisplayToggles]="false"
             orientation="vertical"
             (tagClicked)="onTimelineTagClicked($event)">
         </app-timeline>

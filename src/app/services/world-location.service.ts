@@ -248,7 +248,7 @@ export class WorldLocationService {
       }
       
       console.log('Location deleted successfully with relationship cleanup');
-      window.location.reload();
+      this.router.navigate(['/locations']);
     } catch (error) {
       console.error('Error deleting location:', error);
       throw error;

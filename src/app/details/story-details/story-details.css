@@ -1,18 +1,7 @@
 
-.event-heading {
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-.event-description {
+.story-description {
   margin-bottom: 25px;
-}
 
-.event-details {
-  border: 1px solid var(--g1-color);
-}
-
-
-.event-location {
-  font-size: 24pt;
-  margin-bottom: 15px;
+  height: fit-content;
+  width: 100%;
 }

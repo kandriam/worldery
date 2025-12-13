@@ -68,6 +68,8 @@
                 [events]="filteredEventList" 
                 [title]="'Events at ' + (worldLocation?.name || '')"
                 [noResultsMessage]="'No events found at this location'"
+                [allowAddElement]="false"
+                [showDisplayToggles]="false"
                 orientation="vertical"
                 (tagClicked)="onTimelineTagClicked($event)">
             </app-timeline>

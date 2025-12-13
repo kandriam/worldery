@@ -42,6 +42,13 @@
 .details-grid-section{
   width: 100% !important;
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.auto-grid-section {
+  width: 100% !important;
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
@@ -102,4 +109,16 @@
 .delete-button:hover {
     /* background-color: var(--danger-color, #dc3545); */
     color: white;
+}
+
+.large-textarea {
+    width: 100%;
+    height: 300px;
+    resize: vertical;
+    padding: 10px;
+    font-size: small;
+    border: 1px solid var(--g3-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
 }

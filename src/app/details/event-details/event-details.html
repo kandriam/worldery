@@ -90,6 +90,8 @@
           [events]="filteredEventList"
           [currentEventId]="worldEvent?.id?.toString()"
           title="Events Timeline"
+          [allowAddElement]="false"
+          [showDisplayToggles]="false"
           orientation="vertical"
           noResultsMessage="No events found. Try adjusting your search or add a new event."
           (addElement)="addWorldEvent()"

@@ -79,6 +79,108 @@
       "tags": [
         "birth"
       ]
+    },
+    {
+      "id": "12",
+      "name": "Judy Han's Birth",
+      "date": "2201-12-26",
+      "description": "Judy Han's birth.",
+      "location": [],
+      "characters": [
+        "Judy Han"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Cassandra Edwards's Birth",
+      "date": "2200-06-01",
+      "description": "Cassandra Edwards's birth.",
+      "location": [],
+      "characters": [
+        "Cassandra Edwards"
+      ],
+      "stories": [
+        "Blood & Water",
+        "Fire & Ice"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Rudy Edwards's Birth",
+      "date": "2200-06-01",
+      "description": "Rudy Edwards's birth.",
+      "location": [],
+      "characters": [
+        "Rudy Edwards"
+      ],
+      "stories": [
+        "Blood & Water",
+        "Fire & Ice"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Willow Rivera-Anderson's Birth",
+      "date": "2202-04-02",
+      "description": "Willow Rivera-Anderson's birth.",
+      "location": [],
+      "characters": [
+        "Willow Rivera-Anderson"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Matthew Rivera-Anderson's Birth",
+      "date": "2201-04-16",
+      "description": "Matthew Rivera-Anderson's birth.",
+      "location": [],
+      "characters": [
+        "Matthew Rivera-Anderson"
+      ],
+      "stories": [
+        "Blood & Water",
+        "Fire & Ice"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Leo Deng's Birth",
+      "date": "2199-11-30",
+      "description": "Leo Deng's birth.",
+      "location": [],
+      "characters": [
+        "Leo Deng"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water"
+      ],
+      "tags": [
+        "birth"
+      ]
     }
   ],
   "worldlocations": [
@@ -327,14 +429,10 @@
       "deathdate": "",
       "pronouns": "she/they",
       "roles": [
-        "Protagonist",
-        "Superhero",
-        "Student",
-        "book"
+        "Protagonist\nSuperhero\nStudent\nBookstore worker"
       ],
       "affiliations": [
-        "Team Phoenix (Book 1)",
-        "SafeHouse (Book 2)"
+        "Team Phoenix (Book 1)\nSafeHouse (Book 2)"
       ],
       "relationships": [
         {
@@ -566,6 +664,7 @@
         "Jay"
       ],
       "birthdate": "2201-12-26",
+      "deathdate": "",
       "pronouns": "she/they",
       "roles": [
         "Protagonist",
@@ -795,6 +894,7 @@
         "Cassie"
       ],
       "birthdate": "2200-06-01",
+      "deathdate": "",
       "pronouns": "she/her",
       "roles": [
         "Vigilante"
@@ -879,8 +979,8 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "illusionist abilities.",
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -894,6 +994,7 @@
         "Rue"
       ],
       "birthdate": "2200-06-01",
+      "deathdate": "",
       "pronouns": "she/her",
       "roles": [
         "Vigilante"
@@ -954,8 +1055,8 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "telepathic abilities.",
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -969,6 +1070,7 @@
         "Will"
       ],
       "birthdate": "2202-04-02",
+      "deathdate": "",
       "pronouns": "she/they",
       "roles": [
         "Support Character"
@@ -1020,6 +1122,7 @@
         "Matt"
       ],
       "birthdate": "2201-04-16",
+      "deathdate": "",
       "pronouns": "he/him",
       "roles": [
         "Support Character"
@@ -1030,18 +1133,18 @@
       "relationships": [
         {
           "relatedCharacterID": "5",
-          "hasRelationship": true,
           "relationshipType": [
             "Sibling"
           ],
+          "hasRelationship": true,
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
         }
       ],
       "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
       "nonPhysicalDescription": "invisibility abilities.",
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -1053,6 +1156,7 @@
       "lastName": "Deng",
       "altNames": [],
       "birthdate": "2199-11-30",
+      "deathdate": "",
       "pronouns": "she/her",
       "roles": [
         "Support Character",
@@ -1062,18 +1166,18 @@
       "relationships": [
         {
           "relatedCharacterID": "5",
-          "hasRelationship": true,
           "relationshipType": [
             "Romantic Partner"
           ],
+          "hasRelationship": true,
           "relationshipDescription": "Willow and Leo met at Cat's Tea."
         }
       ],
       "physicalDescription": "Black hair, brown eyes, Asian-American",
       "nonPhysicalDescription": "super strength and hyposensitivity.",
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "Fire & Ice",
+        "Blood & Water"
       ],
       "tags": [
         "Gifted"
@@ -4405,6 +4509,33 @@
         "Stray Kids (Working Title)"
       ],
       "tags": []
+    },
+    {
+      "id": "29",
+      "firstName": "Avana",
+      "lastName": "?",
+      "altNames": [],
+      "birthdate": "",
+      "deathdate": "",
+      "pronouns": "",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [
+        {
+          "relatedCharacterID": "28",
+          "relationshipType": [
+            "Friend"
+          ],
+          "hasRelationship": true,
+          "relationshipDescription": "Friend"
+        }
+      ],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [
+        "Stray Kids (Working Title)"
+      ],
+      "tags": []
     }
   ],
   "worldstories": [
@@ -4532,9 +4663,11 @@
     {
       "id": "5",
       "title": "Stray Kids (Working Title)",
-      "description": "",
+      "description": "Benny doesn’t remember their past. All they remember is their life in the circus from the tender age of ten, forced to stand in front of a crowd and change faces. But when they and their friends escape, their goal is to find out who they once were.\nAvana was picked up from the street and sold to the circus at thirteen  after being abandoned as a baby. Over six years, she’s seen and experienced more than she’s needed to. And she’s decided she’s ready to escape, or die trying.\nOrion, son of the circus master, befriended Mina and Benny when they were all young. As the three grew up together, they hatched their escape plan.\nWhen Mina, Benny and Orion escape from the circus they'd grown up in, they run from the circus and the law into the unknown world.",
       "characters": [
-        "Benny "
+        "Benny ",
+        "Avana ",
+        "Avana ?"
       ],
       "locations": [],
       "tags": []

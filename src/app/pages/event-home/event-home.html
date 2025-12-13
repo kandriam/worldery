@@ -28,6 +28,8 @@
       <app-timeline
         [events]="filteredEventList"
         title="Events Timeline"
+        [allowAddElement]="true"
+        [showDisplayToggles]="true"
         orientation="horizontal"
         noResultsMessage="No events found. Try adjusting your search or add a new event."
         (addElement)="addWorldEvent()"

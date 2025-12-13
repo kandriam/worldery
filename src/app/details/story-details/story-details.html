@@ -11,13 +11,13 @@
                 <section class="page-body">
                     <div class="details-section primary-section" style="width: 100%;">
                         <div>
-                                <label class="primary-label" for="story-title">Story Title</label>
-                                <input id="story-title" type="text" formControlName="storyTitle" placeholder="Enter story title..." />
+                            <label class="primary-label" for="story-title">Story Title</label>
+                            <input id="story-title" type="text" formControlName="storyTitle" placeholder="Enter story title..." />
                         </div>
                             
-                        <div class="details-section spanning-section">
-                                <label class="primary-label" for="story-description">Story Description</label>
-                                <textarea id="story-description" class="large-textarea" formControlName="storyDescription" placeholder="Describe the plot, themes, and key events of this story..."></textarea>
+                        <div class="details-section">
+                            <label class="primary-label" for="story-description">Story Description</label>
+                            <textarea id="story-description" class="large-textarea" formControlName="storyDescription" placeholder="Describe the plot, themes, and key events of this story..."></textarea>
                         </div>
                     </div>
                         <app-association-list
@@ -48,7 +48,8 @@
                 [events]="filteredEventList" 
                 [title]="'Events in ' + (worldStory?.title || '')"
                 [noResultsMessage]="'No events found for this story'"
-                orientation="vertical"
+                [allowAddElement]="false"
+                [showDisplayToggles]="false"orientation="vertical"
                 (tagClicked)="onTimelineTagClicked($event)">
             </app-timeline>
         </div>

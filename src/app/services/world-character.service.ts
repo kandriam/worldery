@@ -174,7 +174,7 @@ export class WorldCharacterService {
       }
       
       console.log('Character deleted successfully');
-      window.location.reload();
+      this.router.navigate(['/characters']);
     } catch (error) {
       console.error('Error deleting character:', error);
       throw error;

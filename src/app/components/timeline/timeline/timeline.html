@@ -1,14 +1,18 @@
 <section class="timeline-container" [class.horizontal]="orientation === 'horizontal'" [class.vertical]="orientation === 'vertical'">
   <div class="timeline-header">
     <h2 class="timeline-title">{{ title }}</h2>
-    <div class="display-container">
-      <!-- <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button> -->
-      <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
-      <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
-      <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
-    </div>
+    @if(showDisplayToggles) {
+      <div class="display-container">
+        <!-- <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button> -->
+        <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
+        <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
+        <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
+      </div>
+    }
     <!-- <div class="display-container"> -->
-    <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
+    @if(allowAddElement) {
+      <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
+    }
     <!-- </div> -->
   </div>
   <div class="timeline-content">
