@@ -168,7 +168,14 @@ export class WorldLocationService {
     }
   }
 
-  async createWorldLocation(locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationTags: string[]) {
+  async createWorldLocation(
+    locationName: string,
+    locationDescription: string,
+    locationCharacters: string[],
+    locationStories: string[],
+    locationTags: string[],
+    goToPage: boolean = true
+  ) : Promise<WorldLocationInfo> {
     console.log(
       `Location created:
       locationName: ${locationName},
@@ -208,8 +215,11 @@ export class WorldLocationService {
       
       console.log('Location created successfully');
       const newLocation = await response.json();
-      this.router.navigate([`/location/${newLocation.id}`]);
-      // window.location.reload();
+      if (goToPage) {
+        this.router.navigate([`/location/${newLocation.id}`]);
+      } else {
+        window.location.reload();
+      }
       return newLocation;
     } catch (error) {
       console.error('Error creating location:', error);

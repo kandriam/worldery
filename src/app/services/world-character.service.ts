@@ -80,7 +80,22 @@ export class WorldCharacterService {
     }
   }
 
-  async createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterDeathdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async createWorldCharacter(
+    characterFirstName: string,
+    characterLastName:string,
+    characterAltNames: string[],
+    characterBirthdate: string,
+    characterDeathdate: string,
+    characterPronouns: string,
+    characterRoles: string[],
+    characterAffiliations: string[],
+    characterRelationships: worldCharacterRelationship[],
+    characterPhysicalDescription: string,
+    characterNonPhysicalDescription: string,
+    characterStories: string[],
+    characterTags: string[],
+    goToPage: boolean = true
+  ) : Promise<WorldCharacterInfo> {
     console.log(
       `Character created:
       characterFirstName: ${characterFirstName},
@@ -135,8 +150,11 @@ export class WorldCharacterService {
       
       console.log('Character created successfully');
       const newCharacter = await response.json();
-      this.router.navigate([`/character/${newCharacter.id}`]);
-      // window.location.reload();
+      if (goToPage) {
+        this.router.navigate([`/character/${newCharacter.id}`]);
+      } else {
+        window.location.reload();
+      }
       return newCharacter;
     } catch (error) {
       console.error('Error creating character:', error);

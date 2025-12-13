@@ -638,6 +638,50 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     );
   }
 
+  async addCharacterEvent(eventType: string) {
+    const eventTagsInput = this.applyForm.value.eventTags || '';
+    const tags = eventTagsInput.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+    const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+    let date = '';
+    if (eventType === 'birth') {
+      date = this.formatBirthdate(
+        this.applyForm.value.characterBirthYear || '',
+        this.applyForm.value.characterBirthMonth || '',
+        this.applyForm.value.characterBirthDay || ''
+      );
+    } else if (eventType === 'death') {
+      date = this.formatBirthdate(
+        this.applyForm.value.characterDeathYear || '',
+        this.applyForm.value.characterDeathMonth || '',
+        this.applyForm.value.characterDeathDay || ''
+      );
+    }
+    if (!date) {
+      alert('Please provide a valid date before adding to the timeline.');
+      return;
+    }
+    try {
+      await this.worldEventService.createWorldEvent(
+        `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`,
+        date,
+        '',
+        `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`,
+        [],
+        [characterName],
+        this.worldCharacter?.stories || [],
+        [...tags, eventType === 'birth' ? 'birth' : 'death'],
+        false
+      );
+      // alert(`${eventType === 'birth' ? 'Birth' : 'Death'} event added to timeline successfully.`);
+      this.updateFilteredEvents();
+    } catch (error: any) {
+      console.error('Failed to add event to timeline:', error);
+      alert('Failed to add event to timeline: ' + error.message);
+    }
+    // eventTitle: string, eventDate: string, eventEndDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]): void
+
+  }
+
   onTimelineTagClicked(tag: string) {
     console.log('Timeline tag clicked:', tag);
     this.router.navigate(['/events'], { queryParams: { tag: tag } });

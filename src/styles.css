@@ -350,6 +350,7 @@ textarea {
     display: block;
     background-color: inherit;
     border: none;
+    color: black;
     border-bottom: solid 1px var(--g3-color);
     margin-bottom: 15px;
     border-radius: 5px;
@@ -359,7 +360,13 @@ textarea {
     &:focus {
       outline: none;
       background-color: var(--b5-color);
-    } 
+    }
+  }
+  
+  button {
+    background-color: var(--g3-color);
+    color: var(--g5-color);
+    border: none;
   }
 }
 /* ============================================================================

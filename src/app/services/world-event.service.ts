@@ -52,7 +52,17 @@ export class WorldEventService {
     });
   }
 
-  createWorldEvent(eventTitle: string, eventDate: string, eventEndDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
+  async createWorldEvent(
+    eventTitle: string,
+    eventDate: string,
+    eventEndDate: string,
+    eventDescription: string,
+    eventLocation: string[],
+    eventCharacters: string[],
+    eventStories: string[],
+    eventTags: string[],
+    goToPage: boolean = true
+  ): Promise<void> {  
     console.log(
       `Event created:
       eventTitle: ${eventTitle},
@@ -65,31 +75,31 @@ export class WorldEventService {
       eventTags: ${eventTags}.`,
     );
 
-    this.getAllWorldEvents().then(events => {
-      console.log(events.length);
-      // determine next id as string
-      const maxId = events.length > 0 ? Math.max(...events.map(e => parseInt(e.id.toString()))) : 0;
-      const newId = (maxId + 1).toString();
-      fetch(this.url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: newId,
-          name: eventTitle,
-          date: eventDate,
-          endDate: eventEndDate || undefined,
-          description: eventDescription,
-          location: eventLocation,
-          characters: eventCharacters,
-          stories: eventStories,
-          tags: eventTags,
-        }),
-      });
-      this.router.navigate([`/event/${newId}`]);
-      // window.location.reload();
+    const events = await this.getAllWorldEvents();
+    const maxId = events.length > 0 ? Math.max(...events.map(e => parseInt(e.id.toString()))) : 0;
+    const newId = (maxId + 1).toString();
+    await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: newId,
+        name: eventTitle,
+        date: eventDate,
+        endDate: eventEndDate || undefined,
+        description: eventDescription,
+        location: eventLocation,
+        characters: eventCharacters,
+        stories: eventStories,
+        tags: eventTags,
+      }),
     });
+    if (goToPage) {
+      this.router.navigate([`/event/${newId}`]);
+    } else {
+      window.location.reload();
+    }
   }
 
   deleteWorldEvent(eventID: string) {

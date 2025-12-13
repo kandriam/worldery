@@ -77,7 +77,14 @@ export class WorldStoryService {
     }
   }
 
-  async createWorldStory(storyTitle: string, storyDescription: string, storyCharacters: string[], storyLocations: string[], storyTags: string[]) {
+  async createWorldStory(
+    storyTitle: string,
+    storyDescription: string,
+    storyCharacters: string[],
+    storyLocations: string[],
+    storyTags: string[],
+    goToPage: boolean = true
+  ) : Promise<WorldStoryInfo> {
     console.log(
       `Story created:
       storyTitle: ${storyTitle},
@@ -120,8 +127,12 @@ export class WorldStoryService {
       
       console.log('Story created successfully with bidirectional relationships');
       const newStory = await response.json();
-      this.router.navigate([`/story/${newStory.id}`]);
-      // window.location.reload();
+      
+      if (goToPage) {
+        this.router.navigate([`/story/${newStory.id}`]);
+      } else {
+        window.location.reload();
+      }
       return newStory;
     } catch (error) {
       console.error('Error creating story:', error);

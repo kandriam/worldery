@@ -94,7 +94,13 @@ export class LocationHome {
   async addWorldLocation() {
     console.log('Adding new location');
     try {
-      await this.locationService.createWorldLocation('New Location', '', [], [], []);
+      await this.locationService.createWorldLocation(
+        'New Location',
+        '',
+        [],
+        [],
+        [],
+        true);
       console.log('Location created successfully');
     } catch (error) {
       console.error('Failed to create location:', error);

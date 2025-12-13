@@ -82,7 +82,13 @@ export class StoryHome {
   async addWorldStory() {
     console.log('Adding new story');
     try {
-      await this.storyService.createWorldStory('New Story', '', [], [], []);
+      await this.storyService.createWorldStory(
+        'New Story',
+        '',
+        [],
+        [],
+        [],
+        true);
       console.log('Story created successfully');
     } catch (error) {
       console.error('Failed to create story:', error);

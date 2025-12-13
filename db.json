@@ -1,121 +1,6 @@
 {
   "worldevents": [
     {
-      "id": "1",
-      "name": "Kiara's Birthday",
-      "date": "2203-07-11",
-      "description": "Kiara is born",
-      "location": [
-        "St Paul, Minnesota"
-      ],
-      "characters": [
-        "Kiara Ravao"
-      ],
-      "stories": [
-        "Fire & Ice"
-      ],
-      "tags": [
-        "birthday"
-      ]
-    },
-    {
-      "id": "2",
-      "name": "Jay's Birthday",
-      "date": "2201-12-26",
-      "description": "Jay is born",
-      "location": [
-        "St Paul, Minnesota"
-      ],
-      "characters": [
-        "Judy Han"
-      ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birthday"
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Cassandra's Birthday",
-      "date": "2200-06-01",
-      "description": "Cassandra is born",
-      "location": [
-        "California"
-      ],
-      "characters": [
-        "Cassandra Edwards",
-        "Rudy Edwards"
-      ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birthday"
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Rudy's Birthday",
-      "date": "2200-06-01",
-      "description": "Rudy is born",
-      "location": [
-        "California"
-      ],
-      "characters": [
-        "Cassandra Edwards",
-        "Rudy Edwards"
-      ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birthday"
-      ]
-    },
-    {
-      "id": "5",
-      "name": "Willow's Birthday",
-      "date": "2202-04-02",
-      "description": "Willow is born",
-      "location": [
-        "Rivera-Anderson Family House",
-        "St Paul, Minnesota"
-      ],
-      "characters": [
-        "Willow Rivera-Anderson"
-      ],
-      "stories": [
-        "Fire & Ice"
-      ],
-      "tags": [
-        "birthday"
-      ]
-    },
-    {
-      "id": "6",
-      "name": "Matthew's Birthday",
-      "date": "2201-04-16",
-      "description": "Matthew is born",
-      "location": [
-        "St Paul, Minnesota"
-      ],
-      "characters": [
-        "Matthew Rivera-Anderson"
-      ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birthday"
-      ]
-    },
-    {
       "id": "7",
       "name": "Jay moves in with Kiara",
       "date": "2223-07-05",
@@ -134,24 +19,6 @@
       "tags": [
         "Book 1; Chapter 1",
         "Jayara"
-      ]
-    },
-    {
-      "id": "8",
-      "name": "Leo's Birthday",
-      "date": "2201-08-16",
-      "characters": [
-        "Leo Deng"
-      ],
-      "location": [
-        "St Paul, Minnesota"
-      ],
-      "stories": [
-        "Fire & Ice"
-      ],
-      "description": "Leo is born",
-      "tags": [
-        "birthday"
       ]
     },
     {
@@ -194,6 +61,23 @@
       ],
       "tags": [
         "Backstory"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Kiara Ravao's Birth",
+      "date": "2203-07-11",
+      "description": "Kiara Ravao's birth.",
+      "location": [],
+      "characters": [
+        "Kiara Ravao"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water"
+      ],
+      "tags": [
+        "birth"
       ]
     }
   ],
@@ -440,6 +324,7 @@
         "Ki"
       ],
       "birthdate": "2203-07-11",
+      "deathdate": "",
       "pronouns": "she/they",
       "roles": [
         "Protagonist",

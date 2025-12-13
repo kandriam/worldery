@@ -32,12 +32,13 @@
                                     <option value="{{ month }}">{{ month }}</option>
                                 }
                             </select>
-                            <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
+                            <input id="character-birth-day" class="primary" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
+                            <button (click)="addCharacterEvent('birth')">Update Timeline</button>
                         </div>
 
                         <label class="primary-label">Deathdate</label>
                         <div class="date-selector">
-                            <input id="character-death-year" type="number" formControlName="characterDeathYear" placeholder="Year" min="1800" max="3000" />
+                            <input id="character-death-year" class="secondary" type="number" formControlName="characterDeathYear" placeholder="Year" min="1800" max="3000" />
                             <select id="character-death-month" formControlName="characterDeathMonth">
                                 <option value="">Month</option>
                                 @for (month of months; track month) {
@@ -45,6 +46,7 @@
                                 }
                             </select>
                             <input id="character-death-day" type="number" formControlName="characterDeathDay" placeholder="Day" min="1" max="31" />
+                            <button (click)="addCharacterEvent('death')">Update Timeline</button>
                         </div>
                     </div>
                     <div>
