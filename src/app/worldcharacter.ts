@@ -9,6 +9,7 @@ export interface WorldCharacterInfo {
 
     pronouns: string;
     birthdate: string;
+    deathdate?: string;
     roles: string[];
     affiliations: string[];
     relationships: worldCharacterRelationship[];

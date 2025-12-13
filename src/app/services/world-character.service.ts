@@ -25,7 +25,7 @@ export class WorldCharacterService {
     return await data.json() ?? [];
   }
 
-  async updateWorldCharacter(characterID: string, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async updateWorldCharacter(characterID: string, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterDeathdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
@@ -33,6 +33,7 @@ export class WorldCharacterService {
       characterLastName: ${characterLastName},
       characterAltNames: ${characterAltNames},
       characterBirthdate: ${characterBirthdate},
+      characterDeathdate: ${characterDeathdate},
       characterPronouns: ${characterPronouns},
       characterRoles: ${characterRoles},
       characterAffiliations: ${characterAffiliations},
@@ -55,6 +56,7 @@ export class WorldCharacterService {
           lastName: characterLastName,
           altNames: characterAltNames,
           birthdate: characterBirthdate,
+          deathdate: characterDeathdate,
           pronouns: characterPronouns,
           roles: characterRoles,
           affiliations: characterAffiliations,
@@ -78,13 +80,14 @@ export class WorldCharacterService {
     }
   }
 
-  async createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async createWorldCharacter(characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterDeathdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
     console.log(
       `Character created:
       characterFirstName: ${characterFirstName},
       characterLastName: ${characterLastName},
       characterAltNames: ${characterAltNames},
       characterBirthdate: ${characterBirthdate},
+      characterDeathdate: ${characterDeathdate},
       characterPronouns: ${characterPronouns},
       characterRoles: ${characterRoles},
       characterAffiliations: ${characterAffiliations},
@@ -114,6 +117,7 @@ export class WorldCharacterService {
           lastName: characterLastName,
           altNames: characterAltNames,
           birthdate: characterBirthdate,
+          deathdate: characterDeathdate,
           pronouns: characterPronouns,
           roles: characterRoles,
           affiliations: characterAffiliations,

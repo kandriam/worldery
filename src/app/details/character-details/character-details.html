@@ -19,11 +19,10 @@
                         
                         <label class="primary-label" for="character-alt-names">Alternate Names</label>
                         <input id="character-alt-names" type="text" formC ontrolName="characterAltNames" placeholder="Nicknames, aliases, etc..." />
-                    </div>
-                    <div class="details-section secondary-section">
                         <label class="primary-label" for="character-pronouns">Pronouns</label>
                         <input id="character-pronouns" type="text" formControlName="characterPronouns" placeholder="he/him, she/her, they/them, etc..." />
-                        
+                    </div>
+                    <div class="details-section secondary-section">
                         <label class="primary-label">Birthdate</label>
                         <div class="date-selector">
                             <input id="character-birth-year" type="number" formControlName="characterBirthYear" placeholder="Year" min="1800" max="3000" />
@@ -34,6 +33,18 @@
                                 }
                             </select>
                             <input id="character-birth-day" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
+                        </div>
+
+                        <label class="primary-label">Deathdate</label>
+                        <div class="date-selector">
+                            <input id="character-death-year" type="number" formControlName="characterDeathYear" placeholder="Year" min="1800" max="3000" />
+                            <select id="character-death-month" formControlName="characterDeathMonth">
+                                <option value="">Month</option>
+                                @for (month of months; track month) {
+                                    <option value="{{ month }}">{{ month }}</option>
+                                }
+                            </select>
+                            <input id="character-death-day" type="number" formControlName="characterDeathDay" placeholder="Day" min="1" max="31" />
                         </div>
                     </div>
                     <div>

@@ -187,6 +187,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
             fullCharacter.lastName,
             fullCharacter.altNames || [],
             fullCharacter.birthdate || '',
+            fullCharacter.deathdate || '',
             fullCharacter.pronouns || '',
             fullCharacter.roles || [],
             fullCharacter.affiliations || [],

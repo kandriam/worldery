@@ -70,7 +70,7 @@ export class CharacterHome {
 
   addWorldCharacter() {
     console.log('Adding new character');
-    this.characterService.createWorldCharacter('New', 'Character', [], '', '', [], [], [], '', '', [], []);
+    this.characterService.createWorldCharacter('New', 'Character', [], '', '', '', [], [], [], '', '', [], []);
   }
 
   onTagClicked(tag: string) {

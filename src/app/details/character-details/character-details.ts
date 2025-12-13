@@ -53,6 +53,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     characterBirthYear: new FormControl(''),
     characterBirthMonth: new FormControl(''),
     characterBirthDay: new FormControl(''),
+    characterDeathYear: new FormControl(''),
+    characterDeathMonth: new FormControl(''),
+    characterDeathDay: new FormControl(''),
     characterRoles: new FormControl(''),
     characterAffiliations: new FormControl(''),
     characterRelationships: new FormControl(''),
@@ -91,25 +94,39 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       
       // Parse birthdate into separate components
       const birthdate = worldCharacter?.birthdate || '';
-      let year = '', month = '', day = '';
-      
+      let birthYear = '', birthMonth = '', birthDay = '';
       if (birthdate) {
         const dateParts = birthdate.split('-');
         if (dateParts.length === 3) {
-          year = dateParts[0];
-          month = this.getMonthName(parseInt(dateParts[1]));
-          day = parseInt(dateParts[2]).toString();
+          birthYear = dateParts[0];
+          birthMonth = this.getMonthName(parseInt(dateParts[1]));
+          birthDay = parseInt(dateParts[2]).toString();
         }
       }
-      
+
+      // Parse deathdate into separate components
+      const deathdate = worldCharacter?.deathdate || '';
+      let deathYear = '', deathMonth = '', deathDay = '';
+      if (deathdate) {
+        const dateParts = deathdate.split('-');
+        if (dateParts.length === 3) {
+          deathYear = dateParts[0];
+          deathMonth = this.getMonthName(parseInt(dateParts[1]));
+          deathDay = parseInt(dateParts[2]).toString();
+        }
+      }
+
       this.applyForm.patchValue({
         characterFirstName: worldCharacter?.firstName || '',
         characterLastName: worldCharacter?.lastName || '',
         characterAltNames: worldCharacter?.altNames?.join(', ') || '',
         characterPronouns: worldCharacter?.pronouns || '',
-        characterBirthYear: year,
-        characterBirthMonth: month,
-        characterBirthDay: day,
+        characterBirthYear: birthYear,
+        characterBirthMonth: birthMonth,
+        characterBirthDay: birthDay,
+        characterDeathYear: deathYear,
+        characterDeathMonth: deathMonth,
+        characterDeathDay: deathDay,
         characterRoles: worldCharacter?.roles?.join(', ') || '',
         characterAffiliations: worldCharacter?.affiliations?.join(', ') || '',
         characterRelationships: worldCharacter?.relationships?.join(', ') || '',
@@ -503,16 +520,22 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.applyForm.value.characterBirthMonth || '',
         this.applyForm.value.characterBirthDay || ''
       );
-      
+      const formattedDeathdate = this.formatBirthdate(
+        this.applyForm.value.characterDeathYear || '',
+        this.applyForm.value.characterDeathMonth || '',
+        this.applyForm.value.characterDeathDay || ''
+      );
+
       console.log('Form data:', {
         id: this.worldCharacter.id,
         firstName: this.applyForm.value.characterFirstName,
         lastName: this.applyForm.value.characterLastName,
         birthdate: formattedBirthdate,
+        deathdate: formattedDeathdate,
         pronouns: this.applyForm.value.characterPronouns,
         relationships: relationships.length
       });
-      
+
       try {
         const result = this.worldCharacterService.updateWorldCharacter(
           this.worldCharacter.id,
@@ -520,6 +543,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.applyForm.value.characterLastName ?? '',
           this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [],
           formattedBirthdate,
+          formattedDeathdate,
           this.applyForm.value.characterPronouns ?? '',
           this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [],
           this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [],
@@ -530,7 +554,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
         );
         console.log('Character update called successfully', result);
-        
+
         if (result && typeof result.then === 'function') {
           result.then(() => {
             console.log('Character update completed successfully');
