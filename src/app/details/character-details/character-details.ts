@@ -599,6 +599,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           }
         });
       }
+
+    this.addCharacterEvent('birth');
+    this.addCharacterEvent('death');
     }
   }
   
@@ -669,7 +672,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       );
     }
     if (!date) {
-      alert('Please provide a valid date before adding to the timeline.');
+      // alert('Please provide a valid date before adding to the timeline.');
       return;
     }
 
