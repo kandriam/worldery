@@ -285,7 +285,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         this.applyForm.value.eventEndMonth || '',
         this.applyForm.value.eventEndDay || ''
       );
-      
+
       this.worldEventService.updateWorldEvent(
         this.worldEvent.id,
         this.applyForm.value.eventTitle ?? '',
@@ -297,13 +297,89 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         selectedStories,
         this.applyForm.value.eventTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
       );
+
+      // Check all characters for birthEventId or deathEventId matching this event, and clear if not associated anymore
+      this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
+        for (const character of characters) {
+          let changed = false;
+          // If this event was the character's birth event, but the character is no longer in the event's character list, clear it
+          if (character.birthEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
+            character.birthEventId = '';
+            character.birthdate = '';
+            changed = true;
+          }
+          // If this event was the character's death event, but the character is no longer in the event's character list, clear it
+          if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
+            character.deathEventId = '';
+            character.deathdate = '';
+            changed = true;
+          }
+          if (changed) {
+            await this.worldCharacterService.updateWorldCharacter(
+              character.id,
+              character.firstName,
+              character.lastName,
+              character.altNames,
+              character.birthdate || '',
+              character.birthEventId || '',
+              character.deathdate || '',
+              character.deathEventId || '',
+              character.pronouns,
+              character.roles,
+              character.affiliations,
+              character.relationships,
+              character.physicalDescription,
+              character.nonPhysicalDescription,
+              character.stories,
+              character.tags
+            );
+          }
+        }
+      });
     }
   }
 
   deleteEvent() {
     if (this.worldEvent?.id && confirm(`Are you sure you want to delete "${this.worldEvent.name}"? This action cannot be undone.`)) {
-      this.worldEventService.deleteWorldEvent(this.worldEvent.id);
-      this.router.navigate(['/event']);
+      // Check all characters for birthEventId or deathEventId matching this event
+      this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
+        for (const character of characters) {
+          let changed = false;
+          if (character.birthEventId === this.worldEvent!.id) {
+            character.birthEventId = '';
+            character.birthdate = '';
+            changed = true;
+          }
+          if (character.deathEventId === this.worldEvent!.id) {
+            character.deathEventId = '';
+            character.deathdate = '';
+            changed = true;
+          }
+          if (changed) {
+            await this.worldCharacterService.updateWorldCharacter(
+              character.id,
+              character.firstName,
+              character.lastName,
+              character.altNames,
+              character.birthdate || '',
+              character.birthEventId || '',
+              character.deathdate || '',
+              character.deathEventId || '',
+              character.pronouns,
+              character.roles,
+              character.affiliations,
+              character.relationships,
+              character.physicalDescription,
+              character.nonPhysicalDescription,
+              character.stories,
+              character.tags
+            );
+          }
+        }
+        // Now delete the event
+        this.worldEventService.deleteWorldEvent(this.worldEvent!.id);
+        this.router.navigate(['/event']);
+      });
     }
   }
 
