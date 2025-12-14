@@ -48,6 +48,23 @@
                             <input id="character-death-day" type="number" formControlName="characterDeathDay" placeholder="Day" min="1" max="31" />
                             <button (click)="addCharacterEvent('death')">Update Timeline</button>
                         </div>
+
+                        <div class="event-thumbnails">
+                            @if (worldCharacter?.birthEventId) {
+                                <app-event-thumbnail 
+                                    [worldEvent]="getEvent(worldCharacter?.birthEventId || '')!"
+                                    [showCharacters]="false"
+                                    >
+                                </app-event-thumbnail>
+                            }
+                            @if (worldCharacter?.deathEventId) {
+                                <app-event-thumbnail 
+                                    [worldEvent]="getEvent(worldCharacter?.deathEventId || '')!"
+                                    [showCharacters]="false"
+                                    >
+                                </app-event-thumbnail>
+                            }
+                        </div>
                     </div>
                     <div>
                         <label class="primary-label" for="character-physical-description">Physical Description</label>

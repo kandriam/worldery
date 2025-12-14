@@ -12,7 +12,7 @@ import { WorldEventInfo } from '../../../worldevent';
   styleUrls: ['./timeline-event.css', '../../../../styles.css']
 })
 export class TimelineEvent {
-    settingsService = inject(SettingsService);
+  settingsService = inject(SettingsService);
   event = input.required<WorldEventInfo>();
   index = input.required<number>();
   currentEventId = input<string | undefined>();

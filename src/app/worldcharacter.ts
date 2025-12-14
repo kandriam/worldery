@@ -8,8 +8,10 @@ export interface WorldCharacterInfo {
     nonPhysicalDescription: string;
 
     pronouns: string;
-    birthdate: string;
+    birthdate?: string;
     deathdate?: string;
+    birthEventId?: string; // Event ID for birth
+    deathEventId?: string; // Event ID for death
     roles: string[];
     affiliations: string[];
     relationships: worldCharacterRelationship[];

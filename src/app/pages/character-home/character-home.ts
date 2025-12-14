@@ -77,6 +77,8 @@ export class CharacterHome {
       '',
       '',
       '',
+      '',
+      '',
       [],
       [],
       [],

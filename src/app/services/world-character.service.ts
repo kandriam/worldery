@@ -25,7 +25,23 @@ export class WorldCharacterService {
     return await data.json() ?? [];
   }
 
-  async updateWorldCharacter(characterID: string, characterFirstName: string, characterLastName: string, characterAltNames: string[], characterBirthdate: string, characterDeathdate: string, characterPronouns: string, characterRoles: string[], characterAffiliations: string[], characterRelationships: worldCharacterRelationship[], characterPhysicalDescription: string, characterNonPhysicalDescription: string, characterStories: string[], characterTags: string[]) {
+  async updateWorldCharacter(
+    characterID: string,
+    characterFirstName: string,
+    characterLastName: string,
+    characterAltNames: string[],
+    characterBirthdate: string,
+    characterBirthEventId: string,
+    characterDeathdate: string,
+    characterDeathEventId: string,
+    characterPronouns: string,
+    characterRoles: string[],
+    characterAffiliations: string[],
+    characterRelationships: worldCharacterRelationship[],
+    characterPhysicalDescription: string,
+    characterNonPhysicalDescription: string,
+    characterStories: string[],
+    characterTags: string[]) {
     console.log(
       `Character edited:
       characterID: ${characterID},
@@ -33,7 +49,9 @@ export class WorldCharacterService {
       characterLastName: ${characterLastName},
       characterAltNames: ${characterAltNames},
       characterBirthdate: ${characterBirthdate},
+      characterBirthEventId: ${characterBirthEventId},
       characterDeathdate: ${characterDeathdate},
+      characterDeathEventId: ${characterDeathEventId},
       characterPronouns: ${characterPronouns},
       characterRoles: ${characterRoles},
       characterAffiliations: ${characterAffiliations},
@@ -56,7 +74,9 @@ export class WorldCharacterService {
           lastName: characterLastName,
           altNames: characterAltNames,
           birthdate: characterBirthdate,
+          birthEventId: characterBirthEventId,
           deathdate: characterDeathdate,
+          deathEventId: characterDeathEventId,
           pronouns: characterPronouns,
           roles: characterRoles,
           affiliations: characterAffiliations,
@@ -85,7 +105,9 @@ export class WorldCharacterService {
     characterLastName:string,
     characterAltNames: string[],
     characterBirthdate: string,
+    characterBirthEventId: string,
     characterDeathdate: string,
+    characterDeathEventId: string,
     characterPronouns: string,
     characterRoles: string[],
     characterAffiliations: string[],
@@ -132,7 +154,9 @@ export class WorldCharacterService {
           lastName: characterLastName,
           altNames: characterAltNames,
           birthdate: characterBirthdate,
+          birthEventId: characterBirthEventId,
           deathdate: characterDeathdate,
+          deathEventId: characterDeathEventId,
           pronouns: characterPronouns,
           roles: characterRoles,
           affiliations: characterAffiliations,

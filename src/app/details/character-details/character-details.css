@@ -7,3 +7,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.event-thumbnails {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  center-items: center;
+}

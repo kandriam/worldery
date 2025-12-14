@@ -13,10 +13,12 @@ import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { RelationshipList } from '../../components/relationship-list/relationship-list';
 import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { EventThumbnail } from "src/app/components/thumbnail/event-thumbnail/event-thumbnail";
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, Timeline, AssociationList, RelationshipList],
+  imports: [ReactiveFormsModule, Timeline, AssociationList, RelationshipList, RouterLink, EventThumbnail],
   templateUrl: "character-details.html",
   styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
@@ -239,6 +241,10 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   onStoryFilterChange(event: Event): void {
     const select = event.target as HTMLSelectElement;
     this.setStoryFilter(select?.value || 'all');
+  }
+
+  getEvent(eventId: string): WorldEventInfo | undefined {
+    return this.eventList.find(event => event.id === eventId);
   }
 
   getUniqueStories(): string[] {
@@ -543,7 +549,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.applyForm.value.characterLastName ?? '',
           this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [],
           formattedBirthdate,
+          this.worldCharacter.birthEventId ?? '',
           formattedDeathdate,
+          this.worldCharacter.deathEventId ?? '',
           this.applyForm.value.characterPronouns ?? '',
           this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [],
           this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [],
@@ -643,6 +651,10 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     const tags = eventTagsInput.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
     const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
     let date = '';
+    if (!this.worldCharacter) {
+      alert('No character selected.');
+      return;
+    }
     if (eventType === 'birth') {
       date = this.formatBirthdate(
         this.applyForm.value.characterBirthYear || '',
@@ -660,26 +672,105 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       alert('Please provide a valid date before adding to the timeline.');
       return;
     }
+
+    // Use explicit property access for eventId
+    let eventId: string | undefined = undefined;
+    if (eventType === 'birth') {
+      eventId = this.worldCharacter.birthEventId;
+    } else if (eventType === 'death') {
+      eventId = this.worldCharacter.deathEventId;
+    }
+    let eventTitle = `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`;
+    let eventDescription = `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`;
+    let eventCharacters = [characterName];
+    let eventStories = this.worldCharacter.stories || [];
+    let eventTags = [...tags, eventType === 'birth' ? 'birth' : 'death'];
+
     try {
-      await this.worldEventService.createWorldEvent(
-        `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`,
-        date,
-        '',
-        `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`,
-        [],
-        [characterName],
-        this.worldCharacter?.stories || [],
-        [...tags, eventType === 'birth' ? 'birth' : 'death'],
-        false
-      );
-      // alert(`${eventType === 'birth' ? 'Birth' : 'Death'} event added to timeline successfully.`);
+      if (eventId) {
+        // Update existing event
+        this.worldEventService.updateWorldEvent(
+          eventId,
+          eventTitle,
+          date,
+          '',
+          eventDescription,
+          [],
+          eventCharacters,
+          eventStories,
+          eventTags
+        );
+        // Also update the character's date in the database
+        if (eventType === 'birth') {
+          this.worldCharacter.birthdate = date;
+        } else if (eventType === 'death') {
+          this.worldCharacter.deathdate = date;
+        }
+        await this.worldCharacterService.updateWorldCharacter(
+          this.worldCharacter.id,
+          this.worldCharacter.firstName,
+          this.worldCharacter.lastName,
+          this.worldCharacter.altNames,
+          this.worldCharacter.birthdate || '',
+          this.worldCharacter.birthEventId || '',
+          this.worldCharacter.deathdate || '',
+          this.worldCharacter.deathEventId || '',
+          this.worldCharacter.pronouns,
+          this.worldCharacter.roles,
+          this.worldCharacter.affiliations,
+          this.worldCharacter.relationships,
+          this.worldCharacter.physicalDescription,
+          this.worldCharacter.nonPhysicalDescription,
+          this.worldCharacter.stories,
+          this.worldCharacter.tags
+        );
+        console.log(`Updated ${eventType} event with id ${eventId} and updated character date.`);
+      } else {
+        // Create new event
+        const newEventId = await this.worldEventService.createWorldEvent(
+          eventTitle,
+          date,
+          '',
+          eventDescription,
+          [],
+          eventCharacters,
+          eventStories,
+          eventTags,
+          false
+        );
+        // Update the character with the new eventId and date
+        if (eventType === 'birth') {
+          this.worldCharacter.birthEventId = newEventId;
+          this.worldCharacter.birthdate = date;
+        } else if (eventType === 'death') {
+          this.worldCharacter.deathEventId = newEventId;
+          this.worldCharacter.deathdate = date;
+        }
+        await this.worldCharacterService.updateWorldCharacter(
+          this.worldCharacter.id,
+          this.worldCharacter.firstName,
+          this.worldCharacter.lastName,
+          this.worldCharacter.altNames,
+          this.worldCharacter.birthdate || '',
+          this.worldCharacter.birthEventId || '',
+          this.worldCharacter.deathdate || '',
+          this.worldCharacter.deathEventId || '',
+          this.worldCharacter.pronouns,
+          this.worldCharacter.roles,
+          this.worldCharacter.affiliations,
+          this.worldCharacter.relationships,
+          this.worldCharacter.physicalDescription,
+          this.worldCharacter.nonPhysicalDescription,
+          this.worldCharacter.stories,
+          this.worldCharacter.tags
+        );
+        console.log(`Created new ${eventType} event with id ${newEventId} and updated character.`);
+      }
       this.updateFilteredEvents();
     } catch (error: any) {
-      console.error('Failed to add event to timeline:', error);
-      alert('Failed to add event to timeline: ' + error.message);
+      console.error('Failed to add/update event to timeline:', error);
+      alert('Failed to add/update event to timeline: ' + error.message);
     }
-    // eventTitle: string, eventDate: string, eventEndDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]): void
-
   }
 
   onTimelineTagClicked(tag: string) {

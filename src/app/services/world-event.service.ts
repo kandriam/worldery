@@ -62,7 +62,7 @@ export class WorldEventService {
     eventStories: string[],
     eventTags: string[],
     goToPage: boolean = true
-  ): Promise<void> {  
+  ): Promise<string> {  
     console.log(
       `Event created:
       eventTitle: ${eventTitle},
@@ -97,14 +97,42 @@ export class WorldEventService {
     });
     if (goToPage) {
       this.router.navigate([`/event/${newId}`]);
+      return newId;
     } else {
-      window.location.reload();
+      // window.location.reload();
+      return newId;
     }
   }
 
-  deleteWorldEvent(eventID: string) {
+  async deleteWorldEvent(eventID: string) {
     console.log(`Event deleted: eventID: ${eventID}.`);
-    fetch(`${this.url}/${eventID}`, {
+    // Remove eventId from any character's birthEventId or deathEventId
+    try {
+      // Get all characters
+      const charactersResponse = await fetch('http://localhost:3000/worldcharacters');
+      const characters = await charactersResponse.json();
+      for (const character of characters) {
+        let needsUpdate = false;
+        if (character.birthEventId === eventID) {
+          character.birthEventId = '';
+          needsUpdate = true;
+        }
+        if (character.deathEventId === eventID) {
+          character.deathEventId = '';
+          needsUpdate = true;
+        }
+        if (needsUpdate) {
+          await fetch(`http://localhost:3000/worldcharacters/${character.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(character)
+          });
+        }
+      }
+    } catch (err) {
+      console.error('Error updating characters when deleting event:', err);
+    }
+    await fetch(`${this.url}/${eventID}`, {
       method: 'DELETE',
     });
     this.router.navigate(['/events']);

@@ -44,27 +44,6 @@
     },
     {
       "id": "10",
-      "name": "Kiara meets Willow and Matthew",
-      "date": "2212-09-10",
-      "description": "Kiara meets Willow and Matthew at school on the playground",
-      "location": [
-        "St Paul, Minnesota"
-      ],
-      "characters": [
-        "Kiara Ravao",
-        "Judy Han",
-        "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson"
-      ],
-      "stories": [
-        "Fire & Ice"
-      ],
-      "tags": [
-        "Backstory"
-      ]
-    },
-    {
-      "id": "11",
       "name": "Kiara Ravao's Birth",
       "date": "2203-07-11",
       "description": "Kiara Ravao's birth.",
@@ -81,103 +60,29 @@
       ]
     },
     {
+      "id": "11",
+      "name": "Baram Han's Death",
+      "date": "2214-06-08",
+      "description": "Baram Han's death.",
+      "location": [],
+      "characters": [
+        "Baram Han"
+      ],
+      "stories": [],
+      "tags": [
+        "death"
+      ]
+    },
+    {
       "id": "12",
-      "name": "Judy Han's Birth",
-      "date": "2201-12-26",
-      "description": "Judy Han's birth.",
+      "name": "Baram Han's Birth",
+      "date": "2179-10-24",
+      "description": "Baram Han's birth.",
       "location": [],
       "characters": [
-        "Judy Han"
+        "Baram Han"
       ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "13",
-      "name": "Cassandra Edwards's Birth",
-      "date": "2200-06-01",
-      "description": "Cassandra Edwards's birth.",
-      "location": [],
-      "characters": [
-        "Cassandra Edwards"
-      ],
-      "stories": [
-        "Blood & Water",
-        "Fire & Ice"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "14",
-      "name": "Rudy Edwards's Birth",
-      "date": "2200-06-01",
-      "description": "Rudy Edwards's birth.",
-      "location": [],
-      "characters": [
-        "Rudy Edwards"
-      ],
-      "stories": [
-        "Blood & Water",
-        "Fire & Ice"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "15",
-      "name": "Willow Rivera-Anderson's Birth",
-      "date": "2202-04-02",
-      "description": "Willow Rivera-Anderson's birth.",
-      "location": [],
-      "characters": [
-        "Willow Rivera-Anderson"
-      ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "16",
-      "name": "Matthew Rivera-Anderson's Birth",
-      "date": "2201-04-16",
-      "description": "Matthew Rivera-Anderson's birth.",
-      "location": [],
-      "characters": [
-        "Matthew Rivera-Anderson"
-      ],
-      "stories": [
-        "Blood & Water",
-        "Fire & Ice"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "18",
-      "name": "Leo Deng's Birth",
-      "date": "2199-11-30",
-      "description": "Leo Deng's birth.",
-      "location": [],
-      "characters": [
-        "Leo Deng"
-      ],
-      "stories": [
-        "Fire & Ice",
-        "Blood & Water"
-      ],
+      "stories": [],
       "tags": [
         "birth"
       ]
@@ -426,7 +331,9 @@
         "Ki"
       ],
       "birthdate": "2203-07-11",
+      "birthEventId": "10",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/they",
       "roles": [
         "Protagonist\nSuperhero\nStudent\nBookstore worker"
@@ -4535,6 +4442,24 @@
       "stories": [
         "Stray Kids (Working Title)"
       ],
+      "tags": []
+    },
+    {
+      "id": "30",
+      "firstName": "Baram",
+      "lastName": "Han",
+      "altNames": [],
+      "birthdate": "2179-10-24",
+      "birthEventId": "12",
+      "deathdate": "2214-06-08",
+      "deathEventId": "11",
+      "pronouns": "",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [],
       "tags": []
     }
   ],
