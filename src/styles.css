@@ -205,7 +205,6 @@ button{
    ============================================================================ */
 input {
   display: block;
-  font-family: var(--input-font-family);
 
   /* &[type="number"] {
     width: 4rem;
@@ -293,8 +292,9 @@ textarea, input[type="text"] {
   /* margin-bottom: 15px; */
   border-radius: 8px;
 
-  font-family: var(--input-font-family);
-  
+  /* font-family: var(--input-font-family); */
+  font-family: var(--headings-font-family);
+
   &::placeholder {
     font-size: small;
     opacity: 1; /* Firefox */

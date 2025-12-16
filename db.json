@@ -86,6 +86,42 @@
       "tags": [
         "birth"
       ]
+    },
+    {
+      "id": "13",
+      "name": "Judy Han's Birth",
+      "date": "2201-12-26",
+      "description": "Judy Han's birth.",
+      "location": [],
+      "characters": [
+        "Judy Han"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water",
+        "Room 4"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Judy Han's Birth",
+      "date": "2201-12-26",
+      "description": "Judy Han's birth.",
+      "location": [],
+      "characters": [
+        "Judy Han"
+      ],
+      "stories": [
+        "Fire & Ice",
+        "Blood & Water",
+        "Room 4"
+      ],
+      "tags": [
+        "birth"
+      ]
     }
   ],
   "worldlocations": [
@@ -571,7 +607,9 @@
         "Jay"
       ],
       "birthdate": "2201-12-26",
+      "birthEventId": "13",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/they",
       "roles": [
         "Protagonist",
@@ -787,7 +825,8 @@
       "nonPhysicalDescription": "cryokinetic abilities.",
       "stories": [
         "Fire & Ice",
-        "Blood & Water"
+        "Blood & Water",
+        "Room 4"
       ],
       "tags": [
         "Gifted"
@@ -4573,7 +4612,8 @@
         "Fatima Amir",
         "Adaline Carson",
         "Felix ",
-        "Nadiya Gatik"
+        "Nadiya Gatik",
+        "Judy Han"
       ],
       "locations": [
         "Hampton, Minnesota",

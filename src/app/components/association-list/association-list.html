@@ -2,17 +2,17 @@
     <label class="primary-label">{{ label }}</label>
     <div class="association-list">
         @for(item of items; track item.id) {
-            <div class="form-field">
+            <div class="form-field" [routerLink]="['/'+routePrefix, item.id]">
                 <input 
                     type="checkbox" 
                     id="{{routePrefix}}-checkbox-{{item.id}}" 
                     [value]="item.id" 
                     (change)="onItemChange($event, item.id)" 
+                    (click)="$event.stopPropagation()" 
                     [checked]="item.isAssociated" 
                 />
                 <button 
                     class="linked-item" 
-                    [routerLink]="['/'+routePrefix, item.id]" 
                     type="button"
                 >
                     <label class="secondary-label">{{ item.name }}</label>

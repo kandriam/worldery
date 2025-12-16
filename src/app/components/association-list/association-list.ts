@@ -28,6 +28,7 @@ export class AssociationList {
   }
 
   onItemChange(event: Event, itemId: string) {
+    event.stopPropagation();
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
       this.itemToggled.emit({ id: itemId, isChecked });

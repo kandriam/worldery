@@ -19,11 +19,11 @@
                 <div class="details-section primary-section spanning-section">
                     <div class="details-section secondary-section">
                         <label class="primary-label" for="location-description">Location Description</label>
-                        <textarea id="location-description" class="medium-textarea" formControlName="locationDescription" placeholder="Describe this location, its appearance, atmosphere, and significance..."></textarea>
+                        <textarea id="location-description" class="details-description" formControlName="locationDescription" placeholder="Describe this location, its appearance, atmosphere, and significance..."></textarea>
                     </div>
                 </div>
                 
-                <div class="details-section primary-section horizontal-section">
+                <div class="details-section primary-section">
                     <div class="details-section secondary-section">
                         <app-association-list
                             [items]="getCharactersAssociationList()"
