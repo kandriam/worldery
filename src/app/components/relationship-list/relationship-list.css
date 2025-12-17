@@ -124,7 +124,7 @@
 .relationship textarea {
   width: 100%;
   min-height: 150px;
-  font-size: x-small !important;
+  /* font-size: x-small !important; */
   margin: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--g3-color) var(--g5-color);

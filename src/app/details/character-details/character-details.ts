@@ -410,12 +410,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   }
 
   getFormRelationship(characterID: string): worldCharacterRelationship | undefined {
-    let relationshipCheckbox = document.getElementById(`relationship-checkbox-${characterID}`) as HTMLInputElement;
-    let isChecked = relationshipCheckbox.checked;
-    let relationshipTypeInput = document.getElementById(`relationship-type-${characterID}`) as HTMLInputElement;
-    let relationshipTypes = relationshipTypeInput.value.split(',').map(type => type.trim());
-    let relationshipDescription = document.getElementById(`relationship-description-${characterID}`) as HTMLTextAreaElement;
-    let descriptionText = relationshipDescription.value;
+    const relationshipCheckbox = document.getElementById(`relationship-checkbox-${characterID}`) as HTMLInputElement | null;
+    const relationshipTypeInput = document.getElementById(`relationship-type-${characterID}`) as HTMLInputElement | null;
+    const relationshipDescription = document.getElementById(`relationship-description-${characterID}`) as HTMLTextAreaElement | null;
+    if (!relationshipCheckbox || !relationshipTypeInput || !relationshipDescription) {
+      // If any element is missing, skip this relationship
+      return undefined;
+    }
+    const isChecked = relationshipCheckbox.checked;
+    const relationshipTypes = relationshipTypeInput.value.split(',').map(type => type.trim());
+    const descriptionText = relationshipDescription.value;
     console.log(`RelatedCharacterID: ${characterID}, HasRelationship: ${isChecked}, RelationshipDescription: ${descriptionText}`);
     return {
       relatedCharacterID: characterID.toString(),
@@ -512,21 +516,22 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   updateCharacter() {
     console.log('Starting character update...');
     console.log('Current character:', this.worldCharacter);
-    
+    console.log('a');
     if (!this.worldCharacter?.id) {
       console.error('No character ID found!');
       alert('Error: No character selected for update.');
       return;
     }
-    
+    console.log('b');
+
     // Rebuild relationships array from UI to ensure latest type/details are saved
     let relationships: worldCharacterRelationship[] = [];
     if (this.characterList && this.characterList.length > 0) {
       for (let character of this.characterList) {
         if (character.id !== this.worldCharacter?.id) {
           const rel = this.getFormRelationship(character.id);
-          // Only save relationships where hasRelationship is true, and always capture type/details
           if (rel && rel.hasRelationship) {
+            console.log('Adding relationship from form:', rel);
             relationships.push({
               relatedCharacterID: rel.relatedCharacterID,
               hasRelationship: rel.hasRelationship,
@@ -537,93 +542,108 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         }
       }
     }
+    console.log('!');
 
     const selectedStories = this.getFormStories();
-    const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+    console.log('!!')
+    // Sync worldCharacter object with form values before saving
+    this.worldCharacter.firstName = this.applyForm.value.characterFirstName ?? '';
+    this.worldCharacter.lastName = this.applyForm.value.characterLastName ?? '';
+    this.worldCharacter.altNames = this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [];
+    this.worldCharacter.birthdate = this.formatBirthdate(
+      this.applyForm.value.characterBirthYear || '',
+      this.applyForm.value.characterBirthMonth || '',
+      this.applyForm.value.characterBirthDay || ''
+    );
+    this.worldCharacter.deathdate = this.formatBirthdate(
+      this.applyForm.value.characterDeathYear || '',
+      this.applyForm.value.characterDeathMonth || '',
+      this.applyForm.value.characterDeathDay || ''
+    );
+    this.worldCharacter.pronouns = this.applyForm.value.characterPronouns ?? '';
+    this.worldCharacter.roles = this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [];
+    this.worldCharacter.affiliations = this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [];
+    this.worldCharacter.relationships = relationships;
+    this.worldCharacter.physicalDescription = this.applyForm.value.characterPhysicalDescription ?? '';
+    this.worldCharacter.nonPhysicalDescription = this.applyForm.value.characterNonPhysicalDescription ?? '';
+    this.worldCharacter.stories = selectedStories;
+    this.worldCharacter.tags = this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [];
 
-    if (this.worldCharacter?.id !== undefined) {
-      const formattedBirthdate = this.formatBirthdate(
-        this.applyForm.value.characterBirthYear || '',
-        this.applyForm.value.characterBirthMonth || '',
-        this.applyForm.value.characterBirthDay || ''
+    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
+
+    const formattedBirthdate = this.worldCharacter.birthdate || '';
+    const formattedDeathdate = this.worldCharacter.deathdate || '';
+    console.log('!!!!');
+    console.log('Form data:', {
+      id: this.worldCharacter.id,
+      firstName: this.worldCharacter.firstName,
+      lastName: this.worldCharacter.lastName,
+      birthdate: formattedBirthdate,
+      deathdate: formattedDeathdate,
+      pronouns: this.worldCharacter.pronouns,
+      relationships: relationships.length
+    });
+
+    try {
+      const result = this.worldCharacterService.updateWorldCharacter(
+        this.worldCharacter.id,
+        this.worldCharacter.firstName,
+        this.worldCharacter.lastName,
+        this.worldCharacter.altNames,
+        formattedBirthdate,
+        this.worldCharacter.birthEventId ?? '',
+        formattedDeathdate,
+        this.worldCharacter.deathEventId ?? '',
+        this.worldCharacter.pronouns,
+        this.worldCharacter.roles,
+        this.worldCharacter.affiliations,
+        this.worldCharacter.relationships,
+        this.worldCharacter.physicalDescription,
+        this.worldCharacter.nonPhysicalDescription,
+        this.worldCharacter.stories,
+        this.worldCharacter.tags
       );
-      const formattedDeathdate = this.formatBirthdate(
-        this.applyForm.value.characterDeathYear || '',
-        this.applyForm.value.characterDeathMonth || '',
-        this.applyForm.value.characterDeathDay || ''
-      );
+      console.log('Character update called successfully', result);
 
-      console.log('Form data:', {
-        id: this.worldCharacter.id,
-        firstName: this.applyForm.value.characterFirstName,
-        lastName: this.applyForm.value.characterLastName,
-        birthdate: formattedBirthdate,
-        deathdate: formattedDeathdate,
-        pronouns: this.applyForm.value.characterPronouns,
-        relationships: relationships.length
-      });
-
-      try {
-        const result = this.worldCharacterService.updateWorldCharacter(
-          this.worldCharacter.id,
-          this.applyForm.value.characterFirstName ?? '',
-          this.applyForm.value.characterLastName ?? '',
-          this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [],
-          formattedBirthdate,
-          this.worldCharacter.birthEventId ?? '',
-          formattedDeathdate,
-          this.worldCharacter.deathEventId ?? '',
-          this.applyForm.value.characterPronouns ?? '',
-          this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [],
-          this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [],
-          relationships,
-          this.applyForm.value.characterPhysicalDescription ?? '',
-          this.applyForm.value.characterNonPhysicalDescription ?? '',
-          selectedStories,
-          this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
-        );
-        console.log('Character update called successfully', result);
-
-        if (result && typeof result.then === 'function') {
-          result.then(() => {
-            console.log('Character update completed successfully');
-            // alert('Character updated successfully!');
-            window.location.reload();
-          }).catch((error: any) => {
-            console.error('Character update promise failed:', error);
-            alert('Failed to update character: ' + error.message);
-          });
-        }
-      } catch (error) {
-        console.error('Error updating character:', error);
-        alert('Failed to update character: ' + (error as Error).message);
-      }
-      
-      // Ensure all story records are updated to reflect their association with this character
-      for (let story of this.storyList) {
-        const isSelected = selectedStories.includes(story.title);
-        
-        this.worldStoryService.getWorldStoryById(story.id).then((fullStory) => {
-          if (fullStory) {
-            let updatedCharacters = fullStory.characters || [];
-            const hasCharacter = updatedCharacters.includes(characterName);
-            
-            if (isSelected && !hasCharacter) {
-              // Add character if selected but not in story's list
-              updatedCharacters.push(characterName);
-              this.updateStoryCharacters(story, fullStory, updatedCharacters);
-            } else if (!isSelected && hasCharacter) {
-              // Remove character if not selected but in story's list
-              updatedCharacters = updatedCharacters.filter(char => char !== characterName);
-              this.updateStoryCharacters(story, fullStory, updatedCharacters);
-            }
-          }
+      if (result && typeof result.then === 'function') {
+        result.then(() => {
+          console.log('Character update completed successfully');
+          // alert('Character updated successfully!');
+          window.location.reload();
+        }).catch((error: any) => {
+          console.error('Character update promise failed:', error);
+          alert('Failed to update character: ' + error.message);
         });
       }
+    } catch (error) {
+      console.error('Error updating character:', error);
+      alert('Failed to update character: ' + (error as Error).message);
+    }
+
+    // Ensure all story records are updated to reflect their association with this character
+    for (let story of this.storyList) {
+      const isSelected = selectedStories.includes(story.title);
+
+      this.worldStoryService.getWorldStoryById(story.id).then((fullStory) => {
+        if (fullStory) {
+          let updatedCharacters = fullStory.characters || [];
+          const hasCharacter = updatedCharacters.includes(characterName);
+
+          if (isSelected && !hasCharacter) {
+            // Add character if selected but not in story's list
+            updatedCharacters.push(characterName);
+            this.updateStoryCharacters(story, fullStory, updatedCharacters);
+          } else if (!isSelected && hasCharacter) {
+            // Remove character if not selected but in story's list
+            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+            this.updateStoryCharacters(story, fullStory, updatedCharacters);
+          }
+        }
+      });
+    }
 
     this.addCharacterEvent('birth');
     this.addCharacterEvent('death');
-    }
   }
   
   private updateStoryCharacters(story: WorldStoryInfo, fullStory: WorldStoryInfo, updatedCharacters: string[]) {

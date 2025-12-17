@@ -604,7 +604,8 @@
       "lastName": "Han",
       "altNames": [
         "Frostbite",
-        "Jay"
+        "Jay",
+        "Blue Jay"
       ],
       "birthdate": "2201-12-26",
       "birthEventId": "13",
@@ -622,39 +623,39 @@
       "relationships": [
         {
           "relatedCharacterID": "1",
+          "hasRelationship": true,
           "relationshipType": [
             "Romantic Partner"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Judy and Kiara started as roommates, before they began dating."
         },
         {
           "relatedCharacterID": "3",
+          "hasRelationship": true,
           "relationshipType": [
             "Friend"
           ],
-          "hasRelationship": true,
-          "relationshipDescription": "Friend!"
+          "relationshipDescription": "Friend"
         },
         {
           "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
           "hasRelationship": true,
-          "relationshipDescription": ""
+          "relationshipType": [
+            "Ex-Girlfriend"
+          ],
+          "relationshipDescription": "After Rudy recruited Jay into the Soldiers of Rebellion, the two began dating"
         },
         {
           "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
           "hasRelationship": true,
+          "relationshipType": [
+            "Friend"
+          ],
           "relationshipDescription": ""
         }
       ],
-      "physicalDescription": "Straight, white hair, gray eyes, Korean-American",
-      "nonPhysicalDescription": "cryokinetic abilities.",
+      "physicalDescription": "White hair, gray eyes, Korean-American",
+      "nonPhysicalDescription": "Cryokinetic abilities.",
       "stories": [
         "Fire & Ice",
         "Blood & Water",

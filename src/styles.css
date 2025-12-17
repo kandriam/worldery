@@ -296,13 +296,11 @@ textarea, input[type="text"] {
   font-family: var(--headings-font-family);
 
   &::placeholder {
-    font-size: small;
     opacity: 1; /* Firefox */
   }
 
   &:focus {
     outline: none;
-    font-size: small;
     background-color: var(--b5-color);
   }
 }
@@ -329,6 +327,7 @@ textarea {
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
+  font-size: small;
   resize: none !important;
 }
 
