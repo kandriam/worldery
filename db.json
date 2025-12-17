@@ -631,57 +631,17 @@
         {
           "relatedCharacterID": "3",
           "relationshipType": [
-            ""
+            "Friend"
           ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
+          "hasRelationship": true,
+          "relationshipDescription": "Friend!"
         },
         {
           "relatedCharacterID": "4",
           "relationshipType": [
             ""
           ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
+          "hasRelationship": true,
           "relationshipDescription": ""
         },
         {
@@ -689,135 +649,7 @@
           "relationshipType": [
             ""
           ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "21",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "22",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "23",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "24",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "25",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "26",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
+          "hasRelationship": true,
           "relationshipDescription": ""
         }
       ],

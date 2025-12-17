@@ -92,8 +92,9 @@
                     [getRelationshipFn]="getRelationship.bind(this)"
                     (relationshipToggled)="onRelationshipToggled($event)"
                     (relationshipFilterChanged)="onRelationshipFilterChanged($event)"
-                    (storyFilterChanged)="onStoryFilterChanged($event)">
-                </app-relationship-list>
+                    (storyFilterChanged)="onStoryFilterChanged($event)"
+                    (relationshipsChanged)="onRelationshipsChanged($event)"
+                ></app-relationship-list>
                 
                 <div class="details-section primary-section association-list-section">
                     <app-association-list

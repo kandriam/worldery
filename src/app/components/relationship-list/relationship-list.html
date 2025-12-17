@@ -34,11 +34,11 @@
           <p class="alt-names">( {{ character.altNames.join(', ') }} )</p>
         }
         @if (getRelationship(character.id)?.hasRelationship) {
-          <input type="text" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-          <textarea id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+          <input type="text" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')" (input)="emitAllRelationships()"/>
+          <textarea id="relationship-description-{{character.id}}" placeholder="Describe relationship..." (input)="emitAllRelationships()">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
         } @else {
-          <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')"/>
-          <textarea class="hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship...">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
+          <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')" (input)="emitAllRelationships()"/>
+          <textarea class="hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship..." (input)="emitAllRelationships()">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
         }
       </div>
     }

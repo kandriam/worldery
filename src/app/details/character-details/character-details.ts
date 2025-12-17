@@ -257,6 +257,30 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return Array.from(stories).sort();
   }
 
+  onRelationshipsChanged(updated: worldCharacterRelationship[]) {
+    if (this.worldCharacter) {
+      this.worldCharacter.relationships = updated;
+      // Save immediately
+      this.worldCharacterService.updateWorldCharacter(
+        this.worldCharacter.id,
+        this.worldCharacter.firstName,
+        this.worldCharacter.lastName,
+        this.worldCharacter.altNames,
+        this.worldCharacter.birthdate || '',
+        this.worldCharacter.birthEventId || '',
+        this.worldCharacter.deathdate || '',
+        this.worldCharacter.deathEventId || '',
+        this.worldCharacter.pronouns,
+        this.worldCharacter.roles,
+        this.worldCharacter.affiliations,
+        this.worldCharacter.relationships,
+        this.worldCharacter.physicalDescription,
+        this.worldCharacter.nonPhysicalDescription,
+        this.worldCharacter.stories,
+        this.worldCharacter.tags
+      );
+    }
+  }
   // Relationship component event handlers
   onRelationshipToggled(event: {event: Event, characterId: string}) {
     this.toggleRelationship(event.event, event.characterId);
@@ -495,31 +519,28 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       return;
     }
     
+    // Rebuild relationships array from UI to ensure latest type/details are saved
     let relationships: worldCharacterRelationship[] = [];
-    for (let character of this.characterList) {
-      if (character.id !== this.worldCharacter?.id) {
-        // Check if this character is currently displayed (has DOM elements)
-        let relationshipCheckbox = document.getElementById(`relationship-checkbox-${character.id}`) as HTMLInputElement;
-        
-        if (relationshipCheckbox) {
-          // Character is displayed, get form data
-          let updatedRelationship = this.getFormRelationship(character.id);
-          if (updatedRelationship) {
-            relationships.push(updatedRelationship);
-          }
-        } else {
-          // Character is not displayed, preserve existing relationship data
-          let existingRelationship = this.getRelationship(character.id);
-          if (existingRelationship) {
-            relationships.push(existingRelationship);
+    if (this.characterList && this.characterList.length > 0) {
+      for (let character of this.characterList) {
+        if (character.id !== this.worldCharacter?.id) {
+          const rel = this.getFormRelationship(character.id);
+          // Only save relationships where hasRelationship is true, and always capture type/details
+          if (rel && rel.hasRelationship) {
+            relationships.push({
+              relatedCharacterID: rel.relatedCharacterID,
+              hasRelationship: rel.hasRelationship,
+              relationshipType: rel.relationshipType,
+              relationshipDescription: rel.relationshipDescription
+            });
           }
         }
       }
     }
-    
+
     const selectedStories = this.getFormStories();
     const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
-    
+
     if (this.worldCharacter?.id !== undefined) {
       const formattedBirthdate = this.formatBirthdate(
         this.applyForm.value.characterBirthYear || '',

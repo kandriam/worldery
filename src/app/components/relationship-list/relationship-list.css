@@ -107,7 +107,7 @@
   font-style: italic;
   color: var(--g3-color);
   margin: 5px 0;
-  font-size: 0.9em;
+  font-size: small;
 }
 
 .relationship-type-input {
@@ -122,7 +122,8 @@
 
 .relationship textarea {
   width: 100%;
-  min-height: 200px;
+  min-height: 150px;
+  font-size: x-small !important;
   margin: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--g3-color) var(--g5-color);
