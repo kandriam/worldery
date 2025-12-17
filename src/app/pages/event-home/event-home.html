@@ -2,6 +2,7 @@
 <div class="page-container">
   <aside class="side-menu">
     <app-search-filter 
+      #searchFilterCmp
       searchLabel="Search events"
       searchPlaceholder="Search"
       [filterConfig]="filterConfig"
@@ -36,7 +37,7 @@
         (tagClicked)="onTagClicked($event)">
       </app-timeline>
     } @else {
-      <app-home-row
+      <app-home-grid
         entityType="event"
         title="Events"
         routePath="/events"
@@ -44,7 +45,7 @@
         noResultsMessage="No events found. Try adjusting your search or add a new event."
         (addElement)="addWorldEvent()"
         (tagClicked)="onTagClicked($event)">
-      </app-home-row>
+      </app-home-grid>
     }
   </article>
 </div>

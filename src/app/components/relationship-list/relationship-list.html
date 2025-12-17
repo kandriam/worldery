@@ -22,7 +22,7 @@
   </div>
   
   <div class="details-section relationship-section relationship-grid-container">
-    @for(character of filteredCharacterList; track character) {
+    @for(character of filteredCharacterList; track character.id) {
       <div class="relationship relationship-grid-item" id="relationship-{{character.id}}">
         <div class="relationship-header">
           <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>

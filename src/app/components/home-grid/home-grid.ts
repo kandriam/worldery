@@ -1,0 +1,106 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { EventThumbnail } from '../thumbnail/event-thumbnail/event-thumbnail';
+import { LocationThumbnail } from '../thumbnail/location-thumbnail/location-thumbnail';
+import { CharacterThumbnail } from '../thumbnail/character-thumbnail/character-thumbnail';
+import { StoryThumbnail } from '../thumbnail/story-thumbnail/story-thumbnail';
+import { WorldEventInfo } from '../../worldevent';
+import { WorldLocationInfo } from '../../worldlocation';
+import { WorldCharacterInfo } from '../../worldcharacter';
+import { WorldStoryInfo } from '../../worldstory';
+
+export type EntityType = 'event' | 'location' | 'character' | 'story';
+export type EntityData = WorldEventInfo[] | WorldLocationInfo[] | WorldCharacterInfo[] | WorldStoryInfo[];
+
+@Component({
+  selector: 'app-home-grid',
+  standalone: true,
+  imports: [CommonModule, RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
+  templateUrl: './home-grid.html',
+  styleUrls: ['./home-grid.css']
+})
+export class HomeGrid {
+  @Input() entityType!: EntityType;
+  @Input() title!: string;
+  @Input() routePath!: string;
+  @Input() entities!: EntityData;
+  @Input() noResultsMessage!: string;
+  
+  @Output() addElement = new EventEmitter<EntityType>();
+  @Output() tagClicked = new EventEmitter<string>();
+  
+  // Display toggles
+  showDate = true;
+  showLocation = true;
+  showCharacters = true;
+  showStories = true;
+  
+  onAddElement() {
+    this.addElement.emit(this.entityType);
+  }
+  
+  onTagClick(tag: string) {
+    this.tagClicked.emit(tag);
+  }
+  
+  toggleDate() {
+    this.showDate = !this.showDate;
+  }
+  
+  toggleLocation() {
+    this.showLocation = !this.showLocation;
+  }
+  
+  toggleCharacters() {
+    this.showCharacters = !this.showCharacters;
+  }
+  
+  toggleStories() {
+    this.showStories = !this.showStories;
+  }
+  
+  getEntityDisplayName(): string {
+    const displayNames: Record<EntityType, string> = {
+      'event': 'Event',
+      'location': 'Location', 
+      'character': 'Character',
+      'story': 'Story'
+    };
+    return displayNames[this.entityType];
+  }
+  
+  // Type guards for template usage
+  isEventList(entities: EntityData): entities is WorldEventInfo[] {
+    return this.entityType === 'event';
+  }
+  
+  isLocationList(entities: EntityData): entities is WorldLocationInfo[] {
+    return this.entityType === 'location';
+  }
+  
+  isCharacterList(entities: EntityData): entities is WorldCharacterInfo[] {
+    return this.entityType === 'character';
+  }
+  
+  isStoryList(entities: EntityData): entities is WorldStoryInfo[] {
+    return this.entityType === 'story';
+  }
+  
+  // Methods to determine which display buttons should be shown
+  shouldShowDateButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'character';
+  }
+  
+  shouldShowLocationButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'story' || this.entityType === 'location';
+  }
+  
+  shouldShowCharactersButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'location' || this.entityType === 'story';
+  }
+  
+  shouldShowStoriesButton(): boolean {
+    return this.entityType === 'event' || this.entityType === 'character' || this.entityType === 'location';
+  }
+}

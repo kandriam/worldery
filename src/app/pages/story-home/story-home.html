@@ -1,24 +1,25 @@
 <h1>Stories</h1>
 <div class="page-container">
   <aside class="side-menu">
-  <app-search-filter 
-    searchLabel="Search stories"
-    searchPlaceholder="Search"
-    [filterConfig]="filterConfig"
-    [allCharacters]="allCharacters"
-    [allLocations]="allLocations"
-    (filterChange)="onFilterChange($event)">
-  </app-search-filter>
+    <app-search-filter 
+      #searchFilterCmp
+      searchLabel="Search stories"
+      searchPlaceholder="Search"
+      [filterConfig]="filterConfig"
+      [allCharacters]="allCharacters"
+      [allLocations]="allLocations"
+      (filterChange)="onFilterChange($event)">
+    </app-search-filter>
   </aside>
   <article class="main-article">
-  <app-home-row
-    entityType="story"
-    title="Stories"
-    routePath="/stories"
-    [entities]="filteredStoryList"
-    noResultsMessage="No stories found. Try adjusting your search or add a new story."
-    (addElement)="addWorldStory()"
-    (tagClicked)="onTagClicked($event)">
-  </app-home-row>
+    <app-home-grid
+      entityType="story"
+      title="Stories"
+      routePath="/stories"
+      [entities]="filteredStoryList"
+      noResultsMessage="No stories found. Try adjusting your search or add a new story."
+      (addElement)="addWorldStory()"
+      (tagClicked)="onTagClicked($event)">
+    </app-home-grid>
   </article>
 </div>

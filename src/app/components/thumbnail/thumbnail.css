@@ -38,29 +38,31 @@
   background: var(--g4-color);
   border-radius: 15px;
   margin: 5px;
-  /* height: fit-content; */
   padding: 10px;
   transition: all 0.3s ease-in-out;
-  
-  &:hover {
-    box-shadow: 2px 2px 15px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  /* flex: 1 1 0; */
+  /* flex:0; */
+  /* align-items: stretch; */
+  height: 100%;
+  box-sizing: border-box;
+}
 
-    &.event {
-      box-shadow: 2px 2px 5px var(--event-color) !important;
-    }
-
-    &.location {
-      box-shadow: 2px 2px 5px var(--location-color) !important;
-    }
-
-    &.character {
-      box-shadow: 2px 2px 5px var(--character-color) !important;
-    }
-
-    &.story {
-      box-shadow: 2px 2px 5px var(--story-color) !important;
-    }
-  }
+.world-thumbnail:hover {
+  box-shadow: 2px 2px 15px var(--shadow-color);
+}
+.world-thumbnail.event:hover {
+  box-shadow: 2px 2px 5px var(--event-color) !important;
+}
+.world-thumbnail.location:hover {
+  box-shadow: 2px 2px 5px var(--location-color) !important;
+}
+.world-thumbnail.character:hover {
+  box-shadow: 2px 2px 5px var(--character-color) !important;
+}
+.world-thumbnail.story:hover {
+  box-shadow: 2px 2px 5px var(--story-color) !important;
 }
 
 .thumbnail-info {

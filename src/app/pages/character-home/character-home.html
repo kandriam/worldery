@@ -2,6 +2,7 @@
 <div class="page-container">
   <aside class="side-menu">
     <app-search-filter 
+      #searchFilterCmp
       searchLabel="Search characters"
       searchPlaceholder="Search"
       [filterConfig]="filterConfig"
@@ -10,7 +11,7 @@
     </app-search-filter>
   </aside>
   <article class="main-article">
-    <app-home-row
+    <app-home-grid
       entityType="character"
       title="Characters"
       routePath="/characters"
@@ -18,6 +19,6 @@
       noResultsMessage="No characters found. Try adjusting your search or add a new character."
       (addElement)="addWorldCharacter()"
       (tagClicked)="onTagClicked($event)">
-    </app-home-row>
+    </app-home-grid>
   </article>
 </div>

@@ -2,6 +2,7 @@
 <div class="page-container">
   <aside class="side-menu">
     <app-search-filter 
+      #searchFilterCmp
       searchLabel="Search locations"
       searchPlaceholder="Search"
       [filterConfig]="filterConfig"
@@ -12,7 +13,7 @@
     </app-search-filter>
   </aside>
   <article class="main-article">
-    <app-home-row
+    <app-home-grid
       entityType="location"
       title="World"
       routePath="/locations"
@@ -20,6 +21,6 @@
       noResultsMessage="No locations found. Try adjusting your search or add a new location."
       (addElement)="addWorldLocation()"
       (tagClicked)="onTagClicked($event)">
-    </app-home-row>
+    </app-home-grid>
   </article>
 </div>

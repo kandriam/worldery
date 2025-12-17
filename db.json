@@ -128,7 +128,7 @@
     {
       "id": "1",
       "name": "Jayara Apartment",
-      "description": "A cozy apartment located in the heart of St Paul, Minnesota. Kiara and Jay live here.",
+      "description": "A cozy apartment located in the heart of St Paul, Minnesota.",
       "characters": [
         "Kiara Ravao",
         "Judy Han"
@@ -654,7 +654,7 @@
           "relationshipDescription": ""
         }
       ],
-      "physicalDescription": "White hair, gray eyes, Korean-American",
+      "physicalDescription": "White hair, gray eyes",
       "nonPhysicalDescription": "Cryokinetic abilities.",
       "stories": [
         "Fire & Ice",

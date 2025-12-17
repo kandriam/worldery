@@ -160,19 +160,18 @@ export class SearchFilter {
 
   addSearchTerm(term: string) {
     if (!this.searchInput) return;
-    
     const currentValue = this.searchInput.nativeElement.value;
-    const currentTerms = currentValue
+    let currentTerms = currentValue
       .split(',')
       .map(t => t.trim())
       .filter(t => t.length > 0);
-    
-    // Don't add if term already exists
-    if (!currentTerms.includes(term)) {
-      const newValue = currentTerms.length > 0 ? `${currentValue}, ${term}` : term;
-      this.searchInput.nativeElement.value = newValue;
-      this.emitFilterState();
-    }
+    // Remove if already present, then add to end
+    currentTerms = currentTerms.filter(t => t.toLowerCase() !== term.toLowerCase());
+    currentTerms.push(term);
+    const newValue = currentTerms.join(', ');
+    this.searchInput.nativeElement.value = newValue;
+    this.searchInput.nativeElement.focus();
+    this.emitFilterState();
   }
 
   clearSearchBar() {

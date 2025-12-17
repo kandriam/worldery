@@ -1,0 +1,73 @@
+<section class="home-grid" [class]="entityType">
+  <div class="home-grid-header">
+    <button class="home-grid-title" [class]="entityType" [routerLink]="[routePath]">{{ title }}</button>
+    <div class="display-container">
+        @if (shouldShowDateButton()) {
+          <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button>
+        }
+        @if (shouldShowLocationButton()) {
+          <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
+        }
+        @if (shouldShowCharactersButton()) {
+          <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
+        }
+        @if (shouldShowStoriesButton()) {
+          <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
+        }
+    </div>
+    <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>
+  </div>
+  <div class="home-grid-results">
+    @if (entities.length) {
+      @if (isEventList(entities)) {
+        @for(worldEvent of entities; track $index) {
+          <app-event-thumbnail 
+            [worldEvent]="worldEvent"
+            [showDate]="showDate"
+            [showLocation]="showLocation"
+            [showCharacters]="showCharacters"
+            [showStories]="showStories"
+            (tagClicked)="onTagClick($event)">
+          </app-event-thumbnail>
+        }
+      } @else if (isLocationList(entities)) {
+        @for(worldLocation of entities; track $index) {
+          <app-location-thumbnail 
+            [worldLocation]="worldLocation"
+            [showDate]="showDate"
+            [showLocation]="showLocation"
+            [showCharacters]="showCharacters"
+            [showStories]="showStories"
+            (tagClicked)="onTagClick($event)">
+          </app-location-thumbnail>
+        }
+      } @else if (isCharacterList(entities)) {
+        @for(worldCharacter of entities; track $index) {
+          <app-character-thumbnail 
+            [worldCharacter]="worldCharacter"
+            [showDate]="showDate"
+            [showLocation]="showLocation"
+            [showCharacters]="showCharacters"
+            [showStories]="showStories"
+            (tagClicked)="onTagClick($event)">
+          </app-character-thumbnail>
+        }
+      } @else if (isStoryList(entities)) {
+        @for(worldStory of entities; track $index) {
+          <app-story-thumbnail 
+            [worldStory]="worldStory"
+            [showDate]="showDate"
+            [showLocation]="showLocation"
+            [showCharacters]="showCharacters"
+            [showStories]="showStories"
+            (tagClicked)="onTagClick($event)">
+          </app-story-thumbnail>
+        }
+      }
+    } @else {
+      <div class="no-results">
+        <p>{{ noResultsMessage }}</p>
+      </div>
+    }
+  </div>
+</section>

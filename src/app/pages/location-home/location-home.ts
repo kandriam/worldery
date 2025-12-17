@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import {HomeRow} from '../../components/home-row/home-row';
+import {HomeGrid} from '../../components/home-grid/home-grid';
 import {WorldLocationInfo} from '../../worldlocation';
 import {WorldLocationService} from '../../services/world-location.service';
 import {WorldCharacterService} from '../../services/world-character.service';
@@ -7,15 +8,18 @@ import {WorldStoryService} from '../../services/world-story.service';
 import {WorldCharacterInfo} from '../../worldcharacter';
 import {WorldStoryInfo} from '../../worldstory';
 import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { Home } from "../home/home";
 
 @Component({
   selector: 'app-location-home',
-  imports: [SearchFilter, HomeRow],
+  imports: [SearchFilter, HomeRow, Home, HomeGrid],
   templateUrl: 'location-home.html',
   styleUrls: ['../pages.css', 'location-home.css', '../../../styles.css'],
 })
 
+
 export class LocationHome {
+  @ViewChild('searchFilterCmp') searchFilter!: SearchFilter;
   locationService: WorldLocationService = inject(WorldLocationService);
   characterService: WorldCharacterService = inject(WorldCharacterService);
   storyService: WorldStoryService = inject(WorldStoryService);
@@ -108,7 +112,8 @@ export class LocationHome {
   }
 
   onTagClicked(tag: string) {
-    // Handle tag click - could add to search filter
-    console.log('Tag clicked:', tag);
+    if (this.searchFilter && typeof this.searchFilter.addSearchTerm === 'function') {
+      this.searchFilter.addSearchTerm(tag);
+    }
   }
 }

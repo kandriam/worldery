@@ -1,5 +1,5 @@
-/* Home Row Component Styles */
-.home-row {
+/* Home Grid Component Styles */
+.home-grid {
   display: flex;
   flex-direction: column;
   scroll-snap-type: x mandatory;
@@ -19,7 +19,7 @@
   }
   
 }
-.home-row-header {
+.home-grid-header {
   font: italic;
   display: flex;
   justify-content: space-between;
@@ -30,19 +30,21 @@
   z-index: 1000;
 }
 
-.home-row-results {
-  display: flex;
+.home-grid-results {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+  grid-template-columns: 1fr 1fr 1fr;
   overflow: auto;
   white-space: nowrap;
+  gap: 10px;
   padding: 5px;
   justify-content: space-around;
   border: 2px solid var(--g1-color);
   border-radius: 1px 1px 7px 7px;
   scrollbar-width: thin;
-  align-items: stretch; /* Make all children the same height */
 }
 
-.home-row-title {
+.home-grid-title {
   border: 2px solid var(--g1-color);
   background-color: var(--g5-color);
   border-radius: 15px;
