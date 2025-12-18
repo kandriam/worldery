@@ -2,6 +2,8 @@ import { Component, input, inject, output } from '@angular/core';
 import { WorldLocationInfo } from '../../../worldlocation';
 import {RouterLink } from '@angular/router';
 import { WorldLocationService } from '../../../services/world-location.service';
+import { WorldCharacterService } from '../../../services/world-character.service';
+import { WorldStoryService } from '../../../services/world-story.service';
 @Component({
   selector: 'app-location-thumbnail',
   imports: [RouterLink],
@@ -10,6 +12,8 @@ import { WorldLocationService } from '../../../services/world-location.service';
 })
 export class LocationThumbnail {
   locationService = inject(WorldLocationService);
+  characterService = inject(WorldCharacterService);
+  storyService = inject(WorldStoryService);
   worldLocation = input.required<WorldLocationInfo>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
@@ -23,27 +27,26 @@ export class LocationThumbnail {
   relatedLocationNames: string[] = [];
 
   async ngOnInit() {
-    // Resolve character IDs to names
-    const allCharacters = await import('../../../services/world-character.service').then(m => m.WorldCharacterService.prototype.getAllWorldCharacters.call({url: '/worldcharacters'}));
-    this.characterNames = this.worldLocation().characters
-      .map(id => {
-        const c = allCharacters.find((ch: any) => ch.id === id);
-        return c ? `${c.firstName} ${c.lastName}` : id;
-      });
-    // Resolve story IDs to titles
-    const allStories = await import('../../../services/world-story.service').then(m => m.WorldStoryService.prototype.getAllWorldStories.call({url: '/worldstories'}));
-    this.storyTitles = this.worldLocation().stories
-      .map(id => {
-        const s = allStories.find((story: any) => story.id === id);
-        return s ? s.title : id;
-      });
     // Resolve related location IDs to names
-    const allLocations = await import('../../../services/world-location.service').then(m => m.WorldLocationService.prototype.getAllWorldLocations.call({url: '/worldlocations'}));
-    this.relatedLocationNames = this.worldLocation().relatedLocations
-      .map(id => {
-        const l = allLocations.find((loc: any) => loc.id === id);
-        return l ? l.name : id;
-      });
+    const allLocations = await this.locationService.getAllWorldLocations();
+    this.relatedLocationNames = (this.worldLocation().relatedLocations || []).map(id => {
+      const loc = allLocations.find((location: any) => location.id === id);
+      return loc ? loc.name : id;
+    });
+
+    // Resolve character IDs to names
+    const allCharacters = await this.characterService.getAllWorldCharacters();
+    this.characterNames = (this.worldLocation().characters || []).map(id => {
+      const c = allCharacters.find((char: any) => char.id === id);
+      return c ? `${c.firstName} ${c.lastName}` : id;
+    });
+
+    // Resolve story IDs to titles
+    const allStories = await this.storyService.getAllWorldStories();
+    this.storyTitles = (this.worldLocation().stories || []).map(id => {
+      const s = allStories.find((story: any) => story.id === id);
+      return s ? s.title : id;
+    });
   }
 
   deleteLocation(id: string, event: Event) {

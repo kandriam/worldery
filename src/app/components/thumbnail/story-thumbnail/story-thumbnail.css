@@ -1,14 +1,18 @@
 
+
 .story-thumbnail {
   width: 15rem;
   min-height: 15rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .story-thumbnail.hasSubstories {
-  /* border: 2px solid var(--accent-color, #4a90e2);
-  box-shadow: 0 2px 12px rgba(74, 144, 226, 0.10);
-  background: #f5faff; */
-  width: auto;
+  display: inline-flex;
+  flex-direction: column;
+  width: max-content;
+  min-width: 15rem;
+  max-width: 40rem;
 }
 
 .thumbnail-substories {
@@ -17,4 +21,6 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-} 
+  width: fit-content;
+  align-self: flex-start;
+}

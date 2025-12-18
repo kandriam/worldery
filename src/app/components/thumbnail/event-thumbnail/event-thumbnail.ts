@@ -1,3 +1,6 @@
+import { WorldCharacterService } from '../../../services/world-character.service';
+import { WorldStoryService } from '../../../services/world-story.service';
+
 import {Component, inject, input, output} from '@angular/core';
 import {WorldEventInfo} from '../../../worldevent';
 import {RouterLink } from '@angular/router';
@@ -19,7 +22,26 @@ export class EventThumbnail {
   worldEventService = inject(WorldEventService);
   
   tagClicked = output<string>();
+  characterService = inject(WorldCharacterService);
+  storyService = inject(WorldStoryService);
 
+  characterNames: string[] = [];
+  storyTitles: string[] = [];
+
+  async ngOnInit() {
+    // Resolve character IDs to names
+    const allCharacters = await this.characterService.getAllWorldCharacters();
+    this.characterNames = (this.worldEvent().characters || []).map(id => {
+      const c = allCharacters.find((char: any) => char.id === id);
+      return c ? `${c.firstName} ${c.lastName}` : id;
+    });
+    // Resolve story IDs to titles
+    const allStories = await this.storyService.getAllWorldStories();
+    this.storyTitles = (this.worldEvent().stories || []).map(id => {
+      const s = allStories.find((story: any) => story.id === id);
+      return s ? s.title : id;
+    });
+  }
   deleteEvent(id: string, event: Event) {
     event.stopPropagation();
     console.log(`Delete event with ID: ${id}`);

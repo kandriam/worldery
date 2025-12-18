@@ -15,15 +15,15 @@
         </div>
     }
     
-    @if (showCharacters() && worldEvent().characters.length > 0) {
+    @if (showCharacters() && characterNames.length > 0) {
         <div class="thumbnail-characters thumbnail-info">
-            {{ worldEvent().characters.join(', ') }}
+            {{ characterNames.join(', ') }}
         </div>
     }
     
-    @if (showStories() && worldEvent().stories.length > 0) {
+    @if (showStories() && storyTitles.length > 0) {
         <div class="thumbnail-stories thumbnail-info">
-            {{ worldEvent().stories.join(', ') }}
+            {{ storyTitles.join(', ') }}
         </div>
     }
 

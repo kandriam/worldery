@@ -4,15 +4,15 @@
         <!-- <button class="thumbnail-delete-button" (click)="deleteStory(substory.id, $event)">Delete</button> -->
     </div>
     
-    @if (substory.locations.length > 0) {
+    @if (locationNames.length > 0) {
         <div class="thumbnail-info thumbnail-location">
-            {{ substory.locations.join(', ') }}
+            {{ locationNames.join(', ') }}
         </div>
     }
     
-    @if (substory.characters.length > 0) {
+    @if (characterNames.length > 0) {
         <div class="thumbnail-info thumbnail-characters">
-            {{ substory.characters.join(', ') }}
+            {{ characterNames.join(', ') }}
         </div>
     }
     

@@ -1,6 +1,8 @@
 import {Component, inject, input, output} from '@angular/core';
 import { NgClass } from '@angular/common';
 import {WorldStoryInfo} from '../../../worldstory';
+import { WorldLocationService } from '../../../services/world-location.service';  
+import { WorldCharacterService } from '../../../services/world-character.service';
 import {RouterLink } from '@angular/router';
 import { WorldStoryService } from '../../../services/world-story.service';
 import { SubstoryThumbnailComponent } from './substory-thumbnail/substory-thumbnail.component';
@@ -13,6 +15,8 @@ import { SubstoryThumbnailComponent } from './substory-thumbnail/substory-thumbn
 
 export class StoryThumbnail {
   storyService = inject(WorldStoryService);
+  locationService = inject(WorldLocationService);
+  characterService = inject(WorldCharacterService);
   worldStory = input.required<WorldStoryInfo>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
@@ -26,28 +30,29 @@ export class StoryThumbnail {
   locationNames: string[] = [];
 
   async ngOnInit() {
+    // Resolve related location IDs to names
+    const allLocations = await this.locationService.getAllWorldLocations();
+    this.locationNames = (this.worldStory().locations || []).map(id => {
+      const loc = allLocations.find((location: any) => location.id === id);
+      return loc ? loc.name : id;
+    });
+
+    // Resolve character IDs to names
+    const allCharacters = await this.characterService.getAllWorldCharacters();
+    this.characterNames = (this.worldStory().characters || []).map(id => {
+      const c = allCharacters.find((char: any) => char.id === id);
+      return c ? `${c.firstName} ${c.lastName}` : id;
+    });
+
+    // Populate substories with WorldStoryInfo objects
     if (this.worldStory().substories && this.worldStory().substories.length > 0) {
       const allStories = await this.storyService.getAllWorldStories();
-      // Map substories to their WorldStoryInfo in the correct order
       this.substories = this.worldStory().substories
         .map(id => allStories.find(story => story.id === id))
         .filter((story): story is WorldStoryInfo => !!story);
     }
-    // Resolve character IDs to names
-    const allCharacters = await import('../../../services/world-character.service').then(m => m.WorldCharacterService.prototype.getAllWorldCharacters.call({url: '/worldcharacters'}));
-    this.characterNames = this.worldStory().characters
-      .map(id => {
-        const c = allCharacters.find((ch: any) => ch.id === id);
-        return c ? `${c.firstName} ${c.lastName}` : id;
-      });
-    // Resolve location IDs to names
-    const allLocations = await import('../../../services/world-location.service').then(m => m.WorldLocationService.prototype.getAllWorldLocations.call({url: '/worldlocations'}));
-    this.locationNames = this.worldStory().locations
-      .map(id => {
-        const l = allLocations.find((loc: any) => loc.id === id);
-        return l ? l.name : id;
-      });
   }
+
 
   deleteStory(id: string, event: Event) {
     event.stopPropagation();
