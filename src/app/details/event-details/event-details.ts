@@ -157,23 +157,23 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     console.log("Event data loaded for ID:", worldEventId);
   }
 
-  isCharacterInEvent(characterName: string): boolean {
-    return this.worldEvent?.characters?.includes(characterName) || false;
+  isCharacterInEvent(characterId: string): boolean {
+    return this.worldEvent?.characters?.includes(characterId) || false;
   }
 
-  isStoryInEvent(storyTitle: string): boolean {
-    return this.worldEvent?.stories?.includes(storyTitle) || false;
+  isStoryInEvent(storyId: string): boolean {
+    return this.worldEvent?.stories?.includes(storyId) || false;
   }
 
-  isLocationInEvent(locationName: string): boolean {
-    return this.worldEvent?.location?.includes(locationName) || false;
+  isLocationInEvent(locationId: string): boolean {
+    return this.worldEvent?.location?.includes(locationId) || false;
   }
 
   getCharactersAssociationList(): AssociationItem[] {
     return this.characterList.map(character => ({
       id: character.id,
       name: `${character.firstName} ${character.lastName}`,
-      isAssociated: this.isCharacterInEvent(`${character.firstName} ${character.lastName}`)
+      isAssociated: this.isCharacterInEvent(character.id)
     }));
   }
 
@@ -181,7 +181,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     return this.storyList.map(story => ({
       id: story.id,
       name: story.title,
-      isAssociated: this.isStoryInEvent(story.title)
+      isAssociated: this.isStoryInEvent(story.id)
     }));
   }
 
@@ -189,49 +189,52 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     return this.locationList.map(location => ({
       id: location.id,
       name: location.name,
-      isAssociated: this.isLocationInEvent(location.name)
+      isAssociated: this.isLocationInEvent(location.id)
     }));
   }
 
   onCharacterToggle(event: {id: string, isChecked: boolean}) {
-    const character = this.characterList.find(c => c.id === event.id);
-    if (character) {
-      console.log(`Character ${character.firstName} ${character.lastName} ${event.isChecked ? 'added to' : 'removed from'} event`);
+    if (this.worldEvent) {
+      if (event.isChecked) {
+        if (!this.worldEvent.characters.includes(event.id)) {
+          this.worldEvent.characters.push(event.id);
+        }
+      } else {
+        this.worldEvent.characters = this.worldEvent.characters.filter(id => id !== event.id);
+      }
+      const character = this.characterList.find(c => c.id === event.id);
+      const characterName = character ? `${character.firstName} ${character.lastName}` : event.id;
+      console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} event`);
     }
   }
 
   onStoryToggle(event: {id: string, isChecked: boolean}) {
-    const story = this.storyList.find(s => s.id === event.id);
-    if (story) {
-      console.log(`Story ${story.title} ${event.isChecked ? 'added to' : 'removed from'} event`);
+    if (this.worldEvent) {
+      if (event.isChecked) {
+        if (!this.worldEvent.stories.includes(event.id)) {
+          this.worldEvent.stories.push(event.id);
+        }
+      } else {
+        this.worldEvent.stories = this.worldEvent.stories.filter(id => id !== event.id);
+      }
+      const story = this.storyList.find(s => s.id === event.id);
+      const storyTitle = story ? story.title : event.id;
+      console.log(`Story ${storyTitle} ${event.isChecked ? 'added to' : 'removed from'} event`);
     }
   }
 
   onLocationToggle(event: {id: string, isChecked: boolean}) {
-    const location = this.locationList.find(l => l.id === event.id);
-    if (location) {
-      console.log(`Location ${location.name} ${event.isChecked ? 'added to' : 'removed from'} event`);
-    }
-  }
-
-  onCharacterChange(event: Event, character: WorldCharacterInfo) {
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Character ${character.firstName} ${character.lastName} ${isChecked ? 'added to' : 'removed from'} event`);
-    }
-  }
-
-  onStoryChange(event: Event, story: WorldStoryInfo) {
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Story ${story.title} ${isChecked ? 'added to' : 'removed from'} event`);
-    }
-  }
-
-  onLocationChange(event: Event, location: WorldLocationInfo) {
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Location ${location.name} ${isChecked ? 'added to' : 'removed from'} event`);
+    if (this.worldEvent) {
+      if (event.isChecked) {
+        if (!this.worldEvent.location.includes(event.id)) {
+          this.worldEvent.location.push(event.id);
+        }
+      } else {
+        this.worldEvent.location = this.worldEvent.location.filter(id => id !== event.id);
+      }
+      const location = this.locationList.find(l => l.id === event.id);
+      const locationName = location ? location.name : event.id;
+      console.log(`Location ${locationName} ${event.isChecked ? 'added to' : 'removed from'} event`);
     }
   }
 
@@ -240,7 +243,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     for (let character of this.characterList) {
       const checkbox = document.getElementById(`character-checkbox-${character.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        characters.push(`${character.firstName} ${character.lastName}`);
+        characters.push(character.id);
       }
     }
     return characters;
@@ -251,7 +254,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     for (let story of this.storyList) {
       const checkbox = document.getElementById(`story-checkbox-${story.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        stories.push(story.title);
+        stories.push(story.id);
       }
     }
     return stories;
@@ -262,7 +265,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     for (let location of this.locationList) {
       const checkbox = document.getElementById(`location-checkbox-${location.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        locations.push(location.name);
+        locations.push(location.id);
       }
     }
     return locations;
@@ -272,20 +275,17 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     const selectedCharacters = this.getFormCharacters();
     const selectedStories = this.getFormStories();
     const selectedLocations = this.getFormLocations();
-    
     if (this.worldEvent?.id !== undefined) {
       const formattedDate = this.formatEventDate(
         this.applyForm.value.eventYear || '',
         this.applyForm.value.eventMonth || '',
         this.applyForm.value.eventDay || ''
       );
-
       const formattedEndDate = this.formatEventDate(
         this.applyForm.value.eventEndYear || '',
         this.applyForm.value.eventEndMonth || '',
         this.applyForm.value.eventEndDay || ''
       );
-
       this.worldEventService.updateWorldEvent(
         this.worldEvent.id,
         this.applyForm.value.eventTitle ?? '',

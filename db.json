@@ -6,15 +6,15 @@
       "date": "2223-07-05",
       "description": "Jay moves in with Kiara",
       "location": [
-        "Jayara Apartment",
-        "St Paul, Minnesota"
+        "1",
+        "7"
       ],
       "characters": [
-        "Kiara Ravao",
-        "Judy Han"
+        "1",
+        "2"
       ],
       "stories": [
-        "Fire & Ice"
+        "2"
       ],
       "tags": [
         "Book 1; Chapter 1",
@@ -27,15 +27,15 @@
       "date": "2223-07-06",
       "description": "Kiara meets Leo for the first time at Pages & Paragraphs",
       "location": [
-        "Cat's Tea",
-        "St Paul, Minnesota"
+        "5",
+        "7"
       ],
       "characters": [
-        "Kiara Ravao",
-        "Leo Deng"
+        "1",
+        "7"
       ],
       "stories": [
-        "Fire & Ice"
+        "2"
       ],
       "tags": [
         "Book 1; Chapter 5",
@@ -52,8 +52,9 @@
         "Kiara Ravao"
       ],
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "birth"
@@ -66,7 +67,7 @@
       "description": "Baram Han's death.",
       "location": [],
       "characters": [
-        "Baram Han"
+        "30"
       ],
       "stories": [],
       "tags": [
@@ -80,7 +81,7 @@
       "description": "Baram Han's birth.",
       "location": [],
       "characters": [
-        "Baram Han"
+        "30"
       ],
       "stories": [],
       "tags": [
@@ -97,27 +98,98 @@
         "Judy Han"
       ],
       "stories": [
-        "Fire & Ice",
-        "Blood & Water",
-        "Room 4"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "birth"
       ]
     },
     {
-      "id": "13",
-      "name": "Judy Han's Birth",
-      "date": "2201-12-26",
-      "description": "Judy Han's birth.",
+      "id": "14",
+      "name": "Cassandra Edwards's Birth",
+      "date": "2200-06-01",
+      "description": "Cassandra Edwards's birth.",
       "location": [],
       "characters": [
-        "Judy Han"
+        "Cassandra Edwards"
       ],
       "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Thibault Hibou's Birth",
+      "date": "2201-11-27",
+      "description": "Thibault Hibou's birth.",
+      "location": [],
+      "characters": [
+        "Thibault Hibou"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Thibault Hibou's Birth",
+      "date": "2201-11-27",
+      "description": "Thibault Hibou's birth.",
+      "location": [],
+      "characters": [
+        "Thibault Hibou"
+      ],
+      "stories": [
+        "Fire & Ice Series",
         "Fire & Ice",
-        "Blood & Water",
-        "Room 4"
+        "Blood & Water"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Benny 's Birth",
+      "date": "2200-01-01",
+      "description": "Benny 's birth.",
+      "location": [],
+      "characters": [
+        "Benny "
+      ],
+      "stories": [
+        "6"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Cassandra Edwards's Birth",
+      "date": "2212-07-01",
+      "description": "Cassandra Edwards's birth.",
+      "location": [],
+      "characters": [
+        "Cassandra Edwards"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": [
         "birth"
@@ -130,16 +202,15 @@
       "name": "Jayara Apartment",
       "description": "A cozy apartment located in the heart of St Paul, Minnesota.",
       "characters": [
-        "Kiara Ravao",
-        "Judy Han"
+        "1",
+        "2"
       ],
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "1",
+        "2",
+        "3"
       ],
-      "relatedLocations": [
-        "St Paul, Minnesota"
-      ],
+      "relatedLocations": [],
       "tags": [
         "Jayara",
         "housing"
@@ -150,21 +221,21 @@
       "name": "Sunday Brunch",
       "description": "Cafe which serves as a front for the Soldiers of Rebellion. Owned by Cassandra and Rudy Edwards.",
       "characters": [
-        "Judy Han",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "Alex N/A",
-        "Shannon Dubois",
-        "Alex "
+        "2",
+        "3",
+        "4",
+        "11",
+        "12",
+        "13"
       ],
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "3",
+        "2"
       ],
       "relatedLocations": [
-        "St Paul, Minnesota",
-        "SafeHouse",
-        "Soldiers of Rebellion base"
+        "7",
+        "3",
+        "11"
       ],
       "tags": [
         "cafe",
@@ -177,37 +248,38 @@
       "name": "SafeHouse",
       "description": "A hidden safehouse in Hampton, Minnesota.",
       "characters": [
-        "Kiara Ravao",
-        "Judy Han",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "William Hardin",
-        "Alex N/A",
-        "Lyra ",
-        "Rowan Baker",
-        "Karyna Brown",
-        "Joan Miller",
-        "Micah Gray",
-        "Katrina Jackson",
-        "Luca Morales",
-        "Fatima Amir",
-        "Adaline Carson",
-        "Felix ",
-        "Natty Barnes",
-        "Nadiya Gatik",
-        "Emily McNamara",
-        "Charmonie ",
-        "Shannon Dubois",
-        "Alex "
+        "1",
+        "2",
+        "3",
+        "4",
+        "10",
+        "11",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "12",
+        "13"
       ],
       "stories": [
-        "Blood & Water",
-        "Fire & Ice",
-        "Room 4"
+        "3",
+        "2",
+        "5"
       ],
       "relatedLocations": [
-        "Sunday Brunch",
-        "Hampton, Minnesota"
+        "2",
+        "9"
       ],
       "tags": [
         "Soldiers of Rebellion"
@@ -218,16 +290,16 @@
       "name": "Rivera-Anderson Family House",
       "description": "The family home of the Rivera-Andersons located in Minnesota.",
       "characters": [
-        "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson",
-        "Kiara Ravao"
+        "5",
+        "6",
+        "1"
       ],
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "3",
+        "2"
       ],
       "relatedLocations": [
-        "St Paul, Minnesota"
+        "7"
       ],
       "tags": [
         "housing"
@@ -238,14 +310,14 @@
       "name": "Cat's Tea",
       "description": "A quaint tea shop owned by the Deng family.",
       "characters": [
-        "Matthew Rivera-Anderson",
-        "Leo Deng"
+        "6",
+        "7"
       ],
       "stories": [
-        "Fire & Ice"
+        "2"
       ],
       "relatedLocations": [
-        "St Paul, Minnesota"
+        "7"
       ],
       "tags": [
         "cafe"
@@ -256,24 +328,24 @@
       "name": "St Paul, Minnesota",
       "description": "",
       "characters": [
-        "Kiara Ravao",
-        "Judy Han",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson",
-        "Leo Deng"
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
       ],
       "stories": [
-        "Fire & Ice",
-        "Blood & Water",
-        "Room 4"
+        "2",
+        "3",
+        "5"
       ],
       "relatedLocations": [
-        "Jayara Apartment",
-        "Sunday Brunch",
-        "Rivera-Anderson Family House",
-        "Cat's Tea"
+        "1",
+        "2",
+        "4",
+        "5"
       ],
       "tags": []
     },
@@ -282,13 +354,13 @@
       "name": "Pages & Paragraphs",
       "description": "A bookstore in St Paul, Minnesota. Kiara works here part-time.",
       "characters": [
-        "Kiara Ravao"
+        "1"
       ],
       "stories": [
-        "Fire & Ice"
+        "2"
       ],
       "relatedLocations": [
-        "St Paul, Minnesota"
+        "7"
       ],
       "tags": []
     },
@@ -297,30 +369,30 @@
       "name": "Hampton, Minnesota",
       "description": "",
       "characters": [
-        "Kiara Ravao",
-        "Judy Han",
-        "Lyra ",
-        "Rowan Baker",
-        "Karyna Brown",
-        "Charmonie ",
-        "Emily McNamara",
-        "Natty Barnes",
-        "Nadiya Gatik",
-        "Felix ",
-        "Adaline Carson",
-        "Fatima Amir",
-        "Luca Morales",
-        "Katrina Jackson",
-        "Joan Miller",
-        "Micah Gray"
+        "1",
+        "2",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
       ],
       "stories": [
-        "Fire & Ice",
-        "Blood & Water",
-        "Room 4"
+        "2",
+        "3",
+        "5"
       ],
       "relatedLocations": [
-        "SafeHouse"
+        "3"
       ],
       "tags": []
     },
@@ -329,8 +401,8 @@
       "name": "California",
       "description": "California",
       "characters": [
-        "Cassandra Edwards",
-        "Rudy Edwards"
+        "3",
+        "4"
       ],
       "stories": [],
       "relatedLocations": [],
@@ -341,18 +413,18 @@
       "name": "Soldiers of Rebellion base",
       "description": "Located in the basement of Sunday Brunch, this is where the Soldiers of Rebellion meet.",
       "characters": [
-        "Judy Han",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "Shannon Dubois",
-        "Alex "
+        "2",
+        "3",
+        "4",
+        "12",
+        "13"
       ],
       "stories": [
-        "Blood & Water",
-        "Fire & Ice"
+        "3",
+        "2"
       ],
       "relatedLocations": [
-        "Sunday Brunch"
+        "2"
       ],
       "tags": []
     }
@@ -380,219 +452,44 @@
       "relationships": [
         {
           "relatedCharacterID": "2",
+          "hasRelationship": true,
           "relationshipType": [
             "Roommate",
             "Partner"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Judy and Kiara started as roommates, before they began dating"
         },
         {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            "Rudy"
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": "RUdy"
-        },
-        {
           "relatedCharacterID": "5",
+          "hasRelationship": true,
           "relationshipType": [
             "Best Friend"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Kiara and Willow have been best friends since childhood."
         },
         {
           "relatedCharacterID": "6",
+          "hasRelationship": true,
           "relationshipType": [
             "Friend"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Kiara and Matthew have been friends since childhood"
         },
         {
           "relatedCharacterID": "7",
+          "hasRelationship": true,
           "relationshipType": [
             "Friend"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Kiara met Leo at Cat's Tea, where Leo worked."
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "21",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "22",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "23",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "24",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "25",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "26",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "28",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
       "nonPhysicalDescription": "Pyrokinetic abilities.",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "Gifted"
@@ -657,9 +554,9 @@
       "physicalDescription": "White hair, gray eyes",
       "nonPhysicalDescription": "Cryokinetic abilities.",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water",
-        "Room 4"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "Gifted"
@@ -672,8 +569,10 @@
       "altNames": [
         "Cassie"
       ],
-      "birthdate": "2200-06-01",
+      "birthdate": "2212-07-01",
+      "birthEventId": "17",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/her",
       "roles": [
         "Vigilante"
@@ -683,83 +582,21 @@
       ],
       "relationships": [
         {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
           "relatedCharacterID": "4",
+          "hasRelationship": true,
           "relationshipType": [
             "Twin Sister"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "illusionist abilities.",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": [
         "Gifted"
@@ -834,8 +671,9 @@
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
       "nonPhysicalDescription": "telepathic abilities.",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "Gifted"
@@ -886,8 +724,9 @@
       "physicalDescription": "Red hair, green eyes, mixed white and Latina",
       "nonPhysicalDescription": "Non-Gifted",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "Non-Gifted"
@@ -922,8 +761,9 @@
       "physicalDescription": "Brown hair, brown eyes, mixed white and Latino",
       "nonPhysicalDescription": "invisibility abilities.",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "Gifted"
@@ -955,8 +795,9 @@
       "physicalDescription": "Black hair, brown eyes, Asian-American",
       "nonPhysicalDescription": "super strength and hyposensitivity.",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": [
         "Gifted"
@@ -1036,7 +877,7 @@
       "physicalDescription": "Short, brown hair",
       "nonPhysicalDescription": "NonGifted",
       "stories": [
-        "Prophet's Gift"
+        "4"
       ],
       "tags": []
     },
@@ -1264,7 +1105,7 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Prophet's Gift"
+        "4"
       ],
       "tags": []
     },
@@ -1361,9 +1202,10 @@
       "physicalDescription": "Black American man with glasses",
       "nonPhysicalDescription": "He cares for children",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water",
-        "Room 4"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -1501,8 +1343,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -1640,8 +1483,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -1779,8 +1623,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -1918,8 +1763,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -2057,8 +1903,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Fire & Ice",
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -2196,7 +2043,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -2344,7 +2193,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -2500,7 +2351,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Blood & Water"
+        "1",
+        "2",
+        "3"
       ],
       "tags": []
     },
@@ -2670,8 +2523,10 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Room 4",
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -2841,8 +2696,10 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Room 4",
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -3024,8 +2881,10 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Room 4",
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -3211,8 +3070,10 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Room 4",
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -3408,7 +3269,10 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -3420,201 +3284,16 @@
         "Kat"
       ],
       "birthdate": "2212-07-01",
+      "birthEventId": "",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/her",
       "roles": [],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "21",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "22",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "23",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
-      "stories": [
-        "Room 4",
-        "Blood & Water"
-      ],
+      "stories": [],
       "tags": []
     },
     {
@@ -3841,7 +3520,10 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Blood & Water"
+        "1",
+        "2",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -4059,7 +3741,9 @@
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Blood & Water"
+        "1",
+        "3",
+        "5"
       ],
       "tags": []
     },
@@ -4069,223 +3753,17 @@
       "lastName": "",
       "altNames": [],
       "birthdate": "2200-01-01",
+      "birthEventId": "16",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "any/all",
       "roles": [],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "21",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "22",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "23",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "24",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "25",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "26",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "Their primary appearance is that of a genderless youth with short, curly, black hair and brown eyes.",
       "nonPhysicalDescription": "Benny's Gift allows them to change their face as they wish.",
       "stories": [
-        "Stray Kids (Working Title)"
+        "6"
       ],
       "tags": []
     },
@@ -4295,24 +3773,26 @@
       "lastName": "?",
       "altNames": [],
       "birthdate": "",
+      "birthEventId": "",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "",
       "roles": [],
       "affiliations": [],
       "relationships": [
         {
           "relatedCharacterID": "28",
+          "hasRelationship": true,
           "relationshipType": [
             "Friend"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Friend"
         }
       ],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
-        "Stray Kids (Working Title)"
+        "6"
       ],
       "tags": []
     },
@@ -4333,6 +3813,47 @@
       "nonPhysicalDescription": "",
       "stories": [],
       "tags": []
+    },
+    {
+      "id": "31",
+      "firstName": "Thibault",
+      "lastName": "Hibou",
+      "altNames": [
+        "The Owl"
+      ],
+      "birthdate": "2201-11-27",
+      "birthEventId": "15",
+      "deathdate": "",
+      "deathEventId": "",
+      "pronouns": "he/him",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [
+        {
+          "relatedCharacterID": "2",
+          "hasRelationship": true,
+          "relationshipType": [
+            "Friend"
+          ],
+          "relationshipDescription": "Thibault and Judy became friends after meeting in college"
+        },
+        {
+          "relatedCharacterID": "3",
+          "hasRelationship": true,
+          "relationshipType": [
+            "Friend"
+          ],
+          "relationshipDescription": ""
+        }
+      ],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": []
     }
   ],
   "worldstories": [
@@ -4340,8 +3861,39 @@
       "id": "1",
       "title": "Fire & Ice Series",
       "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.",
-      "characters": [],
-      "locations": [],
+      "characters": [
+        "1",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25",
+        "26",
+        "28",
+        "29",
+        "31",
+        "2"
+      ],
+      "locations": [
+        "Jayara Apartment"
+      ],
       "tags": [
         "Dystopian"
       ],
@@ -4355,30 +3907,44 @@
       "title": "Fire & Ice",
       "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.\n\nBut over the past few decades, Gifteds have become more common. They’re unpredictable, dangerous “Freaks”.\n\nThe Soldiers of Rebellion is a small vigilante “villain” group. For the past five years, they’ve been abducting Gifted children from their homes.\n",
       "characters": [
-        "Kiara Ravao",
-        "Judy Han",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson",
-        "Leo Deng",
-        "William Hardin",
-        "Alex N/A",
-        "Shannon Dubois",
-        "Lyra ",
-        "Rowan Baker",
-        "Karyna Brown",
-        "Alex "
+        "1",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "25",
+        "26",
+        "28",
+        "29",
+        "31",
+        "2"
       ],
       "locations": [
-        "Jayara Apartment",
-        "St Paul, Minnesota",
-        "Pages & Paragraphs",
-        "Cat's Tea",
-        "Rivera-Anderson Family House",
-        "Sunday Brunch",
-        "SafeHouse",
-        "Hampton, Minnesota"
+        "1",
+        "7",
+        "8",
+        "5",
+        "4",
+        "2",
+        "3",
+        "9"
       ],
       "tags": [
         "Fire & Ice",
@@ -4386,47 +3952,52 @@
         "Dystopian",
         "Superheroes",
         "Soldiers of Rebellion"
-      ]
+      ],
+      "substories": []
     },
     {
       "id": "3",
       "title": "Blood & Water",
       "description": "A year after the events of Fire & Ice, Jay and Kiara -- and Willow, Matt and Leo -- are forced to flee the city and live at the SafeHouse, where they are tasked with preparing the residents for the worst.\n\nLeo learns about the ethical costs of her dad's medicine for her, they discover the scientific work behind the scenes, and how Rudy is using it to her advantage.",
       "characters": [
-        "Kiara Ravao",
-        "Cassandra Edwards",
-        "Rudy Edwards",
-        "Willow Rivera-Anderson",
-        "Matthew Rivera-Anderson",
-        "Leo Deng",
-        "Alex N/A",
-        "Shannon Dubois",
-        "Lyra ",
-        "Rowan Baker",
-        "Karyna Brown",
-        "Alex ",
-        "Charmonie ",
-        "Emily McNamara",
-        "William Hardin",
-        "Nadiya Gatik",
-        "Natty Barnes",
-        "Felix ",
-        "Adaline Carson",
-        "Fatima Amir",
-        "Luca Morales",
-        "Katrina Jackson",
-        "Joan Miller",
-        "Micah Gray",
-        "Judy Han"
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "31"
       ],
       "locations": [
-        "Jayara Apartment",
-        "Sunday Brunch",
-        "SafeHouse",
-        "Rivera-Anderson Family House",
-        "Hampton, Minnesota",
-        "St Paul, Minnesota",
-        "Soldiers of Rebellion base"
+        "1",
+        "2",
+        "3",
+        "4",
+        "9",
+        "7",
+        "11"
       ],
       "tags": [
         "Fire & Ice",
@@ -4434,54 +4005,65 @@
         "Dystopian",
         "Superheroes",
         "Soldiers of Rebellion"
-      ]
+      ],
+      "substories": []
     },
     {
       "id": "4",
       "title": "Prophet's Gift",
       "description": "",
       "characters": [
-        "Melissa Joore",
-        "Sandra Jackson"
+        "8",
+        "9",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23"
       ],
       "locations": [],
       "tags": [
         "Dystopian",
         "YA"
-      ]
+      ],
+      "substories": []
     },
     {
       "id": "5",
       "title": "Room 4",
       "description": "The SafeHouse houses over a dozen children Gifted with super abilities and allows them the space they need to hone, control and embrace their skills and differences.\n\nBut when roommates Nadiya, Adaline, Fatima and Katrina and their friend Felix are lost on a field trip to the city, they find themselves stumbling into a mystery they couldn't have expected.",
       "characters": [
-        "Katrina Jackson",
-        "Fatima Amir",
-        "Adaline Carson",
-        "Felix ",
-        "Nadiya Gatik",
-        "Judy Han"
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
       ],
       "locations": [
-        "Hampton, Minnesota",
-        "St Paul, Minnesota",
-        "SafeHouse"
+        "9",
+        "7",
+        "3"
       ],
       "tags": [
         "Dystopian",
         "YA"
-      ]
+      ],
+      "substories": []
     },
     {
       "id": "6",
       "title": "Stray Kids (Working Title)",
-      "description": "Benny doesn’t remember their past. All they remember is their life in the circus from the tender age of ten, forced to stand in front of a crowd and change faces. But when they and their friends escape, their goal is to find out who they once were.\nAvana was picked up from the street and sold to the circus at thirteen  after being abandoned as a baby. Over six years, she’s seen and experienced more than she’s needed to. And she’s decided she’s ready to escape, or die trying.\nOrion, son of the circus master, befriended Mina and Benny when they were all young. As the three grew up together, they hatched their escape plan.\nWhen Mina, Benny and Orion escape from the circus they'd grown up in, they run from the circus and the law into the unknown world.",
+      "description": "Benny doesn’t remember their past. All they remember is their life in the circus from the tender age of ten, forced to stand in front of a crowd and change faces. But when they and their friends escape, their goal is to find out who they once were.\nAvana was picked up from the street and sold to the circus at thirteen  after being abandoned as a baby. Over six years, she’s seen and experienced more than she’s needed to. And she’s decided she’s ready to escape, or die trying.\n\nOrion, son of the circus master, befriended Mina and Benny when they were all young. As the three grew up together, they hatched their escape plan.\n\nWhen Mina, Benny and Orion escape from the circus they'd grown up in, they run from the circus and the law into the unknown world.",
       "characters": [
-        "Benny ",
-        "Avana ?"
+        "28",
+        "29"
       ],
       "locations": [],
-      "tags": []
+      "tags": [],
+      "substories": []
     }
   ],
   "settings": {

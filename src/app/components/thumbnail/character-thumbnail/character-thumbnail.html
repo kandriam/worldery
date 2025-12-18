@@ -15,9 +15,9 @@
         </div>
     }
     
-    @if (showStories() && worldCharacter().stories.length > 0) {
+    @if (showStories() && storyTitles.length > 0) {
         <div class="thumbnail-stories thumbnail-info">
-            {{ worldCharacter().stories.join(', ') }}
+            {{ storyTitles.join(', ') }}
         </div>
     }
     

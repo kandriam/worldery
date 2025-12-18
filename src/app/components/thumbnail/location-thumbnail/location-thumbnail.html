@@ -4,21 +4,21 @@
         <button class="thumbnail-delete-button" (click)="deleteLocation(worldLocation().id, $event)">Delete</button>
     </div>
     
-    @if (showCharacters() && worldLocation().characters.length > 0) {
+    @if (showCharacters() && characterNames.length > 0) {
         <div class="thumbnail-info thumbnail-characters">
-            {{ worldLocation().characters.join(', ') }}
+            {{ characterNames.join(', ') }}
         </div>
     }
     
-    @if (showStories() && worldLocation().stories.length > 0) {
+    @if (showStories() && storyTitles.length > 0) {
         <div class="thumbnail-info thumbnail-stories">
-            {{ worldLocation().stories.join(', ') }}
+            {{ storyTitles.join(', ') }}
         </div>
     }
     
-    @if (showLocation() && worldLocation().relatedLocations && worldLocation().relatedLocations.length > 0) {
+    @if (showLocation() && relatedLocationNames && relatedLocationNames.length > 0) {
         <div class="thumbnail-info thumbnail-location">
-            Related: {{ worldLocation().relatedLocations.join(', ') }}
+            Related: {{ relatedLocationNames.join(', ') }}
         </div>
     }
     

@@ -68,11 +68,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     eventTags: new FormControl(''),
   });
 
-  constructor() {
-    // Moved initialization logic to ngOnInit
-  }
+  storyTitles: string[] = [];
 
-  ngOnInit() {
+  async ngOnInit() {
     // Subscribe to route parameter changes
     this.routeSubscription = this.route.params.subscribe(params => {
       const worldCharacterId = params['id']; // Keep as string
@@ -81,6 +79,15 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
     // Load shared data that doesn't depend on the current character
     this.loadSharedData();
+
+    // Resolve story IDs to titles for display
+    const allStories = await import('../../services/world-story.service').then(m => m.WorldStoryService.prototype.getAllWorldStories.call({url: '/worldstories'}));
+    if (this.worldCharacter && this.worldCharacter.stories) {
+      this.storyTitles = this.worldCharacter.stories.map(id => {
+        const s = allStories.find((story: any) => story.id === id);
+        return s ? s.title : id;
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -296,18 +303,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
   isLocationAssociatedWithCharacter(locationName: string): boolean {
     if (!this.worldCharacter) return false;
-    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
     return this.locationList.some(location => 
       location.name === locationName && 
-      location.characters.includes(characterName)
+      location.characters.includes(this.worldCharacter!.id)
     );
   }
 
   getCharacterLocations(): WorldLocationInfo[] {
     if (!this.worldCharacter) return [];
-    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
     return this.locationList.filter(location => 
-      location.characters.includes(characterName)
+      location.characters.includes(this.worldCharacter!.id)
     );
   }
 
@@ -319,7 +324,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return this.storyList.map(story => ({
       id: story.id,
       name: story.title,
-      isAssociated: this.isStoryInCharacter(story.title)
+      isAssociated: this.worldCharacter?.stories?.includes(story.id) || false
     }));
   }
 
@@ -327,27 +332,23 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     return this.locationList.map(location => ({
       id: location.id,
       name: location.name,
-      isAssociated: this.isLocationAssociatedWithCharacter(location.name)
+      isAssociated: location.characters.includes(this.worldCharacter?.id || '')
     }));
   }
 
   onStoryToggle(event: {id: string, isChecked: boolean}) {
     const story = this.storyList.find(s => s.id === event.id);
     if (story && this.worldCharacter) {
-      const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
-      
       this.worldStoryService.getWorldStoryById(event.id).then((storyData) => {
         if (storyData) {
           let updatedCharacters = storyData.characters || [];
-          
           if (event.isChecked) {
-            if (!updatedCharacters.includes(characterName)) {
-              updatedCharacters.push(characterName);
+            if (!updatedCharacters.includes(this.worldCharacter!.id)) {
+              updatedCharacters.push(this.worldCharacter!.id);
             }
           } else {
-            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+            updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
           }
-          
           this.worldStoryService.updateWorldStory(
             storyData.id,
             storyData.title,
@@ -364,20 +365,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   onLocationToggle(event: {id: string, isChecked: boolean}) {
     const location = this.locationList.find(l => l.id === event.id);
     if (location && this.worldCharacter) {
-      const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
-      
       this.worldLocationService.getWorldLocationById(event.id).then((locationData) => {
         if (locationData) {
           let updatedCharacters = locationData.characters || [];
-          
           if (event.isChecked) {
-            if (!updatedCharacters.includes(characterName)) {
-              updatedCharacters.push(characterName);
+            if (!updatedCharacters.includes(this.worldCharacter!.id)) {
+              updatedCharacters.push(this.worldCharacter!.id);
             }
           } else {
-            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+            updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
           }
-          
           this.worldLocationService.updateWorldLocation(
             locationData.id,
             locationData.name,
@@ -432,26 +429,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   onStoryChange(event: Event, storyId: string) {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
-      const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
-      
       this.worldStoryService.getWorldStoryById(storyId).then((story) => {
-        if (story) {
-          console.log(`Story ${story.title} ${isChecked ? 'added to' : 'removed from'} character`);
-          
-          // Update the story's characters list
+        if (story && this.worldCharacter) {
           let updatedCharacters = story.characters || [];
-          
           if (isChecked) {
-            // Add character if not already present
-            if (!updatedCharacters.includes(characterName)) {
-              updatedCharacters.push(characterName);
+            if (!updatedCharacters.includes(this.worldCharacter.id)) {
+              updatedCharacters.push(this.worldCharacter.id);
             }
           } else {
-            // Remove character if present
-            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+            updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
           }
-          
-          // Update the story with the new characters list
           this.worldStoryService.updateWorldStory(
             story.id,
             story.title,
@@ -468,26 +455,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   onLocationChange(event: Event, locationId: string) {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
-      const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
-      
       this.worldLocationService.getWorldLocationById(locationId).then((location) => {
-        if (location) {
-          console.log(`Location ${location.name} ${isChecked ? 'associated with' : 'disassociated from'} character`);
-          
-          // Update the location's characters list
+        if (location && this.worldCharacter) {
           let updatedCharacters = location.characters || [];
-          
           if (isChecked) {
-            // Add character if not already present
-            if (!updatedCharacters.includes(characterName)) {
-              updatedCharacters.push(characterName);
+            if (!updatedCharacters.includes(this.worldCharacter.id)) {
+              updatedCharacters.push(this.worldCharacter.id);
             }
           } else {
-            // Remove character
-            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+            updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
           }
-          
-          // Update the location
           this.worldLocationService.updateWorldLocation(
             location.id,
             location.name,
@@ -507,7 +484,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     for (let story of this.storyList) {
       const checkbox = document.getElementById(`story-checkbox-${story.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        stories.push(story.title);
+        stories.push(story.id);
       }
     }
     return stories;
@@ -622,20 +599,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
     // Ensure all story records are updated to reflect their association with this character
     for (let story of this.storyList) {
-      const isSelected = selectedStories.includes(story.title);
-
+      const isSelected = selectedStories.includes(story.id);
       this.worldStoryService.getWorldStoryById(story.id).then((fullStory) => {
-        if (fullStory) {
+        if (fullStory && this.worldCharacter) {
           let updatedCharacters = fullStory.characters || [];
-          const hasCharacter = updatedCharacters.includes(characterName);
-
+          const hasCharacter = updatedCharacters.includes(this.worldCharacter.id);
           if (isSelected && !hasCharacter) {
-            // Add character if selected but not in story's list
-            updatedCharacters.push(characterName);
+            updatedCharacters.push(this.worldCharacter.id);
             this.updateStoryCharacters(story, fullStory, updatedCharacters);
           } else if (!isSelected && hasCharacter) {
-            // Remove character if not selected but in story's list
-            updatedCharacters = updatedCharacters.filter(char => char !== characterName);
+            updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
             this.updateStoryCharacters(story, fullStory, updatedCharacters);
           }
         }

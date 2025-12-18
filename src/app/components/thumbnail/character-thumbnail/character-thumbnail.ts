@@ -19,6 +19,17 @@ export class CharacterThumbnail {
   showStories = input<boolean>(true);
   
   tagClicked = output<string>();
+  storyTitles: string[] = [];
+
+  async ngOnInit() {
+    // Resolve story IDs to titles
+    const allStories = await import('../../../services/world-story.service').then(m => m.WorldStoryService.prototype.getAllWorldStories.call({url: '/worldstories'}));
+    this.storyTitles = this.worldCharacter().stories
+      .map(id => {
+        const s = allStories.find((story: any) => story.id === id);
+        return s ? s.title : id;
+      });
+  }
 
   deleteCharacter(id: string, event: Event) {
     event.stopPropagation();

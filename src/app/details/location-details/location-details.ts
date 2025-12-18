@@ -113,23 +113,23 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     console.log("Location data loaded for ID:", worldLocationId);
   }
 
-  isCharacterInLocation(characterName: string): boolean {
-    return this.worldLocation?.characters?.includes(characterName) || false;
+  isCharacterInLocation(characterId: string): boolean {
+    return this.worldLocation?.characters?.includes(characterId) || false;
   }
 
-  isStoryInLocation(storyTitle: string): boolean {
-    return this.worldLocation?.stories?.includes(storyTitle) || false;
+  isStoryInLocation(storyId: string): boolean {
+    return this.worldLocation?.stories?.includes(storyId) || false;
   }
 
-  isRelatedLocationInLocation(locationName: string): boolean {
-    return this.worldLocation?.relatedLocations?.includes(locationName) || false;
+  isRelatedLocationInLocation(locationId: string): boolean {
+    return this.worldLocation?.relatedLocations?.includes(locationId) || false;
   }
 
   getCharactersAssociationList(): AssociationItem[] {
     return this.characterList.map(character => ({
       id: character.id,
       name: `${character.firstName} ${character.lastName}`,
-      isAssociated: this.isCharacterInLocation(`${character.firstName} ${character.lastName}`)
+      isAssociated: this.isCharacterInLocation(character.id)
     }));
   }
 
@@ -137,7 +137,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     return this.storyList.map(story => ({
       id: story.id,
       name: story.title,
-      isAssociated: this.isStoryInLocation(story.title)
+      isAssociated: this.isStoryInLocation(story.id)
     }));
   }
 
@@ -147,71 +147,52 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       .map(location => ({
         id: location.id,
         name: location.name,
-        isAssociated: this.isRelatedLocationInLocation(location.name)
+        isAssociated: this.isRelatedLocationInLocation(location.id)
       }));
   }
 
   onCharacterToggle(event: {id: string, isChecked: boolean}) {
-    const character = this.characterList.find(c => c.id === event.id);
-    if (character && this.worldLocation) {
-      const characterName = `${character.firstName} ${character.lastName}`;
+    if (this.worldLocation) {
       if (event.isChecked) {
-        if (!this.worldLocation.characters.includes(characterName)) {
-          this.worldLocation.characters.push(characterName);
+        if (!this.worldLocation.characters.includes(event.id)) {
+          this.worldLocation.characters.push(event.id);
         }
       } else {
-        this.worldLocation.characters = this.worldLocation.characters.filter(name => name !== characterName);
+        this.worldLocation.characters = this.worldLocation.characters.filter(id => id !== event.id);
       }
+      const character = this.characterList.find(c => c.id === event.id);
+      const characterName = character ? `${character.firstName} ${character.lastName}` : event.id;
       console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} location`);
     }
   }
 
   onStoryToggle(event: {id: string, isChecked: boolean}) {
-    const story = this.storyList.find(s => s.id === event.id);
-    if (story && this.worldLocation) {
+    if (this.worldLocation) {
       if (event.isChecked) {
-        if (!this.worldLocation.stories.includes(story.title)) {
-          this.worldLocation.stories.push(story.title);
+        if (!this.worldLocation.stories.includes(event.id)) {
+          this.worldLocation.stories.push(event.id);
         }
       } else {
-        this.worldLocation.stories = this.worldLocation.stories.filter(title => title !== story.title);
+        this.worldLocation.stories = this.worldLocation.stories.filter(id => id !== event.id);
       }
-      console.log(`Story ${story.title} ${event.isChecked ? 'added to' : 'removed from'} location`);
+      const story = this.storyList.find(s => s.id === event.id);
+      const storyTitle = story ? story.title : event.id;
+      console.log(`Story ${storyTitle} ${event.isChecked ? 'added to' : 'removed from'} location`);
     }
   }
 
   onRelatedLocationToggle(event: {id: string, isChecked: boolean}) {
-    const location = this.locationList.find(l => l.id === event.id);
-    if (location && this.worldLocation) {
+    if (this.worldLocation) {
       if (event.isChecked) {
-        if (!this.worldLocation.relatedLocations.includes(location.name)) {
-          this.worldLocation.relatedLocations.push(location.name);
+        if (!this.worldLocation.relatedLocations.includes(event.id)) {
+          this.worldLocation.relatedLocations.push(event.id);
         }
       } else {
-        this.worldLocation.relatedLocations = this.worldLocation.relatedLocations.filter(name => name !== location.name);
+        this.worldLocation.relatedLocations = this.worldLocation.relatedLocations.filter(id => id !== event.id);
       }
-      console.log(`Related location ${location.name} ${event.isChecked ? 'added to' : 'removed from'} location`);
-    }
-  }
-
-  onCharacterChange(event: Event, character: WorldCharacterInfo) {
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Character ${character.firstName} ${character.lastName} ${isChecked ? 'added to' : 'removed from'} location`);
-    }
-  }
-
-  onStoryChange(event: Event, story: WorldStoryInfo) {
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Story ${story.title} ${isChecked ? 'added to' : 'removed from'} location`);
-    }
-  }
-
-  onRelatedLocationChange(event: Event, location: WorldLocationInfo) {
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Related location ${location.name} ${isChecked ? 'added to' : 'removed from'} location`);
+      const location = this.locationList.find(l => l.id === event.id);
+      const locationName = location ? location.name : event.id;
+      console.log(`Related location ${locationName} ${event.isChecked ? 'added to' : 'removed from'} location`);
     }
   }
 
@@ -220,7 +201,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     for (let character of this.characterList) {
       const checkbox = document.getElementById(`character-checkbox-${character.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        characters.push(`${character.firstName} ${character.lastName}`);
+        characters.push(character.id);
       }
     }
     return characters;
@@ -231,7 +212,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     for (let story of this.storyList) {
       const checkbox = document.getElementById(`story-checkbox-${story.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        stories.push(story.title);
+        stories.push(story.id);
       }
     }
     return stories;
@@ -242,7 +223,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     for (let location of this.locationList) {
       const checkbox = document.getElementById(`related-location-checkbox-${location.id}`) as HTMLInputElement;
       if (checkbox && checkbox.checked) {
-        relatedLocations.push(location.name);
+        relatedLocations.push(location.id);
       }
     }
     return relatedLocations;
@@ -251,13 +232,17 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   async submitApplication() {
     if (this.worldLocation?.id !== undefined) {
       try {
+        // Use the form's checked associations (by ID) for update
+        const updatedCharacters = this.getFormCharacters();
+        const updatedStories = this.getFormStories();
+        const updatedRelatedLocations = this.getFormRelatedLocations();
         await this.worldLocationService.updateWorldLocation(
           this.worldLocation.id,
           this.applyForm.value.locationTitle ?? '',
           this.applyForm.value.locationDescription ?? '',
-          this.worldLocation.characters,
-          this.worldLocation.stories,
-          this.worldLocation.relatedLocations,
+          updatedCharacters,
+          updatedStories,
+          updatedRelatedLocations,
           this.applyForm.value.locationTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
         );
         console.log('Location updated successfully');
@@ -287,9 +272,11 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       this.filteredEventList = [];
       return;
     }
-
+    // Filter events by location ID
     this.filteredEventList = this.eventList.filter(event => 
-      event.location.includes(this.worldLocation?.name || '')
+      event.location && (Array.isArray(event.location)
+        ? event.location.includes(this.worldLocation?.id || '')
+        : event.location === this.worldLocation?.id)
     );
   }
 

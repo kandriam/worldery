@@ -1,19 +1,18 @@
-
-<div class="story-thumbnail world-thumbnail story" [ngClass]="{ 'hasSubstories': substories && substories.length > 0 }" [routerLink]="['/story', worldStory().id]">
+<div class="story-thumbnail world-thumbnail story" [ngClass]="{ 'hasSubstories': worldStory().substories && worldStory().substories.length > 0 }" [routerLink]="['/story', worldStory().id]">
     <div class="thumbnail-header">
         <h4 class="thumbnail-title">{{ worldStory().title }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteStory(worldStory().id, $event)">Delete</button>
     </div>
     
-    @if (showLocation() && worldStory().locations.length > 0) {
+    @if (showLocation() && locationNames.length > 0) {
         <div class="thumbnail-info thumbnail-location">
-            {{ worldStory().locations.join(', ') }}
+            {{ locationNames.join(', ') }}
         </div>
     }
     
-    @if (showCharacters() && worldStory().characters.length > 0) {
+    @if (showCharacters() && characterNames.length > 0) {
         <div class="thumbnail-info thumbnail-characters">
-            {{ worldStory().characters.join(', ') }}
+            {{ characterNames.join(', ') }}
         </div>
     }
     

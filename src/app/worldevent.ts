@@ -14,7 +14,7 @@ export interface WorldEventInfo {
 // export interface WorldTimeMeasurements {
 //   months: string[];
 //   daysInMonth: number;
-  // hoursInDay: number;
-  // minutesInHour: number;
-  // secondsInMinute: number
+//   hoursInDay: number;
+//   minutesInHour: number;
+//   secondsInMinute: number
 // }

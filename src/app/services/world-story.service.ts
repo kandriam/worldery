@@ -38,7 +38,7 @@ export class WorldStoryService {
       const oldTitle = currentStory?.title || '';
       const oldCharacters = currentStory?.characters || [];
       const oldLocations = currentStory?.locations || [];
-      
+
       const response = await fetch(`${this.url}/${storyID}`, {
         method: 'PUT',
         headers: {
@@ -59,16 +59,10 @@ export class WorldStoryService {
         throw new Error(`Failed to update story: ${response.statusText}`);
       }
       
-      // Handle title changes in character and location references
-      if (oldTitle !== storyTitle) {
-        await this.updateStoryNameReferences(oldTitle, storyTitle);
-      }
-      
-      // Update character relationships
-      await this.updateCharacterStoryRelationships(storyTitle, oldCharacters, storyCharacters);
-      
-      // Update location relationships
-      await this.updateLocationStoryRelationships(storyTitle, oldLocations, storyLocations);
+      // Update character relationships by ID
+      await this.updateCharacterStoryRelationships(storyID, oldCharacters, storyCharacters);
+      // Update location relationships by ID
+      await this.updateLocationStoryRelationships(storyID, oldLocations, storyLocations);
       
       console.log('Story updated successfully with bidirectional relationships');
       return await response.json();
@@ -124,9 +118,9 @@ export class WorldStoryService {
         throw new Error(`Failed to create story: ${response.statusText}`);
       }
       
-      // Add bidirectional relationships for new story
-      await this.updateCharacterStoryRelationships(storyTitle, [], storyCharacters);
-      await this.updateLocationStoryRelationships(storyTitle, [], storyLocations);
+      // Add bidirectional relationships for new story (by ID)
+      await this.updateCharacterStoryRelationships(newId, [], storyCharacters);
+      await this.updateLocationStoryRelationships(newId, [], storyLocations);
       
       console.log('Story created successfully with bidirectional relationships');
       const newStory = await response.json();
@@ -151,9 +145,8 @@ export class WorldStoryService {
       if (!storyToDelete) {
         throw new Error('Story not found');
       }
-      
-      // Remove story from all character and location references
-      await this.removeStoryFromAllRelationships(storyToDelete.title);
+      // Remove story from all character and location references by ID
+      await this.removeStoryFromAllRelationships(storyID);
       
       const response = await fetch(`${this.url}/${storyID}`, {
         method: 'DELETE',
@@ -171,64 +164,29 @@ export class WorldStoryService {
     }
   }
 
-  private async updateStoryNameReferences(oldTitle: string, newTitle: string) {
-    try {
-      // Update character references
-      const charactersResponse = await fetch('http://localhost:3000/worldcharacters');
-      const characters = await charactersResponse.json();
-      
-      for (const character of characters) {
-        if (character.stories && character.stories.includes(oldTitle)) {
-          const updatedStories = character.stories.map((story: string) => 
-            story === oldTitle ? newTitle : story
-          );
-          await this.updateCharacterStories(character.id, character, updatedStories);
-        }
-      }
-      
-      // Update location references
-      const locationsResponse = await fetch('http://localhost:3000/worldlocations');
-      const locations = await locationsResponse.json();
-      
-      for (const location of locations) {
-        if (location.stories && location.stories.includes(oldTitle)) {
-          const updatedStories = location.stories.map((story: string) => 
-            story === oldTitle ? newTitle : story
-          );
-          await this.updateLocationStories(location.id, location, updatedStories);
-        }
-      }
-    } catch (error) {
-      console.error('Error updating story name references:', error);
-    }
-  }
 
-  private async updateCharacterStoryRelationships(storyTitle: string, oldCharacters: string[], newCharacters: string[]) {
+  // No longer needed: updateStoryNameReferences (IDs are immutable)
+
+  private async updateCharacterStoryRelationships(storyID: string, oldCharacters: string[], newCharacters: string[]) {
     try {
       const charactersResponse = await fetch('http://localhost:3000/worldcharacters');
       const allCharacters = await charactersResponse.json();
-      
       // Characters removed from story
-      const removedCharacters = oldCharacters.filter(name => !newCharacters.includes(name));
-      for (const characterName of removedCharacters) {
-        const character = allCharacters.find((c: any) => 
-          `${c.firstName} ${c.lastName}` === characterName
-        );
-        if (character && character.stories && character.stories.includes(storyTitle)) {
-          const updatedStories = character.stories.filter((story: string) => story !== storyTitle);
+      const removedCharacters = oldCharacters.filter(id => !newCharacters.includes(id));
+      for (const characterId of removedCharacters) {
+        const character = allCharacters.find((c: any) => c.id === characterId);
+        if (character && character.stories && character.stories.includes(storyID)) {
+          const updatedStories = character.stories.filter((sid: string) => sid !== storyID);
           await this.updateCharacterStories(character.id, character, updatedStories);
         }
       }
-      
       // Characters added to story
-      const addedCharacters = newCharacters.filter(name => !oldCharacters.includes(name));
-      for (const characterName of addedCharacters) {
-        const character = allCharacters.find((c: any) => 
-          `${c.firstName} ${c.lastName}` === characterName
-        );
-        if (character && (!character.stories || !character.stories.includes(storyTitle))) {
+      const addedCharacters = newCharacters.filter(id => !oldCharacters.includes(id));
+      for (const characterId of addedCharacters) {
+        const character = allCharacters.find((c: any) => c.id === characterId);
+        if (character && (!character.stories || !character.stories.includes(storyID))) {
           const currentStories = character.stories || [];
-          const updatedStories = [...currentStories, storyTitle];
+          const updatedStories = [...currentStories, storyID];
           await this.updateCharacterStories(character.id, character, updatedStories);
         }
       }
@@ -237,28 +195,26 @@ export class WorldStoryService {
     }
   }
 
-  private async updateLocationStoryRelationships(storyTitle: string, oldLocations: string[], newLocations: string[]) {
+  private async updateLocationStoryRelationships(storyID: string, oldLocations: string[], newLocations: string[]) {
     try {
       const locationsResponse = await fetch('http://localhost:3000/worldlocations');
       const allLocations = await locationsResponse.json();
-      
       // Locations removed from story
-      const removedLocations = oldLocations.filter(name => !newLocations.includes(name));
-      for (const locationName of removedLocations) {
-        const location = allLocations.find((l: any) => l.name === locationName);
-        if (location && location.stories && location.stories.includes(storyTitle)) {
-          const updatedStories = location.stories.filter((story: string) => story !== storyTitle);
+      const removedLocations = oldLocations.filter(id => !newLocations.includes(id));
+      for (const locationId of removedLocations) {
+        const location = allLocations.find((l: any) => l.id === locationId);
+        if (location && location.stories && location.stories.includes(storyID)) {
+          const updatedStories = location.stories.filter((sid: string) => sid !== storyID);
           await this.updateLocationStories(location.id, location, updatedStories);
         }
       }
-      
       // Locations added to story
-      const addedLocations = newLocations.filter(name => !oldLocations.includes(name));
-      for (const locationName of addedLocations) {
-        const location = allLocations.find((l: any) => l.name === locationName);
-        if (location && (!location.stories || !location.stories.includes(storyTitle))) {
+      const addedLocations = newLocations.filter(id => !oldLocations.includes(id));
+      for (const locationId of addedLocations) {
+        const location = allLocations.find((l: any) => l.id === locationId);
+        if (location && (!location.stories || !location.stories.includes(storyID))) {
           const currentStories = location.stories || [];
-          const updatedStories = [...currentStories, storyTitle];
+          const updatedStories = [...currentStories, storyID];
           await this.updateLocationStories(location.id, location, updatedStories);
         }
       }
@@ -267,26 +223,23 @@ export class WorldStoryService {
     }
   }
 
-  private async removeStoryFromAllRelationships(storyTitle: string) {
+  private async removeStoryFromAllRelationships(storyID: string) {
     try {
       // Remove from characters
       const charactersResponse = await fetch('http://localhost:3000/worldcharacters');
       const characters = await charactersResponse.json();
-      
       for (const character of characters) {
-        if (character.stories && character.stories.includes(storyTitle)) {
-          const updatedStories = character.stories.filter((story: string) => story !== storyTitle);
+        if (character.stories && character.stories.includes(storyID)) {
+          const updatedStories = character.stories.filter((sid: string) => sid !== storyID);
           await this.updateCharacterStories(character.id, character, updatedStories);
         }
       }
-      
       // Remove from locations
       const locationsResponse = await fetch('http://localhost:3000/worldlocations');
       const locations = await locationsResponse.json();
-      
       for (const location of locations) {
-        if (location.stories && location.stories.includes(storyTitle)) {
-          const updatedStories = location.stories.filter((story: string) => story !== storyTitle);
+        if (location.stories && location.stories.includes(storyID)) {
+          const updatedStories = location.stories.filter((sid: string) => sid !== storyID);
           await this.updateLocationStories(location.id, location, updatedStories);
         }
       }

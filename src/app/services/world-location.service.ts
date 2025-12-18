@@ -37,8 +37,7 @@ export class WorldLocationService {
       // Get the current location to see what relationships have changed
       const currentLocation = await this.getWorldLocationById(locationID);
       const currentRelatedLocations = currentLocation?.relatedLocations || [];
-      const oldLocationName = currentLocation?.name || '';
-      
+
       // Update the main location
       const response = await fetch(`${this.url}/${locationID}`, {
         method: 'PUT',
@@ -55,24 +54,19 @@ export class WorldLocationService {
           tags: locationTags,
         }),
       });
-      
+
       if (!response.ok) {
         throw new Error(`Failed to update location: ${response.statusText}`);
       }
-      
-      // Handle name changes - update references in other locations
-      if (oldLocationName !== locationName) {
-        await this.updateLocationNameReferences(oldLocationName, locationName);
-      }
-      
-      // Handle bidirectional relationship updates
-      await this.updateBidirectionalRelationships(
-        locationName,
+
+      // Handle bidirectional relationship updates (by ID)
+      await this.updateBidirectionalRelationshipsById(
+        locationID,
         currentRelatedLocations,
         locationRelatedLocations
       );
-      
-      console.log('Location updated successfully with bidirectional relationships');
+
+      console.log('Location updated successfully with bidirectional relationships (by ID)');
       return await response.json();
     } catch (error) {
       console.error('Error updating location:', error);
@@ -101,39 +95,39 @@ export class WorldLocationService {
     }
   }
 
-  private async updateBidirectionalRelationships(
-    currentLocationName: string,
-    oldRelatedLocations: string[],
-    newRelatedLocations: string[]
+  private async updateBidirectionalRelationshipsById(
+    currentLocationId: string,
+    oldRelatedLocationIds: string[],
+    newRelatedLocationIds: string[]
   ) {
     const allLocations = await this.getAllWorldLocations();
-    
+
     // Find locations that were removed from relationships
-    const removedRelations = oldRelatedLocations.filter(
-      name => !newRelatedLocations.includes(name)
+    const removedRelations = oldRelatedLocationIds.filter(
+      id => !newRelatedLocationIds.includes(id)
     );
-    
+
     // Find locations that were added to relationships
-    const addedRelations = newRelatedLocations.filter(
-      name => !oldRelatedLocations.includes(name)
+    const addedRelations = newRelatedLocationIds.filter(
+      id => !oldRelatedLocationIds.includes(id)
     );
-    
+
     // Remove bidirectional relationships
-    for (const removedLocationName of removedRelations) {
-      const location = allLocations.find(loc => loc.name === removedLocationName);
-      if (location && location.relatedLocations.includes(currentLocationName)) {
+    for (const removedLocationId of removedRelations) {
+      const location = allLocations.find(loc => loc.id === removedLocationId);
+      if (location && location.relatedLocations.includes(currentLocationId)) {
         const updatedRelatedLocations = location.relatedLocations.filter(
-          name => name !== currentLocationName
+          (id: string) => id !== currentLocationId
         );
         await this.updateLocationRelationshipsOnly(location.id, updatedRelatedLocations);
       }
     }
-    
+
     // Add bidirectional relationships
-    for (const addedLocationName of addedRelations) {
-      const location = allLocations.find(loc => loc.name === addedLocationName);
-      if (location && !location.relatedLocations.includes(currentLocationName)) {
-        const updatedRelatedLocations = [...location.relatedLocations, currentLocationName];
+    for (const addedLocationId of addedRelations) {
+      const location = allLocations.find(loc => loc.id === addedLocationId);
+      if (location && !location.relatedLocations.includes(currentLocationId)) {
+        const updatedRelatedLocations = [...location.relatedLocations, currentLocationId];
         await this.updateLocationRelationshipsOnly(location.id, updatedRelatedLocations);
       }
     }
@@ -143,23 +137,18 @@ export class WorldLocationService {
     try {
       const location = await this.getWorldLocationById(locationID);
       if (!location) return;
-      
+
       const response = await fetch(`${this.url}/${locationID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: locationID,
-          name: location.name,
-          description: location.description,
-          characters: location.characters,
-          stories: location.stories,
+          ...location,
           relatedLocations: relatedLocations,
-          tags: location.tags,
         }),
       });
-      
+
       if (!response.ok) {
         throw new Error(`Failed to update related location relationships: ${response.statusText}`);
       }
@@ -214,9 +203,17 @@ export class WorldLocationService {
       }
       
       console.log('Location created successfully');
-      const newLocation = await response.json();
+      let newLocation = {
+        id: newId,
+        name: locationName,
+        description: locationDescription,
+        characters: locationCharacters,
+        stories: locationStories,
+        relatedLocations: [],
+        tags: locationTags,
+      };
       if (goToPage) {
-        this.router.navigate([`/location/${newLocation.id}`]);
+        this.router.navigate([`/location/${newId}`]);
       } else {
         window.location.reload();
       }
