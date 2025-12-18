@@ -53,7 +53,7 @@
           </app-character-thumbnail>
         }
       } @else if (isStoryList(entities)) {
-        @for(worldStory of entities; track $index) {
+        @for(worldStory of filteredStories; track $index) {
           <app-story-thumbnail 
             [worldStory]="worldStory"
             [showDate]="showDate"

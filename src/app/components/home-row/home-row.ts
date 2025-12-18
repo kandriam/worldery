@@ -25,6 +25,22 @@ export class HomeRow {
   @Input() title!: string;
   @Input() routePath!: string;
   @Input() entities!: EntityData;
+
+  get filteredStories(): WorldStoryInfo[] {
+    if (this.entityType !== 'story' || !Array.isArray(this.entities)) return this.entities as WorldStoryInfo[];
+    const stories = this.entities as WorldStoryInfo[];
+    // Collect all substory IDs from all stories
+    const allSubstoryIds = new Set<string>();
+    for (const story of stories) {
+      if (Array.isArray(story.substories)) {
+        for (const subId of story.substories) {
+          allSubstoryIds.add(subId);
+        }
+      }
+    }
+    // Only return stories that are NOT a substory of any other story
+    return stories.filter(story => !allSubstoryIds.has(story.id));
+  }
   @Input() noResultsMessage!: string;
   
   @Output() addElement = new EventEmitter<EntityType>();

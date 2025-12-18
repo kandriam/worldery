@@ -4339,13 +4339,15 @@
     {
       "id": "1",
       "title": "Fire & Ice Series",
-      "description": "",
+      "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.",
       "characters": [],
       "locations": [],
-      "tags": [],
+      "tags": [
+        "Dystopian"
+      ],
       "substories": [
-        "3",
-        "2"
+        "2",
+        "3"
       ]
     },
     {
@@ -4476,7 +4478,6 @@
       "description": "Benny doesn’t remember their past. All they remember is their life in the circus from the tender age of ten, forced to stand in front of a crowd and change faces. But when they and their friends escape, their goal is to find out who they once were.\nAvana was picked up from the street and sold to the circus at thirteen  after being abandoned as a baby. Over six years, she’s seen and experienced more than she’s needed to. And she’s decided she’s ready to escape, or die trying.\nOrion, son of the circus master, befriended Mina and Benny when they were all young. As the three grew up together, they hatched their escape plan.\nWhen Mina, Benny and Orion escape from the circus they'd grown up in, they run from the circus and the law into the unknown world.",
       "characters": [
         "Benny ",
-        "Avana ",
         "Avana ?"
       ],
       "locations": [],

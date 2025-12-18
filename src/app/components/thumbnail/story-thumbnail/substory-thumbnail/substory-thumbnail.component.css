@@ -1,0 +1,11 @@
+.substory-thumbnail {
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 4px 0;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  /* height: auto; */
+  width: 15rem !important;
+  background-color: var(--g5-color) !important;
+}

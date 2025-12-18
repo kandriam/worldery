@@ -1,0 +1,36 @@
+<div class="substory-thumbnail world-thumbnail story" [routerLink]="['/story', substory.id]">
+    <div class="thumbnail-header">
+        <h4 class="thumbnail-title">{{ substory.title }}</h4>
+        <!-- <button class="thumbnail-delete-button" (click)="deleteStory(substory.id, $event)">Delete</button> -->
+    </div>
+    
+    @if (substory.locations.length > 0) {
+        <div class="thumbnail-info thumbnail-location">
+            {{ substory.locations.join(', ') }}
+        </div>
+    }
+    
+    @if (substory.characters.length > 0) {
+        <div class="thumbnail-info thumbnail-characters">
+            {{ substory.characters.join(', ') }}
+        </div>
+    }
+    
+    <div class="thumbnail-description">
+        @for ( paragraph of substory.description.split('\n'); track paragraph) {
+            <div class="thumbnail-paragraph">{{ paragraph }}</div>
+        }
+    </div>
+    <div class="thumbnail-tag-container">
+    <!-- @for (tag of substory.tags; track tag) {
+        <div class="tag" (click)="onTagClick(tag, $event)">{{ tag }}</div>
+    }
+    </div> -->
+</div>
+
+<!-- <div class="substory-thumbnail" [routerLink]="['/story', substory.id]">
+    <h5 class="substory-title">{{ substory.title }}</h5>
+    <div class="substory-description">{{ substory.description }}</div>
+    <div class="substory-tag-container">
+    </div>
+</div> -->
