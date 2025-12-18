@@ -3,6 +3,9 @@ import { SettingsService } from '../../../services/settings.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { WorldEventInfo } from '../../../worldevent';
+import { WorldStoryService } from 'src/app/services/world-story.service';
+import { WorldCharacterService } from 'src/app/services/world-character.service';
+import { WorldLocationService } from 'src/app/services/world-location.service';
 
 @Component({
   selector: 'app-timeline-event',
@@ -23,6 +26,35 @@ export class TimelineEvent {
   shouldShowYear = input<boolean>(false);
   orientation = input<'horizontal' | 'vertical'>('vertical');
   
+  characterService = inject(WorldCharacterService);
+  storyService = inject(WorldStoryService);
+  locationService = inject(WorldLocationService);
+
+  characterNames: string[] = [];
+  storyTitles: string[] = [];
+  locationNames: string[] = [];
+
+  async ngOnInit() {
+    // Resolve character IDs to names
+    const allCharacters = await this.characterService.getAllWorldCharacters();
+    this.characterNames = (this.event().characters || []).map(id => {
+      const c = allCharacters.find((char: any) => char.id === id);
+      return c ? `${c.firstName} ${c.lastName}` : id;
+    });
+    // Resolve story IDs to titles
+    const allStories = await this.storyService.getAllWorldStories();
+    this.storyTitles = (this.event().stories || []).map(id => {
+      const s = allStories.find((story: any) => story.id === id);
+      return s ? s.title : id;
+    });
+    // Resolve location IDs to names (location: string[])
+    const allLocations = await this.locationService.getAllWorldLocations();
+    this.locationNames = (this.event().location || []).map(id => {
+      const l = allLocations.find((loc: any) => loc.id === id);
+      return l ? l.name : id;
+    });
+  }
+
   tagClicked = output<string>();
   
   onTagClick(tag: string) {

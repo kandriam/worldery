@@ -16,21 +16,21 @@
       </div>
 
       <div class="event-details">
-        @if (showLocation() && event().location.length > 0) {
+        @if (showLocation() && locationNames.length > 0) {
           <div class="event-info event-location">
-            {{ event().location.join(', ') }}
+            {{ locationNames.join(', ') }}
           </div>
         }
         
-        @if (showCharacters() && event().characters.length > 0) {
+        @if (showCharacters() && characterNames.length > 0) {
           <div class="event-info event-characters">
-            {{ event().characters.join(', ') }}
+            {{ characterNames.join(', ') }}
           </div>
         }
         
-        @if (showStories() && event().stories.length > 0) {
+        @if (showStories() && storyTitles.length > 0) {
           <div class="event-info event-stories">
-            {{ event().stories.join(', ') }}
+            {{ storyTitles.join(', ') }}
           </div>
         }
         

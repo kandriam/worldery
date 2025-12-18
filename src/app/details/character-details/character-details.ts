@@ -656,10 +656,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       return;
     }
 
-    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
-    
+    const characterId = this.worldCharacter.id;
     this.filteredEventList = this.eventList.filter(event => 
-      event.characters.includes(characterName)
+      event.characters.includes(characterId)
     );
   }
 
