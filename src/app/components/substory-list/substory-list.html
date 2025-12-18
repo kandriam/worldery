@@ -1,0 +1,68 @@
+<div class="substory-list-container">
+    <label class="primary-label">{{ label }}</label>
+    <div class="substory-panel-container">
+        <div class="substory-panel">
+            <!-- <label>Substories</label> -->
+            <div id="substory-container" class="story-container">
+                @for(story of substoryList; track story.id) {
+                    <div class="form-field">
+                        <input 
+                            type="checkbox" 
+                            id="{{routePrefix}}-checkbox-{{story.id}}" 
+                            [value]="story.id" 
+                            (change)="onItemChange($event, story.id)" 
+                            (click)="$event.stopPropagation()" 
+                            [checked]="story.isSubstory" 
+                        />
+                        <button 
+                            class="linked-item" 
+                            type="button"
+                        >
+                            <label class="secondary-label" [routerLink]="['/story', story.id]">{{ story.name }}</label>
+                        </button>
+
+                        <div class="field-buttons">
+                            <button 
+                                class="order-buttons up" 
+                                type="button" 
+                                title="Move up" 
+                                (click)="changeSubstoryOrder($event, story.id, 'up'); $event.stopPropagation();"
+                                [disabled]="substoryList[0]?.id === story.id"
+                            >&#8593;</button>
+                            <button 
+                                class="order-buttons down" 
+                                type="button" 
+                                title="Move down" 
+                                (click)="changeSubstoryOrder($event, story.id, 'down'); $event.stopPropagation();"
+                                [disabled]="substoryList[substoryList.length-1]?.id === story.id"
+                            >&#8595;</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="substory-panel">
+            <!-- <label>Stories</label> -->
+            <div id="story-container" class="story-container">
+                @for(story of nonSubstoryList; track story.id) {
+                    <div class="form-field">
+                        <input 
+                            type="checkbox" 
+                            id="{{routePrefix}}-checkbox-{{story.id}}" 
+                            [value]="story.id" 
+                            (change)="onItemChange($event, story.id)" 
+                            (click)="$event.stopPropagation()" 
+                            [checked]="story.isSubstory" 
+                        />
+                        <button 
+                            class="linked-item" 
+                            type="button"
+                        >
+                            <label class="secondary-label" [routerLink]="['/story', story.id]">{{ story.name }}</label>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -4338,6 +4338,18 @@
   "worldstories": [
     {
       "id": "1",
+      "title": "Fire & Ice Series",
+      "description": "",
+      "characters": [],
+      "locations": [],
+      "tags": [],
+      "substories": [
+        "3",
+        "2"
+      ]
+    },
+    {
+      "id": "2",
       "title": "Fire & Ice",
       "description": "A small portion of the world population was born with extraordinary powers. At first it was extremely rare, almost a wonder.\n\nBut over the past few decades, Gifteds have become more common. They’re unpredictable, dangerous “Freaks”.\n\nThe Soldiers of Rebellion is a small vigilante “villain” group. For the past five years, they’ve been abducting Gifted children from their homes.\n",
       "characters": [
@@ -4375,7 +4387,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": "3",
       "title": "Blood & Water",
       "description": "A year after the events of Fire & Ice, Jay and Kiara -- and Willow, Matt and Leo -- are forced to flee the city and live at the SafeHouse, where they are tasked with preparing the residents for the worst.\n\nLeo learns about the ethical costs of her dad's medicine for her, they discover the scientific work behind the scenes, and how Rudy is using it to her advantage.",
       "characters": [
@@ -4423,7 +4435,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": "4",
       "title": "Prophet's Gift",
       "description": "",
       "characters": [
@@ -4437,7 +4449,7 @@
       ]
     },
     {
-      "id": "4",
+      "id": "5",
       "title": "Room 4",
       "description": "The SafeHouse houses over a dozen children Gifted with super abilities and allows them the space they need to hone, control and embrace their skills and differences.\n\nBut when roommates Nadiya, Adaline, Fatima and Katrina and their friend Felix are lost on a field trip to the city, they find themselves stumbling into a mystery they couldn't have expected.",
       "characters": [
@@ -4459,7 +4471,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": "6",
       "title": "Stray Kids (Working Title)",
       "description": "Benny doesn’t remember their past. All they remember is their life in the circus from the tender age of ten, forced to stand in front of a crowd and change faces. But when they and their friends escape, their goal is to find out who they once were.\nAvana was picked up from the street and sold to the circus at thirteen  after being abandoned as a baby. Over six years, she’s seen and experienced more than she’s needed to. And she’s decided she’s ready to escape, or die trying.\nOrion, son of the circus master, befriended Mina and Benny when they were all young. As the three grew up together, they hatched their escape plan.\nWhen Mina, Benny and Orion escape from the circus they'd grown up in, they run from the circus and the law into the unknown world.",
       "characters": [

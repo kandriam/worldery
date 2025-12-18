@@ -3,6 +3,7 @@ export interface WorldStoryInfo {
     title: string;
     description: string;
     characters: string[];
+    substories: string[];
     locations: string[];
     tags: string[];
 }

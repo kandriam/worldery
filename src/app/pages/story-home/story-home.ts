@@ -91,6 +91,7 @@ export class StoryHome {
         [],
         [],
         [],
+        [],
         true);
       console.log('Story created successfully');
     } catch (error) {

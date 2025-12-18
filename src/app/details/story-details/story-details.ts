@@ -12,10 +12,11 @@ import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { SubstoryList } from "src/app/components/substory-list/substory-list";
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, Timeline, AssociationList],
+  imports: [ReactiveFormsModule, Timeline, AssociationList, SubstoryList],
   templateUrl: 'story-details.html',
   styleUrls: ["story-details.css", "../details.css", "../../../styles.css"],
 })
@@ -31,6 +32,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   characterList = Array<WorldCharacterInfo>();
   locationList = Array<WorldLocationInfo>();
   eventList = Array<WorldEventInfo>();
+  storyList = Array<WorldStoryInfo>();
   filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
 
@@ -78,6 +80,10 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
       this.eventList = events;
       this.updateFilteredEvents();
     });
+
+    this.worldStoryService.getAllWorldStories().then((stories) => {
+      this.storyList = stories;
+    });
   }
 
   private loadStoryData(worldStoryId: string) {
@@ -89,6 +95,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         this.worldStory.characters = this.worldStory.characters || [];
         this.worldStory.locations = this.worldStory.locations || [];
         this.worldStory.tags = this.worldStory.tags || [];
+        this.worldStory.substories = this.worldStory.substories || [];
       }
       
       this.applyForm.patchValue({
@@ -96,7 +103,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         storyDescription: worldStory?.description || '',
         storyCharacters: worldStory?.characters?.join(', ') || '',
         storyLocations: worldStory?.locations?.join(', ') || '',
-        storyTags: worldStory?.tags?.join(', ') || '',
+        storyTags: worldStory?.tags?.join(', ') || ''
       });
       
       // Update filtered events after story data loads
@@ -130,6 +137,31 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     }));
   }
 
+
+
+  getSubstoryListForComponent() {
+    const currentId = this.worldStory?.id;
+    return this.storyList
+      .filter(story => story.id !== currentId)
+      .map(story => ({
+        id: story.id,
+        name: story.title,
+        isSubstory: (this.worldStory?.substories || []).includes(story.id)
+      }));
+  }
+
+  onSubstoryListToggled(event: {id: string, isChecked: boolean}) {
+    if (!this.worldStory) return;
+    const subId = event.id;
+    if (event.isChecked) {
+      if (!this.worldStory.substories.includes(subId)) {
+        this.worldStory.substories.push(subId);
+      }
+    } else {
+      this.worldStory.substories = this.worldStory.substories.filter(id => id !== subId);
+    }
+  }
+
   onCharacterToggle(event: {id: string, isChecked: boolean}) {
     const character = this.characterList.find(c => c.id === event.id);
     if (character && this.worldStory) {
@@ -156,6 +188,20 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         this.worldStory.locations = this.worldStory.locations.filter(name => name !== location.name);
       }
       console.log(`Location ${location.name} ${event.isChecked ? 'added to' : 'removed from'} story`);
+    }
+  }
+
+  onSubstoryToggle(event: {id: string, isChecked: boolean}) {
+    const substory = this.storyList.find(s => s.id === event.id);
+    if (substory && this.worldStory) {
+      if (event.isChecked) {
+        if (!this.worldStory.substories.includes(substory.title)) {
+          this.worldStory.substories.push(substory.title);
+        }
+      } else {
+        this.worldStory.substories = this.worldStory.substories.filter(title => title !== substory.title);
+      }
+      console.log(`Substory ${substory.title} ${event.isChecked ? 'added to' : 'removed from'} story`);
     }
   }
 
@@ -273,6 +319,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
           this.worldStory.characters,
           this.worldStory.locations,
           this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
+          this.worldStory.substories ?? []
         );
         
         console.log('Story updated successfully');
@@ -282,6 +329,12 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         console.error('Failed to update story:', error);
         // Optionally show an error message to the user
       }
+    }
+  }
+
+  onSubstoryOrderChanged(newOrder: string[]) {
+    if (this.worldStory) {
+      this.worldStory.substories = [...newOrder];
     }
   }
   

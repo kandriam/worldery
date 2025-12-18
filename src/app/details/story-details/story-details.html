@@ -20,6 +20,16 @@
                             <textarea id="story-description" class="details-description" formControlName="storyDescription" placeholder="Describe the plot, themes, and key events of this story..."></textarea>
                         </div>
                     </div>
+
+                    <app-substory-list
+                        [stories]="getSubstoryListForComponent()"
+                        [label]="'Substories'"
+                        [type]="'story'"
+                        [substoryIds]="worldStory?.substories"
+                        (itemToggled)="onSubstoryListToggled($event)"
+                        (substoryOrderChanged)="onSubstoryOrderChanged($event)">
+                    </app-substory-list>
+
                     <app-association-list
                         [items]="getCharactersAssociationList()"
                         [label]="'Story Characters'"
@@ -32,11 +42,12 @@
                         [type]="'location'"
                         (itemToggled)="onLocationToggle($event)">
                     </app-association-list>
+                
+                    
                     <div class="details-section secondary-section">
                         <label class="primary-label" for="story-tags">Story Tags</label>
                         <textarea class="small-textarea" id="story-tags" formControlName="storyTags" placeholder="Enter tags separated by commas..."></textarea>
                     </div>
-                    
                     <button type="submit" class="save-button primary">Save</button>
                 </section>
             </form>
