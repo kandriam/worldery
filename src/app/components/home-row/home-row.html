@@ -20,7 +20,7 @@
   <div class="home-row-results">
     @if (filteredEntities.length) {
       @if (isEventList(filteredEntities)) {
-        @for(worldEvent of filteredEntities; track $index) {
+        @for(worldEvent of filteredEntities; track worldEvent.id) {
           <app-event-thumbnail 
             [worldEvent]="worldEvent"
             [showDate]="showDate"
@@ -31,7 +31,7 @@
           </app-event-thumbnail>
         }
       } @else if (isLocationList(filteredEntities)) {
-        @for(worldLocation of filteredEntities; track $index) {
+        @for(worldLocation of filteredEntities; track worldLocation.id) {
           <app-location-thumbnail 
             [worldLocation]="worldLocation"
             [showDate]="showDate"
@@ -42,7 +42,7 @@
           </app-location-thumbnail>
         }
       } @else if (isCharacterList(filteredEntities)) {
-        @for(worldCharacter of filteredEntities; track $index) {
+        @for(worldCharacter of filteredEntities; track worldCharacter.id) {
           <app-character-thumbnail 
             [worldCharacter]="worldCharacter"
             [showDate]="showDate"
@@ -53,7 +53,7 @@
           </app-character-thumbnail>
         }
       } @else if (isStoryList(filteredEntities)) {
-        @for(worldStory of filteredStories; track $index) {
+        @for(worldStory of filteredStories; track worldStory.id) {
           <app-story-thumbnail 
             [worldStory]="worldStory"
             [showDate]="showDate"

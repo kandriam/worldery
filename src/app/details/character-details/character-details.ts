@@ -667,6 +667,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     const eventTagsInput = this.applyForm.value.eventTags || '';
     const tags = eventTagsInput.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
     const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+    const characterId = this.worldCharacter?.id || '';
     let date = '';
     if (!this.worldCharacter) {
       alert('No character selected.');
@@ -699,7 +700,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     }
     let eventTitle = `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`;
     let eventDescription = `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`;
-    let eventCharacters = [characterName];
+    let eventCharacters = [characterId];
     let eventStories = this.worldCharacter.stories || [];
     let eventTags = [...tags, eventType === 'birth' ? 'birth' : 'death'];
 

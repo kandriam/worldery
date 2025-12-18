@@ -66,17 +66,21 @@ export class HomeRow {
 
   get filteredStories(): WorldStoryInfo[] {
     const stories = this.filteredEntities as WorldStoryInfo[];
-    // Collect all substory IDs from all stories
-    const allSubstoryIds = new Set<string>();
+    // Build a set of all story IDs currently in the filtered list
+    const visibleStoryIds = new Set(stories.map(s => s.id));
+    // Build a set of substories whose parent is also visible
+    const substoriesWithVisibleParent = new Set<string>();
     for (const story of stories) {
       if (Array.isArray(story.substories)) {
         for (const subId of story.substories) {
-          allSubstoryIds.add(subId);
+          if (visibleStoryIds.has(story.id)) {
+            substoriesWithVisibleParent.add(subId);
+          }
         }
       }
     }
-    // Only return stories that are NOT a substory of any other story
-    return stories.filter(story => !allSubstoryIds.has(story.id));
+    // Only return stories that are NOT a substory of any other visible story
+    return stories.filter(story => !substoriesWithVisibleParent.has(story.id));
   }
   @Input() noResultsMessage!: string;
   

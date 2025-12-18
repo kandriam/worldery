@@ -44,27 +44,9 @@
     },
     {
       "id": "10",
-      "name": "Kiara Ravao's Birth",
-      "date": "2203-07-11",
-      "description": "Kiara Ravao's birth.",
-      "location": [],
-      "characters": [
-        "Kiara Ravao"
-      ],
-      "stories": [
-        "1",
-        "2",
-        "3"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "11",
-      "name": "Baram Han's Death",
-      "date": "2214-06-08",
-      "description": "Baram Han's death.",
+      "name": "Baram Gray's Death",
+      "date": "2214-06-06",
+      "description": "Baram Gray's death.",
       "location": [],
       "characters": [
         "30"
@@ -75,124 +57,17 @@
       ]
     },
     {
-      "id": "12",
-      "name": "Baram Han's Birth",
-      "date": "2179-10-24",
-      "description": "Baram Han's birth.",
+      "id": "10",
+      "name": "Baram Gray Han's Death",
+      "date": "2214-06-06",
+      "description": "Baram Gray Han's death.",
       "location": [],
       "characters": [
         "30"
       ],
       "stories": [],
       "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "13",
-      "name": "Judy Han's Birth",
-      "date": "2201-12-26",
-      "description": "Judy Han's birth.",
-      "location": [],
-      "characters": [
-        "Judy Han"
-      ],
-      "stories": [
-        "1",
-        "2",
-        "3"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "14",
-      "name": "Cassandra Edwards's Birth",
-      "date": "2200-06-01",
-      "description": "Cassandra Edwards's birth.",
-      "location": [],
-      "characters": [
-        "Cassandra Edwards"
-      ],
-      "stories": [
-        "1",
-        "2",
-        "3"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "15",
-      "name": "Thibault Hibou's Birth",
-      "date": "2201-11-27",
-      "description": "Thibault Hibou's birth.",
-      "location": [],
-      "characters": [
-        "Thibault Hibou"
-      ],
-      "stories": [
-        "1",
-        "2",
-        "3"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "15",
-      "name": "Thibault Hibou's Birth",
-      "date": "2201-11-27",
-      "description": "Thibault Hibou's birth.",
-      "location": [],
-      "characters": [
-        "Thibault Hibou"
-      ],
-      "stories": [
-        "Fire & Ice Series",
-        "Fire & Ice",
-        "Blood & Water"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "16",
-      "name": "Benny 's Birth",
-      "date": "2200-01-01",
-      "description": "Benny 's birth.",
-      "location": [],
-      "characters": [
-        "Benny "
-      ],
-      "stories": [
-        "6"
-      ],
-      "tags": [
-        "birth"
-      ]
-    },
-    {
-      "id": "17",
-      "name": "Cassandra Edwards's Birth",
-      "date": "2212-07-01",
-      "description": "Cassandra Edwards's birth.",
-      "location": [],
-      "characters": [
-        "Cassandra Edwards"
-      ],
-      "stories": [
-        "1",
-        "2",
-        "3",
-        "5"
-      ],
-      "tags": [
-        "birth"
+        "death"
       ]
     }
   ],
@@ -438,8 +313,8 @@
         "Phoenix",
         "Ki"
       ],
-      "birthdate": "2203-07-11",
-      "birthEventId": "10",
+      "birthdate": "",
+      "birthEventId": "",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "she/they",
@@ -504,8 +379,8 @@
         "Jay",
         "Blue Jay"
       ],
-      "birthdate": "2201-12-26",
-      "birthEventId": "13",
+      "birthdate": "",
+      "birthEventId": "",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "she/they",
@@ -569,8 +444,8 @@
       "altNames": [
         "Cassie"
       ],
-      "birthdate": "2212-07-01",
-      "birthEventId": "17",
+      "birthdate": "",
+      "birthEventId": "",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "she/her",
@@ -3752,8 +3627,8 @@
       "firstName": "Benny",
       "lastName": "",
       "altNames": [],
-      "birthdate": "2200-01-01",
-      "birthEventId": "16",
+      "birthdate": "",
+      "birthEventId": "",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "any/all",
@@ -3776,19 +3651,10 @@
       "birthEventId": "",
       "deathdate": "",
       "deathEventId": "",
-      "pronouns": "",
+      "pronouns": "she/her",
       "roles": [],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "28",
-          "hasRelationship": true,
-          "relationshipType": [
-            "Friend"
-          ],
-          "relationshipDescription": "Friend"
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
@@ -3799,12 +3665,14 @@
     {
       "id": "30",
       "firstName": "Baram",
-      "lastName": "Han",
-      "altNames": [],
-      "birthdate": "2179-10-24",
-      "birthEventId": "12",
-      "deathdate": "2214-06-08",
-      "deathEventId": "11",
+      "lastName": "Gray",
+      "altNames": [
+        "Baram Han"
+      ],
+      "birthdate": "",
+      "birthEventId": "",
+      "deathdate": "2214-06-06",
+      "deathEventId": "10",
       "pronouns": "",
       "roles": [],
       "affiliations": [],
@@ -3821,8 +3689,8 @@
       "altNames": [
         "The Owl"
       ],
-      "birthdate": "2201-11-27",
-      "birthEventId": "15",
+      "birthdate": "",
+      "birthEventId": "",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "he/him",
@@ -3887,7 +3755,6 @@
         "25",
         "26",
         "28",
-        "29",
         "31",
         "2"
       ],
@@ -3897,10 +3764,7 @@
       "tags": [
         "Dystopian"
       ],
-      "substories": [
-        "2",
-        "3"
-      ]
+      "substories": []
     },
     {
       "id": "2",
@@ -3932,7 +3796,6 @@
         "25",
         "26",
         "28",
-        "29",
         "31",
         "2"
       ],
@@ -3987,7 +3850,6 @@
         "25",
         "26",
         "28",
-        "29",
         "31"
       ],
       "locations": [

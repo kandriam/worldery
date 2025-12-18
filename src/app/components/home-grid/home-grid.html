@@ -20,7 +20,7 @@
   <div class="home-grid-results">
     @if (entities.length) {
       @if (isEventList(entities)) {
-        @for(worldEvent of entities; track $index) {
+        @for(worldEvent of entities; track worldEvent.id) {
           <app-event-thumbnail 
             [worldEvent]="worldEvent"
             [showDate]="showDate"
@@ -31,7 +31,7 @@
           </app-event-thumbnail>
         }
       } @else if (isLocationList(entities)) {
-        @for(worldLocation of entities; track $index) {
+        @for(worldLocation of entities; track worldLocation.id) {
           <app-location-thumbnail 
             [worldLocation]="worldLocation"
             [showDate]="showDate"
@@ -42,7 +42,7 @@
           </app-location-thumbnail>
         }
       } @else if (isCharacterList(entities)) {
-        @for(worldCharacter of entities; track $index) {
+        @for(worldCharacter of entities; track worldCharacter.id) {
           <app-character-thumbnail 
             [worldCharacter]="worldCharacter"
             [showDate]="showDate"
@@ -53,7 +53,7 @@
           </app-character-thumbnail>
         }
       } @else if (isStoryList(entities)) {
-        @for(worldStory of entities; track $index) {
+        @for(worldStory of entities; track worldStory.id) {
           <app-story-thumbnail 
             [worldStory]="worldStory"
             [showDate]="showDate"
