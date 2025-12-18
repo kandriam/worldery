@@ -5,7 +5,7 @@ import {Component, inject, input, output} from '@angular/core';
 import {WorldEventInfo} from '../../../worldevent';
 import {RouterLink } from '@angular/router';
 import { WorldEventService } from '../../../services/world-event.service';
-
+import { WorldLocationService } from 'src/app/services/world-location.service';
 @Component({
   selector: 'app-event-thumbnail',
   imports: [RouterLink],
@@ -20,6 +20,7 @@ export class EventThumbnail {
   showCharacters = input<boolean>(true);
   showStories = input<boolean>(true);
   worldEventService = inject(WorldEventService);
+  worldLocationService = inject(WorldLocationService);
   
   tagClicked = output<string>();
   characterService = inject(WorldCharacterService);
@@ -27,6 +28,7 @@ export class EventThumbnail {
 
   characterNames: string[] = [];
   storyTitles: string[] = [];
+  locationNames: string[] = [];
 
   async ngOnInit() {
     // Resolve character IDs to names
@@ -41,7 +43,14 @@ export class EventThumbnail {
       const s = allStories.find((story: any) => story.id === id);
       return s ? s.title : id;
     });
+    // Resolve location IDs to names (location: string[])
+    const allLocations = await this.worldLocationService.getAllWorldLocations();
+    this.locationNames = (this.worldEvent().location || []).map(id => {
+      const l = allLocations.find((loc: any) => loc.id === id);
+      return l ? l.name : id;
+    });
   }
+
   deleteEvent(id: string, event: Event) {
     event.stopPropagation();
     console.log(`Delete event with ID: ${id}`);

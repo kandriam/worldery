@@ -9,9 +9,9 @@
         </div>
     }
     
-    @if (showLocation() && worldEvent().location.length > 0) {
+    @if (showLocation() && locationNames.length > 0) {
         <div class="thumbnail-location thumbnail-info">
-            {{ worldEvent().location.join(', ') }}
+            {{ locationNames.join(', ') }}
         </div>
     }
     

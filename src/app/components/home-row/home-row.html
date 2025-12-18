@@ -18,9 +18,9 @@
     <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>
   </div>
   <div class="home-row-results">
-    @if (entities.length) {
-      @if (isEventList(entities)) {
-        @for(worldEvent of entities; track $index) {
+    @if (filteredEntities.length) {
+      @if (isEventList(filteredEntities)) {
+        @for(worldEvent of filteredEntities; track $index) {
           <app-event-thumbnail 
             [worldEvent]="worldEvent"
             [showDate]="showDate"
@@ -30,8 +30,8 @@
             (tagClicked)="onTagClick($event)">
           </app-event-thumbnail>
         }
-      } @else if (isLocationList(entities)) {
-        @for(worldLocation of entities; track $index) {
+      } @else if (isLocationList(filteredEntities)) {
+        @for(worldLocation of filteredEntities; track $index) {
           <app-location-thumbnail 
             [worldLocation]="worldLocation"
             [showDate]="showDate"
@@ -41,8 +41,8 @@
             (tagClicked)="onTagClick($event)">
           </app-location-thumbnail>
         }
-      } @else if (isCharacterList(entities)) {
-        @for(worldCharacter of entities; track $index) {
+      } @else if (isCharacterList(filteredEntities)) {
+        @for(worldCharacter of filteredEntities; track $index) {
           <app-character-thumbnail 
             [worldCharacter]="worldCharacter"
             [showDate]="showDate"
@@ -52,7 +52,7 @@
             (tagClicked)="onTagClick($event)">
           </app-character-thumbnail>
         }
-      } @else if (isStoryList(entities)) {
+      } @else if (isStoryList(filteredEntities)) {
         @for(worldStory of filteredStories; track $index) {
           <app-story-thumbnail 
             [worldStory]="worldStory"

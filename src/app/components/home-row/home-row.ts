@@ -1,3 +1,9 @@
+export interface HomeRowFilterIds {
+  characterIds?: string[];
+  storyIds?: string[];
+  locationIds?: string[];
+  eventIds?: string[];
+}
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -21,14 +27,45 @@ export type EntityData = WorldEventInfo[] | WorldLocationInfo[] | WorldCharacter
   styleUrls: ['./home-row.css']
 })
 export class HomeRow {
+  @Input() filterIds?: HomeRowFilterIds;
+
+  get filteredEntities(): EntityData {
+    if (!this.filterIds) return this.entities;
+    if (this.entityType === 'character') {
+      let chars = this.entities as WorldCharacterInfo[];
+      const filterByChar = this.filterIds.characterIds && this.filterIds.characterIds.length;
+      const filterByStory = this.filterIds.storyIds && this.filterIds.storyIds.length;
+      if (filterByChar && filterByStory) {
+        // Intersection: must match both
+        chars = chars.filter(e =>
+          this.filterIds!.characterIds!.includes(e.id) &&
+          Array.isArray(e.stories) && e.stories.some(storyId => this.filterIds!.storyIds!.includes(storyId))
+        );
+      } else if (filterByChar) {
+        chars = chars.filter(e => this.filterIds!.characterIds!.includes(e.id));
+      } else if (filterByStory) {
+        chars = chars.filter(e => Array.isArray(e.stories) && e.stories.some(storyId => this.filterIds!.storyIds!.includes(storyId)));
+      }
+      return chars;
+    }
+    if (this.entityType === 'story' && this.filterIds.storyIds && this.filterIds.storyIds.length) {
+      return (this.entities as WorldStoryInfo[]).filter(e => this.filterIds!.storyIds!.includes(e.id));
+    }
+    if (this.entityType === 'location' && this.filterIds.locationIds && this.filterIds.locationIds.length) {
+      return (this.entities as WorldLocationInfo[]).filter(e => this.filterIds!.locationIds!.includes(e.id));
+    }
+    if (this.entityType === 'event' && this.filterIds.eventIds && this.filterIds.eventIds.length) {
+      return (this.entities as WorldEventInfo[]).filter(e => this.filterIds!.eventIds!.includes(e.id));
+    }
+    return this.entities;
+  }
   @Input() entityType!: EntityType;
   @Input() title!: string;
   @Input() routePath!: string;
   @Input() entities!: EntityData;
 
   get filteredStories(): WorldStoryInfo[] {
-    if (this.entityType !== 'story' || !Array.isArray(this.entities)) return this.entities as WorldStoryInfo[];
-    const stories = this.entities as WorldStoryInfo[];
+    const stories = this.filteredEntities as WorldStoryInfo[];
     // Collect all substory IDs from all stories
     const allSubstoryIds = new Set<string>();
     for (const story of stories) {

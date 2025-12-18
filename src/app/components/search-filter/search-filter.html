@@ -29,7 +29,7 @@
             @for (character of allCharacters; track character.id) {
               <label class="checkbox-label">
                 <input type="checkbox" 
-                       [value]="character.firstName + ' ' + character.lastName"
+                       [value]="character.id"
                        (change)="onCharacterFilterChange($event)"
                        class="filter-checkbox">
                 {{character.firstName}} {{character.lastName}}
@@ -46,7 +46,7 @@
             @for (story of allStories; track story.id) {
               <label class="checkbox-label">
                 <input type="checkbox" 
-                       [value]="story.title"
+                       [value]="story.id"
                        (change)="onStoryFilterChange($event)"
                        class="filter-checkbox">
                 {{story.title}}
@@ -63,7 +63,7 @@
             @for (location of allLocations; track location.id) {
               <label class="checkbox-label">
                 <input type="checkbox" 
-                       [value]="location.name"
+                       [value]="location.id"
                        (change)="onLocationFilterChange($event)"
                        class="filter-checkbox">
                 {{location.name}}
