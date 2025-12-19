@@ -302,44 +302,32 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
+          let newBirthEventId: string = character.birthEventId || '';
+          let newBirthdate: string = character.birthdate || '';
+          let newDeathEventId: string = character.deathEventId || '';
+          let newDeathdate: string = character.deathdate || '';
           // If this event was the character's birth event, but the character is no longer in the event's character list, clear it
-          if (character.birthEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
-            // character.birthEventId = '';
-            const birthdate = formattedDate;
+          if (character.birthEventId === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
+            newBirthEventId = '';
+            newBirthdate = '';
             changed = true;
-            await this.worldCharacterService.updateWorldCharacter(
-              character.id,
-              character.firstName,
-              character.lastName,
-              character.altNames,
-              birthdate || '',
-              character.birthEventId || '',
-              character.deathdate || '',
-              character.deathEventId || '',
-              character.pronouns,
-              character.roles,
-              character.affiliations,
-              character.relationships,
-              character.physicalDescription,
-              character.nonPhysicalDescription,
-              character.stories,
-              character.tags
-            );
           }
           // If this event was the character's death event, but the character is no longer in the event's character list, clear it
-          if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
-            // character.deathEventId = '';
-            const deathdate = formattedDate;
+          if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
+            newDeathEventId = '';
+            newDeathdate = '';
             changed = true;
+          }
+          if (changed) {
             await this.worldCharacterService.updateWorldCharacter(
               character.id,
               character.firstName,
               character.lastName,
               character.altNames,
-              character.birthdate || '',
-              character.birthEventId || '',
-              deathdate || '',
-              character.deathEventId || '',
+              newBirthdate,
+              newBirthEventId,
+              newDeathdate,
+              newDeathEventId,
               character.pronouns,
               character.roles,
               character.affiliations,
@@ -361,14 +349,18 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
+          let newBirthEventId = character.birthEventId;
+          let newBirthdate = character.birthdate;
+          let newDeathEventId = character.deathEventId;
+          let newDeathdate = character.deathdate;
           if (character.birthEventId === this.worldEvent!.id) {
-            character.birthEventId = '';
-            character.birthdate = '';
+            newBirthEventId = '';
+            newBirthdate = '';
             changed = true;
           }
           if (character.deathEventId === this.worldEvent!.id) {
-            character.deathEventId = '';
-            character.deathdate = '';
+            newDeathEventId = '';
+            newDeathdate = '';
             changed = true;
           }
           if (changed) {
@@ -377,10 +369,10 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.firstName,
               character.lastName,
               character.altNames,
-              character.birthdate || '',
-              character.birthEventId || '',
-              character.deathdate || '',
-              character.deathEventId || '',
+              newBirthdate || '',
+              newBirthEventId || '',
+              newDeathdate || '',
+              newDeathEventId || '',
               character.pronouns,
               character.roles,
               character.affiliations,
