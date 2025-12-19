@@ -69,6 +69,34 @@
       "tags": [
         "birth"
       ]
+    },
+    {
+      "id": "12",
+      "name": "James Gray's Death",
+      "date": "2218-12-16",
+      "description": "James Gray's death.",
+      "location": [],
+      "characters": [
+        "32"
+      ],
+      "stories": [],
+      "tags": [
+        "death"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "James Gray's Birth",
+      "date": "2175-06-09",
+      "description": "James Gray's birth.",
+      "location": [],
+      "characters": [
+        "32"
+      ],
+      "stories": [],
+      "tags": [
+        "birth"
+      ]
     }
   ],
   "worldlocations": [
@@ -3730,6 +3758,24 @@
         "2",
         "3"
       ],
+      "tags": []
+    },
+    {
+      "id": "32",
+      "firstName": "James",
+      "lastName": "Gray",
+      "altNames": [],
+      "birthdate": "2175-06-09",
+      "birthEventId": "13",
+      "deathdate": "2218-12-16",
+      "deathEventId": "12",
+      "pronouns": "",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [],
       "tags": []
     }
   ],

@@ -199,6 +199,8 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         if (!this.worldEvent.characters.includes(event.id)) {
           this.worldEvent.characters.push(event.id);
         }
+        // Ensure no duplicates
+        this.worldEvent.characters = Array.from(new Set(this.worldEvent.characters));
       } else {
         this.worldEvent.characters = this.worldEvent.characters.filter(id => id !== event.id);
       }
@@ -306,18 +308,30 @@ export class WorldEventDetails implements OnInit, OnDestroy {
           let newBirthdate: string = character.birthdate || '';
           let newDeathEventId: string = character.deathEventId || '';
           let newDeathdate: string = character.deathdate || '';
-          // If this event was the character's birth event, but the character is no longer in the event's character list, clear it
+
+          // Remove birth/death event and date if character is no longer associated
           if (character.birthEventId === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
             newBirthEventId = '';
             newBirthdate = '';
             changed = true;
           }
-          // If this event was the character's death event, but the character is no longer in the event's character list, clear it
           if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
             newDeathEventId = '';
             newDeathdate = '';
             changed = true;
           }
+
+          // If character is newly associated and this event is their birth event, set birthdate only if not already set
+          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.birthEventId && !character.birthdate) {
+            newBirthdate = formattedDate;
+            changed = true;
+          }
+          // If character is newly associated and this event is their death event, set deathdate only if not already set
+          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.deathEventId && !character.deathdate) {
+            newDeathdate = formattedDate;
+            changed = true;
+          }
+
           if (changed) {
             await this.worldCharacterService.updateWorldCharacter(
               character.id,
