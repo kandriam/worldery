@@ -108,7 +108,7 @@
   font-style: italic;
   color: var(--g3-color);
   margin: 5px 0;
-  font-size: small;
+  font-size: x-small;
 }
 
 .relationship-type-input {

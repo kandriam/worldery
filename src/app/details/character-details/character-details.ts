@@ -527,16 +527,20 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     this.worldCharacter.firstName = this.applyForm.value.characterFirstName ?? '';
     this.worldCharacter.lastName = this.applyForm.value.characterLastName ?? '';
     this.worldCharacter.altNames = this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [];
-    this.worldCharacter.birthdate = this.formatBirthdate(
+    const newBirthdate = this.formatBirthdate(
       this.applyForm.value.characterBirthYear || '',
       this.applyForm.value.characterBirthMonth || '',
       this.applyForm.value.characterBirthDay || ''
     );
-    this.worldCharacter.deathdate = this.formatBirthdate(
+    const newDeathdate = this.formatBirthdate(
       this.applyForm.value.characterDeathYear || '',
       this.applyForm.value.characterDeathMonth || '',
       this.applyForm.value.characterDeathDay || ''
     );
+    const prevBirthdate = this.worldCharacter.birthdate;
+    const prevDeathdate = this.worldCharacter.deathdate;
+    this.worldCharacter.birthdate = newBirthdate;
+    this.worldCharacter.deathdate = newDeathdate;
     this.worldCharacter.pronouns = this.applyForm.value.characterPronouns ?? '';
     this.worldCharacter.roles = this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [];
     this.worldCharacter.affiliations = this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [];
@@ -615,8 +619,12 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       });
     }
 
-    this.addCharacterEvent('birth');
-    this.addCharacterEvent('death');
+    if (newBirthdate && newBirthdate !== prevBirthdate) {
+      this.addCharacterEvent('birth');
+    }
+    if (newDeathdate && newDeathdate !== prevDeathdate) {
+      this.addCharacterEvent('death');
+    }
   }
   
   private updateStoryCharacters(story: WorldStoryInfo, fullStory: WorldStoryInfo, updatedCharacters: string[]) {

@@ -45,7 +45,7 @@
     {
       "id": "10",
       "name": "Baram Gray's Death",
-      "date": "2214-06-07",
+      "date": "2214-06-06",
       "description": "Baram Gray passes away from cancer",
       "location": [],
       "characters": [
@@ -54,6 +54,20 @@
       "stories": [],
       "tags": [
         "death"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Baram Gray's Birth",
+      "date": "2184-05-17",
+      "description": "Baram Gray's birth.",
+      "location": [],
+      "characters": [
+        "30"
+      ],
+      "stories": [],
+      "tags": [
+        "birth"
       ]
     }
   ],
@@ -3655,14 +3669,23 @@
       "altNames": [
         "Baram Han"
       ],
-      "birthdate": "",
-      "birthEventId": "",
-      "deathdate": "2214-06-07",
+      "birthdate": "2184-05-17",
+      "birthEventId": "11",
+      "deathdate": "2214-06-06",
       "deathEventId": "10",
       "pronouns": "",
       "roles": [],
       "affiliations": [],
-      "relationships": [],
+      "relationships": [
+        {
+          "relatedCharacterID": "2",
+          "hasRelationship": true,
+          "relationshipType": [
+            "Child"
+          ],
+          "relationshipDescription": "Baram Gray is Judy's mother."
+        }
+      ],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [],

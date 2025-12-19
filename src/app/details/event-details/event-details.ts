@@ -350,26 +350,6 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.tags
             );
           }
-          // if (changed) {
-          //   await this.worldCharacterService.updateWorldCharacter(
-          //     character.id,
-          //     character.firstName,
-          //     character.lastName,
-          //     character.altNames,
-          //     character.birthdate || '',
-          //     character.birthEventId || '',
-          //     character.deathdate || '',
-          //     character.deathEventId || '',
-          //     character.pronouns,
-          //     character.roles,
-          //     character.affiliations,
-          //     character.relationships,
-          //     character.physicalDescription,
-          //     character.nonPhysicalDescription,
-          //     character.stories,
-          //     character.tags
-          //   );
-          // }
         }
       });
     }
