@@ -1,3 +1,5 @@
+import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+
 import {Component, inject, input, output} from '@angular/core';
 import { NgClass } from '@angular/common';
 import {WorldStoryInfo} from '../../../worldstory';
@@ -28,7 +30,26 @@ export class StoryThumbnail {
   substories: WorldStoryInfo[] = [];
   characterNames: string[] = [];
   locationNames: string[] = [];
+  @ViewChild('substoriesRow', { static: false }) substoriesRowRef?: ElementRef<HTMLDivElement>;
+  @ViewChild('root', { static: false }) rootRef?: ElementRef<HTMLDivElement>;
+  ngAfterViewInit() {
+    this.adjustWidthToSubstories();
+  }
 
+  async adjustWidthToSubstories() {
+    // Wait for substories to render
+    setTimeout(() => {
+      if (this.substoriesRowRef && this.rootRef) {
+        const substoriesEl = this.substoriesRowRef.nativeElement;
+        const rootEl = this.rootRef.nativeElement;
+        if (substoriesEl && rootEl) {
+          const substoriesWidth = substoriesEl.offsetWidth;
+          // Only grow, never shrink below 15rem
+          rootEl.style.width = Math.max(substoriesWidth, 240) + 'px';
+        }
+      }
+    }, 0);
+  }
   async ngOnInit() {
     // Resolve related location IDs to names
     const allLocations = await this.locationService.getAllWorldLocations();

@@ -706,16 +706,17 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     try {
       if (eventId) {
         // Update existing event
+        const existingEvent = await this.worldEventService.getWorldEventById(eventId);
         this.worldEventService.updateWorldEvent(
           eventId,
           eventTitle,
           date,
           '',
-          eventDescription,
-          [],
-          eventCharacters,
-          eventStories,
-          eventTags
+          existingEvent?.description || eventDescription,
+          existingEvent?.location || [],
+          existingEvent?.characters || eventCharacters,
+          existingEvent?.stories || eventStories,
+          existingEvent?.tags || eventTags
         );
         // Also update the character's date in the database
         if (eventType === 'birth') {

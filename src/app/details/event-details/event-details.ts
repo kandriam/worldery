@@ -304,23 +304,15 @@ export class WorldEventDetails implements OnInit, OnDestroy {
           let changed = false;
           // If this event was the character's birth event, but the character is no longer in the event's character list, clear it
           if (character.birthEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
-            character.birthEventId = '';
-            character.birthdate = '';
+            // character.birthEventId = '';
+            const birthdate = formattedDate;
             changed = true;
-          }
-          // If this event was the character's death event, but the character is no longer in the event's character list, clear it
-          if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
-            character.deathEventId = '';
-            character.deathdate = '';
-            changed = true;
-          }
-          if (changed) {
             await this.worldCharacterService.updateWorldCharacter(
               character.id,
               character.firstName,
               character.lastName,
               character.altNames,
-              character.birthdate || '',
+              birthdate || '',
               character.birthEventId || '',
               character.deathdate || '',
               character.deathEventId || '',
@@ -334,6 +326,50 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.tags
             );
           }
+          // If this event was the character's death event, but the character is no longer in the event's character list, clear it
+          if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(`${character.firstName} ${character.lastName}`)) {
+            // character.deathEventId = '';
+            const deathdate = formattedDate;
+            changed = true;
+            await this.worldCharacterService.updateWorldCharacter(
+              character.id,
+              character.firstName,
+              character.lastName,
+              character.altNames,
+              character.birthdate || '',
+              character.birthEventId || '',
+              deathdate || '',
+              character.deathEventId || '',
+              character.pronouns,
+              character.roles,
+              character.affiliations,
+              character.relationships,
+              character.physicalDescription,
+              character.nonPhysicalDescription,
+              character.stories,
+              character.tags
+            );
+          }
+          // if (changed) {
+          //   await this.worldCharacterService.updateWorldCharacter(
+          //     character.id,
+          //     character.firstName,
+          //     character.lastName,
+          //     character.altNames,
+          //     character.birthdate || '',
+          //     character.birthEventId || '',
+          //     character.deathdate || '',
+          //     character.deathEventId || '',
+          //     character.pronouns,
+          //     character.roles,
+          //     character.affiliations,
+          //     character.relationships,
+          //     character.physicalDescription,
+          //     character.nonPhysicalDescription,
+          //     character.stories,
+          //     character.tags
+          //   );
+          // }
         }
       });
     }
@@ -407,7 +443,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     }
     
     const paddedMonth = monthNumber.toString().padStart(2, '0');
-    const paddedDay = day.padStart(2, '0');
+    const paddedDay = String(day).padStart(2, '0');
     
     return `${year}-${paddedMonth}-${paddedDay}`;
   }

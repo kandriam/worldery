@@ -45,22 +45,8 @@
     {
       "id": "10",
       "name": "Baram Gray's Death",
-      "date": "2214-06-06",
-      "description": "Baram Gray's death.",
-      "location": [],
-      "characters": [
-        "30"
-      ],
-      "stories": [],
-      "tags": [
-        "death"
-      ]
-    },
-    {
-      "id": "10",
-      "name": "Baram Gray's Death",
-      "date": "2214-06-06",
-      "description": "Baram Gray's death.",
+      "date": "2214-06-07",
+      "description": "Baram Gray passes away from cancer",
       "location": [],
       "characters": [
         "30"
@@ -3671,7 +3657,7 @@
       ],
       "birthdate": "",
       "birthEventId": "",
-      "deathdate": "2214-06-06",
+      "deathdate": "2214-06-07",
       "deathEventId": "10",
       "pronouns": "",
       "roles": [],

@@ -17,6 +17,7 @@
     </div>
     <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>
   </div>
+  
   <div class="home-row-results">
     @if (filteredEntities.length) {
       @if (isEventList(filteredEntities)) {
