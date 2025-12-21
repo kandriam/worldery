@@ -97,6 +97,220 @@
       "tags": [
         "birth"
       ]
+    },
+    {
+      "id": "14",
+      "name": "Kiara Ravao's Birth",
+      "date": "2203-07-09",
+      "description": "Kiara Ravao's birth.",
+      "location": [],
+      "characters": [
+        "1"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Judy Han's Birth",
+      "date": "2202-02-16",
+      "description": "Judy Han's birth.",
+      "location": [],
+      "characters": [
+        "2"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Cassandra Edwards's Birth",
+      "date": "2200-06-06",
+      "description": "Cassandra Edwards's birth.",
+      "location": [],
+      "characters": [
+        "3"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Rudy Edwards's Birth",
+      "date": "2200-06-06",
+      "description": "Rudy Edwards's birth.",
+      "location": [],
+      "characters": [
+        "4"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Willow Rivera-Anderson's Birth",
+      "date": "2202-04-02",
+      "description": "Willow Rivera-Anderson's birth.",
+      "location": [],
+      "characters": [
+        "5"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Matthew Rivera-Anderson's Birth",
+      "date": "2201-04-17",
+      "description": "Matthew Rivera-Anderson's birth.",
+      "location": [],
+      "characters": [
+        "6"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Leo Deng's Birth",
+      "date": "2199-11-29",
+      "description": "Leo Deng's birth.",
+      "location": [],
+      "characters": [
+        "7"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Melissa Joore's Birth",
+      "date": "2200-01-12",
+      "description": "Melissa Joore's birth.",
+      "location": [],
+      "characters": [
+        "8"
+      ],
+      "stories": [
+        "4"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Sandra Jackson's Birth",
+      "date": "2222-07-02",
+      "description": "Sandra Jackson's birth.",
+      "location": [],
+      "characters": [
+        "9"
+      ],
+      "stories": [
+        "4"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "23",
+      "name": "William Hardin's Birth",
+      "date": "2201-02-15",
+      "description": "William Hardin's birth.",
+      "location": [],
+      "characters": [
+        "10"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Alex 's Birth",
+      "date": "2206-10-02",
+      "description": "Alex 's birth.",
+      "location": [],
+      "characters": [
+        "11"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Shannon Dubois's Birth",
+      "date": "2205-03-02",
+      "description": "Shannon Dubois's birth.",
+      "location": [],
+      "characters": [
+        "12"
+      ],
+      "stories": [
+        "1",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "birth"
+      ]
     }
   ],
   "worldlocations": [
@@ -341,8 +555,8 @@
         "Phoenix",
         "Ki"
       ],
-      "birthdate": "",
-      "birthEventId": "",
+      "birthdate": "2203-07-09",
+      "birthEventId": "14",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "she/they",
@@ -357,34 +571,9 @@
           "relatedCharacterID": "2",
           "hasRelationship": true,
           "relationshipType": [
-            "Roommate",
-            "Partner"
+            ""
           ],
-          "relationshipDescription": "Judy and Kiara started as roommates, before they began dating"
-        },
-        {
-          "relatedCharacterID": "5",
-          "hasRelationship": true,
-          "relationshipType": [
-            "Best Friend"
-          ],
-          "relationshipDescription": "Kiara and Willow have been best friends since childhood."
-        },
-        {
-          "relatedCharacterID": "6",
-          "hasRelationship": true,
-          "relationshipType": [
-            "Friend"
-          ],
-          "relationshipDescription": "Kiara and Matthew have been friends since childhood"
-        },
-        {
-          "relatedCharacterID": "7",
-          "hasRelationship": true,
-          "relationshipType": [
-            "Friend"
-          ],
-          "relationshipDescription": "Kiara met Leo at Cat's Tea, where Leo worked."
+          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
@@ -407,8 +596,8 @@
         "Jay",
         "Blue Jay"
       ],
-      "birthdate": "",
-      "birthEventId": "",
+      "birthdate": "2202-02-16",
+      "birthEventId": "15",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "she/they",
@@ -472,8 +661,8 @@
       "altNames": [
         "Cassie"
       ],
-      "birthdate": "",
-      "birthEventId": "",
+      "birthdate": "2200-06-06",
+      "birthEventId": "16",
       "deathdate": "",
       "deathEventId": "",
       "pronouns": "she/her",
@@ -512,8 +701,10 @@
       "altNames": [
         "Rue"
       ],
-      "birthdate": "2200-06-01",
+      "birthdate": "2200-06-06",
+      "birthEventId": "17",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/her",
       "roles": [
         "Vigilante"
@@ -523,52 +714,12 @@
       ],
       "relationships": [
         {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
           "relatedCharacterID": "3",
+          "hasRelationship": true,
           "relationshipType": [
             "Twin Sister"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Cassandra and Rudy are twins who share a close bond. They often work together in their vigilante activities and support each other in their personal lives."
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Purple hair, gray eyes, Caucasian",
@@ -590,7 +741,9 @@
         "Will"
       ],
       "birthdate": "2202-04-02",
+      "birthEventId": "18",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/they",
       "roles": [
         "Support Character"
@@ -601,26 +754,26 @@
       "relationships": [
         {
           "relatedCharacterID": "1",
+          "hasRelationship": true,
           "relationshipType": [
             "Best Friend"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Willow and Kiara have been best friends since childhood. They support each other through thick and thin, with Willow often providing a grounding presence for the more impulsive Kiara."
         },
         {
           "relatedCharacterID": "6",
+          "hasRelationship": true,
           "relationshipType": [
             "Sibling"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. Although Matthew is older, Willow would protect him when they were children as Matt was quiet, shy and often bullied."
         },
         {
           "relatedCharacterID": "7",
+          "hasRelationship": true,
           "relationshipType": [
             "Romantic Partner"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Willow and Leo began dating after Kiara introduced them to one another."
         }
       ],
@@ -642,8 +795,10 @@
       "altNames": [
         "Matt"
       ],
-      "birthdate": "2201-04-16",
+      "birthdate": "2201-04-17",
+      "birthEventId": "19",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "he/him",
       "roles": [
         "Support Character"
@@ -654,10 +809,10 @@
       "relationships": [
         {
           "relatedCharacterID": "5",
+          "hasRelationship": true,
           "relationshipType": [
             "Sibling"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Willow and Matthew are siblings who share a close bond. They support each other through their personal and vigilante lives."
         }
       ],
@@ -677,24 +832,17 @@
       "firstName": "Leo",
       "lastName": "Deng",
       "altNames": [],
-      "birthdate": "2199-11-30",
+      "birthdate": "2199-11-29",
+      "birthEventId": "20",
       "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/her",
       "roles": [
         "Support Character",
         "Cafe Owner"
       ],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            "Romantic Partner"
-          ],
-          "hasRelationship": true,
-          "relationshipDescription": "Willow and Leo met at Cat's Tea."
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "Black hair, brown eyes, Asian-American",
       "nonPhysicalDescription": "super strength and hyposensitivity.",
       "stories": [
@@ -713,70 +861,16 @@
       "altNames": [
         "Messie"
       ],
-      "birthdate": "2200-01-01",
+      "birthdate": "2200-01-12",
+      "birthEventId": "21",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "they/she",
       "roles": [
         "Student"
       ],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "Short, brown hair",
       "nonPhysicalDescription": "NonGifted",
       "stories": [
@@ -791,220 +885,14 @@
       "altNames": [
         "Sandy"
       ],
-      "birthdate": "2222-07-01",
+      "birthdate": "2222-07-02",
+      "birthEventId": "22",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/they",
       "roles": [],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "21",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "22",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "23",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "24",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "25",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "26",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "27",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
@@ -1019,7 +907,10 @@
       "altNames": [
         "Will"
       ],
-      "birthdate": "2201-02-16",
+      "birthdate": "2201-02-15",
+      "birthEventId": "23",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "he/him",
       "roles": [
         "Safehouse educator"
@@ -1029,77 +920,21 @@
       ],
       "relationships": [
         {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
           "relatedCharacterID": "2",
+          "hasRelationship": true,
           "relationshipType": [
             "Friend"
           ],
-          "hasRelationship": true,
           "relationshipDescription": ""
         },
         {
           "relatedCharacterID": "3",
+          "hasRelationship": true,
           "relationshipType": [
             "Best friend",
             "mutually attracted"
           ],
-          "hasRelationship": true,
           "relationshipDescription": "Works"
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
         }
       ],
       "physicalDescription": "Black American man with glasses",
@@ -1117,129 +952,28 @@
       "firstName": "Alex",
       "lastName": "",
       "altNames": [],
-      "birthdate": "2206-10-01",
+      "birthdate": "2206-10-02",
+      "birthEventId": "24",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "he/they",
       "roles": [],
       "affiliations": [],
       "relationships": [
         {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
           "relatedCharacterID": "3",
+          "hasRelationship": true,
           "relationshipType": [
             ""
           ],
-          "hasRelationship": true,
           "relationshipDescription": ""
         },
         {
           "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
           "hasRelationship": true,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
           "relationshipType": [
             ""
           ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
           "relationshipDescription": ""
         }
       ],
@@ -1257,132 +991,14 @@
       "firstName": "Shannon",
       "lastName": "Dubois",
       "altNames": [],
-      "birthdate": "2205-03-01",
+      "birthdate": "2205-03-02",
+      "birthEventId": "25",
+      "deathdate": "",
+      "deathEventId": "",
       "pronouns": "she/they",
       "roles": [],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
@@ -3791,8 +3407,6 @@
         "5",
         "6",
         "7",
-        "8",
-        "9",
         "10",
         "11",
         "12",
@@ -3832,8 +3446,6 @@
         "5",
         "6",
         "7",
-        "8",
-        "9",
         "10",
         "11",
         "12",
@@ -3885,8 +3497,6 @@
         "5",
         "6",
         "7",
-        "8",
-        "9",
         "10",
         "11",
         "12",
@@ -3957,7 +3567,9 @@
         "23",
         "24",
         "25",
-        "26"
+        "26",
+        "3",
+        "10"
       ],
       "locations": [
         "9",

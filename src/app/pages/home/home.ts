@@ -111,7 +111,12 @@ export class Home {
           worldCharacter?.tags.join(' '),
           worldCharacter?.firstName,
           worldCharacter?.lastName,
-          worldCharacter?.altNames.join(' '))
+          worldCharacter?.altNames.join(' '),
+          worldCharacter?.physicalDescription,
+          worldCharacter?.nonPhysicalDescription,
+          worldCharacter?.roles.join(' '),
+          worldCharacter?.affiliations.join(' ')
+        )
       );
       
       filteredStories = filteredStories.filter((worldStory) =>
