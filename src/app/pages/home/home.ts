@@ -103,7 +103,10 @@ export class Home {
         matchesSearchTerms(filterState.searchTerms,
           worldLocation?.tags.join(' '),
           worldLocation?.name,
-          worldLocation?.description)
+          worldLocation?.description,
+          worldLocation?.characters.join(' '),
+          worldLocation?.stories.join(' ')
+        )
       );
       
       filteredCharacters = filteredCharacters.filter((worldCharacter) =>
@@ -123,7 +126,10 @@ export class Home {
         matchesSearchTerms(filterState.searchTerms,
           worldStory?.tags.join(' '),
           worldStory?.title,
-          worldStory?.description)
+          worldStory?.description,
+          worldStory?.characters.join(' '),
+          worldStory?.locations.join(' ')
+        )
       );
     }
     

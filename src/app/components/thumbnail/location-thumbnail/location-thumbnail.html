@@ -3,6 +3,11 @@
         <h4 class="thumbnail-title">{{ worldLocation().name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteLocation(worldLocation().id, $event)">Delete</button>
     </div>
+    <!-- @if (showDate() && worldLocation().date) {
+        <div class="thumbnail-date thumbnail-info">
+            {{ formattedDate }}
+        </div>
+    } -->
     
     @if (showCharacters() && characterNames.length > 0) {
         <div class="thumbnail-info thumbnail-characters">

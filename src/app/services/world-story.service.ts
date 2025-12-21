@@ -35,7 +35,6 @@ export class WorldStoryService {
     try {
       // Get current story to track changes
       const currentStory = await this.getWorldStoryById(storyID);
-      const oldTitle = currentStory?.title || '';
       const oldCharacters = currentStory?.characters || [];
       const oldLocations = currentStory?.locations || [];
 

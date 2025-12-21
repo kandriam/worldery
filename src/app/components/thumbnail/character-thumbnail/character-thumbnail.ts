@@ -1,4 +1,5 @@
 import {Component, inject, input, output} from '@angular/core';
+import { SettingsService } from '../../../services/settings.service';
 import {WorldCharacterInfo} from '../../../worldcharacter';
 import {RouterLink } from '@angular/router';
 import { WorldCharacterService } from '../../../services/world-character.service';
@@ -13,6 +14,7 @@ import { WorldStoryService } from 'src/app/services/world-story.service';
 
 export class CharacterThumbnail {
   characterService = inject(WorldCharacterService);
+  settingsService = inject(SettingsService);
   worldCharacter = input.required<WorldCharacterInfo>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
@@ -43,5 +45,10 @@ export class CharacterThumbnail {
   onTagClick(tag: string, event: Event) {
     event.stopPropagation();
     this.tagClicked.emit(tag);
+  }
+  get formattedBirthdate(): string | null {
+    const date = this.worldCharacter().birthdate;
+    if (!date) return null;
+    return this.settingsService.formatDate(date);
   }
 }

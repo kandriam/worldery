@@ -1,6 +1,7 @@
 import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 
 import {Component, inject, input, output} from '@angular/core';
+import { SettingsService } from '../../../services/settings.service';
 import { NgClass } from '@angular/common';
 import {WorldStoryInfo} from '../../../worldstory';
 import { WorldLocationService } from '../../../services/world-location.service';  
@@ -19,6 +20,7 @@ export class StoryThumbnail {
   storyService = inject(WorldStoryService);
   locationService = inject(WorldLocationService);
   characterService = inject(WorldCharacterService);
+  settingsService = inject(SettingsService);
   worldStory = input.required<WorldStoryInfo>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
@@ -85,4 +87,9 @@ export class StoryThumbnail {
     event.stopPropagation();
     this.tagClicked.emit(tag);
   }
+  // get formattedDate(): string | null {
+  //   const date = this.worldStory().date;
+  //   if (!date) return null;
+  //   return this.settingsService.formatDate(date);
+  // }
 }

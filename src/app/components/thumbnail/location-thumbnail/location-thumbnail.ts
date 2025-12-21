@@ -1,4 +1,5 @@
 import { Component, input, inject, output } from '@angular/core';
+import { SettingsService } from '../../../services/settings.service';
 import { WorldLocationInfo } from '../../../worldlocation';
 import {RouterLink } from '@angular/router';
 import { WorldLocationService } from '../../../services/world-location.service';
@@ -14,6 +15,7 @@ export class LocationThumbnail {
   locationService = inject(WorldLocationService);
   characterService = inject(WorldCharacterService);
   storyService = inject(WorldStoryService);
+  settingsService = inject(SettingsService);
   worldLocation = input.required<WorldLocationInfo>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
@@ -59,4 +61,5 @@ export class LocationThumbnail {
     event.stopPropagation();
     this.tagClicked.emit(tag);
   }
+  // get formattedDate(): string | null {
 }

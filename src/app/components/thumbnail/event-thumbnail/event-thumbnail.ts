@@ -2,6 +2,7 @@ import { WorldCharacterService } from '../../../services/world-character.service
 import { WorldStoryService } from '../../../services/world-story.service';
 
 import {Component, inject, input, output} from '@angular/core';
+import { SettingsService } from '../../../services/settings.service';
 import {WorldEventInfo} from '../../../worldevent';
 import {RouterLink } from '@angular/router';
 import { WorldEventService } from '../../../services/world-event.service';
@@ -21,6 +22,7 @@ export class EventThumbnail {
   showStories = input<boolean>(true);
   worldEventService = inject(WorldEventService);
   worldLocationService = inject(WorldLocationService);
+  settingsService = inject(SettingsService);
   
   tagClicked = output<string>();
   characterService = inject(WorldCharacterService);
@@ -60,5 +62,10 @@ export class EventThumbnail {
   onTagClick(tag: string, event: Event) {
     event.stopPropagation();
     this.tagClicked.emit(tag);
+  }
+  get formattedDate(): string | null {
+    const date = this.worldEvent().date;
+    if (!date) return null;
+    return this.settingsService.formatDate(date);
   }
 }
