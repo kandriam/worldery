@@ -273,7 +273,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     return locations;
   }
 
-  submitApplication() {
+  saveEvent() {
     const selectedCharacters = this.getFormCharacters();
     const selectedStories = this.getFormStories();
     const selectedLocations = this.getFormLocations();

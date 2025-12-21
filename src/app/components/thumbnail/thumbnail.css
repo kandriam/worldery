@@ -125,7 +125,7 @@
 .thumbnail-tag-container {
   display: flex;
   flex-wrap: wrap;
-  float: bottom;
+  
 }
 
 .thumbnail-info {

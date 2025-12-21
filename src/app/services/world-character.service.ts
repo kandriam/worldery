@@ -89,7 +89,7 @@ export class WorldCharacterService {
           physicalDescription: characterPhysicalDescription,
           nonPhysicalDescription: characterNonPhysicalDescription,
           stories: characterStories,
-          tags: characterTags,
+          tags: characterTags
         }),
       });
 

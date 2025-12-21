@@ -74,9 +74,10 @@
       "id": "12",
       "name": "James Gray's Death",
       "date": "2218-12-16",
-      "description": "James Gray's death.",
+      "description": "In an act of self defense, Judy kills her father.",
       "location": [],
       "characters": [
+        "2",
         "32"
       ],
       "stories": [],
@@ -555,6 +556,96 @@
       "tags": [
         "birth"
       ]
+    },
+    {
+      "id": "40",
+      "name": "Alex Found",
+      "date": "2218-09-01",
+      "description": "Alex was found in the streets of the Twin Cities",
+      "location": [
+        "11"
+      ],
+      "characters": [
+        "3",
+        "11"
+      ],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "41",
+      "name": "Shannon rescued",
+      "date": "2218-09-02",
+      "description": "Shannon is rescued from her parents by Cassandra (The Ghost)",
+      "location": [],
+      "characters": [],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "42",
+      "name": "Lyra Found",
+      "date": "2218-11-01",
+      "description": "Lyra is found by Cassandra",
+      "location": [],
+      "characters": [
+        "4",
+        "13"
+      ],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "43",
+      "name": "Rowan is rescued",
+      "date": "2219-02-01",
+      "description": "",
+      "location": [],
+      "characters": [
+        "3",
+        "14"
+      ],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "44",
+      "name": "Ethan is found",
+      "date": "2219-03-01",
+      "description": "Ethan is found by Rudy (MindSpinner)",
+      "location": [],
+      "characters": [
+        "4",
+        "33"
+      ],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "45",
+      "name": "Eric rescued",
+      "date": "2219-04-01",
+      "description": "Eric is rescued by Rudy",
+      "location": [],
+      "characters": [
+        "3",
+        "34"
+      ],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "46",
+      "name": "Karyna found",
+      "date": "2219-06-01",
+      "description": "",
+      "location": [],
+      "characters": [
+        "3",
+        "15"
+      ],
+      "stories": [],
+      "tags": []
     }
   ],
   "worldlocations": [
@@ -1439,357 +1530,7 @@
       "pronouns": "she/they",
       "roles": [],
       "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
-      "physicalDescription": "",
-      "nonPhysicalDescription": "",
-      "stories": [
-        "1",
-        "2",
-        "3",
-        "5"
-      ],
-      "tags": []
-    },
-    {
-      "id": "22",
-      "firstName": "Fatima",
-      "lastName": "Amir",
-      "altNames": [],
-      "birthdate": "2212-09-01",
-      "pronouns": "she/her",
-      "roles": [],
-      "affiliations": [],
-      "relationships": [
-        {
-          "relatedCharacterID": "1",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "2",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "3",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "4",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "5",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "6",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "7",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "8",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "9",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "10",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "11",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "12",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "13",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "14",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "15",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "16",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "17",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "18",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "19",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "20",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        },
-        {
-          "relatedCharacterID": "21",
-          "relationshipType": [
-            ""
-          ],
-          "hasRelationship": false,
-          "relationshipDescription": ""
-        }
-      ],
+      "relationships": [],
       "physicalDescription": "",
       "nonPhysicalDescription": "",
       "stories": [
