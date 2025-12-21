@@ -527,6 +527,34 @@
       "tags": [
         "birth"
       ]
+    },
+    {
+      "id": "38",
+      "name": "Ethan 's Birth",
+      "date": "2207-08-23",
+      "description": "Ethan 's birth.",
+      "location": [],
+      "characters": [
+        "33"
+      ],
+      "stories": [],
+      "tags": [
+        "birth"
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Eric 's Birth",
+      "date": "2208-11-27",
+      "description": "Eric 's birth.",
+      "location": [],
+      "characters": [
+        "34"
+      ],
+      "stories": [],
+      "tags": [
+        "birth"
+      ]
     }
   ],
   "worldlocations": [
@@ -552,7 +580,7 @@
     {
       "id": "2",
       "name": "Sunday Brunch",
-      "description": "Cafe which serves as a front for the Soldiers of Rebellion. Owned by Cassandra and Rudy Edwards.",
+      "description": "Sunday Brunch is a cafe which serves as a front for the Soldiers of Rebellion. Owned by Cassandra and Rudy Edwards.",
       "characters": [
         "2",
         "3",
@@ -562,14 +590,10 @@
         "13"
       ],
       "stories": [
-        "3",
-        "2"
+        "2",
+        "3"
       ],
-      "relatedLocations": [
-        "7",
-        "3",
-        "11"
-      ],
+      "relatedLocations": [],
       "tags": [
         "cafe",
         "food",
@@ -611,7 +635,6 @@
         "5"
       ],
       "relatedLocations": [
-        "2",
         "9"
       ],
       "tags": [
@@ -676,7 +699,6 @@
       ],
       "relatedLocations": [
         "1",
-        "2",
         "4",
         "5"
       ],
@@ -756,9 +778,7 @@
         "3",
         "2"
       ],
-      "relatedLocations": [
-        "2"
-      ],
+      "relatedLocations": [],
       "tags": []
     }
   ],
@@ -1999,6 +2019,42 @@
       "nonPhysicalDescription": "",
       "stories": [],
       "tags": []
+    },
+    {
+      "id": "33",
+      "firstName": "Ethan",
+      "lastName": "",
+      "altNames": [],
+      "birthdate": "2207-08-23",
+      "birthEventId": "38",
+      "deathdate": "",
+      "deathEventId": "",
+      "pronouns": "he/they",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "34",
+      "firstName": "Eric",
+      "lastName": "",
+      "altNames": [],
+      "birthdate": "2208-11-27",
+      "birthEventId": "39",
+      "deathdate": "",
+      "deathEventId": "",
+      "pronouns": "he/him",
+      "roles": [],
+      "affiliations": [],
+      "relationships": [],
+      "physicalDescription": "",
+      "nonPhysicalDescription": "",
+      "stories": [],
+      "tags": []
     }
   ],
   "worldstories": [
@@ -2213,7 +2269,7 @@
     "includeImages": false,
     "rememberFilters": true,
     "showAdvancedFilters": false,
-    "dateFormat": "D MMMM YYYY",
+    "dateFormat": "MMMM D, YYYY",
     "weekDay": true
   }
 }

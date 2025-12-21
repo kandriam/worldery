@@ -355,6 +355,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
             storyData.description,
             updatedCharacters,
             storyData.locations || [],
+            storyData.substories || [],
             storyData.tags || []
           );
         }
@@ -445,6 +446,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
             story.description,
             updatedCharacters,
             story.locations || [],
+            story.substories || [],
             story.tags || []
           );
         }
@@ -634,6 +636,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       fullStory.description,
       updatedCharacters,
       fullStory.locations || [],
+      fullStory.substories || [],
       fullStory.tags || []
     );
   }

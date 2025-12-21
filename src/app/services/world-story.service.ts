@@ -21,7 +21,15 @@ export class WorldStoryService {
     return locationJson[0] ?? {};
   }
 
-  async updateWorldStory(storyID: string, storyTitle: string, storyDescription: string, storyCharacters: string[], storyLocations: string[], storyTags: string[], substories: string[] = []) {
+  async updateWorldStory(
+    storyID: string,
+    storyTitle: string,
+    storyDescription: string,
+    storyCharacters: string[],
+    storyLocations: string[],
+    storyTags: string[],
+    substories: string[] = []
+  ) {
     console.log(
       `Story edited:
       storyID: ${storyID},
@@ -49,8 +57,8 @@ export class WorldStoryService {
           description: storyDescription,
           characters: storyCharacters,
           locations: storyLocations,
-          tags: storyTags,
           substories: substories,
+          tags: storyTags,
         }),
       });
       

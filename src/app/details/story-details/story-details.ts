@@ -310,8 +310,8 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
           this.applyForm.value.storyDescription ?? '',
           this.worldStory.characters,
           this.worldStory.locations,
-          this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
-          this.worldStory.substories ?? []
+          this.worldStory.substories ?? [],
+          this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? []
         );
         
         console.log('Story updated successfully');
