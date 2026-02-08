@@ -102,7 +102,7 @@
     /* color: var(--danger-color, #dc3545); */
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--content-font-size);
     white-space: nowrap;
 }
 
@@ -116,7 +116,7 @@
   height: 300px;
   resize: vertical;
   padding: 10px;
-  font-size: small;
+  font-size: var(--content-font-size);
   border-bottom: 1px solid var(--g3-color);
   border-radius: 5px;
   box-sizing: border-box;

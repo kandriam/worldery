@@ -20,7 +20,17 @@ export class WorldEventService {
       return locationJson[0] ?? {};
     }
 
-  updateWorldEvent(eventID: string, eventTitle: string, eventDate: string, eventEndDate: string, eventDescription: string, eventLocation: string[], eventCharacters: string[], eventStories: string[], eventTags: string[]) {
+  updateWorldEvent(
+    eventID: string,
+    eventTitle: string,
+    eventDate: string,
+    eventEndDate: string,
+    eventDescription: string,
+    eventLocation: string[],
+    eventCharacters: string[],
+    eventStories: string[],
+    eventTags: string[]
+  ) {
     console.log(
       `Event edited:
       eventID: ${eventID},
@@ -50,6 +60,7 @@ export class WorldEventService {
         tags: eventTags,
       }),
     });
+    window.location.reload();
   }
 
   async createWorldEvent(

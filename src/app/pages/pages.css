@@ -16,7 +16,7 @@
 }
 
 .no-results p {
-  font-size: 1.1rem;
+  font-size: var(--header-font-size);
   margin: 0;
 }
 

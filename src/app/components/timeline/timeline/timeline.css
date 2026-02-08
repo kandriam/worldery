@@ -25,7 +25,7 @@
   font-family: var(--base-font-family);
   text-transform: uppercase;
   color: var(--g1-color);
-  font-size: 1.1rem;
+  font-size: var(--header-font-size);
   font-weight: bold;
   margin: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -60,7 +60,7 @@
   color: var(--g1-color);
   padding: 6px 12px;
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: var(--thumbnail-font-size);
   font-weight: normal;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -223,7 +223,7 @@
 }
 
 .no-results p {
-  font-size: 1.1rem;
+  font-size: var(--header-font-size);
   margin: 0;
   font-style: italic;
   opacity: 0.8;
@@ -262,7 +262,7 @@
   
   .display-button {
     padding: 4px 8px;
-    font-size: 0.75rem;
+    font-size: var(--thumbnail-font-size);
   }
   
   .timeline {

@@ -59,7 +59,7 @@ export class WorldCharacterService {
       characterPhysicalDescription: ${characterPhysicalDescription},
       characterNonPhysicalDescription: ${characterNonPhysicalDescription},
       characterStories: ${characterStories},
-      characterTags: ${characterTags}.`,
+      characterTags: ${characterTags}.`
     );
 
     try {
@@ -113,6 +113,7 @@ export class WorldCharacterService {
 
       console.log('Character updated successfully with bidirectional relationships');
       return await response.json();
+      window.location.reload();
     } catch (error) {
       console.error('Error updating character:', error);
       throw error;

@@ -1,4 +1,5 @@
 .character-thumbnail {
-  width: 13rem;
+  min-width: 15rem;
+  max-width: 20rem;
   min-height: 8rem;
 }

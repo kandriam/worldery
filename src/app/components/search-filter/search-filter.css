@@ -19,13 +19,13 @@
   font-family: var(--input-font-family);
   
   &::placeholder {
-    font-size: small;
+    font-size: var(--content-font-size);
     opacity: 1;
   }
 
   &:focus {
     outline: none;
-    font-size: small;
+    font-size: var(--content-font-size);
     background-color: var(--b5-color);
   }
 }
@@ -41,7 +41,7 @@
   justify-content: center;
   color: var(--g2-color);
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--content-font-size);
   line-height: 1;
   transition: all 0.2s ease;
   padding: 0;
@@ -94,14 +94,14 @@
 
 .filter-header {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: var(--header-font-size);
   color: var(--b2-color);
   font-weight: bold;
   text-transform: uppercase;
 }
 
 .toggle-icon {
-  font-size: 16px;
+  font-size: var(--content-font-size);
   color: var(--g2-color);
   transition: transform 0.3s ease;
   user-select: none;
@@ -152,8 +152,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  /* font-size: 14px; */
-  font-size: x-small;
+  font-size: var(--content-font-size);
   color: var(--g1-color);
   text-transform: none;
   font-weight: normal;
@@ -209,7 +208,7 @@
 .date-separator {
   font-weight: bold;
   color: var(--g2-color);
-  font-size: 14px;
+  font-size: var(--content-font-size);
 }
 
 /* Grid Layout */
@@ -232,11 +231,6 @@
   .search-container {
     flex-direction: row;
     width: 100%;
-  }
-  
-  .search-input {
-    /* flex: 1;
-    width: auto; */
   }
   
   .date-input {

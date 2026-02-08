@@ -559,7 +559,7 @@
     },
     {
       "id": "40",
-      "name": "Alex Found",
+      "name": "Alex found",
       "date": "2218-09-01",
       "description": "Alex was found in the streets of the Twin Cities",
       "location": [
@@ -584,7 +584,7 @@
     },
     {
       "id": "42",
-      "name": "Lyra Found",
+      "name": "Lyra found",
       "date": "2218-11-01",
       "description": "Lyra is found by Cassandra",
       "location": [],
@@ -597,7 +597,7 @@
     },
     {
       "id": "43",
-      "name": "Rowan is rescued",
+      "name": "Rowan rescued",
       "date": "2219-02-01",
       "description": "",
       "location": [],
@@ -610,7 +610,7 @@
     },
     {
       "id": "44",
-      "name": "Ethan is found",
+      "name": "Ethan found",
       "date": "2219-03-01",
       "description": "Ethan is found by Rudy (MindSpinner)",
       "location": [],
@@ -646,28 +646,44 @@
       ],
       "stories": [],
       "tags": []
+    },
+    {
+      "id": "47",
+      "name": "Jay joins the Soldiers of Rebellion",
+      "date": "2219-10-04",
+      "description": "",
+      "location": [],
+      "characters": [
+        "2"
+      ],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "48",
+      "name": "Emily found",
+      "date": "2219-11-01",
+      "description": "",
+      "location": [],
+      "characters": [],
+      "stories": [],
+      "tags": []
+    },
+    {
+      "id": "49",
+      "name": "Nadiya rescued",
+      "date": "2220-02-01",
+      "description": "",
+      "location": [],
+      "characters": [
+        "2",
+        "19"
+      ],
+      "stories": [],
+      "tags": []
     }
   ],
   "worldlocations": [
-    {
-      "id": "1",
-      "name": "Jayara Apartment",
-      "description": "A cozy apartment located in the heart of St Paul, Minnesota.",
-      "characters": [
-        "1",
-        "2"
-      ],
-      "stories": [
-        "1",
-        "2",
-        "3"
-      ],
-      "relatedLocations": [],
-      "tags": [
-        "Jayara",
-        "housing"
-      ]
-    },
     {
       "id": "2",
       "name": "Sunday Brunch",
@@ -898,9 +914,10 @@
           "relatedCharacterID": "2",
           "hasRelationship": true,
           "relationshipType": [
-            ""
+            "Roommate",
+            "Partner"
           ],
-          "relationshipDescription": ""
+          "relationshipDescription": "Kiara and Jay became roommates and then began dating"
         }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
@@ -1946,15 +1963,14 @@
       "characters": [
         "8",
         "9",
-        "21",
-        "22"
+        "21"
       ],
       "locations": [],
-      "tags": [
+      "substories": [
         "Dystopian",
         "YA"
       ],
-      "substories": []
+      "tags": []
     },
     {
       "id": "5",
@@ -2001,7 +2017,7 @@
     "showThumbnails": true,
     "itemsPerPage": 12,
     "defaultSort": "name",
-    "fontSize": "small",
+    "fontSize": "medium",
     "eventColor": "blue",
     "locationColor": "green",
     "characterColor": "orange",

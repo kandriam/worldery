@@ -36,7 +36,7 @@
 .secondary-label {
   cursor: pointer;
   margin: 0;
-  font-size: x-small;
+  font-size: var(--content-font-size);
 }
 
 .association-list {

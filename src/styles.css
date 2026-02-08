@@ -61,6 +61,11 @@
   --headings-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --base-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --input-font-family: 'Lucida Console';
+
+  /* Font sizes */
+  --header-font-size: large;
+  --content-font-size: medium;
+  --thumbnail-font-size: small;
 }
 
 /* ============================================================================
@@ -99,7 +104,7 @@ h2 {
 }
 
 .subtitle {
-  /* font-size: 1.2rem; */
+  font-size: var(--header-font-size);
   font-style: italic;
   color: var(--g3-color);
   margin-bottom: 15px;
@@ -173,7 +178,7 @@ button{
     height: 1rem;
     margin-left: 8px;
     vertical-align: middle;
-    font-size: 1.1rem;
+    font-size: var(--thumbnail-font-size);
   }
 }
 
@@ -205,6 +210,7 @@ button{
    ============================================================================ */
 input {
   display: block;
+  font-size: var(--content-font-size);
 
   /* &[type="number"] {
     width: 4rem;
@@ -228,7 +234,7 @@ label {
   font-weight: bold;
   text-transform: uppercase;
   /* font-family: var(--base-font-family); */
-  font-size: 12pt;
+  font-size: var(--content-font-size);
 
   &.required::after {
     content: " *";
@@ -240,7 +246,7 @@ label {
   color: var(--b2-color);
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 12pt;
+  font-size: var(--header-font-size);
 }
 
 .primary-label.required::after {
@@ -252,7 +258,7 @@ label {
   color: var(--g1-color);
   text-transform: capitalize;
   font-weight: bold;
-  font-size: 10pt;
+  font-size: var(--content-font-size);
   margin-bottom: 5px;
 }
 
@@ -261,8 +267,8 @@ select {
   background-color: inherit;
   border: none;
   border-bottom: solid 1px var(--g3-color);
-  margin-bottom: 15px;
   border-radius: 8px;
+  font-size: var(--content-font-size);
 
   font-family: var(--headings-font-family);
 
@@ -327,7 +333,7 @@ textarea {
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
-  font-size: small;
+  font-size: var(--content-font-size);
   resize: none !important;
 }
 
@@ -506,7 +512,7 @@ textarea {
   width: fit-content;
   margin: 0.0625rem;
   padding: 0.1875rem 0.5rem 0.1875rem 0.1875rem;
-  font-size: x-small;
+  font-size: var(--thumbnail-font-size);
   font-style: italic;
   color: var(--b2-color);
   border: 0.0625rem solid var(--g3-color);

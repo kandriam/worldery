@@ -37,7 +37,7 @@
   overflow: auto;
   white-space: nowrap;
   gap: 10px;
-  padding: 5px;
+  padding: 10px;
   justify-content: space-around;
   border: 2px solid var(--g1-color);
   border-radius: 1px 1px 7px 7px;
@@ -54,7 +54,7 @@
   font-family: var(--base-font-family);
   text-transform: uppercase;
   color: var(--g1-color);
-  font-size: larger;
+  font-size: var(--header-font-size);
   font-weight: bold;
 
   &:hover {
@@ -87,7 +87,6 @@
   font-family: var(--base-font-family);
   text-transform: uppercase;
   color: var(--g1-color);
-  font-size: larger;
   font-weight: bold;
   display: flex;
   gap: 5px;
@@ -102,7 +101,7 @@
     color: var(--g1-color);
     padding: 4px 8px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: var(--thumbnail-font-size);
     font-weight: normal;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -134,7 +133,7 @@
 }
 
 .no-results p {
-  font-size: 1.1rem;
+  font-size: var(--header-font-size);
   margin: 0;
   font-style: italic;
 }
@@ -157,5 +156,11 @@
 
     &:hover {
         background-color: var(--g4-color) !important;
+    }
+
+    &.active {
+        background-color: var(--g4-color) !important;
+        color: var(--g5-color) !important;
+        font-weight: bold;
     }
 }

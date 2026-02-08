@@ -108,23 +108,20 @@
   font-style: italic;
   color: var(--g3-color);
   margin: 5px 0;
-  font-size: x-small;
+  font-size: var(--content-font-size) !important;
 }
 
 .relationship-type-input {
   width: 100%;
-  /* background-color: pink; */
   margin-bottom: 8px;
   padding: 8px;
-  /* margin: 0; */
-  /* border: 1px solid var(--g3-color); */
   border-radius: 4px;
 }
 
 .relationship textarea {
   width: 100%;
   min-height: 150px;
-  /* font-size: x-small !important; */
+  font-size: var(--content-font-size) !important;
   margin: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--g3-color) var(--g5-color);
