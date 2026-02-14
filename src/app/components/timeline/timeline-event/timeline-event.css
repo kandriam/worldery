@@ -47,7 +47,7 @@
 /* Vertical Timeline Items - Straight up/down layout */
 .timeline-item.vertical {
   position: relative;
-  width: 6.5rem;
+  width: 20rem;
   /* max-width: 175px; */
   margin: 0 auto 10px auto;
   display: block;

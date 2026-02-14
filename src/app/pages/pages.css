@@ -24,8 +24,20 @@
   display: flex;
 }
 
+
+.side-menu {
+  height: 100vh;
+  top: 0;
+  align-self: flex-start;
+  /* width: 25%; */
+  min-width: 15rem;
+  max-width: 25rem;
+}
+
 .main-article {
-  width: 75%;
+  /* width: 75%; */
+  width: calc(100% - 15rem);
+  min-width: 0;
 }
 
 /* Responsive design */

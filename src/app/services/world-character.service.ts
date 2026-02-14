@@ -231,6 +231,64 @@ export class WorldCharacterService {
   async deleteWorldCharacter(characterID: string) {
     console.log(`Deleting character with ID: ${characterID}`);
     try {
+      // Remove from other characters' relationships
+      const allCharacters = await this.getAllWorldCharacters();
+      for (const character of allCharacters) {
+        if (character.id !== characterID && character.relationships) {
+          const updatedRelationships = character.relationships.filter((rel: worldCharacterRelationship) => rel.relatedCharacterID !== characterID);
+          if (updatedRelationships.length !== character.relationships.length) {
+            await fetch(`${this.url}/${character.id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...character, relationships: updatedRelationships })
+            });
+          }
+        }
+      }
+
+      // Remove from all stories
+      const storiesRes = await fetch('http://localhost:3000/worldstories');
+      const allStories = await storiesRes.json();
+      for (const story of allStories) {
+        if (story.characters && story.characters.includes(characterID)) {
+          const updatedCharacters = story.characters.filter((id: string) => id !== characterID);
+          await fetch(`http://localhost:3000/worldstories/${story.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...story, characters: updatedCharacters })
+          });
+        }
+      }
+
+      // Remove from all locations
+      const locationsRes = await fetch('http://localhost:3000/worldlocations');
+      const allLocations = await locationsRes.json();
+      for (const location of allLocations) {
+        if (location.characters && location.characters.includes(characterID)) {
+          const updatedCharacters = location.characters.filter((id: string) => id !== characterID);
+          await fetch(`http://localhost:3000/worldlocations/${location.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...location, characters: updatedCharacters })
+          });
+        }
+      }
+
+      // Remove from all events
+      const eventsRes = await fetch('http://localhost:3000/worldevents');
+      const allEvents = await eventsRes.json();
+      for (const event of allEvents) {
+        if (event.characters && event.characters.includes(characterID)) {
+          const updatedCharacters = event.characters.filter((id: string) => id !== characterID);
+          await fetch(`http://localhost:3000/worldevents/${event.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...event, characters: updatedCharacters })
+          });
+        }
+      }
+
+      // Now delete the character
       const response = await fetch(`${this.url}/${characterID}`, {
         method: 'DELETE',
       });
