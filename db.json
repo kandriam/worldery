@@ -918,6 +918,22 @@
             "Partner"
           ],
           "relationshipDescription": "Kiara and Jay became roommates and then began dating"
+        },
+        {
+          "relatedCharacterID": "5",
+          "hasRelationship": true,
+          "relationshipType": [
+            "Best Friend"
+          ],
+          "relationshipDescription": "Kiara and Willow have been friends since they met in elementary school."
+        },
+        {
+          "relatedCharacterID": "6",
+          "hasRelationship": true,
+          "relationshipType": [
+            ""
+          ],
+          "relationshipDescription": "Kiara and Matthew have been friends since they met during elementary school."
         }
       ],
       "physicalDescription": "Curly black hair, brown eyes, Malagasy",
@@ -1889,7 +1905,6 @@
         "2"
       ],
       "locations": [
-        "1",
         "7",
         "8",
         "5",
@@ -1912,7 +1927,6 @@
       "title": "Blood & Water",
       "description": "A year after the events of Fire & Ice, Jay and Kiara -- and Willow, Matt and Leo -- are forced to flee the city and live at the SafeHouse, where they are tasked with preparing the residents for the worst.\n\nLeo learns about the ethical costs of her dad's medicine for her, they discover the scientific work behind the scenes, and how Rudy is using it to her advantage.",
       "characters": [
-        "1",
         "2",
         "3",
         "4",
@@ -1936,7 +1950,8 @@
         "25",
         "26",
         "28",
-        "31"
+        "31",
+        "1"
       ],
       "locations": [
         "1",
@@ -1947,14 +1962,14 @@
         "7",
         "11"
       ],
-      "tags": [
+      "substories": [
         "Fire & Ice",
         "Book 2",
         "Dystopian",
         "Superheroes",
         "Soldiers of Rebellion"
       ],
-      "substories": []
+      "tags": []
     },
     {
       "id": "4",
