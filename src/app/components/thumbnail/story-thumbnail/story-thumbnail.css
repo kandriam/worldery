@@ -1,8 +1,5 @@
-
-
 .story-thumbnail {
   width: 30rem;
-  min-height: 15rem;
   display: flex;
   flex-direction: column;
 }

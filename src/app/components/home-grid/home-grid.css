@@ -2,22 +2,13 @@
 .home-grid {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 8rem);
+  min-height: 30rem;
+  max-height: 100vh;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
-  
-  &.event {
-    scrollbar-color: var(--event-color) transparent;
-  }
-  &.location {
-    scrollbar-color: var(--location-color) transparent;
-  }
-  &.character {
-    scrollbar-color: var(--character-color) transparent;
-  }
-  &.story {
-    scrollbar-color: var(--story-color) transparent;
-  }
-  
+  box-sizing: border-box;
 }
 .home-grid-header {
   font: italic;
@@ -32,16 +23,17 @@
 
 .home-grid-results {
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
-  grid-template-columns: 1fr 1fr 1fr;
-  overflow: auto;
-  white-space: nowrap;
-  gap: 10px;
-  padding: 10px;
-  justify-content: space-around;
+  grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+  overflow-y: auto;
+  overflow-x: hidden;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: stretch;
   border: 2px solid var(--g1-color);
-  border-radius: 1px 1px 7px 7px;
+  border-radius: 0.5rem 0.5rem 1rem 1rem;
   scrollbar-width: thin;
+  height: 100%;
+  min-height: 20rem;
 }
 
 .home-grid-title {

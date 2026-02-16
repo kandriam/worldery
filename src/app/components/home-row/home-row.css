@@ -34,7 +34,7 @@
   display: flex;
   overflow: auto;
   white-space: nowrap;
-  padding: 5px;
+  padding: 10px;
   justify-content: space-around;
   border: 2px solid var(--g1-color);
   border-radius: 1px 1px 7px 7px;
@@ -155,4 +155,19 @@
     &:hover {
         background-color: var(--g4-color) !important;
     }
+}
+
+app-event-thumbnail {
+  width: 15rem;
+}
+
+app-location-thumbnail {
+  width: 15rem;
+}
+
+app-character-thumbnail {
+  width: 15rem;
+}
+
+app-story-thumbnail {
 }
