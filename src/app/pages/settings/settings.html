@@ -157,6 +157,7 @@
   <section class="details-section primary-section">
     <h2>Export & Import</h2>
     
+    <button (click)="getAllData()">Get All Data</button>
     <div class="horizontal-section">
       <div class="form-field">
         <label class="primary-label" for="importFile">Import Data</label>
@@ -172,6 +173,14 @@
           <p class="subtitle">This will export all your current data as a JSON file.</p>
           <input type="text" id="exportFileName" [(ngModel)]="exportFileName" name="exportFileName" placeholder="Enter file name..." required>
           <button type="submit" class="primary">Export Data</button>
+        </div>
+      </div>
+
+      <div class="horizontal-section">
+        <div class="form-field">
+          <label class="primary-label" for="deleteData">Delete World Data</label>
+          <button type="button" class="danger secondary" (click)="deleteData()">Delete World Data</button>
+          <p class="subtitle">This will delete all of your current World Data. Please make sure you have exported any data you want to keep.</p>
         </div>
       </div>
     </form>

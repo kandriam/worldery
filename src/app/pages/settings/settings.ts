@@ -132,7 +132,7 @@ export class Settings implements OnInit, OnDestroy {
   }
   
   exportData() {
-    console.log('Exporting data with in ts:', { exportFileName: this.exportFileName });
+    console.log('Exporting data in ts:', { exportFileName: this.exportFileName });
     this.settingsService.exportData(this.exportFileName);
   }
   
@@ -141,7 +141,34 @@ export class Settings implements OnInit, OnDestroy {
     const target = event.target as HTMLInputElement;
     const file = target.files?.[0];
     if (file) {
-      console.log('Import data functionality would be implemented here for file:', file.name);
+      console.log('Import data in ts:', file.name);
+      this.settingsService.importData(file).subscribe({
+        next: () => {
+          console.log('Data imported successfully');
+        },
+        error: (error) => {
+          console.error('Error importing data:', error);
+        }
+      });
     }
+  }
+
+  deleteData() {
+    if (confirm('Are you sure you want to delete all world data? This action cannot be undone. Please make sure you have exported any data you want to keep.')) {
+      this.settingsService.deleteData();
+      } else {
+        console.log('World data deletion cancelled by user');
+      }
+  }
+
+  getAllData() {
+    this.settingsService.getAllData().subscribe({
+      next: () => {
+        console.log('All data fetched successfully');
+      },
+      error: (error) => {
+        console.error('Error fetching all data:', error);
+        }
+      });
   }
 }

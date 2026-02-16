@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, forkJoin, switchMap } from 'rxjs';
 
 export interface SettingsData {
   theme: string;
@@ -232,8 +232,100 @@ export class SettingsService {
   }
 
   // Export data functionality
+  // Export all characters, locations, events, and stories to a JSON file
   exportData(fileName: string): void {
-    console.log('Exporting data in service.ts:', { fileName });
-    // Placeholder for actual export implementation
+    let data: any = {
+      worldcharacters: null,
+      worldlocations: null,
+      worldevents: null,
+      worldstories: null
+    };
+
+    for (let key of ['worldcharacters', 'worldlocations', 'worldevents', 'worldstories', 'settings']) {
+      this.http.get(`${this.API_URL}/${key}`)
+      .pipe(
+        catchError(error => {
+          console.error(`Error exporting ${key} data:`, error);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          data[key] = response;
+          // Check if all data has been fetched
+          if (data.worldcharacters !== null && data.worldlocations !== null && data.worldevents !== null && data.worldstories !== null) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName || 'worldery_export.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            console.log('Data exported successfully');
+          }
+        }
+      });
+    }
   }
+
+  importData(file: File): Observable<void> {
+    // this.deleteData(); // Do not use until deleteData is fully fixed
+    console.log('Importing data from file:', file.name); 
+
+    return of(undefined);
+  }
+
+  getAllData(): Observable<void> {
+    console.log('Fetching world data...');
+    for (let key of ['worldcharacters', 'worldlocations', 'worldevents', 'worldstories']) {
+      this.http.get(`${this.API_URL}/${key}`)
+      .pipe(
+        catchError(error => {
+          console.error(`Error fetching ${key} data:`, error);
+          return of([]);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(`Fetched ${key} data:`, response);
+        }
+      });
+    }
+    return of(undefined);
+  }  
+
+async deleteData(): Promise<void> {
+  console.log('Deleting world data...');
+  const keys = ['worldcharacters', 'worldlocations', 'worldevents', 'worldstories'];
+
+  for (const key of keys) {
+    try {
+      const items = await this.http.get<any[]>(`${this.API_URL}/${key}`)
+        .pipe(catchError(error => {
+          console.error(`Error fetching ${key} data for deletion:`, error);
+          return of([]);
+        }))
+        .toPromise();
+
+      const safeItems = items ?? [];
+      for (const item of safeItems) {
+        if (item && item.id) {
+          await this.http.delete(`${this.API_URL}/${key}/${item.id}`)
+            .pipe(catchError(error => {
+              console.error(`Error deleting ${key} item with id ${item.id}:`, error);
+              return of(null);
+            }))
+            .toPromise();
+        }
+      }
+    } catch (error) {
+      console.error(`Error during deletion for ${key}:`, error);
+    }
+  }
+
+  console.log('DELETION COMPLETE.');
+  this.getAllData();
+}
 }
