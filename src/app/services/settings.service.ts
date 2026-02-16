@@ -230,4 +230,10 @@ export class SettingsService {
     root.style.setProperty('--story-color', this.getColorValue(currentSettings.storyColor));
     root.style.setProperty('--story-highlight-color', this.getHighlightColorValue(currentSettings.storyColor));
   }
+
+  // Export data functionality
+  exportData(fileName: string): void {
+    console.log('Exporting data in service.ts:', { fileName });
+    // Placeholder for actual export implementation
+  }
 }

@@ -148,39 +148,34 @@
       </div>
     </section>
     
-    <!-- Export/Import Settings -->
-    <section class="details-section primary-section">
-      <h2>Export & Import</h2>
-      
-      <div class="form-field">
-        <label class="primary-label" for="exportFormat">Export Format</label>
-        <select id="exportFormat" [(ngModel)]="exportFormat" name="exportFormat" class="filter-select">
-          <option value="json">JSON</option>
-          <option value="csv">CSV</option>
-          <option value="xml">XML</option>
-        </select>
-      </div>
-      
-      <div class="form-field">
-        <label class="checkbox-label">
-          <input type="checkbox" [(ngModel)]="includeImages" name="includeImages">
-          Include Images in Export
-        </label>
-      </div>
-      
-      <div class="horizontal-section">
-          
-          <div class="form-field">
-              <label class="primary-label" for="importFile">Import Data</label>
-              <input type="file" id="importFile" (change)="importData($event)" accept=".json,.csv,.xml">
-            </div>
-        </div>
-        <button type="button" class="secondary" (click)="exportData()">Export Data</button>
-    </section>
-    
     <section class="save-buttons">
       <button type="submit" class="primary">Save Settings</button>
       <button type="button" class="secondary" (click)="resetSettings()">Reset to Defaults</button>
     </section>
   </form>
+      <!-- Export/Import Settings -->
+  <section class="details-section primary-section">
+    <h2>Export & Import</h2>
+    
+    <div class="horizontal-section">
+      <div class="form-field">
+        <label class="primary-label" for="importFile">Import Data</label>
+        <p class="subtitle">Import a JSON file.</p>
+        <input type="file" id="importFile" (change)="importData($event)" accept=".json">
+      </div>
+    </div>
+
+    <form (submit)="exportData()">
+      <div class="horizontal-section">
+        <div class="form-field">
+          <label class="primary-label" for="exportFileName">Export Current Data</label>
+          <p class="subtitle">This will export all your current data as a JSON file.</p>
+          <input type="text" id="exportFileName" [(ngModel)]="exportFileName" name="exportFileName" placeholder="Enter file name..." required>
+          <button type="submit" class="primary">Export Data</button>
+        </div>
+      </div>
+    </form>
+
+      <!-- <button type="button" class="secondary" (click)="exportData()">Export Data</button> -->
+  </section>
 </article>

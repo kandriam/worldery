@@ -37,6 +37,9 @@ export class Settings implements OnInit, OnDestroy {
   // Filter settings
   rememberFilters: boolean = true;
   showAdvancedFilters: boolean = false;
+
+  // Export file name
+  exportFileName: string = 'worldery_export.json';
   
   private settingsSubscription?: Subscription;
   
@@ -129,8 +132,8 @@ export class Settings implements OnInit, OnDestroy {
   }
   
   exportData() {
-    // Placeholder for export functionality
-    console.log('Export data functionality would be implemented here');
+    console.log('Exporting data with in ts:', { exportFileName: this.exportFileName });
+    this.settingsService.exportData(this.exportFileName);
   }
   
   importData(event: Event) {
