@@ -18,7 +18,8 @@
     "includeImages": false,
     "rememberFilters": true,
     "showAdvancedFilters": false,
+    "timeMeasurement": "gregorian",
     "dateFormat": "MMMM D, YYYY",
-    "weekDay": true
+    "weekDay": false
   }
 }

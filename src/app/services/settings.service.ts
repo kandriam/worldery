@@ -272,9 +272,55 @@ export class SettingsService {
 
   importData(file: File): Observable<void> {
     // this.deleteData(); // Do not use until deleteData is fully fixed
-    console.log('Importing data from file:', file.name); 
+    console.log('Importing data from file:', file.name);
 
-    return of(undefined);
+    return new Observable<void>((observer) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const json = JSON.parse(reader.result as string);
+          const requests = [];
+          if (json.worldcharacters) {
+            requests.push(this.http.post(`${this.API_URL}/worldcharacters/import`, json.worldcharacters).pipe(catchError(err => { console.error('Error importing worldcharacters:', err); return of(null); })));
+          }
+          if (json.worldlocations) {
+            requests.push(this.http.post(`${this.API_URL}/worldlocations/import`, json.worldlocations).pipe(catchError(err => { console.error('Error importing worldlocations:', err); return of(null); })));
+          }
+          if (json.worldevents) {
+            requests.push(this.http.post(`${this.API_URL}/worldevents/import`, json.worldevents).pipe(catchError(err => { console.error('Error importing worldevents:', err); return of(null); })));
+          }
+          if (json.worldstories) {
+            requests.push(this.http.post(`${this.API_URL}/worldstories/import`, json.worldstories).pipe(catchError(err => { console.error('Error importing worldstories:', err); return of(null); })));
+          }
+          if (json.settings) {
+            requests.push(this.http.put(this.SETTINGS_ENDPOINT, json.settings).pipe(catchError(err => { console.error('Error importing settings:', err); return of(null); })));
+          }
+          if (requests.length === 0) {
+            observer.complete();
+            return;
+          }
+          forkJoin(requests).subscribe({
+            next: () => {
+              console.log('Import complete');
+              observer.next();
+              observer.complete();
+            },
+            error: (err) => {
+              console.error('Error during import:', err);
+              observer.error(err);
+            }
+          });
+        } catch (e) {
+          console.error('Invalid JSON in import file:', e);
+          observer.error(e);
+        }
+      };
+      reader.onerror = (e) => {
+        console.error('File read error:', e);
+        observer.error(e);
+      };
+      reader.readAsText(file);
+    });
   }
 
   getAllData(): Observable<void> {
