@@ -17,10 +17,11 @@ import { WorldStoryService } from '../../services/world-story.service';
 import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
 import {HomeRow, EntityType} from '../../components/home-row/home-row';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [SearchFilter, HomeRow],
+  imports: [SearchFilter, HomeRow, ReactiveFormsModule],
   templateUrl: 'home.html',
   styleUrls: ['./home.css', '../pages.css', '../../../styles.css'],
 })
@@ -61,6 +62,13 @@ export class Home {
     showDateRange: true
   };
 
+  worldForm = new FormGroup({
+    worldName: new FormControl(''),
+    worldDescription: new FormControl(''),
+    worldTimeSystem: new FormControl(''),
+    worldGenres: new FormControl(''),
+  });
+
   constructor() {
     // Load all data for both display and filtering
     Promise.all([
@@ -92,6 +100,25 @@ export class Home {
       this.allCharacters = characters;
       this.allStories = stories;
       this.allLocations = locations;
+
+      this.loadWorldInfo("0");
+    });
+  }
+
+  loadWorldInfo(worldId: string) {
+    this.worldInfoService.getWorld(worldId).subscribe((world) => {
+      if (!world) {
+        this.world = null;
+        this.worldForm.reset();
+        return;
+      }
+      this.world = world;
+      this.worldForm.patchValue({
+        worldName: world.name || '',
+        worldDescription: world.description || '',
+        worldTimeSystem: world.timeSystem || '',
+        worldGenres: Array.isArray(world.genre) ? world.genre.join(', ') : '',
+      });
     });
   }
 
@@ -188,11 +215,16 @@ export class Home {
 
   saveWorldInfo() {
     if (this.world) {
+      const formValues = this.worldForm.value;
+      // Update this.world with form values
+      this.world.name = formValues.worldName || '';
+      this.world.description = formValues.worldDescription || '';
+      this.world.timeSystem = formValues.worldTimeSystem || '';
+      // Split genre string into array, trimming whitespace
+      this.world.genre = (formValues.worldGenres || '').split(',').map((g: string) => g.trim()).filter((g: string) => g);
+
       this.worldInfoService.updateWorld(this.world.id, {
-        name: this.world.name,
-        description: this.world.description,
-        timeSystem: this.world.timeSystem,
-        genre: this.world.genre,
+        ...this.world
       }).subscribe(updatedWorld => {
         if (updatedWorld) {
           this.world = updatedWorld;

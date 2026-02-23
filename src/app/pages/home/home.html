@@ -1,25 +1,29 @@
-<form  (ngSubmit)="saveWorldInfo()">
+<form [formGroup]="worldForm" (ngSubmit)="saveWorldInfo()">
   <div class="world-info-container secondary-section">
-    <h1>
-      {{ world?.name }}
-    </h1>
-    
-    <div>
-      {{ world?.description }}
+    <div class="world-info-header">
+      <h1>
+        <input type="text" formControlName="worldName" placeholder="World Name" class="world-name-input">
+      </h1>
+      <button type="submit" class="save-world-button">Save World Info</button>
     </div>
     
-    <div class="details-section hidden">
-      WorldTimeSystem: {{ world?.timeSystem }}
-    </div>
-    
-    <div class="details-section">
-      <h3>Genres:</h3>
-      <div class="thumbnail-description">
-        @for ( genre of world?.genre; track genre) {
-          {{ genre }}
-        }
+    <div style ="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="details-section">
+        <h3>World Description:</h3>
+        <textarea formControlName="worldDescription" placeholder="World Description" class="world-description-input">
+        </textarea>
       </div>
+    
+      <div class="details-section">
+        <h3>Genres:</h3>
+        <textarea formControlName="worldGenres" placeholder="Genres, separated by commas" class="world-genre-input">
+        </textarea>
+      </div>
+      
     </div>
+    <!-- <div class="details-section hidden">
+      WorldTimeSystem: {{ world?.timeSystem }}
+    </div> -->
   </div>
 </form>
 
