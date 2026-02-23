@@ -35,3 +35,13 @@
 .home-page-container {
   display: flex;
 }
+
+/* World Info Styling */
+.world-info-container {
+  margin-bottom: 20px;
+  /* background-color: var(--g4-color); */
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}

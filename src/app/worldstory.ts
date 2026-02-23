@@ -5,5 +5,7 @@ export interface WorldStoryInfo {
     characters: string[];
     locations: string[];
     substories: string[];
+    parentStoryId?: string;
+    genre: string[];
     tags: string[];
 }

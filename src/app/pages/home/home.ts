@@ -1,4 +1,8 @@
 import {Component, inject, ViewChild} from '@angular/core';
+
+import {WorldInfo} from '../../world';
+import {WorldInfoService} from '../../services/world.service';
+
 import {WorldEventInfo} from '../../worldevent';
 import {WorldEventService} from '../../services/world-event.service';
 
@@ -23,6 +27,9 @@ import { Router } from '@angular/router';
 
 export class Home {
   @ViewChild(SearchFilter) searchFilter!: SearchFilter;
+
+  worldInfoService: WorldInfoService = inject(WorldInfoService);
+  world: WorldInfo | null = null;
   
   eventService: WorldEventService = inject(WorldEventService);
   filteredEventList: WorldEventInfo[] = [];
@@ -62,6 +69,10 @@ export class Home {
       this.characterService.getAllWorldCharacters(),
       this.storyService.getAllWorldStories()
     ]).then(([events, locations, characters, stories]) => {
+      this.worldInfoService.getWorld("0").subscribe(world => {
+        this.world = world;
+      });
+
       this.worldEventList = events.sort((a, b) => (a.date > b.date ? 1 : -1));
       this.filteredEventList = this.worldEventList;
       
@@ -173,6 +184,22 @@ export class Home {
     this.filteredLocationList = filteredLocations;
     this.filteredCharacterList = filteredCharacters;
     this.filteredStoryList = filteredStories;
+  }
+
+  saveWorldInfo() {
+    if (this.world) {
+      this.worldInfoService.updateWorld(this.world.id, {
+        name: this.world.name,
+        description: this.world.description,
+        timeSystem: this.world.timeSystem,
+        genre: this.world.genre,
+      }).subscribe(updatedWorld => {
+        if (updatedWorld) {
+          this.world = updatedWorld;
+          console.log('World info updated successfully');
+        }
+      });
+    }
   }
   
   async addWorldElement(entityType: EntityType) {

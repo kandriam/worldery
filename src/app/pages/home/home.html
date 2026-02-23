@@ -1,3 +1,28 @@
+<form  (ngSubmit)="saveWorldInfo()">
+  <div class="world-info-container secondary-section">
+    <h1>
+      {{ world?.name }}
+    </h1>
+    
+    <div>
+      {{ world?.description }}
+    </div>
+    
+    <div class="details-section hidden">
+      WorldTimeSystem: {{ world?.timeSystem }}
+    </div>
+    
+    <div class="details-section">
+      <h3>Genres:</h3>
+      <div class="thumbnail-description">
+        @for ( genre of world?.genre; track genre) {
+          {{ genre }}
+        }
+      </div>
+    </div>
+  </div>
+</form>
+
 <div class="home-page-container">
   <aside class="side-menu">
     <app-search-filter 
