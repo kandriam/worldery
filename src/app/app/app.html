@@ -4,6 +4,9 @@
         <!-- <img class="header-icon" src="assets/worldery-tab-icon.png" alt="Worldery icon"> -->
             Worldery
         </button>
+        <button class="nav-button page" [routerLink]="['/']">
+            {{ world?.name || 'Home' }}
+        </button>
         <button class="nav-button page event" [routerLink]="['/event']">Timeline</button>
         <button class="nav-button page location" [routerLink]="['/location']">World</button>
         <button class="nav-button page character" [routerLink]="['/character']">Characters</button>

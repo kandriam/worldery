@@ -235,13 +235,14 @@ export class SettingsService {
   // Export all characters, locations, events, and stories to a JSON file
   exportData(fileName: string): void {
     let data: any = {
+      worldinfo: null,
       worldcharacters: null,
       worldlocations: null,
       worldevents: null,
       worldstories: null
     };
 
-    for (let key of ['worldcharacters', 'worldlocations', 'worldevents', 'worldstories', 'settings']) {
+    for (let key of ['worldinfo', 'worldcharacters', 'worldlocations', 'worldevents', 'worldstories', 'settings']) {
       this.http.get(`${this.API_URL}/${key}`)
       .pipe(
         catchError(error => {
@@ -271,34 +272,56 @@ export class SettingsService {
   }
 
   importData(file: File): Observable<void> {
-    // this.deleteData(); // Do not use until deleteData is fully fixed
     console.log('Importing data from file:', file.name);
-
     return new Observable<void>((observer) => {
       const reader = new FileReader();
       reader.onload = () => {
         try {
           const json = JSON.parse(reader.result as string);
-          const requests = [];
-          if (json.worldcharacters) {
-            requests.push(this.http.post(`${this.API_URL}/worldcharacters/import`, json.worldcharacters).pipe(catchError(err => { console.error('Error importing worldcharacters:', err); return of(null); })));
+          const requests: Observable<any>[] = [];
+
+          // Helper to POST each item in an array
+          const postItems = (endpoint: string, items: any[]) => {
+            return items.map(item =>
+              this.http.post(`${this.API_URL}/${endpoint}`, item).pipe(
+                catchError(err => {
+                  console.error(`Error importing ${endpoint} item:`, err);
+                  return of(null);
+                })
+              )
+            );
+          };
+          if (Array.isArray(json.worldinfo)) {
+            requests.push(...postItems('worldinfo', json.worldinfo));
           }
-          if (json.worldlocations) {
-            requests.push(this.http.post(`${this.API_URL}/worldlocations/import`, json.worldlocations).pipe(catchError(err => { console.error('Error importing worldlocations:', err); return of(null); })));
+          if (Array.isArray(json.worldcharacters)) {
+            requests.push(...postItems('worldcharacters', json.worldcharacters));
           }
-          if (json.worldevents) {
-            requests.push(this.http.post(`${this.API_URL}/worldevents/import`, json.worldevents).pipe(catchError(err => { console.error('Error importing worldevents:', err); return of(null); })));
+          if (Array.isArray(json.worldlocations)) {
+            requests.push(...postItems('worldlocations', json.worldlocations));
           }
-          if (json.worldstories) {
-            requests.push(this.http.post(`${this.API_URL}/worldstories/import`, json.worldstories).pipe(catchError(err => { console.error('Error importing worldstories:', err); return of(null); })));
+          if (Array.isArray(json.worldevents)) {
+            requests.push(...postItems('worldevents', json.worldevents));
+          }
+          if (Array.isArray(json.worldstories)) {
+            requests.push(...postItems('worldstories', json.worldstories));
           }
           if (json.settings) {
-            requests.push(this.http.put(this.SETTINGS_ENDPOINT, json.settings).pipe(catchError(err => { console.error('Error importing settings:', err); return of(null); })));
+            requests.push(
+              this.http.put(this.SETTINGS_ENDPOINT, json.settings).pipe(
+                catchError(err => {
+                  console.error('Error importing settings:', err);
+                  return of(null);
+                })
+              )
+            );
           }
+
           if (requests.length === 0) {
             observer.complete();
             return;
           }
+
           forkJoin(requests).subscribe({
             next: () => {
               console.log('Import complete');
@@ -344,7 +367,7 @@ export class SettingsService {
 
 async deleteData(): Promise<void> {
   console.log('Deleting world data...');
-  const keys = ['worldcharacters', 'worldlocations', 'worldevents', 'worldstories'];
+  const keys = ['worldinfo', 'worldcharacters', 'worldlocations', 'worldevents', 'worldstories'];
 
   for (const key of keys) {
     try {

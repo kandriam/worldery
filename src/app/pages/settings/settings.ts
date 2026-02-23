@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingsService, SettingsData } from '../../services/settings.service';
+import { WorldInfo } from '../../world';
+import { WorldInfoService } from '../../services/world.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -42,17 +44,32 @@ export class Settings implements OnInit, OnDestroy {
   exportFileName: string = 'worldery_export.json';
   
   private settingsSubscription?: Subscription;
+  private worldInfoService: WorldInfoService;
   
-  constructor(private settingsService: SettingsService) {}
+  constructor(private settingsService: SettingsService, worldInfoService: WorldInfoService) {
+    this.worldInfoService = worldInfoService;
+  }
   
   ngOnInit(): void {
     // Subscribe to settings changes
     this.settingsSubscription = this.settingsService.getSettings().subscribe(settings => {
       this.updateComponentFromSettings(settings);
     });
+
+    this.worldInfoService 
     
     // Apply colors on init
     this.settingsService.applyColors();
+    let worldName = 'worldery';
+    this.worldInfoService.getWorld('0').subscribe(world => {
+      if (world?.name) {
+        const sanitizedWorldName = world.name.replace(/\s+/g, '_').toLowerCase();
+        this.exportFileName = `${sanitizedWorldName}_export.json`;
+        worldName = sanitizedWorldName ? sanitizedWorldName : 'worldery';
+      }
+
+      this.exportFileName = world ? `${worldName}_export.json` : 'worldery_export.json';
+    });
   }
   
   ngOnDestroy(): void {
