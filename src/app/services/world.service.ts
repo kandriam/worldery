@@ -35,7 +35,11 @@ export class WorldInfoService {
             }));
     }
 
-    updateWorld(id: string, world: Partial<WorldInfo>): Observable<WorldInfo | null> {
+    /**
+     * Updates a world by id. Sends the full WorldInfo object for maximum compatibility.
+     * Ensure your backend PUT /worldinfo/:id expects the full object.
+     */
+    updateWorld(id: string, world: WorldInfo): Observable<WorldInfo | null> {
         return this.http.put<WorldInfo>(`${this.API_URL}/${id}`, world)
             .pipe(catchError(error => {
                 console.error('Error updating world:', error);

@@ -311,6 +311,20 @@ textarea, input[type="text"] {
   }
 }
 
+h1 > input[type="text"], h2 > input[type="text"] {
+  font-size: 2.5rem;
+  font-family: var(--headings-font-family);
+  color: var(--b1-color);
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--b5-color);
+  }
+}
+
 input[type="text"] {
   padding: 10px;
   /* width: 100%; */
