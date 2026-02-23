@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Character, Event, Location, Story, World, Relationship
+from .models import Character, Event, Location, Story, World, CharacterRelationship
 from .serializers import CharacterSerializer, EventSerializer, LocationSerializer, StorySerializer, WorldSerializer, RelationshipSerializer
 
 # Create your views here.
@@ -24,5 +24,5 @@ class StoryViewSet(viewsets.ModelViewSet):
     serializer_class = StorySerializer
 
 class RelationshipViewSet(viewsets.ModelViewSet):
-    queryset = Relationship.objects.all()
+    queryset = CharacterRelationship.objects.all()
     serializer_class = RelationshipSerializer

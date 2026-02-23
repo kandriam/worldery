@@ -1,5 +1,6 @@
+
 from rest_framework import serializers
-from .models import World, Character, Relationship, Location, Event, Story
+from .models import World, Character, CharacterRelationship, Location, Event, Story
 
 class WorldSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,7 +14,7 @@ class CharacterSerializer(serializers.ModelSerializer):
 
 class RelationshipSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Relationship
+        model = CharacterRelationship
         fields = '__all__'
 
 class LocationSerializer(serializers.ModelSerializer):
