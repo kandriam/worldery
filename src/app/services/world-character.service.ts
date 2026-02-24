@@ -5,7 +5,8 @@ import {WorldCharacterInfo, worldCharacterRelationship } from '../worldcharacter
   providedIn: 'root',
 })
 export class WorldCharacterService {
-  url = 'http://localhost:3000/worldcharacters';
+  // url = 'http://localhost:3000/worldcharacters';
+  url = 'http://localhost:8000/api/characters/';
   
   constructor(private router: Router) {}
 

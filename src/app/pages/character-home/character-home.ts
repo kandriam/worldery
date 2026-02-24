@@ -53,8 +53,8 @@ export class CharacterHome {
       filtered = filtered.filter((worldCharacter) =>
         matchesSearchTerms(filterState.searchTerms,
           worldCharacter?.tags.join(' '),
-          worldCharacter?.firstName,
-          worldCharacter?.lastName,
+          worldCharacter?.personal_name,
+          worldCharacter?.family_name,
           worldCharacter?.altNames.join(' '))
       );
     }

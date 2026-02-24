@@ -27,7 +27,7 @@
         <div class="relationship-header">
           <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
           <button class="linked-character" [routerLink]="['/character', character.id]">
-            <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.firstName }} {{ character.lastName }}</label>
+            <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.personal_name }} {{ character.family_name }}</label>
           </button>
         </div>
         @if(character.altNames && character.altNames.length > 0) {           

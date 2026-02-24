@@ -5,7 +5,8 @@ import {WorldEventInfo} from '../worldevent';
   providedIn: 'root',
 })
 export class WorldEventService {
-  url = 'http://localhost:3000/worldevents';
+  // url = 'http://localhost:3000/worldevents';
+  url = 'http://localhost:8000/api/events/';
   
   constructor(private router: Router) {}
 

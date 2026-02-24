@@ -1,9 +1,9 @@
 export interface WorldInfo {
     id: string;
-    name: string;
+    title: string;
     timeSystem: string;
     description: string;
-    genre: string[];
+    genres: string[];
     // tags: string[];
     // characters: string[]; // Array of character IDs
     // locations: string[]; // Array of location IDs

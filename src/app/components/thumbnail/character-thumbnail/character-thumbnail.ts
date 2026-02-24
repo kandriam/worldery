@@ -34,6 +34,7 @@ export class CharacterThumbnail {
       const s = allStories.find((story: any) => story.id === id);
       return s ? s.title : id;
     });
+    
   }
 
   deleteCharacter(id: string, event: Event) {

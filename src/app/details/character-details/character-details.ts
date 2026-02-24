@@ -48,8 +48,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   ];
 
   applyForm = new FormGroup({
-    characterFirstName: new FormControl(''),
-    characterLastName: new FormControl(''),
+    characterPersonalName: new FormControl(''),
+    characterFamilyName: new FormControl(''),
     characterAltNames: new FormControl(''),
     characterPronouns: new FormControl(''),
     characterBirthYear: new FormControl(''),
@@ -126,8 +126,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       }
 
       this.applyForm.patchValue({
-        characterFirstName: worldCharacter?.firstName || '',
-        characterLastName: worldCharacter?.lastName || '',
+        characterPersonalName: worldCharacter?.personal_name || '',
+        characterFamilyName: worldCharacter?.family_name || '',
         characterAltNames: worldCharacter?.altNames?.join(', ') || '',
         characterPronouns: worldCharacter?.pronouns || '',
         characterBirthYear: birthYear,
@@ -270,8 +270,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       // Save immediately
       this.worldCharacterService.updateWorldCharacter(
         this.worldCharacter.id,
-        this.worldCharacter.firstName,
-        this.worldCharacter.lastName,
+        this.worldCharacter.personal_name,
+        this.worldCharacter.family_name,
         this.worldCharacter.altNames,
         this.worldCharacter.birthdate || '',
         this.worldCharacter.birthEventId || '',
@@ -396,11 +396,11 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         const isChecked = event.target.checked;
         console.log(`Checkbox is now: ${isChecked}`);
         if (isChecked) {
-          console.log(`Adding relationship to: ${character?.firstName} ${character?.lastName}`);
+          console.log(`Adding relationship to: ${character?.personal_name} ${character?.family_name}`);
           // Additional logic to add relationship can be added here
           // this.worldCharacterService.updateCharacterRelationship()
         } else {
-          console.log(`Removing relationship to: ${character?.firstName} ${character?.lastName}`);
+          console.log(`Removing relationship to: ${character?.personal_name} ${character?.family_name}`);
           // Additional logic to remove relationship can be added here
         }
       }
@@ -526,8 +526,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     const selectedStories = this.getFormStories();
     console.log('!!')
     // Sync worldCharacter object with form values before saving
-    this.worldCharacter.firstName = this.applyForm.value.characterFirstName ?? '';
-    this.worldCharacter.lastName = this.applyForm.value.characterLastName ?? '';
+    this.worldCharacter.personal_name = this.applyForm.value.characterPersonalName ?? '';
+    this.worldCharacter.family_name = this.applyForm.value.characterFamilyName ?? '';
     this.worldCharacter.altNames = this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [];
     const newBirthdate = this.formatBirthdate(
       this.applyForm.value.characterBirthYear || '',
@@ -552,15 +552,15 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     this.worldCharacter.stories = selectedStories;
     this.worldCharacter.tags = this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [];
 
-    const characterName = `${this.worldCharacter.firstName} ${this.worldCharacter.lastName}`;
+    const characterName = `${this.worldCharacter.personal_name} ${this.worldCharacter.family_name}`;
 
     const formattedBirthdate = this.worldCharacter.birthdate || '';
     const formattedDeathdate = this.worldCharacter.deathdate || '';
     console.log('!!!!');
     console.log('Form data:', {
       id: this.worldCharacter.id,
-      firstName: this.worldCharacter.firstName,
-      lastName: this.worldCharacter.lastName,
+      personal_name: this.worldCharacter.personal_name,
+      family_name: this.worldCharacter.family_name,
       birthdate: formattedBirthdate,
       deathdate: formattedDeathdate,
       pronouns: this.worldCharacter.pronouns,
@@ -570,8 +570,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     try {
       const result = this.worldCharacterService.updateWorldCharacter(
         this.worldCharacter.id,
-        this.worldCharacter.firstName,
-        this.worldCharacter.lastName,
+        this.worldCharacter.personal_name,
+        this.worldCharacter.family_name,
         this.worldCharacter.altNames,
         formattedBirthdate,
         this.worldCharacter.birthEventId ?? '',
@@ -642,7 +642,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   }
 
   deleteCharacter() {
-    if (this.worldCharacter?.id && confirm(`Are you sure you want to delete ${this.worldCharacter.firstName} ${this.worldCharacter.lastName}? This action cannot be undone.`)) {
+    if (this.worldCharacter?.id && confirm(`Are you sure you want to delete ${this.worldCharacter.personal_name} ${this.worldCharacter.family_name}? This action cannot be undone.`)) {
       this.worldCharacterService.deleteWorldCharacter(this.worldCharacter.id);
       this.router.navigate(['/character']);
     }
@@ -676,7 +676,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   async addCharacterEvent(eventType: string) {
     const eventTagsInput = this.applyForm.value.eventTags || '';
     const tags = eventTagsInput.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
-    const characterName = `${this.worldCharacter?.firstName} ${this.worldCharacter?.lastName}`;
+    const characterName = `${this.worldCharacter?.personal_name} ${this.worldCharacter?.family_name}`;
     const characterId = this.worldCharacter?.id || '';
     let date = '';
     if (!this.worldCharacter) {
@@ -737,8 +737,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         }
         await this.worldCharacterService.updateWorldCharacter(
           this.worldCharacter.id,
-          this.worldCharacter.firstName,
-          this.worldCharacter.lastName,
+          this.worldCharacter.personal_name,
+          this.worldCharacter.family_name,
           this.worldCharacter.altNames,
           this.worldCharacter.birthdate || '',
           this.worldCharacter.birthEventId || '',
@@ -777,8 +777,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         }
         await this.worldCharacterService.updateWorldCharacter(
           this.worldCharacter.id,
-          this.worldCharacter.firstName,
-          this.worldCharacter.lastName,
+          this.worldCharacter.personal_name,
+          this.worldCharacter.family_name,
           this.worldCharacter.altNames,
           this.worldCharacter.birthdate || '',
           this.worldCharacter.birthEventId || '',

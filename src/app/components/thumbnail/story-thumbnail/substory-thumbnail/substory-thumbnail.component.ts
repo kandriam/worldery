@@ -23,7 +23,7 @@ export class SubstoryThumbnailComponent {
     const allCharacters = await this.characterService.getAllWorldCharacters();
     this.characterNames = (this.substory.characters || []).map(id => {
       const c = allCharacters.find((ch: any) => ch.id === id);
-      return c ? `${c.firstName} ${c.lastName}` : id;
+      return c ? `${c.personal_name} ${c.family_name}` : id;
     });
     // Resolve location IDs to names
     const allLocations = await this.locationService.getAllWorldLocations();

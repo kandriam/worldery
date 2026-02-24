@@ -1,11 +1,11 @@
 <div class="character-thumbnail world-thumbnail character" [routerLink]="['/character', worldCharacter().id]">
     <div class="thumbnail-header">
-        <h4 class="thumbnail-title">{{ worldCharacter().firstName }} {{ worldCharacter().lastName }}</h4>
+        <h4 class="thumbnail-title">{{ worldCharacter().personal_name }} {{ worldCharacter().family_name }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteCharacter(worldCharacter().id, $event)">Delete</button>
     </div>
     
     <div class="thumbnail-description">
-        <div class="thumbnail-alt-names">{{ worldCharacter().altNames.join(', ') }}</div>
+        <!-- <div class="thumbnail-alt-names">{{ worldCharacter().altNames.join(', ') }}</div> -->
         <div class="thumbnail-pronouns">{{ worldCharacter().pronouns }}</div>
     </div>
 

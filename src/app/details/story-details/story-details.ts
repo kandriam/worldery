@@ -129,7 +129,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   getCharactersAssociationList(): AssociationItem[] {
     return this.characterList.map(character => ({
       id: character.id,
-      name: `${character.firstName} ${character.lastName}`,
+      name: `${character.personal_name} ${character.family_name}`,
       isAssociated: this.isCharacterInStory(character.id)
     }));
   }
@@ -177,7 +177,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
       } else {
         this.worldStory.characters = this.worldStory.characters.filter(id => id !== character.id);
       }
-      console.log(`Character ${character.firstName} ${character.lastName} (${character.id}) ${event.isChecked ? 'added to' : 'removed from'} story`);
+      console.log(`Character ${character.personal_name} ${character.family_name} (${character.id}) ${event.isChecked ? 'added to' : 'removed from'} story`);
     }
   }
 
@@ -213,7 +213,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
       const storyId = this.worldStory?.id || '';
-      console.log(`Character ${character.firstName} ${character.lastName} ${isChecked ? 'added to' : 'removed from'} story`);
+      console.log(`Character ${character.personal_name} ${character.family_name} ${isChecked ? 'added to' : 'removed from'} story`);
       // Update the character's stories list by ID
       this.worldCharacterService.getWorldCharacterById(character.id).then((fullCharacter) => {
         if (fullCharacter) {
@@ -227,8 +227,8 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
           }
           this.worldCharacterService.updateWorldCharacter(
             character.id,
-            fullCharacter.firstName,
-            fullCharacter.lastName,
+            fullCharacter.personal_name,
+            fullCharacter.family_name,
             fullCharacter.altNames || [],
             fullCharacter.birthdate || '',
             fullCharacter.birthEventId || '',

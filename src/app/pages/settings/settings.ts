@@ -62,8 +62,8 @@ export class Settings implements OnInit, OnDestroy {
     this.settingsService.applyColors();
     let worldName = 'worldery';
     this.worldInfoService.getWorld('0').subscribe(world => {
-      if (world?.name) {
-        const sanitizedWorldName = world.name.replace(/\s+/g, '_').toLowerCase();
+      if (world?.title) {
+        const sanitizedWorldName = world.title.replace(/\s+/g, '_').toLowerCase();
         this.exportFileName = `${sanitizedWorldName}_export.json`;
         worldName = sanitizedWorldName ? sanitizedWorldName : 'worldery';
       }

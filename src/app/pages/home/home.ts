@@ -30,6 +30,8 @@ export class Home {
   @ViewChild(SearchFilter) searchFilter!: SearchFilter;
 
   worldInfoService: WorldInfoService = inject(WorldInfoService);
+  allWorlds: WorldInfo[] = [];
+  currentWorldId: string = "1"; // Default to first world
   world: WorldInfo | null = null;
   
   eventService: WorldEventService = inject(WorldEventService);
@@ -62,6 +64,10 @@ export class Home {
     showDateRange: true
   };
 
+  selectWorldForm = new FormGroup({
+    selectedWorld: new FormControl('')
+  });
+
   worldForm = new FormGroup({
     worldName: new FormControl(''),
     worldDescription: new FormControl(''),
@@ -77,8 +83,18 @@ export class Home {
       this.characterService.getAllWorldCharacters(),
       this.storyService.getAllWorldStories()
     ]).then(([events, locations, characters, stories]) => {
-      this.worldInfoService.getWorld("0").subscribe(world => {
-        this.world = world;
+      this.worldInfoService.getWorlds().subscribe(worlds => {
+        this.allWorlds = worlds;
+        // Select the first available world, or set to null if none
+        console.log('Hello');
+        console.log('Worlds loaded:', this.allWorlds);
+        if (this.allWorlds.length > 0) {
+          this.currentWorldId = this.allWorlds[0].id;
+          this.selectWorldForm.patchValue({ selectedWorld: this.currentWorldId });
+        } else {
+          this.currentWorldId = '';
+          this.world = null;
+        }
       });
 
       this.worldEventList = events.sort((a, b) => (a.date > b.date ? 1 : -1));
@@ -101,8 +117,17 @@ export class Home {
       this.allStories = stories;
       this.allLocations = locations;
 
-      this.loadWorldInfo("0");
+      this.currentWorldId = this.allWorlds.length > 0 ? this.allWorlds[0].id : "1";
+      this.loadWorldInfo(this.currentWorldId);
     });
+  }
+
+
+  onWorldSelect() {
+    const selectedWorldId = this.selectWorldForm.value.selectedWorld;
+    if (selectedWorldId) {
+      this.loadWorldInfo(selectedWorldId);
+    }
   }
 
   loadWorldInfo(worldId: string) {
@@ -113,11 +138,12 @@ export class Home {
         return;
       }
       this.world = world;
+      console.log('Selected world:', this.world);
       this.worldForm.patchValue({
-        worldName: world.name || '',
+        worldName: world.title || '',
         worldDescription: world.description || '',
         worldTimeSystem: world.timeSystem || '',
-        worldGenres: Array.isArray(world.genre) ? world.genre.join(', ') : '',
+        worldGenres: world.genres ? world.genres.join(', ') : '',
       });
     });
   }
@@ -150,8 +176,8 @@ export class Home {
       filteredCharacters = filteredCharacters.filter((worldCharacter) =>
         matchesSearchTerms(filterState.searchTerms,
           worldCharacter?.tags.join(' '),
-          worldCharacter?.firstName,
-          worldCharacter?.lastName,
+          worldCharacter?.personal_name,
+          worldCharacter?.family_name,
           worldCharacter?.altNames.join(' '),
           worldCharacter?.physicalDescription,
           worldCharacter?.nonPhysicalDescription,
@@ -217,11 +243,11 @@ export class Home {
     if (this.world) {
       const formValues = this.worldForm.value;
       // Update this.world with form values
-      this.world.name = formValues.worldName || '';
+      this.world.title = formValues.worldName || '';
       this.world.description = formValues.worldDescription || '';
       this.world.timeSystem = formValues.worldTimeSystem || '';
-      // Split genre string into array, trimming whitespace
-      this.world.genre = (formValues.worldGenres || '').split(',').map((g: string) => g.trim()).filter((g: string) => g);
+      // Split genres string into array, trimming whitespace
+      this.world.genres = (formValues.worldGenres || '').split(',').map((g: string) => g.trim()).filter((g: string) => g);
 
       this.worldInfoService.updateWorld(this.world.id, {
         ...this.world

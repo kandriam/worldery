@@ -1,10 +1,24 @@
+<form [formGroup]="selectWorldForm">
+  <select id="selectWorld" (change)="onWorldSelect()" formControlName="selectedWorld">
+    <option value="">Select World</option>
+    <!-- @for (let world of allWorlds; track world.id) {
+      <option [value]="world.id">{{ world.name }}</option>
+    } -->
+  </select>
+</form>
 <form [formGroup]="worldForm" (ngSubmit)="saveWorldInfo()">
   <div class="world-info-container secondary-section">
+    <!-- <select formControlName="selectWorld">
+      <option value="">Select World</option>
+      @for (world of allWorlds; track world) {
+        <option value="{{ world.id }}">{{ world.name }}</option>
+      }
+    </select> -->
     <div class="world-info-header">
       <h1>
         <input type="text" formControlName="worldName" placeholder="World Name" class="world-name-input">
       </h1>
-      <button type="submit" class="save-world-button">Save World Info</button>
+      <button type="submit" class="save-world-button primary">Save World Info</button>
     </div>
     
     <div style ="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">

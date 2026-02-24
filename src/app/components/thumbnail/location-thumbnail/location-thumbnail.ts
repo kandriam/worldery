@@ -40,7 +40,7 @@ export class LocationThumbnail {
     const allCharacters = await this.characterService.getAllWorldCharacters();
     this.characterNames = (this.worldLocation().characters || []).map(id => {
       const c = allCharacters.find((char: any) => char.id === id);
-      return c ? `${c.firstName} ${c.lastName}` : id;
+      return c ? `${c.personal_name} ${c.family_name}` : id;
     });
 
     // Resolve story IDs to titles

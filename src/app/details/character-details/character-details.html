@@ -1,5 +1,5 @@
 <div class="details-heading">
-    <h2 class="character-title">{{ worldCharacter?.firstName }} {{ worldCharacter?.lastName }}</h2>
+    <h2 class="character-title">{{ worldCharacter?.personal_name }} {{ worldCharacter?.family_name }}</h2>
     @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {
         <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>
     }
@@ -14,8 +14,8 @@
                 <div class="details-section primary-section details-grid-section">
                     <div class="details-section secondary-section">
                         <label class="primary-label" for="character-first-name">Name</label>
-                        <input id="character-first-name" type="text" formControlName="characterFirstName" placeholder="First name" />
-                        <input id="character-last-name" type="text" formControlName="characterLastName" placeholder="Last name" required="true"/>
+                        <input id="character-first-name" type="text" formControlName="characterPersonalName" placeholder="First name" />
+                        <input id="character-last-name" type="text" formControlName="characterFamilyName" placeholder="Last name" required="true"/>
                         
                         <label class="primary-label" for="character-alt-names">Alternate Names</label>
                         <input id="character-alt-names" type="text" formControlName="characterAltNames" placeholder="Nicknames, aliases, etc..." />

@@ -8,28 +8,30 @@ class Tag(models.Model):
 
 class World(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='worlds', blank=True)
     locations = models.ManyToManyField('Location', related_name='worlds', blank=True)
     events = models.ManyToManyField('Event', related_name='worlds', blank=True)
     stories = models.ManyToManyField('Story', related_name='worlds', blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    genres = models.JSONField(default=list, blank=True)
     def __str__(self):
         return self.title
 
 class Story(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='story_set', blank=True)
     locations = models.ManyToManyField('Location', related_name='story_set', blank=True)
     substories = models.ManyToManyField('self', symmetrical=False, related_name='parent_stories', blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    genres = models.JSONField(default=list, blank=True)
     def __str__(self):
         return self.title
 
 class Location(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='location_set', blank=True)
     stories = models.ManyToManyField(Story, related_name='location_stories', blank=True)
     related_locations = models.ManyToManyField('self', symmetrical=True, related_name='related_locations', blank=True)
@@ -39,8 +41,8 @@ class Location(models.Model):
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    date = models.DateField()
+    description = models.TextField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     locations = models.ManyToManyField(Location, related_name='events', blank=True)
     characters = models.ManyToManyField('Character', related_name='events', blank=True)
@@ -53,9 +55,9 @@ class Character(models.Model):
     personal_name = models.CharField(max_length=100)
     family_name = models.CharField(max_length=100)
     alt_names = models.JSONField(default=list, blank=True)
-    physical_description = models.TextField()
-    non_physical_description = models.TextField()
-    pronouns = models.CharField(max_length=50)
+    physical_description = models.TextField(blank=True, null=True)
+    non_physical_description = models.TextField(blank=True, null=True)
+    pronouns = models.CharField(max_length=50, blank=True, null=True)
     birthdate = models.DateField(null=True, blank=True)
     deathdate = models.DateField(null=True, blank=True)
     birth_event = models.ForeignKey(Event, null=True, blank=True, on_delete=models.SET_NULL, related_name='birth_characters')
@@ -65,7 +67,7 @@ class Character(models.Model):
     stories = models.ManyToManyField(Story, related_name='character_set', blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.personal_name} {self.family_name}"
 
 class CharacterRelationship(models.Model):
     character = models.ForeignKey(Character, related_name='relationships', on_delete=models.CASCADE)

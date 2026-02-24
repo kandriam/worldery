@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class WorldLocationService {
-  url = 'http://localhost:3000/worldlocations';
+  // url = 'http://localhost:3000/worldlocations';
+  url = 'http://localhost:8000/api/locations';
   
   constructor(private router: Router) {}
 

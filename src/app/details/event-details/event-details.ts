@@ -172,7 +172,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   getCharactersAssociationList(): AssociationItem[] {
     return this.characterList.map(character => ({
       id: character.id,
-      name: `${character.firstName} ${character.lastName}`,
+      name: `${character.personal_name} ${character.family_name}`,
       isAssociated: this.isCharacterInEvent(character.id)
     }));
   }
@@ -205,7 +205,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         this.worldEvent.characters = this.worldEvent.characters.filter(id => id !== event.id);
       }
       const character = this.characterList.find(c => c.id === event.id);
-      const characterName = character ? `${character.firstName} ${character.lastName}` : event.id;
+      const characterName = character ? `${character.personal_name} ${character.family_name}` : event.id;
       console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} event`);
     }
   }
@@ -335,8 +335,8 @@ export class WorldEventDetails implements OnInit, OnDestroy {
           if (changed) {
             await this.worldCharacterService.updateWorldCharacter(
               character.id,
-              character.firstName,
-              character.lastName,
+              character.personal_name,
+              character.family_name,
               character.altNames,
               newBirthdate,
               newBirthEventId,
@@ -380,8 +380,8 @@ export class WorldEventDetails implements OnInit, OnDestroy {
           if (changed) {
             await this.worldCharacterService.updateWorldCharacter(
               character.id,
-              character.firstName,
-              character.lastName,
+              character.personal_name,
+              character.family_name,
               character.altNames,
               newBirthdate || '',
               newBirthEventId || '',

@@ -64,7 +64,7 @@ export class StoryThumbnail {
     const allCharacters = await this.characterService.getAllWorldCharacters();
     this.characterNames = (this.worldStory().characters || []).map(id => {
       const c = allCharacters.find((char: any) => char.id === id);
-      return c ? `${c.firstName} ${c.lastName}` : id;
+      return c ? `${c.personal_name} ${c.family_name}` : id;
     });
 
     // Populate substories with WorldStoryInfo objects

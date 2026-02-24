@@ -128,7 +128,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   getCharactersAssociationList(): AssociationItem[] {
     return this.characterList.map(character => ({
       id: character.id,
-      name: `${character.firstName} ${character.lastName}`,
+      name: `${character.personal_name} ${character.family_name}`,
       isAssociated: this.isCharacterInLocation(character.id)
     }));
   }
@@ -161,7 +161,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
         this.worldLocation.characters = this.worldLocation.characters.filter(id => id !== event.id);
       }
       const character = this.characterList.find(c => c.id === event.id);
-      const characterName = character ? `${character.firstName} ${character.lastName}` : event.id;
+      const characterName = character ? `${character.personal_name} ${character.family_name}` : event.id;
       console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} location`);
     }
   }
