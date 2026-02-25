@@ -2,7 +2,7 @@ import { Component, input, output, inject } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { WorldEventInfo } from '../../../worldevent';
+import { WorldEventInfo } from '../../../services/world-event.service';
 import { WorldStoryService } from 'src/app/services/world-story.service';
 import { WorldCharacterService } from 'src/app/services/world-character.service';
 import { WorldLocationService } from 'src/app/services/world-location.service';

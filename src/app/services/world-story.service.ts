@@ -1,6 +1,19 @@
-import { Injectable } from '@angular/core';
-import { WorldStoryInfo } from '../worldstory';
+import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, catchError, of } from 'rxjs';
+
+export interface WorldStoryInfo {
+    id: string;
+    title: string;
+    description: string;
+    characters: string[];
+    locations: string[];
+    substories: string[];
+    parentStoryId?: string;
+    genre: string[];
+    tags: string[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +22,7 @@ export class WorldStoryService {
   // url = 'http://localhost:3000/worldstories';
   url = 'http://localhost:8000/api/stories';
   
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   async getAllWorldStories(): Promise<WorldStoryInfo[]> {
     const data = await fetch(this.url);
@@ -80,96 +93,26 @@ export class WorldStoryService {
     }
   }
 
-  async createWorldStory(
-    storyTitle: string,
-    storyDescription: string,
-    storyCharacters: string[],
-    storyLocations: string[],
-    storyTags: string[],
-    substories: string[] = [],
-    goToPage: boolean = true
-  ) : Promise<WorldStoryInfo> {
-    console.log(
-      `Story created:
-      storyTitle: ${storyTitle},
-      storyDescription: ${storyDescription},
-      storyCharacters: ${storyCharacters},
-      storyLocations: ${storyLocations},
-      storyTags: ${storyTags}.`,
-    );
-
-    try {
-      const stories = await this.getAllWorldStories();
-      console.log('Current stories count:', stories.length);
-      
-      // determine next id as string
-      const maxId = stories.length > 0 ? Math.max(...stories.map(e => parseInt(e.id.toString()))) : 0;
-      const newId = (maxId + 1).toString();
-      
-      const response = await fetch(this.url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: newId,
-          title: storyTitle,
-          description: storyDescription,
-          characters: storyCharacters,
-          locations: storyLocations,
-          tags: storyTags,
-          substories: substories,
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to create story: ${response.statusText}`);
-      }
-      
-      // Add bidirectional relationships for new story (by ID)
-      await this.updateCharacterStoryRelationships(newId, [], storyCharacters);
-      await this.updateLocationStoryRelationships(newId, [], storyLocations);
-      
-      console.log('Story created successfully with bidirectional relationships');
-      const newStory = await response.json();
-      
-      if (goToPage) {
-        this.router.navigate([`/story/${newStory.id}`]);
-      } else {
-        window.location.reload();
-      }
-      return newStory;
-    } catch (error) {
-      console.error('Error creating story:', error);
-      throw error;
-    }
+  createWorldStory(event: WorldStoryInfo, goToPage: boolean): Observable<WorldStoryInfo | null> {
+    return this.http.post<WorldStoryInfo>(`${this.url}/`, event)
+        .pipe(catchError(error => {
+            console.error('Error creating story:', error);
+            return of(null);
+      }));
   }
 
   async deleteWorldStory(storyID: string) {
     console.log(`Deleting story with ID: ${storyID}`);
-    try {
-      // Get story being deleted to clean up relationships
-      const storyToDelete = await this.getWorldStoryById(storyID);
-      if (!storyToDelete) {
-        throw new Error('Story not found');
+    this.http.delete(`${this.url}/${storyID}/`).subscribe({
+      next: () => {
+        console.log('Story deleted successfully');
+        this.router.navigate(['/stories']);
+      },
+      error: (error) => {
+        console.error('Error deleting story:', error);
+        alert('Failed to delete story: ' + error.message);
       }
-      // Remove story from all character and location references by ID
-      await this.removeStoryFromAllRelationships(storyID);
-      
-      const response = await fetch(`${this.url}/${storyID}`, {
-        method: 'DELETE',
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to delete story: ${response.statusText}`);
-      }
-      
-      console.log('Story deleted successfully with relationship cleanup');
-      this.router.navigate(['/stories']);
-    } catch (error) {
-      console.error('Error deleting story:', error);
-      throw error;
-    }
+    });
   }
 
 

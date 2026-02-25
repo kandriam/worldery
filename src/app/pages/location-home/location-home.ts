@@ -1,13 +1,10 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import {HomeRow} from '../../components/home-row/home-row';
-import {HomeGrid} from '../../components/home-grid/home-grid';
-import {WorldLocationInfo} from '../../worldlocation';
-import {WorldLocationService} from '../../services/world-location.service';
-import {WorldCharacterService} from '../../services/world-character.service';
-import {WorldStoryService} from '../../services/world-story.service';
-import {WorldCharacterInfo} from '../../worldcharacter';
-import {WorldStoryInfo} from '../../worldstory';
-import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { HomeRow } from '../../components/home-row/home-row';
+import { HomeGrid } from '../../components/home-grid/home-grid';
+import { WorldLocationInfo, WorldLocationService} from '../../services/world-location.service';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
+import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
+import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
 import { Home } from "../home/home";
 
 @Component({
@@ -99,11 +96,15 @@ export class LocationHome {
     console.log('Adding new location');
     try {
       await this.locationService.createWorldLocation(
-        'New Location',
-        '',
-        [],
-        [],
-        [],
+        {
+          id: '',
+          name: 'New Location',
+          description: '',
+          characters: [],
+          stories: [],
+          relatedLocations: [],
+          tags: []
+        } as WorldLocationInfo, // Pass an empty object or default values as needed
         true);
       console.log('Location created successfully');
     } catch (error) {

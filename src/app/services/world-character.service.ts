@@ -1,28 +1,64 @@
 import {Injectable} from '@angular/core';
-import { Router } from '@angular/router'; 
-import {WorldCharacterInfo, worldCharacterRelationship } from '../worldcharacter';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, catchError, of } from 'rxjs';
+
+export interface WorldCharacterInfo {
+    id: string;
+    personal_name: string;
+    family_name: string;
+    altNames: string[];
+    physicalDescription: string;
+    nonPhysicalDescription: string;
+
+    pronouns: string;
+    birthdate?: string;
+    deathdate?: string;
+    birthEventId?: string; // Event ID for birth
+    deathEventId?: string; // Event ID for death
+    roles: string[];
+    affiliations: string[];
+    relationships: worldCharacterRelationship[];
+    // events: string[];
+    // locations: string[];
+    stories: string[];
+    tags: string[];
+}
+
+export interface worldCharacterRelationship {
+    relatedCharacterID: string;
+    hasRelationship: boolean;
+    relationshipType: string[];
+    relationshipDescription: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class WorldCharacterService {
   // url = 'http://localhost:3000/worldcharacters';
-  url = 'http://localhost:8000/api/characters/';
+  url = 'http://localhost:8000/api/characters';
   
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   async getAllWorldCharacters(): Promise<WorldCharacterInfo[]> {
-    const data = await fetch(this.url)
-    return await data.json() ?? [];
+    const data = await this.http.get<WorldCharacterInfo[]>(this.url).toPromise();
+    return data ?? [];
   }
 
   async getWorldCharacterById(id: string): Promise<WorldCharacterInfo | undefined> {
-    const data = await fetch(`${this.url}?id=${id}`);
+    // Use RESTful detail endpoint for correct character
+    const data = await fetch(`${this.url}/${id}/`);
+    if (!data.ok) {
+      console.error('Failed to fetch character by id:', id);
+      return undefined;
+    }
     const characterJson = await data.json();
-    return characterJson[0] ?? {};
+    return characterJson;
   }
 
   async getWorldCharactersByName(firstName: string, lastName: string): Promise<WorldCharacterInfo[]> {
-    const data = await fetch(`${this.url}?firstName=${firstName}&lastName=${lastName}`);
+    const data = await fetch(`${this.url}/?firstName=${firstName}&lastName=${lastName}/`);
     return await data.json() ?? [];
   }
 
@@ -42,90 +78,43 @@ export class WorldCharacterService {
     characterPhysicalDescription: string,
     characterNonPhysicalDescription: string,
     characterStories: string[],
-    characterTags: string[]) {
-    console.log(
-      `Character edited:
-      characterID: ${characterID},
-      characterFirstName: ${characterFirstName},
-      characterLastName: ${characterLastName},
-      characterAltNames: ${characterAltNames},
-      characterBirthdate: ${characterBirthdate},
-      characterBirthEventId: ${characterBirthEventId},
-      characterDeathdate: ${characterDeathdate},
-      characterDeathEventId: ${characterDeathEventId},
-      characterPronouns: ${characterPronouns},
-      characterRoles: ${characterRoles},
-      characterAffiliations: ${characterAffiliations},
-      characterRelationships: ${characterRelationships},
-      characterPhysicalDescription: ${characterPhysicalDescription},
-      characterNonPhysicalDescription: ${characterNonPhysicalDescription},
-      characterStories: ${characterStories},
-      characterTags: ${characterTags}.`
+    characterTags: string[]){
+
+      // Map property names to Django model
+      const payload = {
+        personal_name: characterFirstName,
+        family_name: characterLastName,
+        alt_names: characterAltNames,
+        birthdate: characterBirthdate || null,
+        deathdate: characterDeathdate || null,
+        birth_event: characterBirthEventId || null,
+        death_event: characterDeathEventId || null,
+        pronouns: characterPronouns,
+        roles: characterRoles,
+        affiliations: characterAffiliations,
+        physical_description: characterPhysicalDescription,
+        non_physical_description: characterNonPhysicalDescription,
+        stories: characterStories,
+        tags: characterTags,
+        // relationships: characterRelationships // Only if your serializer supports it
+      };
+      return this.http.put(`${this.url}/${characterID}/`, payload)
+        .pipe(catchError(error => {
+          console.error('Error updating character:', error);
+          throw error;
+        }
+      )).toPromise().then((updatedChar: any) => {
+        console.log('Character updated successfully', updatedChar);
+        return updatedChar;
+      }
     );
-
-    try {
-      // Get current character to track changes
-      const currentCharacter = await this.getWorldCharacterById(characterID);
-      const oldStories = currentCharacter?.stories || [];
-
-      // Update the main character
-      const response = await fetch(`${this.url}/${characterID}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: characterID,
-          firstName: characterFirstName,
-          lastName: characterLastName,
-          altNames: characterAltNames,
-          birthdate: characterBirthdate,
-          birthEventId: characterBirthEventId,
-          deathdate: characterDeathdate,
-          deathEventId: characterDeathEventId,
-          pronouns: characterPronouns,
-          roles: characterRoles,
-          affiliations: characterAffiliations,
-          relationships: characterRelationships,
-          physicalDescription: characterPhysicalDescription,
-          nonPhysicalDescription: characterNonPhysicalDescription,
-          stories: characterStories,
-          tags: characterTags
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to update character: ${response.statusText}`);
-      }
-
-      // --- Bidirectional update for stories ---
-      for (const storyId of oldStories) {
-        if (!characterStories.includes(storyId)) {
-          await this.updateEntityArray('worldstories', storyId, 'characters', characterID, false);
-        }
-      }
-      for (const storyId of characterStories) {
-        if (!oldStories.includes(storyId)) {
-          await this.updateEntityArray('worldstories', storyId, 'characters', characterID, true);
-        }
-      }
-
-
-
-      console.log('Character updated successfully with bidirectional relationships');
-      return await response.json();
-      window.location.reload();
-    } catch (error) {
-      console.error('Error updating character:', error);
-      throw error;
-    }
   }
 
   /**
    * Helper to add or remove an ID from an array field in another entity
    */
   private async updateEntityArray(entityType: string, entityId: string, arrayField: string, value: string, add: boolean) {
-    const url = `http://localhost:3000/${entityType}/${entityId}`;
+    const url = `http://localhost:8000/${entityType}/${entityId}`;
     const res = await fetch(url);
     if (!res.ok) return;
     const entity = await res.json();
@@ -143,167 +132,26 @@ export class WorldCharacterService {
     });
   }
 
-  async createWorldCharacter(
-    characterFirstName: string,
-    characterLastName:string,
-    characterAltNames: string[],
-    characterBirthdate: string,
-    characterBirthEventId: string,
-    characterDeathdate: string,
-    characterDeathEventId: string,
-    characterPronouns: string,
-    characterRoles: string[],
-    characterAffiliations: string[],
-    characterRelationships: worldCharacterRelationship[],
-    characterPhysicalDescription: string,
-    characterNonPhysicalDescription: string,
-    characterStories: string[],
-    characterTags: string[],
-    goToPage: boolean = true
-  ) : Promise<WorldCharacterInfo> {
-    console.log(
-      `Character created:
-      characterFirstName: ${characterFirstName},
-      characterLastName: ${characterLastName},
-      characterAltNames: ${characterAltNames},
-      characterBirthdate: ${characterBirthdate},
-      characterDeathdate: ${characterDeathdate},
-      characterPronouns: ${characterPronouns},
-      characterRoles: ${characterRoles},
-      characterAffiliations: ${characterAffiliations},
-      characterRelationships: ${characterRelationships},
-      characterPhysicalDescription: ${characterPhysicalDescription},
-      characterNonPhysicalDescription: ${characterNonPhysicalDescription},
-      characterStories: ${characterStories},
-      characterTags: ${characterTags}.`,
-    );
-    
-    try {
-      const characters = await this.getAllWorldCharacters();
-      console.log('Current characters count:', characters.length);
-      
-      // determine next id - convert to numbers for comparison, then back to string
-      const maxId = characters.length > 0 ? Math.max(...characters.map(e => parseInt(e.id))) : 0;
-      const newId = (maxId + 1).toString();
-      
-      const response = await fetch(this.url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: newId,
-          firstName: characterFirstName,
-          lastName: characterLastName,
-          altNames: characterAltNames,
-          birthdate: characterBirthdate,
-          birthEventId: characterBirthEventId,
-          deathdate: characterDeathdate,
-          deathEventId: characterDeathEventId,
-          pronouns: characterPronouns,
-          roles: characterRoles,
-          affiliations: characterAffiliations,
-          relationships: characterRelationships,
-          physicalDescription: characterPhysicalDescription,
-          nonPhysicalDescription: characterNonPhysicalDescription,
-          stories: characterStories,
-          tags: characterTags,
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to create character: ${response.statusText}`);
-      }
-      
-      console.log('Character created successfully');
-      const newCharacter = await response.json();
-      if (goToPage) {
-        this.router.navigate([`/character/${newCharacter.id}`]);
-      } else {
-        window.location.reload();
-      }
-      return newCharacter;
-    } catch (error) {
-      console.error('Error creating character:', error);
-      throw error;
-    }
+  createWorldCharacter(character: WorldCharacterInfo, goToPage: boolean): Observable<WorldCharacterInfo | null> {
+    return this.http.post<WorldCharacterInfo>(`${this.url}/`, character)
+        .pipe(catchError(error => {
+            console.error('Error creating character:', error);
+            return of(null);
+        }));
   }
 
   async deleteWorldCharacter(characterID: string) {
     console.log(`Deleting character with ID: ${characterID}`);
-    try {
-      // Remove from other characters' relationships
-      const allCharacters = await this.getAllWorldCharacters();
-      for (const character of allCharacters) {
-        if (character.id !== characterID && character.relationships) {
-          const updatedRelationships = character.relationships.filter((rel: worldCharacterRelationship) => rel.relatedCharacterID !== characterID);
-          if (updatedRelationships.length !== character.relationships.length) {
-            await fetch(`${this.url}/${character.id}`, {
-              method: 'PUT',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ ...character, relationships: updatedRelationships })
-            });
-          }
-        }
+    this.http.delete(`${this.url}/${characterID}/`).subscribe({
+      next: () => {
+        console.log('Character deleted successfully');
+        this.router.navigate(['/characters']);
+      },
+      error: (error) => {
+        console.error('Error deleting character:', error);
+        alert('Failed to delete character: ' + error.message);
       }
-
-      // Remove from all stories
-      const storiesRes = await fetch('http://localhost:3000/worldstories');
-      const allStories = await storiesRes.json();
-      for (const story of allStories) {
-        if (story.characters && story.characters.includes(characterID)) {
-          const updatedCharacters = story.characters.filter((id: string) => id !== characterID);
-          await fetch(`http://localhost:3000/worldstories/${story.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...story, characters: updatedCharacters })
-          });
-        }
-      }
-
-      // Remove from all locations
-      const locationsRes = await fetch('http://localhost:3000/worldlocations');
-      const allLocations = await locationsRes.json();
-      for (const location of allLocations) {
-        if (location.characters && location.characters.includes(characterID)) {
-          const updatedCharacters = location.characters.filter((id: string) => id !== characterID);
-          await fetch(`http://localhost:3000/worldlocations/${location.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...location, characters: updatedCharacters })
-          });
-        }
-      }
-
-      // Remove from all events
-      const eventsRes = await fetch('http://localhost:3000/worldevents');
-      const allEvents = await eventsRes.json();
-      for (const event of allEvents) {
-        if (event.characters && event.characters.includes(characterID)) {
-          const updatedCharacters = event.characters.filter((id: string) => id !== characterID);
-          await fetch(`http://localhost:3000/worldevents/${event.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...event, characters: updatedCharacters })
-          });
-        }
-      }
-
-      // Now delete the character
-      const response = await fetch(`${this.url}/${characterID}`, {
-        method: 'DELETE',
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to delete character: ${response.statusText}`);
-      }
-      
-      console.log('Character deleted successfully');
-      this.router.navigate(['/characters']);
-    } catch (error) {
-      console.error('Error deleting character:', error);
-      throw error;
-    }
+    });
   }
   
   updateCharacterRelationships(characterID: string, relatedCharacterName: string, relationships: worldCharacterRelationship[]) {

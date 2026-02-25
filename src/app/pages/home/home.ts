@@ -1,21 +1,13 @@
-import {Component, inject, ViewChild} from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 
-import {WorldInfo} from '../../world';
-import {WorldInfoService} from '../../services/world.service';
+import { WorldInfo, WorldInfoService } from '../../services/world.service';
+import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
+import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
 
-import {WorldEventInfo} from '../../worldevent';
-import {WorldEventService} from '../../services/world-event.service';
-
-import { WorldLocationInfo } from '../../worldlocation';
-import { WorldLocationService } from '../../services/world-location.service';
-
-import { WorldCharacterInfo } from '../../worldcharacter';
-import { WorldCharacterService } from '../../services/world-character.service';
-
-import { WorldStoryInfo } from '../../worldstory';
-import { WorldStoryService } from '../../services/world-story.service';
-import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
-import {HomeRow, EntityType} from '../../components/home-row/home-row';
+import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
+import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
+import { HomeRow, EntityType } from '../../components/home-row/home-row';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
@@ -266,6 +258,7 @@ export class Home {
     switch(entityType) {
       case 'event':
         console.log('Adding new event');
+        await this.createEventAndGetId();
         newId = await this.createEventAndGetId();
         this.router.navigate(['/event', newId]);
         break;
@@ -276,8 +269,9 @@ export class Home {
         break;
       case 'character':
         console.log('Adding new character');
-        newId = await this.createCharacterAndGetId();
-        this.router.navigate(['/character', newId]);
+        await this.createCharacterAndGetId();
+        // newId = await this.createCharacterAndGetId();
+        // this.router.navigate(['/character', newId]);
         break;
       case 'story':
         console.log('Adding new story');
@@ -290,104 +284,94 @@ export class Home {
   }
   
   private async createEventAndGetId(): Promise<string> {
-    const events = await this.eventService.getAllWorldEvents();
-    const maxId = events.length > 0 ? Math.max(...events.map(e => parseInt(e.id.toString()))) : 0;
-    const newId = (maxId + 1).toString();
-    
-    await fetch('http://localhost:3000/worldevents', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: newId,
-        name: 'New Event',
-        date: '',
-        description: '',
-        location: [],
-        characters: [],
-        stories: [],
-        tags: [],
-      }),
+    // Use the service to create a new event and get its ID
+    const newEvent = {
+      id: '',
+      name: 'New Event',
+      description: '',
+      date: new Date().toISOString().split('T')[0], // Default to today
+      location: [],
+      characters: [],
+      stories: [],
+      tags: []
+    } as WorldEventInfo;
+    return this.eventService.createWorldEvent(newEvent, false).toPromise().then(event => {
+      if (event) {
+        console.log(`Created new event with id ${event.id}`);
+        return event.id;
+      } else {
+        throw new Error('Failed to create event');
+      }
     });
-    
-    return newId;
   }
   
-  private async createLocationAndGetId(): Promise<string> {
-    const locations = await this.locationService.getAllWorldLocations();
-    const maxId = locations.length > 0 ? Math.max(...locations.map(l => parseInt(l.id.toString()))) : 0;
-    const newId = (maxId + 1).toString();
-    
-    await fetch('http://localhost:3000/worldlocations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: newId,
-        name: 'New Location',
-        description: '',
-        characters: [],
-        stories: [],
-        tags: [],
-      }),
+ private async createLocationAndGetId(): Promise<string> {
+    // Use the service to create a new location and get its ID
+    const newLocation = {
+      id: '',
+      name: 'New Location',
+      description: '',
+      characters: [],
+      stories: [],
+      relatedLocations: [],
+      tags: []
+      } as WorldLocationInfo;
+    return this.locationService.createWorldLocation(newLocation, false).toPromise().then(location => {
+      if (location) {
+        console.log(`Created new location with id ${location.id}`);
+        return location.id;
+      } else {
+        throw new Error('Failed to create location');
+      }
     });
-    
-    return newId;
   }
   
   private async createCharacterAndGetId(): Promise<string> {
-    const characters = await this.characterService.getAllWorldCharacters();
-    const maxId = characters.length > 0 ? Math.max(...characters.map(c => parseInt(c.id))) : 0;
-    const newId = (maxId + 1).toString();
-    
-    await fetch('http://localhost:3000/worldcharacters', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: newId,
-        firstName: 'New',
-        lastName: 'Character',
-        altNames: [],
-        birthdate: '',
-        pronouns: '',
-        roles: [],
-        affiliations: [],
-        relationships: [],
-        physicalDescription: '',
-        nonPhysicalDescription: '',
-        stories: [],
-        tags: [],
-      }),
+    // Use the service to create a new character and get its ID
+    const newChar = {
+      id: '',
+      personal_name: 'New',
+      family_name: 'Character',
+      altNames: [],
+      physicalDescription: '',
+      nonPhysicalDescription: '',
+      pronouns: '',
+      roles: [],
+      affiliations: [],
+      relationships: [],
+      stories: [],
+      tags: []
+    } as WorldCharacterInfo;
+    return this.characterService.createWorldCharacter(newChar, false).toPromise().then(character => {
+      if (character) {
+        console.log(`Created new character with id ${character.id}`);
+        return character.id;
+      } else {
+        throw new Error('Failed to create character');
+      }
     });
-    
-    return newId;
   }
   
   private async createStoryAndGetId(): Promise<string> {
-    const stories = await this.storyService.getAllWorldStories();
-    const maxId = stories.length > 0 ? Math.max(...stories.map(s => parseInt(s.id.toString()))) : 0;
-    const newId = (maxId + 1).toString();
-    
-    await fetch('http://localhost:3000/worldstories', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: newId,
-        title: 'New Story',
-        description: '',
-        characters: [],
-        locations: [],
-        tags: [],
-      }),
+    // Use the service to create a new story and get its ID
+    const newStory = {
+      id: '',
+      title: 'New Story',
+      description: '',
+      characters: [],
+      locations: [],
+      substories: [],
+      genre: [],
+      tags: []
+    } as WorldStoryInfo;
+    return this.storyService.createWorldStory(newStory, false).toPromise().then(story => {
+      if (story) {
+        console.log(`Created new story with id ${story.id}`);
+        return story.id;
+      } else {
+        throw new Error('Failed to create story');
+      }
     });
-    
-    return newId;
   }
   
   onTagClick(tag: string) {

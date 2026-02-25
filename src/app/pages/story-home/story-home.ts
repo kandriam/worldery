@@ -1,13 +1,10 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import {HomeRow} from '../../components/home-row/home-row';
-import {HomeGrid} from '../../components/home-grid/home-grid';
-import {WorldStoryInfo} from '../../worldstory';
-import {WorldStoryService} from '../../services/world-story.service';
-import {WorldCharacterService} from '../../services/world-character.service';
-import {WorldLocationService} from '../../services/world-location.service';
-import {WorldCharacterInfo} from '../../worldcharacter';
-import {WorldLocationInfo} from '../../worldlocation';
-import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { HomeRow} from '../../components/home-row/home-row';
+import { HomeGrid} from '../../components/home-grid/home-grid';
+import { WorldStoryInfo, WorldStoryService} from '../../services/world-story.service';
+import { WorldLocationInfo, WorldLocationService} from '../../services/world-location.service';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
+import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-story-home',
@@ -86,12 +83,16 @@ export class StoryHome {
     console.log('Adding new story');
     try {
       await this.storyService.createWorldStory(
-        'New Story',
-        '',
-        [],
-        [],
-        [],
-        [],
+        {
+          id: '',
+          title: 'New Story',
+          description: '',
+          characters: [],
+          locations: [],
+          substories: [],
+          genre: [],
+          tags: []
+        } as WorldStoryInfo,
         true);
       console.log('Story created successfully');
     } catch (error) {

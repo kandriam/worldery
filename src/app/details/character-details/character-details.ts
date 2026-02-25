@@ -1,14 +1,10 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WorldCharacterService } from '../../services/world-character.service';
-import { WorldEventService } from '../../services/world-event.service';
-import { WorldLocationService } from '../../services/world-location.service';
-import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
+import { WorldCharacterInfo, worldCharacterRelationship, WorldCharacterService } from '../../services/world-character.service';
+import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
+import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import { WorldStoryInfo } from '../../worldstory';
-import { WorldEventInfo } from '../../worldevent';
-import { WorldLocationInfo } from '../../worldlocation';
-import { WorldStoryService } from '../../services/world-story.service';
+import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { RelationshipList } from '../../components/relationship-list/relationship-list';
@@ -100,6 +96,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   private loadCharacterData(worldCharacterId: string) {
     this.worldCharacterService.getWorldCharacterById(worldCharacterId).then((worldCharacter) => {
       this.worldCharacter = worldCharacter;
+      console.log('Loaded character data:', worldCharacter);
       
       // Parse birthdate into separate components
       const birthdate = worldCharacter?.birthdate || '';
@@ -152,6 +149,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     });
 
     console.log("Character data loaded for ID:", worldCharacterId);
+    console.log("Current character state:", this.worldCharacter);
   }
 
   private loadSharedData() {
@@ -756,23 +754,25 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         console.log(`Updated ${eventType} event with id ${eventId} and updated character date.`);
       } else {
         // Create new event
-        const newEventId = await this.worldEventService.createWorldEvent(
-          eventTitle,
-          date,
-          '',
-          eventDescription,
-          [],
-          eventCharacters,
-          eventStories,
-          eventTags,
-          false
-        );
+        const newEvent = await this.worldEventService.createWorldEvent(
+          {
+            id: '',
+            name: eventTitle,
+            date: date,
+            description: eventDescription,
+            location: [],
+            characters: eventCharacters,
+            stories: eventStories,
+            tags: eventTags
+          } as WorldEventInfo,
+          true
+        ).toPromise();
         // Update the character with the new eventId and date
         if (eventType === 'birth') {
-          this.worldCharacter.birthEventId = newEventId;
+          this.worldCharacter.birthEventId = newEvent?.id || '';
           this.worldCharacter.birthdate = date;
         } else if (eventType === 'death') {
-          this.worldCharacter.deathEventId = newEventId;
+          this.worldCharacter.deathEventId = newEvent?.id || '';
           this.worldCharacter.deathdate = date;
         }
         await this.worldCharacterService.updateWorldCharacter(
@@ -793,7 +793,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.stories,
           this.worldCharacter.tags
         );
-        console.log(`Created new ${eventType} event with id ${newEventId} and updated character.`);
+        console.log(`Created new ${eventType} event with id ${newEvent} and updated character.`);
       }
       this.updateFilteredEvents();
     } catch (error: any) {

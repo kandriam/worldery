@@ -1,12 +1,12 @@
 import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 
-import {Component, inject, input, output} from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
 import { NgClass } from '@angular/common';
-import {WorldStoryInfo} from '../../../worldstory';
+import { WorldStoryInfo } from '../../../services/world-story.service';
 import { WorldLocationService } from '../../../services/world-location.service';  
 import { WorldCharacterService } from '../../../services/world-character.service';
-import {RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { WorldStoryService } from '../../../services/world-story.service';
 import { SubstoryThumbnailComponent } from './substory-thumbnail/substory-thumbnail.component';
 @Component({

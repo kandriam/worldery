@@ -1,7 +1,7 @@
-import {Component, inject, input, output} from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
-import {WorldCharacterInfo} from '../../../worldcharacter';
-import {RouterLink } from '@angular/router';
+import { WorldCharacterInfo } from '../../../services/world-character.service';
+import { RouterLink } from '@angular/router';
 import { WorldCharacterService } from '../../../services/world-character.service';
 import { WorldStoryService } from 'src/app/services/world-story.service';
 

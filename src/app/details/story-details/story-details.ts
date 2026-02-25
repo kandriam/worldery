@@ -1,13 +1,9 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WorldStoryService } from '../../services/world-story.service';
-import { WorldEventService } from '../../services/world-event.service';
-import { WorldStoryInfo } from '../../worldstory';
-import { WorldCharacterService } from '../../services/world-character.service';
-import { WorldCharacterInfo } from '../../worldcharacter';
-import { WorldLocationService } from '../../services/world-location.service';
-import { WorldLocationInfo } from '../../worldlocation';
-import { WorldEventInfo } from '../../worldevent';
+import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
+import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
+import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';

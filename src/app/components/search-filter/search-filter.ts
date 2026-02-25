@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
-import {WorldCharacterInfo} from '../../worldcharacter';
-import {WorldStoryInfo} from '../../worldstory';
-import {WorldLocationInfo} from '../../worldlocation';
+import { WorldCharacterInfo } from '../../services/world-character.service';
+import {WorldStoryInfo} from '../../services/world-story.service';
+import {WorldLocationInfo} from '../../services/world-location.service';
 
 export interface FilterConfig {
   showCharacters?: boolean;

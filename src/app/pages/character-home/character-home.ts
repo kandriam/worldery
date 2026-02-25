@@ -1,11 +1,9 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import {HomeRow} from '../../components/home-row/home-row';
-import {HomeGrid} from '../../components/home-grid/home-grid';
-import {WorldCharacterInfo} from '../../worldcharacter';
-import {WorldCharacterService} from '../../services/world-character.service';
-import {WorldStoryService} from '../../services/world-story.service';
-import {WorldStoryInfo} from '../../worldstory';
-import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { HomeRow } from '../../components/home-row/home-row';
+import { HomeGrid } from '../../components/home-grid/home-grid';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
+import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
+import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
 import { Router } from '@angular/router';
 
 @Component({
@@ -74,22 +72,19 @@ export class CharacterHome {
   addWorldCharacter() {
     console.log('Adding new character');
     this.characterService.createWorldCharacter(
-      'New',
-      'Character',
-      [],
-      '',
-      '',
-      '',
-      '',
-      '',
-      [],
-      [],
-      [],
-      '',
-      '',
-      [],
-      [],
-      true);
+      {id: '',
+      personal_name: 'New',
+      family_name: 'Character',
+      altNames: [],
+      physicalDescription: '',
+      nonPhysicalDescription: '',
+      pronouns: '',
+      roles: [],
+      affiliations: [],
+      relationships: [],
+      stories: [],
+      tags: []
+    } as WorldCharacterInfo, true);
   }
 
   onTagClicked(tag: string) {

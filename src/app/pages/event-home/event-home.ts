@@ -1,16 +1,12 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import {HomeRow} from '../../components/home-row/home-row';
-import {HomeGrid} from '../../components/home-grid/home-grid';
-import {Timeline} from '../../components/timeline/timeline/timeline';
-import {WorldEventInfo} from '../../worldevent';
-import {WorldEventService} from '../../services/world-event.service';
-import {WorldCharacterService} from '../../services/world-character.service';
-import {WorldStoryService} from '../../services/world-story.service';
-import {WorldLocationService} from '../../services/world-location.service';
-import {WorldCharacterInfo} from '../../worldcharacter';
-import {WorldStoryInfo} from '../../worldstory';
-import {WorldLocationInfo} from '../../worldlocation';
-import {SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { HomeRow } from '../../components/home-row/home-row';
+import { HomeGrid } from '../../components/home-grid/home-grid';
+import { Timeline } from '../../components/timeline/timeline/timeline';
+import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
+import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
+import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
+import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-event-home',
@@ -25,11 +21,11 @@ export class EventHome {
   storyService = inject(WorldStoryService);
   locationService = inject(WorldLocationService);
 
-  filteredEventList: import('../../worldevent').WorldEventInfo[] = [];
-  worldEventList: import('../../worldevent').WorldEventInfo[] = [];
-  allCharacters: import('../../worldcharacter').WorldCharacterInfo[] = [];
-  allStories: import('../../worldstory').WorldStoryInfo[] = [];
-  allLocations: import('../../worldlocation').WorldLocationInfo[] = [];
+  filteredEventList: WorldEventInfo[] = [];
+  worldEventList: WorldEventInfo[] = [];
+  allCharacters: WorldCharacterInfo[] = [];
+  allStories: WorldStoryInfo[] = [];
+  allLocations: WorldLocationInfo[] = [];
 
   viewMode: 'timeline' | 'grid' = 'timeline';
 
@@ -56,7 +52,7 @@ export class EventHome {
     });
   }
 
-  onFilterChange(filterState: import('../../components/search-filter/search-filter').FilterState) {
+  onFilterChange(filterState: FilterState) {
     let filtered = [...this.worldEventList];
 
     // Text search filter
@@ -112,14 +108,16 @@ export class EventHome {
   addWorldEvent() {
     console.log('Adding new event');
     this.eventService.createWorldEvent(
-      'New Event', // eventTitle
-      '',          // eventDate
-      '',          // eventEndDate
-      '',          // eventDescription
-      [],          // eventLocation
-      [],          // eventCharacters
-      [],          // eventStories
-      [],          // eventTags
+      {
+        id: '',
+        name: 'New Event',
+        date: new Date().toISOString().split('T')[0], // Default to today
+        description: '',
+        location: [],
+        characters: [],
+        stories: [],
+        tags: []
+      } as WorldEventInfo,
       true         // goToPage
     );
   }

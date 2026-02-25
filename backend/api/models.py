@@ -7,7 +7,7 @@ class Tag(models.Model):
         return self.name
 
 class World(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True)
     description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='worlds', blank=True)
     locations = models.ManyToManyField('Location', related_name='worlds', blank=True)
@@ -19,7 +19,7 @@ class World(models.Model):
         return self.title
 
 class Story(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=True)
     description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='story_set', blank=True)
     locations = models.ManyToManyField('Location', related_name='story_set', blank=True)
@@ -30,7 +30,7 @@ class Story(models.Model):
         return self.title
 
 class Location(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True)
     description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='location_set', blank=True)
     stories = models.ManyToManyField(Story, related_name='location_stories', blank=True)
@@ -40,10 +40,11 @@ class Location(models.Model):
         return self.name
 
 class Event(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True)
     description = models.TextField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
+    
     locations = models.ManyToManyField(Location, related_name='events', blank=True)
     characters = models.ManyToManyField('Character', related_name='events', blank=True)
     stories = models.ManyToManyField(Story, related_name='event_stories', blank=True)
@@ -52,8 +53,8 @@ class Event(models.Model):
         return self.name
 
 class Character(models.Model):
-    personal_name = models.CharField(max_length=100)
-    family_name = models.CharField(max_length=100)
+    personal_name = models.CharField(max_length=100, blank=True)
+    family_name = models.CharField(max_length=100, blank=True)
     alt_names = models.JSONField(default=list, blank=True)
     physical_description = models.TextField(blank=True, null=True)
     non_physical_description = models.TextField(blank=True, null=True)

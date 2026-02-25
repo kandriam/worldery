@@ -1,5 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
-import { WorldStoryInfo } from '../../../../worldstory';
+import { WorldStoryInfo } from '../../../../services/world-story.service';
 import { RouterLink } from '@angular/router';
 import { WorldCharacterService } from '../../../../services/world-character.service';
 import { WorldLocationService } from '../../../../services/world-location.service';

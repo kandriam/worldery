@@ -1,7 +1,17 @@
-import { Injectable } from '@angular/core';
-import { WorldLocationInfo } from '../worldlocation';
+import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, catchError, of } from 'rxjs';
 
+export interface WorldLocationInfo {
+    id: string;
+    name: string;
+    description: string;
+    characters: string[];
+    stories: string[];
+    relatedLocations: string[];
+    tags: string[];
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +19,7 @@ export class WorldLocationService {
   // url = 'http://localhost:3000/worldlocations';
   url = 'http://localhost:8000/api/locations';
   
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   async getAllWorldLocations(): Promise<WorldLocationInfo[]> {
     const data = await fetch(this.url);
@@ -158,99 +168,26 @@ export class WorldLocationService {
     }
   }
 
-  async createWorldLocation(
-    locationName: string,
-    locationDescription: string,
-    locationCharacters: string[],
-    locationStories: string[],
-    locationTags: string[],
-    goToPage: boolean = true
-  ) : Promise<WorldLocationInfo> {
-    console.log(
-      `Location created:
-      locationName: ${locationName},
-      locationDescription: ${locationDescription},
-      locationCharacters: ${locationCharacters},
-      locationStories: ${locationStories},
-      locationTags: ${locationTags}.`,
-    );
-
-    try {
-      const locations = await this.getAllWorldLocations();
-      console.log('Current locations count:', locations.length);
-      
-      // determine next id as string
-      const maxId = locations.length > 0 ? Math.max(...locations.map(e => parseInt(e.id.toString()))) : 0;
-      const newId = (maxId + 1).toString();
-      
-      const response = await fetch(this.url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: newId,
-          name: locationName,
-          description: locationDescription,
-          characters: locationCharacters,
-          stories: locationStories,
-          relatedLocations: [],
-          tags: locationTags,
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to create location: ${response.statusText}`);
-      }
-      
-      console.log('Location created successfully');
-      let newLocation = {
-        id: newId,
-        name: locationName,
-        description: locationDescription,
-        characters: locationCharacters,
-        stories: locationStories,
-        relatedLocations: [],
-        tags: locationTags,
-      };
-      if (goToPage) {
-        this.router.navigate([`/location/${newId}`]);
-      } else {
-        window.location.reload();
-      }
-      return newLocation;
-    } catch (error) {
-      console.error('Error creating location:', error);
-      throw error;
-    }
+  createWorldLocation(event: WorldLocationInfo, goToPage: boolean): Observable<WorldLocationInfo | null> {
+    return this.http.post<WorldLocationInfo>(`${this.url}/`, event)
+        .pipe(catchError(error => {
+            console.error('Error creating location:', error);
+            return of(null);
+      }));
   }
 
   async deleteWorldLocation(locationID: string) {
     console.log(`Deleting location with ID: ${locationID}`);
-    try {
-      // Get the location being deleted to clean up relationships
-      const locationToDelete = await this.getWorldLocationById(locationID);
-      if (!locationToDelete) {
-        throw new Error('Location not found');
+    this.http.delete(`${this.url}/${locationID}/`).subscribe({
+      next: () => {
+        console.log('Location deleted successfully');
+        this.router.navigate(['/locations']);
+      },
+      error: (error) => {
+        console.error('Error deleting location:', error);
+        alert('Failed to delete location: ' + error.message);
       }
-      
-      // Remove this location from all other locations' related lists
-      await this.removeLocationFromAllRelationships(locationToDelete.name);
-      
-      const response = await fetch(`${this.url}/${locationID}`, {
-        method: 'DELETE',
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to delete location: ${response.statusText}`);
-      }
-      
-      console.log('Location deleted successfully with relationship cleanup');
-      this.router.navigate(['/locations']);
-    } catch (error) {
-      console.error('Error deleting location:', error);
-      throw error;
-    }
+    });
   }
 
   private async removeLocationFromAllRelationships(deletedLocationName: string) {

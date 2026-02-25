@@ -3,9 +3,8 @@ import { WorldStoryService } from '../../../services/world-story.service';
 
 import {Component, inject, input, output} from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
-import {WorldEventInfo} from '../../../worldevent';
 import {RouterLink } from '@angular/router';
-import { WorldEventService } from '../../../services/world-event.service';
+import { WorldEventInfo, WorldEventService } from '../../../services/world-event.service';
 import { WorldLocationService } from 'src/app/services/world-location.service';
 @Component({
   selector: 'app-event-thumbnail',

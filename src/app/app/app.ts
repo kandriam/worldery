@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterModule, RouterOutlet} from '@angular/router';
-import { WorldInfo } from '../world';
-import {WorldInfoService} from '..//services/world.service';
+import { WorldInfo, WorldInfoService } from '../services/world.service';
 
 @Component({
   selector: 'app-root',

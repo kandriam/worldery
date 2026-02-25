@@ -1,6 +1,6 @@
 import { Component, input, inject, output } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
-import { WorldLocationInfo } from '../../../worldlocation';
+import { WorldLocationInfo } from '../../../services/world-location.service';
 import {RouterLink } from '@angular/router';
 import { WorldLocationService } from '../../../services/world-location.service';
 import { WorldCharacterService } from '../../../services/world-character.service';

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 // import { WorldInfo } from '../world';
 import { Observable, catchError, of } from 'rxjs';
 
-
 export interface WorldInfo {
     id: string;
     title: string;

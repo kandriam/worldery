@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WorldEventInfo } from '../../../worldevent';
+import { WorldEventInfo } from '../../../services/world-event.service';
 import { TimelineEvent } from '../timeline-event/timeline-event';
 
 @Component({

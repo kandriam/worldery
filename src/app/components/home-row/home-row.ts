@@ -11,10 +11,10 @@ import { EventThumbnail } from '../thumbnail/event-thumbnail/event-thumbnail';
 import { LocationThumbnail } from '../thumbnail/location-thumbnail/location-thumbnail';
 import { CharacterThumbnail } from '../thumbnail/character-thumbnail/character-thumbnail';
 import { StoryThumbnail } from '../thumbnail/story-thumbnail/story-thumbnail';
-import { WorldEventInfo } from '../../worldevent';
-import { WorldLocationInfo } from '../../worldlocation';
-import { WorldCharacterInfo } from '../../worldcharacter';
-import { WorldStoryInfo } from '../../worldstory';
+import { WorldEventInfo } from '../../services/world-event.service';
+import { WorldLocationInfo } from '../../services/world-location.service';
+import { WorldCharacterInfo } from '../../services/world-character.service';
+import { WorldStoryInfo } from '../../services/world-story.service';
 
 export type EntityType = 'event' | 'location' | 'character' | 'story';
 export type EntityData = WorldEventInfo[] | WorldLocationInfo[] | WorldCharacterInfo[] | WorldStoryInfo[];

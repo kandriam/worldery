@@ -2,8 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingsService, SettingsData } from '../../services/settings.service';
-import { WorldInfo } from '../../world';
-import { WorldInfoService } from '../../services/world.service';
+import { WorldInfo, WorldInfoService } from '../../services/world.service';
 import { Subscription } from 'rxjs';
 
 @Component({

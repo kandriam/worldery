@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { WorldCharacterInfo, worldCharacterRelationship } from '../../worldcharacter';
+import { worldCharacterRelationship, WorldCharacterInfo } from '../../services/world-character.service';
 
 @Component({
   selector: 'app-relationship-list',
