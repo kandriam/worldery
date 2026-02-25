@@ -24,7 +24,8 @@ class Story(models.Model):
     characters = models.ManyToManyField('Character', related_name='story_set', blank=True)
     locations = models.ManyToManyField('Location', related_name='story_set', blank=True)
     substories = models.ManyToManyField('self', symmetrical=False, related_name='parent_stories', blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.JSONField(default=list, blank=True)
+    # tags = models.ManyToManyField(Tag, blank=True)
     genres = models.JSONField(default=list, blank=True)
     def __str__(self):
         return self.title
@@ -35,7 +36,8 @@ class Location(models.Model):
     characters = models.ManyToManyField('Character', related_name='location_set', blank=True)
     stories = models.ManyToManyField(Story, related_name='location_stories', blank=True)
     related_locations = models.ManyToManyField('self', symmetrical=True, related_name='related_locations', blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.JSONField(default=list, blank=True)
+    # tags = models.ManyToManyField(Tag, blank=True)
     def __str__(self):
         return self.name
 
@@ -48,7 +50,8 @@ class Event(models.Model):
     locations = models.ManyToManyField(Location, related_name='events', blank=True)
     characters = models.ManyToManyField('Character', related_name='events', blank=True)
     stories = models.ManyToManyField(Story, related_name='event_stories', blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.JSONField(default=list, blank=True)
+    # tags = models.ManyToManyField(Tag, blank=True)
     def __str__(self):
         return self.name
 
@@ -66,7 +69,8 @@ class Character(models.Model):
     roles = models.JSONField(default=list, blank=True)
     affiliations = models.JSONField(default=list, blank=True)
     stories = models.ManyToManyField(Story, related_name='character_set', blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.JSONField(default=list, blank=True)
+    # tags = models.ManyToManyField(Tag, blank=True)
     def __str__(self):
         return f"{self.personal_name} {self.family_name}"
 

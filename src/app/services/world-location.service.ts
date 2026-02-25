@@ -57,45 +57,24 @@ export class WorldLocationService {
       locationTags: ${locationTags}.`,
     );
     
-    try {
-      // Get the current location to see what relationships have changed
-      const currentLocation = await this.getWorldLocationById(locationID);
-      const currentRelatedLocations = currentLocation?.related_locations || [];
-
-      // Update the main location
-      const response = await fetch(`${this.url}/${locationID}/`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: locationID,
-          name: locationName,
-          description: locationDescription,
-          characters: locationCharacters,
-          stories: locationStories,
-          related_locations: locationRelatedLocations,
-          tags: locationTags,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to update location: ${response.statusText}`);
+    // Map property names to Django model
+    const payload = {
+      name: locationName,
+      description: locationDescription,
+      characters: locationCharacters,
+      stories: locationStories,
+      related_locations: locationRelatedLocations,
+      tags: locationTags,
+    };
+    return this.http.put(`${this.url}/${locationID}/`, payload)
+      .pipe(catchError(error => {
+        console.error('Error updating location:', error);
+        throw error;
       }
-
-      // Handle bidirectional relationship updates (by ID)
-      await this.updateBidirectionalRelationshipsById(
-        locationID,
-        currentRelatedLocations,
-        locationRelatedLocations
-      );
-
-      console.log('Location updated successfully with bidirectional relationships (by ID)');
-      return await response.json();
-    } catch (error) {
-      console.error('Error updating location:', error);
-      throw error;
-    }
+    )).toPromise().then((updatedLocation: any) => {
+      console.log('Location updated successfully', updatedLocation);
+      return updatedLocation;
+    });
   }
 
   private async updateLocationNameReferences(oldName: string, newName: string) {

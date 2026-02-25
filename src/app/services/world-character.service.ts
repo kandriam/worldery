@@ -112,24 +112,24 @@ export class WorldCharacterService {
   /**
    * Helper to add or remove an ID from an array field in another entity
    */
-  private async updateEntityArray(entityType: string, entityId: string, arrayField: string, value: string, add: boolean) {
-    const url = `http://localhost:8000/${entityType}/${entityId}`;
-    const res = await fetch(url);
-    if (!res.ok) return;
-    const entity = await res.json();
-    if (!entity) return;
-    let arr = entity[arrayField] || [];
-    if (add) {
-      if (!arr.includes(value)) arr.push(value);
-    } else {
-      arr = arr.filter((v: string) => v !== value);
-    }
-    await fetch(url, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...entity, [arrayField]: arr })
-    });
-  }
+  // private async updateEntityArray(entityType: string, entityId: string, arrayField: string, value: string, add: boolean) {
+  //   const url = `http://localhost:8000/${entityType}/${entityId}`;
+  //   const res = await fetch(url);
+  //   if (!res.ok) return;
+  //   const entity = await res.json();
+  //   if (!entity) return;
+  //   let arr = entity[arrayField] || [];
+  //   if (add) {
+  //     if (!arr.includes(value)) arr.push(value);
+  //   } else {
+  //     arr = arr.filter((v: string) => v !== value);
+  //   }
+  //   await fetch(url, {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ ...entity, [arrayField]: arr })
+  //   });
+  // }
 
   createWorldCharacter(character: WorldCharacterInfo, goToPage: boolean): Observable<WorldCharacterInfo | null> {
     return this.http.post<WorldCharacterInfo>(`${this.url}/`, character)
