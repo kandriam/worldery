@@ -7,15 +7,15 @@ export interface WorldCharacterInfo {
     id: string;
     personal_name: string;
     family_name: string;
-    altNames: string[];
-    physicalDescription: string;
-    nonPhysicalDescription: string;
+    alt_names: string[];
+    physical_description: string;
+    non_physical_description: string;
 
     pronouns: string;
     birthdate?: string;
     deathdate?: string;
-    birthEventId?: string; // Event ID for birth
-    deathEventId?: string; // Event ID for death
+    birth_event_id?: string; // Event ID for birth
+    death_event_id?: string; // Event ID for death
     roles: string[];
     affiliations: string[];
     relationships: worldCharacterRelationship[];
@@ -78,36 +78,35 @@ export class WorldCharacterService {
     characterPhysicalDescription: string,
     characterNonPhysicalDescription: string,
     characterStories: string[],
-    characterTags: string[]){
-
-      // Map property names to Django model
-      const payload = {
-        personal_name: characterFirstName,
-        family_name: characterLastName,
-        alt_names: characterAltNames,
-        birthdate: characterBirthdate || null,
-        deathdate: characterDeathdate || null,
-        birth_event: characterBirthEventId || null,
-        death_event: characterDeathEventId || null,
-        pronouns: characterPronouns,
-        roles: characterRoles,
-        affiliations: characterAffiliations,
-        physical_description: characterPhysicalDescription,
-        non_physical_description: characterNonPhysicalDescription,
-        stories: characterStories,
-        tags: characterTags,
-        // relationships: characterRelationships // Only if your serializer supports it
-      };
-      return this.http.put(`${this.url}/${characterID}/`, payload)
-        .pipe(catchError(error => {
-          console.error('Error updating character:', error);
-          throw error;
-        }
-      )).toPromise().then((updatedChar: any) => {
-        console.log('Character updated successfully', updatedChar);
-        return updatedChar;
+    characterTags: string[]
+  ){
+    // Map property names to Django model
+    const payload = {
+      personal_name: characterFirstName,
+      family_name: characterLastName,
+      alt_names: characterAltNames,
+      birthdate: characterBirthdate || null,
+      deathdate: characterDeathdate || null,
+      birth_event: characterBirthEventId || null,
+      death_event: characterDeathEventId || null,
+      pronouns: characterPronouns,
+      roles: characterRoles,
+      affiliations: characterAffiliations,
+      physical_description: characterPhysicalDescription,
+      non_physical_description: characterNonPhysicalDescription,
+      stories: characterStories,
+      tags: characterTags,
+      // relationships: characterRelationships // Only if your serializer supports it
+    };
+    return this.http.put(`${this.url}/${characterID}/`, payload)
+      .pipe(catchError(error => {
+        console.error('Error updating character:', error);
+        throw error;
       }
-    );
+    )).toPromise().then((updatedChar: any) => {
+      console.log('Character updated successfully', updatedChar);
+      return updatedChar;
+    });
   }
 
   /**

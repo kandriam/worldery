@@ -1,7 +1,7 @@
 <div class="details-heading">
     <h2 class="character-title">{{ worldCharacter?.personal_name }} {{ worldCharacter?.family_name }}</h2>
-    @if (worldCharacter && worldCharacter.altNames && worldCharacter.altNames.length > 0) {
-        <h3 class="subtitle">( {{ worldCharacter.altNames.join(', ') }} )</h3>
+    @if (worldCharacter && worldCharacter.alt_names && worldCharacter.alt_names.length > 0) {
+        <h3 class="subtitle">( {{ worldCharacter.alt_names.join(', ') }} )</h3>
     }
     <button class="delete-button secondary" (click)="deleteCharacter()">Delete Character</button>
 </div>
@@ -50,16 +50,16 @@
                         </div>
 
                         <div class="event-thumbnails">
-                            @if (worldCharacter?.birthEventId) {
+                            @if (worldCharacter?.birth_event_id) {
                                 <app-event-thumbnail 
-                                    [worldEvent]="getEvent(worldCharacter?.birthEventId || '')!"
+                                    [worldEvent]="getEvent(worldCharacter?.birth_event_id || '')!"
                                     [showCharacters]="false"
                                     >
                                 </app-event-thumbnail>
                             }
-                            @if (worldCharacter?.deathEventId) {
+                            @if (worldCharacter?.death_event_id) {
                                 <app-event-thumbnail 
-                                    [worldEvent]="getEvent(worldCharacter?.deathEventId || '')!"
+                                    [worldEvent]="getEvent(worldCharacter?.death_event_id || '')!"
                                     [showCharacters]="false"
                                     >
                                 </app-event-thumbnail>

@@ -90,7 +90,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       if (this.worldLocation) {
         this.worldLocation.characters = this.worldLocation.characters || [];
         this.worldLocation.stories = this.worldLocation.stories || [];
-        this.worldLocation.relatedLocations = this.worldLocation.relatedLocations || [];
+        this.worldLocation.related_locations = this.worldLocation.related_locations || [];
         this.worldLocation.tags = this.worldLocation.tags || [];
       }
       
@@ -118,7 +118,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   }
 
   isRelatedLocationInLocation(locationId: string): boolean {
-    return this.worldLocation?.relatedLocations?.includes(locationId) || false;
+    return this.worldLocation?.related_locations?.includes(locationId) || false;
   }
 
   getCharactersAssociationList(): AssociationItem[] {
@@ -180,11 +180,11 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   onRelatedLocationToggle(event: {id: string, isChecked: boolean}) {
     if (this.worldLocation) {
       if (event.isChecked) {
-        if (!this.worldLocation.relatedLocations.includes(event.id)) {
-          this.worldLocation.relatedLocations.push(event.id);
+        if (!this.worldLocation.related_locations.includes(event.id)) {
+          this.worldLocation.related_locations.push(event.id);
         }
       } else {
-        this.worldLocation.relatedLocations = this.worldLocation.relatedLocations.filter(id => id !== event.id);
+        this.worldLocation.related_locations = this.worldLocation.related_locations.filter(id => id !== event.id);
       }
       const location = this.locationList.find(l => l.id === event.id);
       const locationName = location ? location.name : event.id;
@@ -225,7 +225,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     return relatedLocations;
   }
 
-  async submitApplication() {
+  async updateLocation() {
     if (this.worldLocation?.id !== undefined) {
       try {
         // Use the form's checked associations (by ID) for update
@@ -236,9 +236,9 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
           this.worldLocation.id,
           this.applyForm.value.locationTitle ?? '',
           this.applyForm.value.locationDescription ?? '',
-          updatedCharacters,
-          updatedStories,
-          updatedRelatedLocations,
+          updatedCharacters || [],
+          updatedStories || [],
+          updatedRelatedLocations || [],
           this.applyForm.value.locationTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
         );
         console.log('Location updated successfully');

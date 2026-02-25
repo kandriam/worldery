@@ -9,7 +9,7 @@ export interface WorldLocationInfo {
     description: string;
     characters: string[];
     stories: string[];
-    relatedLocations: string[];
+    related_locations: string[];
     tags: string[];
 }
 @Injectable({
@@ -27,12 +27,25 @@ export class WorldLocationService {
   }
 
   async getWorldLocationById(id: string): Promise<WorldLocationInfo | undefined> {
-    const data = await fetch(`${this.url}?id=${id}`);
+    // Use RESTful detail endpoint for correct location
+    const data = await fetch(`${this.url}/${id}/`);
+    if (!data.ok) {
+      console.error('Failed to fetch location by id:', id);
+      return undefined;
+    }
     const locationJson = await data.json();
-    return locationJson[0] ?? {};
+    return locationJson;
   }
 
-  async updateWorldLocation(locationID: string, locationName: string, locationDescription: string, locationCharacters: string[], locationStories: string[], locationRelatedLocations: string[], locationTags: string[]) {
+  async updateWorldLocation(
+    locationID: string,
+    locationName: string,
+    locationDescription: string,
+    locationCharacters: string[],
+    locationStories: string[],
+    locationRelatedLocations: string[],
+    locationTags: string[]
+  ) {
     console.log(
       `Location edited:
       locationID: ${locationID},
@@ -47,10 +60,10 @@ export class WorldLocationService {
     try {
       // Get the current location to see what relationships have changed
       const currentLocation = await this.getWorldLocationById(locationID);
-      const currentRelatedLocations = currentLocation?.relatedLocations || [];
+      const currentRelatedLocations = currentLocation?.related_locations || [];
 
       // Update the main location
-      const response = await fetch(`${this.url}/${locationID}`, {
+      const response = await fetch(`${this.url}/${locationID}/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +74,7 @@ export class WorldLocationService {
           description: locationDescription,
           characters: locationCharacters,
           stories: locationStories,
-          relatedLocations: locationRelatedLocations,
+          related_locations: locationRelatedLocations,
           tags: locationTags,
         }),
       });
@@ -91,12 +104,12 @@ export class WorldLocationService {
       
       // Find all locations that reference the old name
       const locationsToUpdate = allLocations.filter(location => 
-        location.relatedLocations.includes(oldName)
+        location.related_locations.includes(oldName)
       );
       
       // Update each location to use the new name
       for (const location of locationsToUpdate) {
-        const updatedRelatedLocations = location.relatedLocations.map(
+        const updatedRelatedLocations = location.related_locations.map(
           name => name === oldName ? newName : name
         );
         await this.updateLocationRelationshipsOnly(location.id, updatedRelatedLocations);
@@ -126,8 +139,8 @@ export class WorldLocationService {
     // Remove bidirectional relationships
     for (const removedLocationId of removedRelations) {
       const location = allLocations.find(loc => loc.id === removedLocationId);
-      if (location && location.relatedLocations.includes(currentLocationId)) {
-        const updatedRelatedLocations = location.relatedLocations.filter(
+      if (location && location.related_locations.includes(currentLocationId)) {
+        const updatedRelatedLocations = location.related_locations.filter(
           (id: string) => id !== currentLocationId
         );
         await this.updateLocationRelationshipsOnly(location.id, updatedRelatedLocations);
@@ -137,8 +150,8 @@ export class WorldLocationService {
     // Add bidirectional relationships
     for (const addedLocationId of addedRelations) {
       const location = allLocations.find(loc => loc.id === addedLocationId);
-      if (location && !location.relatedLocations.includes(currentLocationId)) {
-        const updatedRelatedLocations = [...location.relatedLocations, currentLocationId];
+      if (location && !location.related_locations.includes(currentLocationId)) {
+        const updatedRelatedLocations = [...location.related_locations, currentLocationId];
         await this.updateLocationRelationshipsOnly(location.id, updatedRelatedLocations);
       }
     }
@@ -196,12 +209,12 @@ export class WorldLocationService {
       
       // Find all locations that have the deleted location in their related list
       const locationsToUpdate = allLocations.filter(location => 
-        location.relatedLocations.includes(deletedLocationName)
+        location.related_locations.includes(deletedLocationName)
       );
       
       // Update each location to remove the deleted location
       for (const location of locationsToUpdate) {
-        const updatedRelatedLocations = location.relatedLocations.filter(
+        const updatedRelatedLocations = location.related_locations.filter(
           name => name !== deletedLocationName
         );
         await this.updateLocationRelationshipsOnly(location.id, updatedRelatedLocations);

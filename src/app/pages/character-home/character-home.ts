@@ -53,7 +53,7 @@ export class CharacterHome {
           worldCharacter?.tags.join(' '),
           worldCharacter?.personal_name,
           worldCharacter?.family_name,
-          worldCharacter?.altNames.join(' '))
+          worldCharacter?.alt_names.join(' '))
       );
     }
     
@@ -75,9 +75,9 @@ export class CharacterHome {
       {id: '',
       personal_name: 'New',
       family_name: 'Character',
-      altNames: [],
-      physicalDescription: '',
-      nonPhysicalDescription: '',
+      alt_names: [],
+      physical_description: '',
+      non_physical_description: '',
       pronouns: '',
       roles: [],
       affiliations: [],

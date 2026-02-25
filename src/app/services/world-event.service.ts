@@ -8,7 +8,7 @@ export interface WorldEventInfo {
   name: string;
   description: string;
   date: string;
-  endDate?: string;
+  end_date?: string;
 
   location: string[];
   characters: string[];
@@ -31,10 +31,15 @@ export class WorldEventService {
   }
 
   async getWorldEventById(id: string): Promise<WorldEventInfo | undefined> {
-      const data = await fetch(`${this.url}/${id}`);
-      const locationJson = await data.json();
-      return locationJson[0] ?? {};
+    // Use RESTful detail endpoint for correct event
+    const data = await fetch(`${this.url}/${id}/`);
+    if (!data.ok) {
+      console.error('Failed to fetch event by id:', id);
+      return undefined;
     }
+    const eventJson = await data.json();
+    return eventJson;
+  }
 
   updateWorldEvent(
     eventID: string,
@@ -47,24 +52,45 @@ export class WorldEventService {
     eventStories: string[],
     eventTags: string[]
   ) {
-    fetch(`${this.url}/${eventID}/`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: eventID,
-        name: eventTitle,
-        date: eventDate,
-        endDate: eventEndDate || undefined,
-        description: eventDescription,
-        location: eventLocation,
-        characters: eventCharacters,
-        stories: eventStories,
-        tags: eventTags,
-      }),
+    // Map property names to Django model
+    const payload = {
+      name: eventTitle,
+      date: eventDate,
+      end_date: eventEndDate || undefined,
+      description: eventDescription,
+      location: eventLocation,
+      characters: eventCharacters,
+      stories: eventStories,
+      tags: eventTags,
+      // relationships: characterRelationships // Only if your serializer supports it
+    };
+    return this.http.put(`${this.url}/${eventID}/`, payload)
+      .pipe(catchError(error => {
+        console.error('Error updating event:', error);
+        throw error;
+      }
+    )).toPromise().then((updatedEvent: any) => {
+      console.log('Event updated successfully', updatedEvent);
+      return updatedEvent;
     });
-    window.location.reload();
+    // fetch(`${this.url}/${eventID}/`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     id: eventID,
+    //     name: eventTitle,
+    //     date: eventDate,
+    //     end_date: eventEndDate || undefined,
+    //     description: eventDescription,
+    //     location: eventLocation,
+    //     characters: eventCharacters,
+    //     stories: eventStories,
+    //     tags: eventTags,
+    //   }),
+    // });
+    // window.location.reload();
   }
 
   createWorldEvent(event: WorldEventInfo, goToPage: boolean): Observable<WorldEventInfo | null> {
@@ -80,7 +106,7 @@ export class WorldEventService {
     this.http.delete(`${this.url}/${eventID}/`).subscribe({
       next: () => {
         console.log('Event deleted successfully');
-        this.router.navigate(['/events']);
+        // this.router.navigate(['/events']);
       },
       error: (error) => {
         console.error('Error deleting event:', error);

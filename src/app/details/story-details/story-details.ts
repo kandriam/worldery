@@ -225,17 +225,17 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
             character.id,
             fullCharacter.personal_name,
             fullCharacter.family_name,
-            fullCharacter.altNames || [],
+            fullCharacter.alt_names || [],
             fullCharacter.birthdate || '',
-            fullCharacter.birthEventId || '',
+            fullCharacter.birth_event_id || '',
             fullCharacter.deathdate || '',
-            fullCharacter.deathEventId || '',
+            fullCharacter.death_event_id || '',
             fullCharacter.pronouns || '',
             fullCharacter.roles || [],
             fullCharacter.affiliations || [],
             fullCharacter.relationships || [],
-            fullCharacter.physicalDescription || '',
-            fullCharacter.nonPhysicalDescription || '',
+            fullCharacter.physical_description || '',
+            fullCharacter.non_physical_description || '',
             updatedStories,
             fullCharacter.tags || []
           );
@@ -266,7 +266,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
             fullLocation.description,
             fullLocation.characters || [],
             updatedStories,
-            fullLocation.relatedLocations || [],
+            fullLocation.related_locations || [],
             fullLocation.tags || []
           );
         }

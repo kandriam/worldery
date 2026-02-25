@@ -30,9 +30,14 @@ export class WorldStoryService {
   }
 
   async getWorldStoryById(id: string): Promise<WorldStoryInfo | undefined> {
-    const data = await fetch(`${this.url}?id=${id}`);
-    const locationJson = await data.json();
-    return locationJson[0] ?? {};
+    // Use RESTful detail endpoint for correct story
+    const data = await fetch(`${this.url}/${id}/`);
+    if (!data.ok) {
+      console.error('Failed to fetch story by id:', id);
+      return undefined;
+    }
+    const storyJson = await data.json();
+    return storyJson;
   }
 
   async updateWorldStory(
@@ -44,53 +49,25 @@ export class WorldStoryService {
     storyTags: string[],
     substories: string[] = []
   ) {
-    console.log(
-      `Story edited:
-      storyID: ${storyID},
-      storyTitle: ${storyTitle},
-      storyDescription: ${storyDescription},
-      storyCharacters: ${storyCharacters},
-      storyLocations: ${storyLocations},
-      storyTags: ${storyTags}.`,
-    );
-    
-    try {
-      // Get current story to track changes
-      const currentStory = await this.getWorldStoryById(storyID);
-      const oldCharacters = currentStory?.characters || [];
-      const oldLocations = currentStory?.locations || [];
-
-      const response = await fetch(`${this.url}/${storyID}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: storyID,
-          title: storyTitle,
-          description: storyDescription,
-          characters: storyCharacters,
-          locations: storyLocations,
-          substories: substories,
-          tags: storyTags,
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Failed to update story: ${response.statusText}`);
+    // Map property names to Django model
+    const payload = {
+      title: storyTitle,
+      description: storyDescription,
+      characters: storyCharacters,
+      locations: storyLocations,
+      tags: storyTags,
+      substories: substories
+      // relationships: characterRelationships // Only if your serializer supports it
+    };
+    return this.http.put(`${this.url}/${storyID}/`, payload)
+      .pipe(catchError(error => {
+        console.error('Error updating story:', error);
+        throw error;
       }
-      
-      // Update character relationships by ID
-      await this.updateCharacterStoryRelationships(storyID, oldCharacters, storyCharacters);
-      // Update location relationships by ID
-      await this.updateLocationStoryRelationships(storyID, oldLocations, storyLocations);
-      
-      console.log('Story updated successfully with bidirectional relationships');
-      return await response.json();
-    } catch (error) {
-      console.error('Error updating story:', error);
-      throw error;
-    }
+    )).toPromise().then((updatedStory: any) => {
+      console.log('Character updated successfully', updatedStory);
+      return updatedStory;
+    });
   }
 
   createWorldStory(event: WorldStoryInfo, goToPage: boolean): Observable<WorldStoryInfo | null> {

@@ -125,7 +125,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       this.applyForm.patchValue({
         characterPersonalName: worldCharacter?.personal_name || '',
         characterFamilyName: worldCharacter?.family_name || '',
-        characterAltNames: worldCharacter?.altNames?.join(', ') || '',
+        characterAltNames: worldCharacter?.alt_names?.join(', ') || '',
         characterPronouns: worldCharacter?.pronouns || '',
         characterBirthYear: birthYear,
         characterBirthMonth: birthMonth,
@@ -136,8 +136,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         characterRoles: worldCharacter?.roles?.join(', ') || '',
         characterAffiliations: worldCharacter?.affiliations?.join(', ') || '',
         characterRelationships: worldCharacter?.relationships?.join(', ') || '',
-        characterPhysicalDescription: worldCharacter?.physicalDescription || '',
-        characterNonPhysicalDescription: worldCharacter?.nonPhysicalDescription || '',
+        characterPhysicalDescription: worldCharacter?.physical_description || '',
+        characterNonPhysicalDescription: worldCharacter?.non_physical_description || '',
         characterStories: worldCharacter?.stories?.join(', ') || '',
         characterTags: worldCharacter?.tags?.join(', ') || '',
       });
@@ -270,17 +270,17 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.worldCharacter.id,
         this.worldCharacter.personal_name,
         this.worldCharacter.family_name,
-        this.worldCharacter.altNames,
+        this.worldCharacter.alt_names,
         this.worldCharacter.birthdate || '',
-        this.worldCharacter.birthEventId || '',
+        this.worldCharacter.birth_event_id || '',
         this.worldCharacter.deathdate || '',
-        this.worldCharacter.deathEventId || '',
+        this.worldCharacter.death_event_id || '',
         this.worldCharacter.pronouns,
         this.worldCharacter.roles,
         this.worldCharacter.affiliations,
         this.worldCharacter.relationships,
-        this.worldCharacter.physicalDescription,
-        this.worldCharacter.nonPhysicalDescription,
+        this.worldCharacter.physical_description,
+        this.worldCharacter.non_physical_description,
         this.worldCharacter.stories,
         this.worldCharacter.tags
       );
@@ -380,7 +380,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
             locationData.description,
             updatedCharacters,
             locationData.stories,
-            locationData.relatedLocations,
+            locationData.related_locations,
             locationData.tags
           );
         }
@@ -471,7 +471,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
             location.description,
             updatedCharacters,
             location.stories,
-            location.relatedLocations,
+            location.related_locations,
             location.tags
           );
         }
@@ -493,13 +493,11 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   updateCharacter() {
     console.log('Starting character update...');
     console.log('Current character:', this.worldCharacter);
-    console.log('a');
     if (!this.worldCharacter?.id) {
       console.error('No character ID found!');
       alert('Error: No character selected for update.');
       return;
     }
-    console.log('b');
 
     // Rebuild relationships array from UI to ensure latest type/details are saved
     let relationships: worldCharacterRelationship[] = [];
@@ -526,7 +524,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     // Sync worldCharacter object with form values before saving
     this.worldCharacter.personal_name = this.applyForm.value.characterPersonalName ?? '';
     this.worldCharacter.family_name = this.applyForm.value.characterFamilyName ?? '';
-    this.worldCharacter.altNames = this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [];
+    this.worldCharacter.alt_names = this.applyForm.value.characterAltNames?.split(', ').filter(name => name.trim() !== '') ?? [];
     const newBirthdate = this.formatBirthdate(
       this.applyForm.value.characterBirthYear || '',
       this.applyForm.value.characterBirthMonth || '',
@@ -545,16 +543,13 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     this.worldCharacter.roles = this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [];
     this.worldCharacter.affiliations = this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [];
     this.worldCharacter.relationships = relationships;
-    this.worldCharacter.physicalDescription = this.applyForm.value.characterPhysicalDescription ?? '';
-    this.worldCharacter.nonPhysicalDescription = this.applyForm.value.characterNonPhysicalDescription ?? '';
+    this.worldCharacter.physical_description = this.applyForm.value.characterPhysicalDescription ?? '';
+    this.worldCharacter.non_physical_description = this.applyForm.value.characterNonPhysicalDescription ?? '';
     this.worldCharacter.stories = selectedStories;
     this.worldCharacter.tags = this.applyForm.value.characterTags?.split(', ').filter(tag => tag.trim() !== '') ?? [];
 
-    const characterName = `${this.worldCharacter.personal_name} ${this.worldCharacter.family_name}`;
-
     const formattedBirthdate = this.worldCharacter.birthdate || '';
     const formattedDeathdate = this.worldCharacter.deathdate || '';
-    console.log('!!!!');
     console.log('Form data:', {
       id: this.worldCharacter.id,
       personal_name: this.worldCharacter.personal_name,
@@ -570,17 +565,17 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.worldCharacter.id,
         this.worldCharacter.personal_name,
         this.worldCharacter.family_name,
-        this.worldCharacter.altNames,
+        this.worldCharacter.alt_names,
         formattedBirthdate,
-        this.worldCharacter.birthEventId ?? '',
+        this.worldCharacter.birth_event_id ?? '',
         formattedDeathdate,
-        this.worldCharacter.deathEventId ?? '',
+        this.worldCharacter.death_event_id ?? '',
         this.worldCharacter.pronouns,
         this.worldCharacter.roles,
         this.worldCharacter.affiliations,
         this.worldCharacter.relationships,
-        this.worldCharacter.physicalDescription,
-        this.worldCharacter.nonPhysicalDescription,
+        this.worldCharacter.physical_description,
+        this.worldCharacter.non_physical_description,
         this.worldCharacter.stories,
         this.worldCharacter.tags
       );
@@ -590,7 +585,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         result.then(() => {
           console.log('Character update completed successfully');
           // alert('Character updated successfully!');
-          window.location.reload();
         }).catch((error: any) => {
           console.error('Character update promise failed:', error);
           alert('Failed to update character: ' + error.message);
@@ -702,9 +696,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     // Use explicit property access for eventId
     let eventId: string | undefined = undefined;
     if (eventType === 'birth') {
-      eventId = this.worldCharacter.birthEventId;
+      eventId = this.worldCharacter.birth_event_id;
     } else if (eventType === 'death') {
-      eventId = this.worldCharacter.deathEventId;
+      eventId = this.worldCharacter.death_event_id;
     }
     let eventTitle = `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`;
     let eventDescription = `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`;
@@ -737,17 +731,17 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.id,
           this.worldCharacter.personal_name,
           this.worldCharacter.family_name,
-          this.worldCharacter.altNames,
+          this.worldCharacter.alt_names,
           this.worldCharacter.birthdate || '',
-          this.worldCharacter.birthEventId || '',
+          this.worldCharacter.birth_event_id || '',
           this.worldCharacter.deathdate || '',
-          this.worldCharacter.deathEventId || '',
+          this.worldCharacter.death_event_id || '',
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
           this.worldCharacter.relationships,
-          this.worldCharacter.physicalDescription,
-          this.worldCharacter.nonPhysicalDescription,
+          this.worldCharacter.physical_description,
+          this.worldCharacter.non_physical_description,
           this.worldCharacter.stories,
           this.worldCharacter.tags
         );
@@ -769,27 +763,27 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         ).toPromise();
         // Update the character with the new eventId and date
         if (eventType === 'birth') {
-          this.worldCharacter.birthEventId = newEvent?.id || '';
+          this.worldCharacter.birth_event_id = newEvent?.id || '';
           this.worldCharacter.birthdate = date;
         } else if (eventType === 'death') {
-          this.worldCharacter.deathEventId = newEvent?.id || '';
+          this.worldCharacter.death_event_id = newEvent?.id || '';
           this.worldCharacter.deathdate = date;
         }
         await this.worldCharacterService.updateWorldCharacter(
           this.worldCharacter.id,
           this.worldCharacter.personal_name,
           this.worldCharacter.family_name,
-          this.worldCharacter.altNames,
+          this.worldCharacter.alt_names,
           this.worldCharacter.birthdate || '',
-          this.worldCharacter.birthEventId || '',
+          this.worldCharacter.birth_event_id || '',
           this.worldCharacter.deathdate || '',
-          this.worldCharacter.deathEventId || '',
+          this.worldCharacter.death_event_id || '',
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
           this.worldCharacter.relationships,
-          this.worldCharacter.physicalDescription,
-          this.worldCharacter.nonPhysicalDescription,
+          this.worldCharacter.physical_description,
+          this.worldCharacter.non_physical_description,
           this.worldCharacter.stories,
           this.worldCharacter.tags
         );

@@ -33,8 +33,8 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     }
 
     getFormattedEventEndDate(): string {
-      if (!this.worldEvent?.endDate) return '';
-      return this.settingsService.formatDate(this.worldEvent.endDate);
+      if (!this.worldEvent?.end_date) return '';
+      return this.settingsService.formatDate(this.worldEvent.end_date);
     }
   characterList = Array<WorldCharacterInfo>();
   storyList = Array<WorldStoryInfo>();
@@ -107,12 +107,13 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   private loadEventData(worldEventId: string) {
     this.worldEventService.getWorldEventById(worldEventId).then((worldEvent) => {
       this.worldEvent = worldEvent;
-      
+      console.log('Loaded event data:', worldEvent);
       // Parse date into separate components
       const eventDate = worldEvent?.date || '';
       let year = '', month = '', day = '';
       
       if (eventDate) {
+        console.log('Parsing event date:', eventDate);
         const dateParts = eventDate.split('-');
         if (dateParts.length === 3) {
           year = dateParts[0];
@@ -122,7 +123,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       }
 
       // Parse end date into separate components
-      const eventEndDate = worldEvent?.endDate || '';
+      const eventEndDate = worldEvent?.end_date || '';
       let endYear = '', endMonth = '', endDay = '';
       
       if (eventEndDate) {
@@ -284,6 +285,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         this.applyForm.value.eventEndMonth || '',
         this.applyForm.value.eventEndDay || ''
       );
+      console.log('Saving event with data:');
       this.worldEventService.updateWorldEvent(
         this.worldEvent.id,
         this.applyForm.value.eventTitle ?? '',
@@ -300,30 +302,30 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
-          let newBirthEventId: string = character.birthEventId || '';
+          let newBirthEventId: string = character.birth_event_id || '';
           let newBirthdate: string = character.birthdate || '';
-          let newDeathEventId: string = character.deathEventId || '';
+          let newDeathEventId: string = character.death_event_id || '';
           let newDeathdate: string = character.deathdate || '';
 
           // Remove birth/death event and date if character is no longer associated
-          if (character.birthEventId === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
+          if (character.birth_event_id === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
             newBirthEventId = '';
             newBirthdate = '';
             changed = true;
           }
-          if (character.deathEventId === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
+          if (character.death_event_id === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
             newDeathEventId = '';
             newDeathdate = '';
             changed = true;
           }
 
           // If character is newly associated and this event is their birth event, set birthdate only if not already set
-          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.birthEventId && !character.birthdate) {
+          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.birth_event_id && !character.birthdate) {
             newBirthdate = formattedDate;
             changed = true;
           }
           // If character is newly associated and this event is their death event, set deathdate only if not already set
-          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.deathEventId && !character.deathdate) {
+          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.death_event_id && !character.deathdate) {
             newDeathdate = formattedDate;
             changed = true;
           }
@@ -333,7 +335,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.id,
               character.personal_name,
               character.family_name,
-              character.altNames,
+              character.alt_names,
               newBirthdate,
               newBirthEventId,
               newDeathdate,
@@ -342,8 +344,8 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.roles,
               character.affiliations,
               character.relationships,
-              character.physicalDescription,
-              character.nonPhysicalDescription,
+              character.physical_description,
+              character.non_physical_description,
               character.stories,
               character.tags
             );
@@ -359,16 +361,16 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
-          let newBirthEventId = character.birthEventId;
+          let newBirthEventId = character.birth_event_id;
           let newBirthdate = character.birthdate;
-          let newDeathEventId = character.deathEventId;
+          let newDeathEventId = character.death_event_id;
           let newDeathdate = character.deathdate;
-          if (character.birthEventId === this.worldEvent!.id) {
+          if (character.birth_event_id === this.worldEvent!.id) {
             newBirthEventId = '';
             newBirthdate = '';
             changed = true;
           }
-          if (character.deathEventId === this.worldEvent!.id) {
+          if (character.death_event_id === this.worldEvent!.id) {
             newDeathEventId = '';
             newDeathdate = '';
             changed = true;
@@ -378,7 +380,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.id,
               character.personal_name,
               character.family_name,
-              character.altNames,
+              character.alt_names,
               newBirthdate || '',
               newBirthEventId || '',
               newDeathdate || '',
@@ -387,8 +389,8 @@ export class WorldEventDetails implements OnInit, OnDestroy {
               character.roles,
               character.affiliations,
               character.relationships,
-              character.physicalDescription,
-              character.nonPhysicalDescription,
+              character.physical_description,
+              character.non_physical_description,
               character.stories,
               character.tags
             );

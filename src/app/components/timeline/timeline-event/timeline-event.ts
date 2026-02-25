@@ -68,9 +68,9 @@ export class TimelineEvent {
   formatDateRange(): string {
     const event = this.event();
     const startDate = this.formatDate(event.date);
-    if (event.endDate) {
-      const endDate = this.formatDate(event.endDate);
-      if (event.date === event.endDate) {
+    if (event.end_date) {
+      const endDate = this.formatDate(event.end_date);
+      if (event.date === event.end_date) {
         return startDate; // Same day, show only once
       }
       return `${startDate} - ${endDate}`;

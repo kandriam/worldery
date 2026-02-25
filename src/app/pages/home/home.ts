@@ -170,9 +170,9 @@ export class Home {
           worldCharacter?.tags.join(' '),
           worldCharacter?.personal_name,
           worldCharacter?.family_name,
-          worldCharacter?.altNames.join(' '),
-          worldCharacter?.physicalDescription,
-          worldCharacter?.nonPhysicalDescription,
+          worldCharacter?.alt_names.join(' '),
+          worldCharacter?.physical_description,
+          worldCharacter?.non_physical_description,
           worldCharacter?.roles.join(' '),
           worldCharacter?.affiliations.join(' ')
         )
@@ -258,7 +258,6 @@ export class Home {
     switch(entityType) {
       case 'event':
         console.log('Adding new event');
-        await this.createEventAndGetId();
         newId = await this.createEventAndGetId();
         this.router.navigate(['/event', newId]);
         break;
@@ -269,9 +268,8 @@ export class Home {
         break;
       case 'character':
         console.log('Adding new character');
-        await this.createCharacterAndGetId();
-        // newId = await this.createCharacterAndGetId();
-        // this.router.navigate(['/character', newId]);
+        newId = await this.createCharacterAndGetId();
+        this.router.navigate(['/character', newId]);
         break;
       case 'story':
         console.log('Adding new story');
@@ -313,7 +311,7 @@ export class Home {
       description: '',
       characters: [],
       stories: [],
-      relatedLocations: [],
+      related_locations: [],
       tags: []
       } as WorldLocationInfo;
     return this.locationService.createWorldLocation(newLocation, false).toPromise().then(location => {
@@ -332,9 +330,9 @@ export class Home {
       id: '',
       personal_name: 'New',
       family_name: 'Character',
-      altNames: [],
-      physicalDescription: '',
-      nonPhysicalDescription: '',
+      alt_names: [],
+      physical_description: '',
+      non_physical_description: '',
       pronouns: '',
       roles: [],
       affiliations: [],

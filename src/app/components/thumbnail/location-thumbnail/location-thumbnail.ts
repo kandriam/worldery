@@ -31,7 +31,7 @@ export class LocationThumbnail {
   async ngOnInit() {
     // Resolve related location IDs to names
     const allLocations = await this.locationService.getAllWorldLocations();
-    this.relatedLocationNames = (this.worldLocation().relatedLocations || []).map(id => {
+    this.relatedLocationNames = (this.worldLocation().related_locations || []).map(id => {
       const loc = allLocations.find((location: any) => location.id === id);
       return loc ? loc.name : id;
     });

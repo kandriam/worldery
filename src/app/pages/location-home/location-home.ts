@@ -83,7 +83,7 @@ export class LocationHome {
     if (filterState.selectedLocations.length > 0) {
       filtered = filtered.filter((worldLocation) =>
         filterState.selectedLocations.some(locationName =>
-          worldLocation.relatedLocations.includes(locationName) ||
+          worldLocation.related_locations.includes(locationName) ||
           worldLocation.name === locationName
         )
       );
@@ -102,7 +102,7 @@ export class LocationHome {
           description: '',
           characters: [],
           stories: [],
-          relatedLocations: [],
+          related_locations: [],
           tags: []
         } as WorldLocationInfo, // Pass an empty object or default values as needed
         true);

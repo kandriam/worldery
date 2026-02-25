@@ -30,8 +30,8 @@
             <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.personal_name }} {{ character.family_name }}</label>
           </button>
         </div>
-        @if(character.altNames && character.altNames.length > 0) {           
-          <p class="alt-names">( {{ character.altNames.join(', ') }} )</p>
+        @if(character.alt_names && character.alt_names.length > 0) {           
+          <p class="alt-names">( {{ character.alt_names.join(', ') }} )</p>
         }
         @if (getRelationship(character.id)?.hasRelationship) {
           <input type="text" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')" (input)="emitAllRelationships()"/>
