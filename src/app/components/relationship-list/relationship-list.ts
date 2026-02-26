@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, inject, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { worldCharacterRelationship, WorldCharacterInfo } from '../../services/world-character.service';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
+import { RelationshipInfo, RelationshipService } from '../../services/relationship.service';
 
 @Component({
   selector: 'app-relationship-list',
@@ -11,52 +12,83 @@ import { worldCharacterRelationship, WorldCharacterInfo } from '../../services/w
   styleUrls: ['./relationship-list.css']
 })
 export class RelationshipList {
-  @Output() relationshipsChanged = new EventEmitter<worldCharacterRelationship[]>();
-
-  emitAllRelationships() {
-    const relationships = (this.filteredCharacterList || [])
-      .map((character: any) => {
-        const checkbox = document.getElementById(`relationship-checkbox-${character.id}`) as HTMLInputElement;
-        const isChecked = checkbox?.checked ?? false;
-        const typeInput = document.getElementById(`relationship-type-${character.id}`) as HTMLInputElement;
-        const relationshipTypes = typeInput?.value?.split(',').map((type: string) => type.trim()) ?? [];
-        const descInput = document.getElementById(`relationship-description-${character.id}`) as HTMLTextAreaElement;
-        const descriptionText = descInput?.value ?? '';
-        return {
-          relatedCharacterID: character.id,
-          relationshipType: relationshipTypes,
-          hasRelationship: isChecked,
-          relationshipDescription: descriptionText
-        };
-      })
-      .filter((rel: worldCharacterRelationship) => rel.hasRelationship);
-    this.relationshipsChanged.emit(relationships);
-  }
-  @Input() filteredCharacterList: WorldCharacterInfo[] = [];
-  @Input() relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';
-  @Input() storyFilter: string = 'all';
+  @Input() primaryCharacterId: string = '';
   @Input() availableStories: string[] = [];
-  @Input() getRelationshipFn: (characterId: string) => worldCharacterRelationship | undefined = () => undefined;
+  characterService: WorldCharacterService = inject(WorldCharacterService);
+  characterList: WorldCharacterInfo[] = [];
+  filteredCharacterList: WorldCharacterInfo[] = [];
+  relationshipService: RelationshipService = inject(RelationshipService);
+  relationshipList: RelationshipInfo[] = [];
+  relationshipMap: { [key: string]: RelationshipInfo } = {};
+  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'all';
 
-  @Output() relationshipToggled = new EventEmitter<{event: Event, characterId: string}>();
-  @Output() relationshipFilterChanged = new EventEmitter<'all' | 'with-relationship' | 'without-relationship'>();
-  @Output() storyFilterChanged = new EventEmitter<string>();
+  constructor() {}
 
-  toggleRelationship(event: Event, characterId: string) {
-    this.relationshipToggled.emit({event, characterId});
-    this.emitAllRelationships();
+  async ngOnInit() {
+    this.loadRelationships();
+  }
+  
+  async loadRelationships() {
+    this.characterList = await this.characterService.getAllWorldCharacters();
+    this.filteredCharacterList = this.characterList.filter(character => character.id !== this.primaryCharacterId);
+    for (const character of this.filteredCharacterList) {
+      console.log('Character:', character.personal_name, character.family_name);
+    }
+    this.relationshipList = await this.relationshipService.getallRelationship();
+    // Build relationship map for fast lookup
+    this.relationshipMap = {};
+    for (const rel of this.relationshipList) {
+      const key = rel.primary_character + '-' + rel.secondary_character;
+      this.relationshipMap[key] = rel;
+    }
   }
 
-  setRelationshipFilter(filter: 'all' | 'with-relationship' | 'without-relationship') {
-    this.relationshipFilterChanged.emit(filter);
+  async applyFilters(): Promise<void> {
+    console.log('applyFilters called, filter:', this.relationshipFilter);
+    if (!this.characterList || !this.primaryCharacterId) {
+      this.filteredCharacterList = [];
+      return;
+    }
+    const primaryId = this.primaryCharacterId;
+    const filtered: WorldCharacterInfo[] = [];
+    for (const character of this.characterList) {
+      if (character.id === primaryId) continue;
+      const rel = this.relationshipList.find(rel => rel.primary_character === primaryId && rel.secondary_character === character.id);
+      const hasRelationship = rel?.has_relationship === true;
+      if (this.relationshipFilter === 'with-relationship' && !hasRelationship) continue;
+      if (this.relationshipFilter === 'without-relationship' && hasRelationship) continue;
+      // if (this.storyFilter !== 'all') {
+      //   const characterStories = character.stories || [];
+      //   if (!characterStories.includes(this.storyFilter)) continue;
+      // }
+      filtered.push(character);
+    }
+    this.filteredCharacterList = filtered;
+    // await this.updateRelationshipUI();
+  }
+
+  getRelationship(primaryCharacterId: string, secondaryCharacterId: string): RelationshipInfo | undefined {
+    // Use precomputed map for fast lookup
+    const key = primaryCharacterId + '-' + secondaryCharacterId;
+    return this.relationshipMap[key];
+  }
+
+  async setRelationshipFilterAsync(filter: 'all' | 'with-relationship' | 'without-relationship') {
+    console.log('setRelationshipFilterAsync called with:', filter);
+    this.relationshipFilter = filter;
+    await this.applyFilters();
   }
 
   onStoryFilterChange(event: Event) {
     const select = event.target as HTMLSelectElement;
-    this.storyFilterChanged.emit(select?.value || 'all');
+    this.applyFilters();
   }
 
-  getRelationship(characterId: string): worldCharacterRelationship | undefined {
-    return this.getRelationshipFn(characterId);
+  updateRelationship(primaryCharacterId: string, secondaryCharacterId: string, relationshipType: string[], relationshipDescription: string) {
+    console.log('updateRelationship called for characters:', primaryCharacterId, secondaryCharacterId);
+  }
+
+  toggleRelationship(event: Event, secondaryCharacterId: string) {
+    console.log('toggleRelationship called for secondary character ID:', secondaryCharacterId);
   }
 }

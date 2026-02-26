@@ -233,7 +233,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
             fullCharacter.pronouns || '',
             fullCharacter.roles || [],
             fullCharacter.affiliations || [],
-            fullCharacter.relationships || [],
+            // fullCharacter.relationships || [],
             fullCharacter.physical_description || '',
             fullCharacter.non_physical_description || '',
             updatedStories,

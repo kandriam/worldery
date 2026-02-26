@@ -1,13 +1,13 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WorldCharacterInfo, worldCharacterRelationship, WorldCharacterService } from '../../services/world-character.service';
+import { RelationshipList } from 'src/app/components/relationship-list/relationship-list';
+import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
 import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
-import { RelationshipList } from '../../components/relationship-list/relationship-list';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { EventThumbnail } from "src/app/components/thumbnail/event-thumbnail/event-thumbnail";
@@ -28,7 +28,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   worldCharacter: WorldCharacterInfo | undefined;
   characterList = Array<WorldCharacterInfo>();
   filteredCharacterList = Array<WorldCharacterInfo>();
-  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';
   storyFilter: string = 'all';
   worldStoryService = inject(WorldStoryService);
   storyList = Array<WorldStoryInfo>();
@@ -56,7 +55,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     characterDeathDay: new FormControl(''),
     characterRoles: new FormControl(''),
     characterAffiliations: new FormControl(''),
-    characterRelationships: new FormControl(''),
     characterPhysicalDescription: new FormControl(''),
     characterNonPhysicalDescription: new FormControl(''),
     characterStories: new FormControl(''),
@@ -135,16 +133,13 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         characterDeathDay: deathDay,
         characterRoles: worldCharacter?.roles?.join(', ') || '',
         characterAffiliations: worldCharacter?.affiliations?.join(', ') || '',
-        characterRelationships: worldCharacter?.relationships?.join(', ') || '',
         characterPhysicalDescription: worldCharacter?.physical_description || '',
         characterNonPhysicalDescription: worldCharacter?.non_physical_description || '',
         characterStories: worldCharacter?.stories?.join(', ') || '',
         characterTags: worldCharacter?.tags?.join(', ') || '',
       });
       
-      // Update relationship checkboxes after character data loads
-      this.updateRelationshipUI();
-      // Update filtered events after character data loads
+
       this.updateFilteredEvents();
     });
 
@@ -155,8 +150,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   private loadSharedData() {
     this.worldCharacterService.getAllWorldCharacters().then((characters) => {
       this.characterList = characters;
-      this.applyFilters();
-      this.updateRelationshipUI();
+      // this.applyFilters();
     });
 
     this.worldStoryService.getAllWorldStories().then((stories) => {
@@ -173,81 +167,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     });
   }
 
-  private updateRelationshipUI() {
-    if (this.characterList.length > 0 && this.worldCharacter) {
-      for (let character of this.characterList) {
-        if (this.getRelationship(character.id)?.hasRelationship == true) {
-          let element = document.getElementById(`relationship-description-${character.id}`) as HTMLElement;
-          console.log(element);
-          // element.classList.remove('hidden');
-          // console.log(`Relationship between ${this.worldCharacter?.firstName} and ${character.firstName}:`, this.getRelationship(character.id));
-        }
-      }
-    }
-  }
-
-  toggleRelationship(event: Event, characterId: string) {
-    console.log(`Toggling relationship for character ID: ${characterId}`);
-    if (event.target instanceof HTMLInputElement) {
-      const isChecked = event.target.checked;
-      console.log(`Checkbox is now: ${isChecked}`);
-      let relationshipDescription = document.getElementById(`relationship-description-${characterId}`) as HTMLTextAreaElement;
-      let relationshipType = document.getElementById(`relationship-type-${characterId}`) as HTMLInputElement;
-      if (isChecked) {
-        relationshipDescription.classList.remove('hidden');
-        relationshipType.classList.remove('hidden');
-    }
-    else {
-        relationshipDescription.classList.add('hidden');
-        relationshipType.classList.add('hidden');
-      }
-    }
-  }
-
-  getRelationship(characterID: string): worldCharacterRelationship | undefined {
-    return this.worldCharacter?.relationships?.find(r => r.relatedCharacterID === characterID.toString());
-  }
-
-  // Filter methods
-  applyFilters(): void {
-    if (!this.characterList || !this.worldCharacter) {
-      this.filteredCharacterList = [];
-      return;
-    }
-
-    this.filteredCharacterList = this.characterList.filter(character => {
-      if (character.id === this.worldCharacter?.id) return false;
-
-      // Relationship filter
-      const hasRelationship = this.getRelationship(character.id)?.hasRelationship;
-      if (this.relationshipFilter === 'with-relationship' && !hasRelationship) return false;
-      if (this.relationshipFilter === 'without-relationship' && hasRelationship) return false;
-
-      // Story filter
-      if (this.storyFilter !== 'all') {
-        const characterStories = character.stories || [];
-        if (!characterStories.includes(this.storyFilter)) return false;
-      }
-
-      return true;
-    });
-  }
-
-  setRelationshipFilter(filter: 'all' | 'with-relationship' | 'without-relationship'): void {
-    this.relationshipFilter = filter;
-    this.applyFilters();
-  }
-
-  setStoryFilter(story: string): void {
-    this.storyFilter = story;
-    this.applyFilters();
-  }
-
-  onStoryFilterChange(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    this.setStoryFilter(select?.value || 'all');
-  }
-
   getEvent(eventId: string): WorldEventInfo | undefined {
     return this.eventList.find(event => event.id === eventId);
   }
@@ -260,43 +179,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       }
     });
     return Array.from(stories).sort();
-  }
-
-  onRelationshipsChanged(updated: worldCharacterRelationship[]) {
-    if (this.worldCharacter) {
-      this.worldCharacter.relationships = updated;
-      // Save immediately
-      this.worldCharacterService.updateWorldCharacter(
-        this.worldCharacter.id,
-        this.worldCharacter.personal_name,
-        this.worldCharacter.family_name,
-        this.worldCharacter.alt_names,
-        this.worldCharacter.birthdate || '',
-        this.worldCharacter.birth_event_id || '',
-        this.worldCharacter.deathdate || '',
-        this.worldCharacter.death_event_id || '',
-        this.worldCharacter.pronouns,
-        this.worldCharacter.roles,
-        this.worldCharacter.affiliations,
-        this.worldCharacter.relationships,
-        this.worldCharacter.physical_description,
-        this.worldCharacter.non_physical_description,
-        this.worldCharacter.stories,
-        this.worldCharacter.tags
-      );
-    }
-  }
-  // Relationship component event handlers
-  onRelationshipToggled(event: {event: Event, characterId: string}) {
-    this.toggleRelationship(event.event, event.characterId);
-  }
-
-  onRelationshipFilterChanged(filter: 'all' | 'with-relationship' | 'without-relationship') {
-    this.setRelationshipFilter(filter);
-  }
-
-  onStoryFilterChanged(story: string) {
-    this.setStoryFilter(story);
   }
 
   isLocationAssociatedWithCharacter(locationName: string): boolean {
@@ -388,43 +270,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     }
   }
 
-  onRelationshipChange(event: Event, characterId: string) {
-    this.worldCharacterService.getWorldCharacterById(characterId).then((character) => {
-      if (event.target instanceof HTMLInputElement) {
-        const isChecked = event.target.checked;
-        console.log(`Checkbox is now: ${isChecked}`);
-        if (isChecked) {
-          console.log(`Adding relationship to: ${character?.personal_name} ${character?.family_name}`);
-          // Additional logic to add relationship can be added here
-          // this.worldCharacterService.updateCharacterRelationship()
-        } else {
-          console.log(`Removing relationship to: ${character?.personal_name} ${character?.family_name}`);
-          // Additional logic to remove relationship can be added here
-        }
-      }
-    });
-  }
-
-  getFormRelationship(characterID: string): worldCharacterRelationship | undefined {
-    const relationshipCheckbox = document.getElementById(`relationship-checkbox-${characterID}`) as HTMLInputElement | null;
-    const relationshipTypeInput = document.getElementById(`relationship-type-${characterID}`) as HTMLInputElement | null;
-    const relationshipDescription = document.getElementById(`relationship-description-${characterID}`) as HTMLTextAreaElement | null;
-    if (!relationshipCheckbox || !relationshipTypeInput || !relationshipDescription) {
-      // If any element is missing, skip this relationship
-      return undefined;
-    }
-    const isChecked = relationshipCheckbox.checked;
-    const relationshipTypes = relationshipTypeInput.value.split(',').map(type => type.trim());
-    const descriptionText = relationshipDescription.value;
-    console.log(`RelatedCharacterID: ${characterID}, HasRelationship: ${isChecked}, RelationshipDescription: ${descriptionText}`);
-    return {
-      relatedCharacterID: characterID.toString(),
-      relationshipType: relationshipTypes,
-      hasRelationship: isChecked,
-      relationshipDescription: descriptionText
-    };
-  }
-
   onStoryChange(event: Event, storyId: string) {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
@@ -499,26 +344,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       return;
     }
 
-    // Rebuild relationships array from UI to ensure latest type/details are saved
-    let relationships: worldCharacterRelationship[] = [];
-    if (this.characterList && this.characterList.length > 0) {
-      for (let character of this.characterList) {
-        if (character.id !== this.worldCharacter?.id) {
-          const rel = this.getFormRelationship(character.id);
-          if (rel && rel.hasRelationship) {
-            console.log('Adding relationship from form:', rel);
-            relationships.push({
-              relatedCharacterID: rel.relatedCharacterID,
-              hasRelationship: rel.hasRelationship,
-              relationshipType: rel.relationshipType,
-              relationshipDescription: rel.relationshipDescription
-            });
-          }
-        }
-      }
-    }
-    console.log('!');
-
     const selectedStories = this.getFormStories();
     console.log('!!')
     // Sync worldCharacter object with form values before saving
@@ -542,7 +367,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     this.worldCharacter.pronouns = this.applyForm.value.characterPronouns ?? '';
     this.worldCharacter.roles = this.applyForm.value.characterRoles?.split(', ').filter(role => role.trim() !== '') ?? [];
     this.worldCharacter.affiliations = this.applyForm.value.characterAffiliations?.split(', ').filter(aff => aff.trim() !== '') ?? [];
-    this.worldCharacter.relationships = relationships;
     this.worldCharacter.physical_description = this.applyForm.value.characterPhysicalDescription ?? '';
     this.worldCharacter.non_physical_description = this.applyForm.value.characterNonPhysicalDescription ?? '';
     this.worldCharacter.stories = selectedStories;
@@ -557,7 +381,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       birthdate: formattedBirthdate,
       deathdate: formattedDeathdate,
       pronouns: this.worldCharacter.pronouns,
-      relationships: relationships.length
     });
 
     try {
@@ -573,7 +396,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.worldCharacter.pronouns,
         this.worldCharacter.roles,
         this.worldCharacter.affiliations,
-        this.worldCharacter.relationships,
         this.worldCharacter.physical_description,
         this.worldCharacter.non_physical_description,
         this.worldCharacter.stories,
@@ -739,7 +561,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
-          this.worldCharacter.relationships,
           this.worldCharacter.physical_description,
           this.worldCharacter.non_physical_description,
           this.worldCharacter.stories,
@@ -781,7 +602,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
-          this.worldCharacter.relationships,
           this.worldCharacter.physical_description,
           this.worldCharacter.non_physical_description,
           this.worldCharacter.stories,

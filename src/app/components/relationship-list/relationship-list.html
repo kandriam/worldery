@@ -5,42 +5,59 @@
   <div class="relationship-filters">
     <div class="filter-group">
       <label class="filter-label">Show:</label>
-      <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'all'" (click)="setRelationshipFilter('all')">All</button>
-      <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'with-relationship'" (click)="setRelationshipFilter('with-relationship')">With Relationship</button>
-      <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'without-relationship'" (click)="setRelationshipFilter('without-relationship')">Without Relationship</button>
+      <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'all'" (click)="setRelationshipFilterAsync('all')">All</button>
+      <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'with-relationship'" (click)="setRelationshipFilterAsync('with-relationship')">With Relationship</button>
+      <button type="button" class="filter-btn" [class.active]="relationshipFilter === 'without-relationship'" (click)="setRelationshipFilterAsync('without-relationship')">Without Relationship</button>
+      <!-- <button type="button" (click)="testClick()">Test</button> -->
     </div>
     
     <div class="filter-group">
       <label class="filter-label">Story:</label>
-      <select class="story-filter-select" [value]="storyFilter" (change)="onStoryFilterChange($event)">
+      <!-- <select class="story-filter-select" [value]="storyFilter" (change)="onStoryFilterChange($event)">
         <option value="all">All Stories</option>
         @for (story of availableStories; track story) {
           <option [value]="story">{{ story }}</option>
         }
-      </select>
+      </select> -->
     </div>
   </div>
   
   <div class="details-section relationship-section relationship-grid-container">
-    @for(character of filteredCharacterList; track character.id) {
-      <div class="relationship relationship-grid-item" id="relationship-{{character.id}}">
-        <div class="relationship-header">
-          <input type="checkbox" id="relationship-checkbox-{{character.id}}" [value]="character.id" (change)="toggleRelationship($event, character.id)" [checked]="getRelationship(character.id)?.hasRelationship"/>
-          <button class="linked-character" [routerLink]="['/character', character.id]">
-            <label for="relationship-textarea-{{character.id}}" class="secondary-label">{{ character.personal_name }} {{ character.family_name }}</label>
-          </button>
-        </div>
-        @if(character.alt_names && character.alt_names.length > 0) {           
-          <p class="alt-names">( {{ character.alt_names.join(', ') }} )</p>
-        }
-        @if (getRelationship(character.id)?.hasRelationship) {
-          <input type="text" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')" (input)="emitAllRelationships()"/>
-          <textarea id="relationship-description-{{character.id}}" placeholder="Describe relationship..." (input)="emitAllRelationships()">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
-        } @else {
-          <input type="text" class="relationship-type-input hidden" id="relationship-type-{{character.id}}" placeholder="Relationship Type" [value]="getRelationship(character.id)?.relationshipType?.join(', ')" (input)="emitAllRelationships()"/>
-          <textarea class="hidden" id="relationship-description-{{character.id}}" placeholder="Describe relationship..." (input)="emitAllRelationships()">{{ getRelationship(character.id)?.relationshipDescription }}</textarea>
-        }
+    @for(secondaryCharacter of filteredCharacterList; track secondaryCharacter.id) {
+      <div class="relationship-header">
+        <input type="checkbox" id="relationship-checkbox-{{secondaryCharacter.id}}"
+        [checked]="(getRelationship(primaryCharacterId, secondaryCharacter.id))?.has_relationship"
+        (change)="toggleRelationship($event, secondaryCharacter.id)"
+        />
+        {{secondaryCharacter.personal_name}} {{secondaryCharacter.family_name}}
       </div>
     }
   </div>
+  <!-- <div class="details-section relationship-section relationship-grid-container">
+    @for(secondaryCharacter of filteredCharacterList; track secondaryCharacter.id) {
+      <div class="relationship relationship-grid-item" id="relationship-{{secondaryCharacter.id}}">
+        <div class="relationship-header">
+          <input type="checkbox" id="relationship-checkbox-{{secondaryCharacter.id}}"
+          [checked]="(getRelationship(primaryCharacterId, secondaryCharacter.id))?.has_relationship"/>
+          <button class="linked-character" [routerLink]="['/character', secondaryCharacter.id]">
+            <label for="relationship-textarea-{{secondaryCharacter.id}}" class="secondary-label">{{ secondaryCharacter.personal_name }} {{ secondaryCharacter.family_name }}</label>
+          </button>
+          [value]="secondaryCharacter.id" (change)="toggleRelationship($event, secondaryCharacter.id)"
+        </div>
+        @if(secondaryCharacter.alt_names && secondaryCharacter.alt_names.length > 0) {           
+          <p class="alt-names">( {{ secondaryCharacter.alt_names.join(', ') }} )</p>
+          @if ((getRelationship(primaryCharacterId, secondaryCharacter.id))?.has_relationship) {
+            [value]=" (getRelationship(primaryCharacterId, secondaryCharacter.id))?.relationship_type?.join(', ')"
+            />
+            {{ getRelationship(primaryCharacterId, secondaryCharacter.id)?.relationship_description  }}
+            }
+        </textarea>
+        <input type="text" id="relationship-type-{{secondaryCharacter.id}}" placeholder="Relationship Type"
+          } @else {
+            does not have relationship
+            <textarea id="relationship-description-{{secondaryCharacter.id}}" placeholder="Describe relationship...">
+        }
+      </div>
+    }
+  </div> -->
 </div>

@@ -54,15 +54,14 @@
                                 <app-event-thumbnail 
                                     [worldEvent]="getEvent(worldCharacter?.birth_event_id || '')!"
                                     [showCharacters]="false"
-                                    >
-                                </app-event-thumbnail>
+                                    
+                                ></app-event-thumbnail>
                             }
                             @if (worldCharacter?.death_event_id) {
                                 <app-event-thumbnail 
                                     [worldEvent]="getEvent(worldCharacter?.death_event_id || '')!"
                                     [showCharacters]="false"
-                                    >
-                                </app-event-thumbnail>
+                                ></app-event-thumbnail>
                             }
                         </div>
                     </div>
@@ -85,16 +84,15 @@
                 </div>
                 
                 <app-relationship-list
-                    [filteredCharacterList]="filteredCharacterList"
-                    [relationshipFilter]="relationshipFilter"
-                    [storyFilter]="storyFilter"
+                    [primaryCharacterId]="worldCharacter?.id || ''"
                     [availableStories]="getUniqueStories()"
-                    [getRelationshipFn]="getRelationship.bind(this)"
-                    (relationshipToggled)="onRelationshipToggled($event)"
-                    (relationshipFilterChanged)="onRelationshipFilterChanged($event)"
-                    (storyFilterChanged)="onStoryFilterChanged($event)"
-                    (relationshipsChanged)="onRelationshipsChanged($event)"
                 ></app-relationship-list>
+                <!-- [filteredCharacterList]="filteredCharacterList"
+                    [storyFilter]="storyFilter"
+                    [relationshipFilter]="relationshipFilter"
+                    [worldCharacter]="worldCharacter"
+                    [characterList]="characterList"
+                    [relationshipService]="relationshipService" -->
                 
                 <div class="details-section primary-section association-list-section">
                     <app-association-list

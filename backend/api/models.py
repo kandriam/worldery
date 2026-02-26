@@ -75,10 +75,10 @@ class Character(models.Model):
         return f"{self.personal_name} {self.family_name}"
 
 class CharacterRelationship(models.Model):
-    character = models.ForeignKey(Character, related_name='relationships', on_delete=models.CASCADE)
-    related_character = models.ForeignKey(Character, related_name='related_relationships', on_delete=models.CASCADE)
+    primary_character = models.ForeignKey(Character, related_name='relationships', on_delete=models.CASCADE)
+    secondary_character = models.ForeignKey(Character, related_name='related_relationships', on_delete=models.CASCADE)
     has_relationship = models.BooleanField(default=False)
     relationship_type = models.JSONField(default=list, blank=True)
     relationship_description = models.TextField(blank=True)
     def __str__(self):
-        return f"{self.character} - {self.related_character}"
+        return f"{self.primary_character} and {self.secondary_character}"

@@ -24,20 +24,20 @@ export class TagService {
   }
 
   async getTagById(id: string): Promise<TagInfo | undefined> {
-    // Use RESTful detail endpoint for correct character
+    // Use RESTful detail endpoint for correct tag
     const data = await fetch(`${this.url}/${id}/`);
     if (!data.ok) {
-      console.error('Failed to fetch character by id:', id);
+      console.error('Failed to fetch tag by id:', id);
       return undefined;
     }
-    const characterJson = await data.json();
-    return characterJson;
+    const tagJson = await data.json();
+    return tagJson;
   }
 
   async getTagsByName(name: string): Promise<TagInfo[] | undefined> {
     const data = await fetch(`${this.url}?name=${encodeURIComponent(name)}`);
     if (!data.ok) {
-      console.error('Failed to fetch character by name:', name);
+      console.error('Failed to fetch tag by name:', name);
       return undefined;
     }
     const tagJson = await data.json();
