@@ -99,8 +99,23 @@ export class RelationshipList {
     this.applyFilters();
   }
 
-  updateRelationship(primaryCharacterId: string, secondaryCharacterId: string, relationshipType: string[], relationshipDescription: string) {
-    console.log('updateRelationship called for characters:', primaryCharacterId, secondaryCharacterId);
+  updateRelationship(secondaryCharacterId: string, relationshipId: string) {
+    console.log('updateRelationship called for characters:', this.primaryCharacterId, secondaryCharacterId);
+    const hasRelationship = (document.getElementById(`relationship-checkbox-${secondaryCharacterId}`) as HTMLInputElement)?.checked || false;
+    const typeInput = document.getElementById(`relationship-type-${secondaryCharacterId}`) as HTMLInputElement;
+    const descriptionInput = document.getElementById(`relationship-description-${secondaryCharacterId}`) as HTMLTextAreaElement;
+    const relationshipType = typeInput?.value || '';
+    const relationshipDescription = descriptionInput?.value || '';
+    const relationship: RelationshipInfo = {
+      id: relationshipId,
+      primary_character: this.primaryCharacterId,
+      secondary_character: secondaryCharacterId,
+      has_relationship: hasRelationship,
+      relationship_type: relationshipType ? relationshipType.split(',').map(s => s.trim()) : [],
+      relationship_description: relationshipDescription,
+    };
+    console.log('Constructed relationship object for update:', relationship);
+    this.relationshipService.updateRelationship(relationship);
   }
 
   toggleRelationship(event: Event, secondaryCharacterId: string) {
