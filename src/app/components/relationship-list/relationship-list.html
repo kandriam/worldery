@@ -24,40 +24,38 @@
   
   <div class="details-section relationship-section relationship-grid-container">
     @for(secondaryCharacter of filteredCharacterList; track secondaryCharacter.id) {
-      <div class="relationship-header">
-        <input type="checkbox" id="relationship-checkbox-{{secondaryCharacter.id}}"
-        [checked]="(getRelationship(primaryCharacterId, secondaryCharacter.id))?.has_relationship"
-        (change)="toggleRelationship($event, secondaryCharacter.id)"
-        />
-        {{secondaryCharacter.personal_name}} {{secondaryCharacter.family_name}}
-      </div>
-    }
-  </div>
-  <!-- <div class="details-section relationship-section relationship-grid-container">
-    @for(secondaryCharacter of filteredCharacterList; track secondaryCharacter.id) {
       <div class="relationship relationship-grid-item" id="relationship-{{secondaryCharacter.id}}">
+        @let rel = getRelationship(primaryCharacterId, secondaryCharacter.id);
         <div class="relationship-header">
           <input type="checkbox" id="relationship-checkbox-{{secondaryCharacter.id}}"
-          [checked]="(getRelationship(primaryCharacterId, secondaryCharacter.id))?.has_relationship"/>
-          <button class="linked-character" [routerLink]="['/character', secondaryCharacter.id]">
-            <label for="relationship-textarea-{{secondaryCharacter.id}}" class="secondary-label">{{ secondaryCharacter.personal_name }} {{ secondaryCharacter.family_name }}</label>
-          </button>
-          [value]="secondaryCharacter.id" (change)="toggleRelationship($event, secondaryCharacter.id)"
+          [checked]="rel?.has_relationship"
+          (change)="toggleRelationship($event, secondaryCharacter.id)"
+          />
+          {{secondaryCharacter.personal_name}} {{secondaryCharacter.family_name}}
         </div>
         @if(secondaryCharacter.alt_names && secondaryCharacter.alt_names.length > 0) {           
-          <p class="alt-names">( {{ secondaryCharacter.alt_names.join(', ') }} )</p>
-          @if ((getRelationship(primaryCharacterId, secondaryCharacter.id))?.has_relationship) {
-            [value]=" (getRelationship(primaryCharacterId, secondaryCharacter.id))?.relationship_type?.join(', ')"
-            />
-            {{ getRelationship(primaryCharacterId, secondaryCharacter.id)?.relationship_description  }}
-            }
-        </textarea>
-        <input type="text" id="relationship-type-{{secondaryCharacter.id}}" placeholder="Relationship Type"
-          } @else {
-            does not have relationship
-            <textarea id="relationship-description-{{secondaryCharacter.id}}" placeholder="Describe relationship...">
+          <p class="alt-names">{{ secondaryCharacter.alt_names.join(', ') }}</p>
+        }
+        @if (rel) {
+          has relationship
+          <input
+            type="text"
+            id="relationship-type-{{secondaryCharacter.id}}"
+            placeholder="Relationship Type"
+            value=""
+          />
+          <textarea
+            id="relationship-description-{{secondaryCharacter.id}}"
+            placeholder="Describe relationship..."
+          >{{ rel?.relationship_description }}</textarea>
+          @if(rel?.relationship_type && rel.relationship_type.length > 0) {
+            {{ rel.relationship_type.join(', ') }}
+          }
+          <!-- {{ rel?.relationship_description }} -->
+        } @else {
+          <p class="no-relationship">No relationship</p>
         }
       </div>
     }
-  </div> -->
+  </div>
 </div>

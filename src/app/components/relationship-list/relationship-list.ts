@@ -25,22 +25,29 @@ export class RelationshipList {
   constructor() {}
 
   async ngOnInit() {
-    this.loadRelationships();
+    this.loadRelationshipData();
   }
   
-  async loadRelationships() {
+  async loadRelationshipData() {
+    // Load all characters
     this.characterList = await this.characterService.getAllWorldCharacters();
+    // Exclude primary character from filtered list
     this.filteredCharacterList = this.characterList.filter(character => character.id !== this.primaryCharacterId);
+    // Log loaded characters
     for (const character of this.filteredCharacterList) {
       console.log('Character:', character.personal_name, character.family_name);
     }
+    // Load all relationships
     this.relationshipList = await this.relationshipService.getallRelationship();
     // Build relationship map for fast lookup
     this.relationshipMap = {};
     for (const rel of this.relationshipList) {
       const key = rel.primary_character + '-' + rel.secondary_character;
       this.relationshipMap[key] = rel;
+      console.log('Relationship:', rel.primary_character, rel.secondary_character, 'Has relationship:', rel.has_relationship);
     }
+    // Apply filters to update filteredCharacterList for UI
+    await this.applyFilters();
   }
 
   async applyFilters(): Promise<void> {
@@ -90,5 +97,17 @@ export class RelationshipList {
 
   toggleRelationship(event: Event, secondaryCharacterId: string) {
     console.log('toggleRelationship called for secondary character ID:', secondaryCharacterId);
+    const checkbox = event.target as HTMLInputElement;  
+    const hasRelationship = checkbox.checked;
+    const relationship: RelationshipInfo = {
+      id: '', // ID will be set by backend
+      primary_character: this.primaryCharacterId,
+      secondary_character: secondaryCharacterId,
+      has_relationship: hasRelationship,
+      relationship_type: [], // You can extend this to include relationship type selection
+      relationship_description: '', // You can extend this to include relationship description input
+    };
+    this.relationshipService.updateRelationship(relationship);
   }
+  
 }

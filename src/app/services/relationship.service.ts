@@ -37,10 +37,10 @@ export class RelationshipService {
         return relationshipJson;
     }
 
-    async getRelationshipByCharacter(name: string): Promise<RelationshipInfo[] | undefined> {
-        const data = await fetch(`${this.url}?name=${encodeURIComponent(name)}`);
+    async getRelationshipsByCharacter(name: string): Promise<RelationshipInfo[] | undefined> {
+        const data = await fetch(`${this.url}?character=${encodeURIComponent(name)}`);
         if (!data.ok) {
-            console.error('Failed to fetch character by name:', name);
+            console.error('Failed to fetch relationships for character:', name);
             return undefined;
         }
         const relationshipJson = await data.json();
@@ -100,6 +100,7 @@ export class RelationshipService {
 
     async updateRelationship(relationship: RelationshipInfo) {
         console.log('made it to service with relationship:', relationship);
+        console.log('Checking relationship')
         // const isInDatabase = await this.relationshipExists(relationship.primary_character, relationship.secondary_character);
         // console.log('Checked if relationship exists in database:', isInDatabase);
         // if (!isInDatabase && relationship.has_relationship) {
