@@ -42,15 +42,17 @@
             type="text"
             id="relationship-type-{{secondaryCharacter.id}}"
             placeholder="Relationship Type"
-            value=""
+            [value]="(rel?.relationship_type && rel.relationship_type.length > 0) ? rel.relationship_type.join(', ') : ''"
           />
           <textarea
             id="relationship-description-{{secondaryCharacter.id}}"
             placeholder="Describe relationship..."
           >{{ rel?.relationship_description }}</textarea>
+          <!-- Testing -->
           @if(rel?.relationship_type && rel.relationship_type.length > 0) {
             {{ rel.relationship_type.join(', ') }}
           }
+          {{ rel?.relationship_description }}
           <!-- {{ rel?.relationship_description }} -->
         } @else {
           <p class="no-relationship">No relationship</p>

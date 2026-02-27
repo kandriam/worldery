@@ -31,24 +31,32 @@ export class RelationshipList {
   async loadRelationshipData() {
     // Load all characters
     this.characterList = await this.characterService.getAllWorldCharacters();
-    // Exclude primary character from filtered list
     this.filteredCharacterList = this.characterList.filter(character => character.id !== this.primaryCharacterId);
-    // Log loaded characters
-    for (const character of this.filteredCharacterList) {
-      console.log('Character:', character.personal_name, character.family_name);
-    }
-    // Load all relationships
+    // Load all relationships and build relationship map for fast lookup
+
     this.relationshipList = await this.relationshipService.getallRelationship();
-    // Build relationship map for fast lookup
     this.relationshipMap = {};
     for (const rel of this.relationshipList) {
       const key = rel.primary_character + '-' + rel.secondary_character;
       this.relationshipMap[key] = rel;
-      console.log('Relationship:', rel.primary_character, rel.secondary_character, 'Has relationship:', rel.has_relationship);
     }
     // Apply filters to update filteredCharacterList for UI
+    this.loadRelationshipUI();
     await this.applyFilters();
   }
+
+  loadRelationshipUI() {
+    // Update all relationship type and description fields by id
+    for (const rel of this.relationshipList) {
+      const typeElement = document.getElementById(`relationship-type-${rel.secondary_character}`) as HTMLInputElement;
+      // Type Element
+      const type = Array.isArray(rel.relationship_type) && rel.relationship_type.length > 0 ? rel.relationship_type.join(', ') : '';
+      // if (typeElement) {
+      //   typeElement = typeElement as HTMLInputElement;
+      // }
+    }
+  }
+
 
   async applyFilters(): Promise<void> {
     console.log('applyFilters called, filter:', this.relationshipFilter);
