@@ -50,7 +50,7 @@ export class RelationshipService {
     async relationshipExists(primaryName: string, secondaryName: string): Promise<boolean> {
         try {
             const relationship = await this.http.get<RelationshipInfo>(`${this.url}?primary=${encodeURIComponent(primaryName)}&secondary=${encodeURIComponent(secondaryName)}`).toPromise();
-            console.log('Checked relationship existence for characters:', primaryName, secondaryName, 'Result:', relationship);
+            console.log('Checked:', primaryName, secondaryName, 'Result:', relationship);
             return relationship !== null && relationship !== undefined;
         } catch (error) {
             return false;
@@ -98,41 +98,31 @@ export class RelationshipService {
         });
     }
 
-    async updateRelationship(relationship: RelationshipInfo) {
-        console.log('made it to service with relationship:', relationship);
-        console.log('Checking relationship')
-        // const isInDatabase = await this.relationshipExists(relationship.primary_character, relationship.secondary_character);
-        // console.log('Checked if relationship exists in database:', isInDatabase);
-        // if (!isInDatabase && relationship.has_relationship) {
-        //     // If it isn't in the database and should be, create it
-        //     console.log('Relationship not found in database:', relationship.id);
-        //     return await this.createRelationship(relationship).toPromise();
-        // } else {
-        //     // If in the database
-        //     if (!relationship.has_relationship) {
-        //         // If it shouldn't be in the database, delete it
-        //         console.log('Deleting relationship with ID:', relationship.id);
-        //         this.deleteRelationship(relationship.id);
-        //         return;
-        //     } else {
-        //         // If it is in the database and should be, update it
-        //         console.log('Updating existing relationship with ID:', relationship.id);
-        //         const payload = {
-        //             primary_character: relationship.primary_character,
-        //             secondary_character: relationship.secondary_character,
-        //             has_relationship: relationship.has_relationship,
-        //             relationship_type: relationship.relationship_type,
-        //             relationship_description: relationship.relationship_description,
-        //         }
-        //         return this.http.put(`${this.url}/${relationship.id}/`, payload)
-        //         .pipe(catchError(error => {
-        //             console.error('Error updating relationship:', error);
-        //             throw error;
-        //         })).toPromise().then((updatedRelationship: any) => {
-        //             console.log('Relationship updated successfully', updatedRelationship);
-        //             return updatedRelationship;
-        //         });
-        //     }
-        // }
+    async updateRelationship(relationship: RelationshipInfo, exists: boolean) {
+        // console.log('made it to service with relationship:', relationship);
+        // console.log('already exists?:', exists);
+        if (!exists) {
+            // If it isn't in the database and should be, create it
+            // console.log('Relationship not found in database:', relationship.id);
+            return await this.createRelationship(relationship).toPromise();
+        } else {
+            // If it is in the database, update it
+            // console.log('Updating existing relationship with ID:', relationship.id);
+            const payload = {
+                primary_character: relationship.primary_character,
+                secondary_character: relationship.secondary_character,
+                has_relationship: relationship.has_relationship,
+                relationship_type: relationship.relationship_type,
+                relationship_description: relationship.relationship_description,
+            }
+            return this.http.put(`${this.url}/${relationship.id}/`, payload)
+            .pipe(catchError(error => {
+                console.error('Error updating relationship:', error);
+                throw error;
+            })).toPromise().then((updatedRelationship: any) => {
+                console.log('Relationship updated successfully', updatedRelationship);
+                return updatedRelationship;
+            });
+        }
     }
 }

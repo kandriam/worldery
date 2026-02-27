@@ -20,7 +20,7 @@ export class RelationshipList {
   relationshipService: RelationshipService = inject(RelationshipService);
   relationshipList: RelationshipInfo[] = [];
   relationshipMap: { [key: string]: RelationshipInfo } = {};
-  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'all';
+  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';
 
   constructor() {}
 
@@ -68,18 +68,14 @@ export class RelationshipList {
     const filtered: WorldCharacterInfo[] = [];
     for (const character of this.characterList) {
       if (character.id === primaryId) continue;
-      const rel = this.relationshipList.find(rel => rel.primary_character === primaryId && rel.secondary_character === character.id);
+      const key = primaryId + '-' + character.id;
+      const rel = this.relationshipMap[key];
       const hasRelationship = rel?.has_relationship === true;
       if (this.relationshipFilter === 'with-relationship' && !hasRelationship) continue;
       if (this.relationshipFilter === 'without-relationship' && hasRelationship) continue;
-      // if (this.storyFilter !== 'all') {
-      //   const characterStories = character.stories || [];
-      //   if (!characterStories.includes(this.storyFilter)) continue;
-      // }
       filtered.push(character);
     }
     this.filteredCharacterList = filtered;
-    // await this.updateRelationshipUI();
   }
 
   getRelationship(primaryCharacterId: string, secondaryCharacterId: string): RelationshipInfo | undefined {
@@ -99,7 +95,7 @@ export class RelationshipList {
     this.applyFilters();
   }
 
-  updateRelationship(secondaryCharacterId: string, relationshipId: string) {
+  updateRelationship(secondaryCharacterId: string, relationshipId: string = '') {
     console.log('updateRelationship called for characters:', this.primaryCharacterId, secondaryCharacterId);
     const hasRelationship = (document.getElementById(`relationship-checkbox-${secondaryCharacterId}`) as HTMLInputElement)?.checked || false;
     const typeInput = document.getElementById(`relationship-type-${secondaryCharacterId}`) as HTMLInputElement;
@@ -115,22 +111,26 @@ export class RelationshipList {
       relationship_description: relationshipDescription,
     };
     console.log('Constructed relationship object for update:', relationship);
-    this.relationshipService.updateRelationship(relationship);
+    if (relationshipId) {
+      this.relationshipService.updateRelationship(relationship, true);
+    } else {
+      this.relationshipService.updateRelationship(relationship, false);
+    }
   }
 
-  toggleRelationship(event: Event, secondaryCharacterId: string) {
-    console.log('toggleRelationship called for secondary character ID:', secondaryCharacterId);
-    const checkbox = event.target as HTMLInputElement;  
-    const hasRelationship = checkbox.checked;
-    const relationship: RelationshipInfo = {
-      id: '', // ID will be set by backend
-      primary_character: this.primaryCharacterId,
-      secondary_character: secondaryCharacterId,
-      has_relationship: hasRelationship,
-      relationship_type: [], // You can extend this to include relationship type selection
-      relationship_description: '', // You can extend this to include relationship description input
-    };
-    this.relationshipService.updateRelationship(relationship);
-  }
+  // toggleRelationship(event: Event, secondaryCharacterId: string) {
+  //   console.log('toggleRelationship called for secondary character ID:', secondaryCharacterId);
+  //   const checkbox = event.target as HTMLInputElement;  
+  //   const hasRelationship = checkbox.checked;
+  //   const relationship: RelationshipInfo = {
+  //     id: '', // ID will be set by backend
+  //     primary_character: this.primaryCharacterId,
+  //     secondary_character: secondaryCharacterId,
+  //     has_relationship: hasRelationship,
+  //     relationship_type: [], // You can extend this to include relationship type selection
+  //     relationship_description: '', // You can extend this to include relationship description input
+  //   };
+  //   this.relationshipService.updateRelationship(relationship, false);
+  // }
   
 }

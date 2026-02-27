@@ -127,6 +127,13 @@
   scrollbar-color: var(--g3-color) var(--g5-color);
 }
 
+.no-relationship {
+  text-align: center;
+  color: var(--g3-color);
+  font-style: italic;
+  padding: 20px;
+}
+
 .hidden {
   display: none;
 }
