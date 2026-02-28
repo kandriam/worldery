@@ -20,7 +20,7 @@ export class RelationshipList {
   relationshipService: RelationshipService = inject(RelationshipService);
   relationshipList: RelationshipInfo[] = [];
   relationshipMap: { [key: string]: RelationshipInfo } = {};
-  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';
+  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'all';
 
   constructor() {}
 
@@ -95,42 +95,40 @@ export class RelationshipList {
     this.applyFilters();
   }
 
-  updateRelationship(secondaryCharacterId: string, relationshipId: string = '') {
+  updateRelationship(secondaryCharacterId: string) {
     console.log('updateRelationship called for characters:', this.primaryCharacterId, secondaryCharacterId);
     const hasRelationship = (document.getElementById(`relationship-checkbox-${secondaryCharacterId}`) as HTMLInputElement)?.checked || false;
     const typeInput = document.getElementById(`relationship-type-${secondaryCharacterId}`) as HTMLInputElement;
     const descriptionInput = document.getElementById(`relationship-description-${secondaryCharacterId}`) as HTMLTextAreaElement;
     const relationshipType = typeInput?.value || '';
     const relationshipDescription = descriptionInput?.value || '';
-    const relationship: RelationshipInfo = {
-      id: relationshipId,
-      primary_character: this.primaryCharacterId,
-      secondary_character: secondaryCharacterId,
-      has_relationship: hasRelationship,
-      relationship_type: relationshipType ? relationshipType.split(',').map(s => s.trim()) : [],
-      relationship_description: relationshipDescription,
-    };
-    console.log('Constructed relationship object for update:', relationship);
-    if (relationshipId) {
-      this.relationshipService.updateRelationship(relationship, true);
-    } else {
-      this.relationshipService.updateRelationship(relationship, false);
-    }
+    // Always check for an existing relationship from the service to avoid race conditions
+    this.relationshipService.getRelationshipByCharacters(this.primaryCharacterId, secondaryCharacterId).then(existing => {
+      const idToUse = existing && existing.id ? existing.id : '';
+      const relationship: RelationshipInfo = {
+        id: idToUse,
+        primary_character: this.primaryCharacterId,
+        secondary_character: secondaryCharacterId,
+        has_relationship: hasRelationship,
+        relationship_type: relationshipType ? relationshipType.split(',').map(s => s.trim()) : [],
+        relationship_description: relationshipDescription,
+      };
+      console.log('Constructed relationship object for update:', relationship);
+      this.relationshipService.updateRelationship(relationship);
+    });
   }
 
-  // toggleRelationship(event: Event, secondaryCharacterId: string) {
-  //   console.log('toggleRelationship called for secondary character ID:', secondaryCharacterId);
-  //   const checkbox = event.target as HTMLInputElement;  
-  //   const hasRelationship = checkbox.checked;
-  //   const relationship: RelationshipInfo = {
-  //     id: '', // ID will be set by backend
-  //     primary_character: this.primaryCharacterId,
-  //     secondary_character: secondaryCharacterId,
-  //     has_relationship: hasRelationship,
-  //     relationship_type: [], // You can extend this to include relationship type selection
-  //     relationship_description: '', // You can extend this to include relationship description input
-  //   };
-  //   this.relationshipService.updateRelationship(relationship, false);
-  // }
+  toggleRelationship(secondaryCharacterId: string) {
+    this.updateRelationship(secondaryCharacterId);
+    const characterDetails = document.getElementById(`relationship-details-${secondaryCharacterId}`);
+    const isChecked = (document.getElementById(`relationship-checkbox-${secondaryCharacterId}`) as HTMLInputElement).checked;
+    if (characterDetails) {
+      if (isChecked) {
+        characterDetails.classList.remove('hidden');
+      } else {
+        characterDetails.classList.add('hidden');
+      }
+    }
+  }
   
 }

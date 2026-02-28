@@ -29,29 +29,43 @@
         <div class="relationship-header">
           <input type="checkbox" id="relationship-checkbox-{{secondaryCharacter.id}}"
           [checked]="rel?.has_relationship"
-          (change)="updateRelationship(secondaryCharacter.id)"
+          (change)="toggleRelationship(secondaryCharacter.id)"
           />
           {{secondaryCharacter.personal_name}} {{secondaryCharacter.family_name}}
         </div>
         @if(secondaryCharacter.alt_names && secondaryCharacter.alt_names.length > 0) {           
           <p class="alt-names">{{ secondaryCharacter.alt_names.join(', ') }}</p>
         }
-        @if (rel && rel.has_relationship) {
-          <input
-            type="text"
-            id="relationship-type-{{secondaryCharacter.id}}"
-            placeholder="Relationship Type"
-            (input)="updateRelationship(secondaryCharacter.id, rel.id)"
-            [value]="(rel?.relationship_type && rel.relationship_type.length > 0) ? rel.relationship_type.join(', ') : ''"
-          />
-          <textarea
-            id="relationship-description-{{secondaryCharacter.id}}"
-            placeholder="Describe relationship..."
-            (input)="updateRelationship(secondaryCharacter.id, rel.id)"
-          >{{ rel?.relationship_description }}</textarea>
+        @if (rel) {
+          <div class="relationship-details" id="relationship-details-{{secondaryCharacter.id}}" [classList]="">
+            <input
+              type="text"
+              id="relationship-type-{{secondaryCharacter.id}}"
+              placeholder="Relationship Type"
+              (input)="updateRelationship(secondaryCharacter.id)"
+              [value]="(rel?.relationship_type && rel.relationship_type.length > 0) ? rel.relationship_type.join(', ') : ''"
+            />
+            <textarea
+              id="relationship-description-{{secondaryCharacter.id}}"
+              placeholder="Describe relationship..."
+              (input)="updateRelationship(secondaryCharacter.id)"
+            >{{ rel?.relationship_description }}</textarea>
+          </div>
         } @else {
-          <div class="no-relationship">No relationship yet</div>
-        }
+          <div class="relationship-details" id="relationship-details-{{secondaryCharacter.id}}" [classList]="">
+            <input
+              type="text"
+              id="relationship-type-{{secondaryCharacter.id}}"
+              placeholder="Relationship Type"
+              (input)="updateRelationship(secondaryCharacter.id)"
+            />
+            <textarea
+              id="relationship-description-{{secondaryCharacter.id}}"
+              placeholder="Describe relationship..."
+              (input)="updateRelationship(secondaryCharacter.id)"
+            ></textarea>    
+          </div>   
+          }
       </div>
     }
   </div>

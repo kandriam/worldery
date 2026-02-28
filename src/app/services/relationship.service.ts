@@ -59,7 +59,17 @@ export class RelationshipService {
 
     async getRelationshipByCharacters(primaryName: string, secondaryName: string): Promise<RelationshipInfo | undefined> {
         try {
-            const relationship = await this.http.get<RelationshipInfo>(`${this.url}?primary=${encodeURIComponent(primaryName)}&secondary=${encodeURIComponent(secondaryName)}`).toPromise();
+            const result = await this.http.get<any>(`${this.url}?primary=${encodeURIComponent(primaryName)}&secondary=${encodeURIComponent(secondaryName)}`).toPromise();
+            let relationship: RelationshipInfo | undefined = undefined;
+            if (Array.isArray(result)) {
+                // If backend returns an array, find the exact match
+                relationship = result.find((rel: RelationshipInfo) => rel.primary_character === primaryName && rel.secondary_character === secondaryName);
+            } else if (result && result.primary_character && result.secondary_character) {
+                // If backend returns a single object
+                if (result.primary_character === primaryName && result.secondary_character === secondaryName) {
+                    relationship = result;
+                }
+            }
             console.log('Fetched relationship for characters:', primaryName, secondaryName, 'Result:', relationship);
             return relationship ?? undefined;
         } catch (error) {
@@ -98,31 +108,30 @@ export class RelationshipService {
         });
     }
 
-    async updateRelationship(relationship: RelationshipInfo, exists: boolean) {
-        // console.log('made it to service with relationship:', relationship);
-        // console.log('already exists?:', exists);
-        if (!exists) {
-            // If it isn't in the database and should be, create it
-            // console.log('Relationship not found in database:', relationship.id);
+    async updateRelationship(relationship: RelationshipInfo) {
+        // Always check for an existing relationship by primary and secondary character
+        const existing = await this.getRelationshipByCharacters(relationship.primary_character, relationship.secondary_character);
+        console.log("exists?", existing, "for characters:", relationship.primary_character, relationship.secondary_character);
+        if (!existing) {
+            // Create new relationship
             return await this.createRelationship(relationship).toPromise();
         } else {
-            // If it is in the database, update it
-            // console.log('Updating existing relationship with ID:', relationship.id);
+            // Update existing relationship
             const payload = {
                 primary_character: relationship.primary_character,
                 secondary_character: relationship.secondary_character,
                 has_relationship: relationship.has_relationship,
                 relationship_type: relationship.relationship_type,
                 relationship_description: relationship.relationship_description,
-            }
-            return this.http.put(`${this.url}/${relationship.id}/`, payload)
-            .pipe(catchError(error => {
-                console.error('Error updating relationship:', error);
-                throw error;
-            })).toPromise().then((updatedRelationship: any) => {
-                console.log('Relationship updated successfully', updatedRelationship);
-                return updatedRelationship;
-            });
+            };
+            return this.http.put(`${this.url}/${existing.id}/`, payload)
+                .pipe(catchError(error => {
+                    console.error('Error updating relationship:', error);
+                    throw error;
+                })).toPromise().then((updatedRelationship: any) => {
+                    console.log('Relationship updated successfully', updatedRelationship);
+                    return updatedRelationship;
+                });
         }
     }
 }
