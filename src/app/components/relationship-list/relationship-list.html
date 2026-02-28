@@ -36,8 +36,10 @@
         @if(secondaryCharacter.alt_names && secondaryCharacter.alt_names.length > 0) {           
           <p class="alt-names">{{ secondaryCharacter.alt_names.join(', ') }}</p>
         }
-        @if (rel) {
-          <div class="relationship-details" id="relationship-details-{{secondaryCharacter.id}}" [classList]="">
+        @if (rel && rel.has_relationship) {
+          <div class="relationship-details"
+            id="relationship-details-{{secondaryCharacter.id}}"
+            >
             <input
               type="text"
               id="relationship-type-{{secondaryCharacter.id}}"
@@ -52,13 +54,13 @@
             >{{ rel?.relationship_description }}</textarea>
           </div>
         } @else {
-          <div class="relationship-details" id="relationship-details-{{secondaryCharacter.id}}" [classList]="">
+          <div class="relationship-details" id="relationship-details-{{secondaryCharacter.id}}" class="hidden">
             <input
               type="text"
               id="relationship-type-{{secondaryCharacter.id}}"
               placeholder="Relationship Type"
               (input)="updateRelationship(secondaryCharacter.id)"
-            />
+              />
             <textarea
               id="relationship-description-{{secondaryCharacter.id}}"
               placeholder="Describe relationship..."

@@ -71,9 +71,13 @@ export class RelationshipList {
       const key = primaryId + '-' + character.id;
       const rel = this.relationshipMap[key];
       const hasRelationship = rel?.has_relationship === true;
+      // if (this.relationshipFilter === 'with-relationship' && !hasRelationship) continue;
+      // if (this.relationshipFilter === 'without-relationship' && hasRelationship) continue;
+      // filtered.push(character);
       if (this.relationshipFilter === 'with-relationship' && !hasRelationship) continue;
       if (this.relationshipFilter === 'without-relationship' && hasRelationship) continue;
       filtered.push(character);
+      this.updateRelationshipDisplay(character.id);
     }
     this.filteredCharacterList = filtered;
   }
@@ -127,6 +131,24 @@ export class RelationshipList {
         characterDetails.classList.remove('hidden');
       } else {
         characterDetails.classList.add('hidden');
+      }
+    }
+  }
+
+  updateRelationshipDisplay(secondaryCharacterId: string) {
+    const characterDetails = document.getElementById(`relationship-details-${secondaryCharacterId}`);
+    if (characterDetails){
+      const isChecked = (document.getElementById(`relationship-checkbox-${secondaryCharacterId}`) as HTMLInputElement).checked;
+      if (characterDetails) {
+        if (isChecked) {
+          if (characterDetails.classList.contains('hidden')){
+            characterDetails.classList.remove('hidden');
+          }
+        } else {
+          if (!characterDetails.classList.contains('hidden')) {
+            characterDetails.classList.add('hidden');
+          }
+        }
       }
     }
   }
