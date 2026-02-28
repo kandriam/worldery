@@ -32,6 +32,7 @@ export class EventThumbnail {
   locationNames: string[] = [];
 
   async ngOnInit() {
+    console.log('Initializing EventThumbnail for event:', this.worldEvent);
     // Resolve character IDs to names
     const allCharacters = await this.characterService.getAllWorldCharacters();
     this.characterNames = (this.worldEvent().characters || []).map(id => {

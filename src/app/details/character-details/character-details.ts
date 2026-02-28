@@ -167,8 +167,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     });
   }
 
-  getEvent(eventId: string): WorldEventInfo | undefined {
-    return this.eventList.find(event => event.id === eventId);
+  getEvent(eventId: string | null): WorldEventInfo | null {
+    console.log('a');
+    return this.eventList.find(event => event.id === eventId) || null;
   }
 
   getUniqueStories(): string[] {
@@ -336,8 +337,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   }
 
   updateCharacter() {
-    console.log('Starting character update...');
-    console.log('Current character:', this.worldCharacter);
+    // console.log('Starting character update...');
+    // console.log('Current character:', this.worldCharacter);
     if (!this.worldCharacter?.id) {
       console.error('No character ID found!');
       alert('Error: No character selected for update.');
@@ -345,7 +346,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     }
 
     const selectedStories = this.getFormStories();
-    console.log('!!')
     // Sync worldCharacter object with form values before saving
     this.worldCharacter.personal_name = this.applyForm.value.characterPersonalName ?? '';
     this.worldCharacter.family_name = this.applyForm.value.characterFamilyName ?? '';
@@ -360,8 +360,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       this.applyForm.value.characterDeathMonth || '',
       this.applyForm.value.characterDeathDay || ''
     );
-    const prevBirthdate = this.worldCharacter.birthdate;
-    const prevDeathdate = this.worldCharacter.deathdate;
+    // const prevBirthdate = this.worldCharacter.birthdate;
+    // const prevDeathdate = this.worldCharacter.deathdate;
     this.worldCharacter.birthdate = newBirthdate;
     this.worldCharacter.deathdate = newDeathdate;
     this.worldCharacter.pronouns = this.applyForm.value.characterPronouns ?? '';
@@ -374,14 +374,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
     const formattedBirthdate = this.worldCharacter.birthdate || '';
     const formattedDeathdate = this.worldCharacter.deathdate || '';
-    console.log('Form data:', {
-      id: this.worldCharacter.id,
-      personal_name: this.worldCharacter.personal_name,
-      family_name: this.worldCharacter.family_name,
-      birthdate: formattedBirthdate,
-      deathdate: formattedDeathdate,
-      pronouns: this.worldCharacter.pronouns,
-    });
 
     try {
       const result = this.worldCharacterService.updateWorldCharacter(
@@ -390,9 +382,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.worldCharacter.family_name,
         this.worldCharacter.alt_names,
         formattedBirthdate,
-        this.worldCharacter.birth_event_id ?? '',
+        this.worldCharacter.birth_event ?? null,
         formattedDeathdate,
-        this.worldCharacter.death_event_id ?? '',
+        this.worldCharacter.death_event ?? null,
         this.worldCharacter.pronouns,
         this.worldCharacter.roles,
         this.worldCharacter.affiliations,
@@ -401,7 +393,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.worldCharacter.stories,
         this.worldCharacter.tags
       );
-      console.log('Character update called successfully', result);
+      // console.log('Character update called successfully', result);
 
       if (result && typeof result.then === 'function') {
         result.then(() => {
@@ -433,13 +425,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           }
         }
       });
-    }
-
-    if (newBirthdate && newBirthdate !== prevBirthdate) {
-      this.addCharacterEvent('birth');
-    }
-    if (newDeathdate && newDeathdate !== prevDeathdate) {
-      this.addCharacterEvent('death');
     }
   }
   
@@ -511,16 +496,16 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       );
     }
     if (!date) {
-      // alert('Please provide a valid date before adding to the timeline.');
+      alert('Please provide a valid date before adding to the timeline.');
       return;
     }
 
     // Use explicit property access for eventId
     let eventId: string | undefined = undefined;
     if (eventType === 'birth') {
-      eventId = this.worldCharacter.birth_event_id;
+      eventId = this.worldCharacter.birth_event;
     } else if (eventType === 'death') {
-      eventId = this.worldCharacter.death_event_id;
+      eventId = this.worldCharacter.death_event;
     }
     let eventTitle = `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`;
     let eventDescription = `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`;
@@ -555,9 +540,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.family_name,
           this.worldCharacter.alt_names,
           this.worldCharacter.birthdate || '',
-          this.worldCharacter.birth_event_id || '',
+          this.worldCharacter.birth_event || null,
           this.worldCharacter.deathdate || '',
-          this.worldCharacter.death_event_id || '',
+          this.worldCharacter.death_event || null,
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
@@ -584,10 +569,10 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         ).toPromise();
         // Update the character with the new eventId and date
         if (eventType === 'birth') {
-          this.worldCharacter.birth_event_id = newEvent?.id || '';
+          this.worldCharacter.birth_event = newEvent?.id;
           this.worldCharacter.birthdate = date;
         } else if (eventType === 'death') {
-          this.worldCharacter.death_event_id = newEvent?.id || '';
+          this.worldCharacter.death_event = newEvent?.id;
           this.worldCharacter.deathdate = date;
         }
         await this.worldCharacterService.updateWorldCharacter(
@@ -596,9 +581,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.family_name,
           this.worldCharacter.alt_names,
           this.worldCharacter.birthdate || '',
-          this.worldCharacter.birth_event_id || '',
+          this.worldCharacter.birth_event || null,
           this.worldCharacter.deathdate || '',
-          this.worldCharacter.death_event_id || '',
+          this.worldCharacter.death_event || null,
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
@@ -607,7 +592,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.stories,
           this.worldCharacter.tags
         );
-        console.log(`Created new ${eventType} event with id ${newEvent} and updated character.`);
       }
       this.updateFilteredEvents();
     } catch (error: any) {

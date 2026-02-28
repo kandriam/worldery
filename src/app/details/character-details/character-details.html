@@ -33,7 +33,7 @@
                                 }
                             </select>
                             <input id="character-birth-day" class="primary" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
-                            <!-- <button (click)="updateCharacter()">Update Timeline</button> -->
+                            <button (click)="addCharacterEvent('birth')">Add To Timeline</button>
                         </div>
 
                         <label class="primary-label">Deathdate</label>
@@ -46,20 +46,19 @@
                                 }
                             </select>
                             <input id="character-death-day" type="number" formControlName="characterDeathDay" placeholder="Day" min="1" max="31" />
-                            <!-- <button (click)="updateCharacter()">Update Timeline</button> -->
+                            <button (click)="addCharacterEvent('death')">Add To Timeline</button>
                         </div>
 
                         <div class="event-thumbnails">
-                            @if (worldCharacter?.birth_event_id) {
+                            @if (worldCharacter?.birth_event) {
                                 <app-event-thumbnail 
-                                    [worldEvent]="getEvent(worldCharacter?.birth_event_id || '')!"
-                                    [showCharacters]="false"
-                                    
+                                    [worldEvent]="getEvent(worldCharacter?.birth_event || null)!"
+                                    [showCharacters]="false"    
                                 ></app-event-thumbnail>
                             }
-                            @if (worldCharacter?.death_event_id) {
+                            @if (worldCharacter?.death_event) {
                                 <app-event-thumbnail 
-                                    [worldEvent]="getEvent(worldCharacter?.death_event_id || '')!"
+                                    [worldEvent]="getEvent(worldCharacter?.death_event || null)!"
                                     [showCharacters]="false"
                                 ></app-event-thumbnail>
                             }
@@ -87,12 +86,6 @@
                     [primaryCharacterId]="worldCharacter?.id || ''"
                     [availableStories]="getUniqueStories()"
                 ></app-relationship-list>
-                <!-- [filteredCharacterList]="filteredCharacterList"
-                    [storyFilter]="storyFilter"
-                    [relationshipFilter]="relationshipFilter"
-                    [worldCharacter]="worldCharacter"
-                    [characterList]="characterList"
-                    [relationshipService]="relationshipService" -->
                 
                 <div class="details-section primary-section association-list-section">
                     <app-association-list

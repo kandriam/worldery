@@ -14,8 +14,8 @@ export interface WorldCharacterInfo {
     pronouns: string;
     birthdate?: string;
     deathdate?: string;
-    birth_event_id?: string; // Event ID for birth
-    death_event_id?: string; // Event ID for death
+    birth_event?: string; // Event ID for birth
+    death_event?: string; // Event ID for death
     roles: string[];
     affiliations: string[];
     // events: string[];
@@ -36,7 +36,6 @@ export class WorldCharacterService {
 
     async getAllWorldCharacters(): Promise<WorldCharacterInfo[]> {
       const data = await this.http.get<WorldCharacterInfo[]>(this.url).toPromise();
-      console.log('Fetched characters:', data);
       return data ?? [];
     }
 
@@ -62,9 +61,9 @@ export class WorldCharacterService {
       characterLastName: string,
       characterAltNames: string[],
       characterBirthdate: string,
-      characterBirthEventId: string,
+      characterBirthEvent: string | null,
       characterDeathdate: string,
-      characterDeathEventId: string,
+      characterDeathEvent: string | null,
       characterPronouns: string,
       characterRoles: string[],
       characterAffiliations: string[],
@@ -80,8 +79,8 @@ export class WorldCharacterService {
         alt_names: characterAltNames,
         birthdate: characterBirthdate || null,
         deathdate: characterDeathdate || null,
-        birth_event: characterBirthEventId || null,
-        death_event: characterDeathEventId || null,
+        birth_event: characterBirthEvent || null,
+        death_event: characterDeathEvent || null,
         pronouns: characterPronouns,
         roles: characterRoles,
         affiliations: characterAffiliations,

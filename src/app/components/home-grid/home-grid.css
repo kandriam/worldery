@@ -23,7 +23,8 @@
 
 .home-grid-results {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-auto-rows: 15rem;
   overflow-y: auto;
   overflow-x: hidden;
   gap: 1rem;

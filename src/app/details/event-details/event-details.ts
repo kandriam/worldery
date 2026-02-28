@@ -302,30 +302,30 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
-          let newBirthEventId: string = character.birth_event_id || '';
+          let newBirthEventId: string | null = character.birth_event || null;
           let newBirthdate: string = character.birthdate || '';
-          let newDeathEventId: string = character.death_event_id || '';
+          let newDeathEventId: string | null = character.death_event || null;
           let newDeathdate: string = character.deathdate || '';
 
           // Remove birth/death event and date if character is no longer associated
-          if (character.birth_event_id === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
-            newBirthEventId = '';
+          if (character.birth_event === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
+            newBirthEventId = null;
             newBirthdate = '';
             changed = true;
           }
-          if (character.death_event_id === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
-            newDeathEventId = '';
+          if (character.death_event === this.worldEvent!.id && !selectedCharacters.includes(character.id)) {
+            newDeathEventId = null;
             newDeathdate = '';
             changed = true;
           }
 
           // If character is newly associated and this event is their birth event, set birthdate only if not already set
-          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.birth_event_id && !character.birthdate) {
+          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.birth_event && !character.birthdate) {
             newBirthdate = formattedDate;
             changed = true;
           }
           // If character is newly associated and this event is their death event, set deathdate only if not already set
-          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.death_event_id && !character.deathdate) {
+          if (selectedCharacters.includes(character.id) && this.worldEvent!.id === character.death_event && !character.deathdate) {
             newDeathdate = formattedDate;
             changed = true;
           }
@@ -361,16 +361,16 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
-          let newBirthEventId = character.birth_event_id;
+          let newBirthEventId = character.birth_event;
           let newBirthdate = character.birthdate;
-          let newDeathEventId = character.death_event_id;
+          let newDeathEventId = character.death_event;
           let newDeathdate = character.deathdate;
-          if (character.birth_event_id === this.worldEvent!.id) {
+          if (character.birth_event === this.worldEvent!.id) {
             newBirthEventId = '';
             newBirthdate = '';
             changed = true;
           }
-          if (character.death_event_id === this.worldEvent!.id) {
+          if (character.death_event === this.worldEvent!.id) {
             newDeathEventId = '';
             newDeathdate = '';
             changed = true;
