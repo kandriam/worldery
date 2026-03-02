@@ -33,7 +33,7 @@
                                 }
                             </select>
                             <input id="character-birth-day" class="primary" type="number" formControlName="characterBirthDay" placeholder="Day" min="1" max="31" />
-                            <button (click)="addCharacterEvent('birth')">Add To Timeline</button>
+                            <button (click)="addCharacterEvent('birth')">Update In Timeline</button>
                         </div>
 
                         <label class="primary-label">Deathdate</label>
@@ -46,23 +46,23 @@
                                 }
                             </select>
                             <input id="character-death-day" type="number" formControlName="characterDeathDay" placeholder="Day" min="1" max="31" />
-                            <button (click)="addCharacterEvent('death')">Add To Timeline</button>
+                            <button (click)="addCharacterEvent('death')">Update In Timeline</button>
                         </div>
 
-                        <div class="event-thumbnails">
-                            @if (worldCharacter?.birth_event) {
+                        <!-- <div class="event-thumbnails">
+                            @if (worldCharacter?.birth_event && worldCharacter?.birth_event != null && worldCharacter?.birth_event != undefined) {
                                 <app-event-thumbnail 
-                                    [worldEvent]="getEvent(worldCharacter?.birth_event || null)!"
+                                    [worldEvent]="getEvent(worldCharacter?.birth_event || '')!"
                                     [showCharacters]="false"    
                                 ></app-event-thumbnail>
                             }
-                            @if (worldCharacter?.death_event) {
+                            @if (worldCharacter?.death_event && worldCharacter?.death_event != null && worldCharacter?.death_event != undefined) {
                                 <app-event-thumbnail 
-                                    [worldEvent]="getEvent(worldCharacter?.death_event || null)!"
+                                    [worldEvent]="getEvent(worldCharacter?.death_event || '')!"
                                     [showCharacters]="false"
                                 ></app-event-thumbnail>
                             }
-                        </div>
+                        </div> -->
                     </div>
                     <div>
                         <label class="primary-label" for="character-physical-description">Physical Description</label>

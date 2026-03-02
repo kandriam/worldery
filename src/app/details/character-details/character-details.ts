@@ -99,7 +99,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       // Parse birthdate into separate components
       const birthdate = worldCharacter?.birthdate || '';
       let birthYear = '', birthMonth = '', birthDay = '';
-      if (birthdate) {
+      if (birthdate && birthdate != null && birthdate != undefined) {
         const dateParts = birthdate.split('-');
         if (dateParts.length === 3) {
           birthYear = dateParts[0];
@@ -111,7 +111,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       // Parse deathdate into separate components
       const deathdate = worldCharacter?.deathdate || '';
       let deathYear = '', deathMonth = '', deathDay = '';
-      if (deathdate) {
+      if (deathdate && deathdate != null && deathdate != undefined) {
         const dateParts = deathdate.split('-');
         if (dateParts.length === 3) {
           deathYear = dateParts[0];
@@ -168,8 +168,11 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   }
 
   getEvent(eventId: string | null): WorldEventInfo | null {
-    console.log('a');
-    return this.eventList.find(event => event.id === eventId) || null;
+    if (!eventId || eventId == null) return null;
+    console.log('Looking for event with ID:', eventId);
+    const event = this.eventList.find(event => event.id === eventId) || null;
+    console.log('Found event:', event);
+    return event;
   }
 
   getUniqueStories(): string[] {
@@ -382,9 +385,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         this.worldCharacter.family_name,
         this.worldCharacter.alt_names,
         formattedBirthdate,
-        this.worldCharacter.birth_event ?? null,
+        this.worldCharacter.birth_event ?? '',
         formattedDeathdate,
-        this.worldCharacter.death_event ?? null,
+        this.worldCharacter.death_event ?? '',
         this.worldCharacter.pronouns,
         this.worldCharacter.roles,
         this.worldCharacter.affiliations,
@@ -507,8 +510,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     } else if (eventType === 'death') {
       eventId = this.worldCharacter.death_event;
     }
-    let eventTitle = `${characterName}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`;
-    let eventDescription = `${characterName}'s ${eventType === 'birth' ? 'birth' : 'death'}.`;
+    let eventTitle = `${characterName.trim()}'s ${eventType === 'birth' ? 'Birth' : 'Death'}`;
+    let eventDescription = `${characterName.trim()}'s ${eventType === 'birth' ? 'birth' : 'death'}.`;
     let eventCharacters = [characterId];
     let eventStories = this.worldCharacter.stories || [];
     let eventTags = [...tags, eventType === 'birth' ? 'birth' : 'death'];
@@ -540,9 +543,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.family_name,
           this.worldCharacter.alt_names,
           this.worldCharacter.birthdate || '',
-          this.worldCharacter.birth_event || null,
+          this.worldCharacter.birth_event || '',
           this.worldCharacter.deathdate || '',
-          this.worldCharacter.death_event || null,
+          this.worldCharacter.death_event || '',
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,
@@ -581,9 +584,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.family_name,
           this.worldCharacter.alt_names,
           this.worldCharacter.birthdate || '',
-          this.worldCharacter.birth_event || null,
+          this.worldCharacter.birth_event || '',
           this.worldCharacter.deathdate || '',
-          this.worldCharacter.death_event || null,
+          this.worldCharacter.death_event || '',
           this.worldCharacter.pronouns,
           this.worldCharacter.roles,
           this.worldCharacter.affiliations,

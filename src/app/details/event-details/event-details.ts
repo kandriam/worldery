@@ -302,9 +302,9 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       this.worldCharacterService.getAllWorldCharacters().then(async (characters) => {
         for (const character of characters) {
           let changed = false;
-          let newBirthEventId: string | null = character.birth_event || null;
+          let newBirthEventId: string | null = character.birth_event || '';
           let newBirthdate: string = character.birthdate || '';
-          let newDeathEventId: string | null = character.death_event || null;
+          let newDeathEventId: string | null = character.death_event || '';
           let newDeathdate: string = character.deathdate || '';
 
           // Remove birth/death event and date if character is no longer associated

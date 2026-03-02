@@ -36,6 +36,7 @@ export class WorldCharacterService {
 
     async getAllWorldCharacters(): Promise<WorldCharacterInfo[]> {
       const data = await this.http.get<WorldCharacterInfo[]>(this.url).toPromise();
+      console.log('Fetched characters:', data);
       return data ?? [];
     }
 
@@ -79,8 +80,8 @@ export class WorldCharacterService {
         alt_names: characterAltNames,
         birthdate: characterBirthdate || null,
         deathdate: characterDeathdate || null,
-        birth_event: characterBirthEvent || null,
-        death_event: characterDeathEvent || null,
+        birth_event: characterBirthEvent || '',
+        death_event: characterDeathEvent || '',
         pronouns: characterPronouns,
         roles: characterRoles,
         affiliations: characterAffiliations,
