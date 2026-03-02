@@ -4,13 +4,13 @@ title: "Worldery Roadmap"
 
 # Main
 World Home
-[ ] Layout (Filter and search on one side)
+[x] Layout (Filter and search on one side)
 
 Event
 [ ] Importance
 [ ] Recurring dates (Yearly)
-[ ] Event types
-    [ ] Birthday (Associated with a character)
+[?] Event types
+    [?] Birthday (Associated with a character)
     
 Timeline
 [ ] Calendar view
