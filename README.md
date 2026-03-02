@@ -1,17 +1,16 @@
 ---
 title: "Worldery ReadMe"
 ---
-# How to Run FrontEnd (Angular App)
-1. In the terminal window, run
-    `yarn dev`
-OR
-1. In one terminal window, (to build and serve the application) run
-    `ng serve`
-2. In a separate terminal (to run the database servers), run
-    `json-server --watch db.json`
-2. Go to [http://localhost:4200/](http://localhost:4200/)
+# How To Run
+## How to Run Frontend (Angular App)
+1. cd into the main directory for this application ('worldery')
 
-# How to Run Backend (Django App)
+2. In one terminal window, (to build and serve the application) run
+    `ng serve`
+
+3. Then Follow the next steps in a different terminal window
+
+## How to Run Backend (Django App)
 1. cd into the main directory for this application ('worldery')
 2. Create a virtual environment that will exist on your machine (only do this once, this is automatically gitignored. Creating a virtual environment might look differently depending on your OS, look it up if you get an error):
     `python -m venv venv`
@@ -30,6 +29,16 @@ OR
     `python manage.py runserver`
 2. Go to [127.0.0.1:8000/admin/](127.0.0.1:8000/admin/)
 
+# OUTDATED
+## How to Run FrontEnd (Angular App) Only Version
+1. In the terminal window, run
+    `yarn dev`
+OR
+1. In one terminal window, (to build and serve the application) run
+    `ng serve`
+2. In a separate terminal (to run the database servers), run
+    `json-server --watch db.json`
+2. Go to [http://localhost:4200/](http://localhost:4200/)
 
 
 # Features
