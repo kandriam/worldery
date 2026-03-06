@@ -20,7 +20,7 @@ title: "Worldery ReadMe"
     `deactivate`
 4. Install the requirements (unless you make any changes to the code, <mark>you should only have to do this once</mark>):
     `python3 -m pip install -r requirements.txt`
-5. Start a local server by running:
+5. Start a local server by cd-ing into the `backend` directory and running:
     `python manage.py runserver`
 6. Open the link printed by the console
 
