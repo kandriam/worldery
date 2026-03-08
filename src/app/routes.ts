@@ -9,6 +9,9 @@ import { LocationHome } from './pages/location-home/location-home';
 import { CharacterHome } from './pages/character-home/character-home';
 import { StoryHome } from './pages/story-home/story-home';
 import { Settings } from './pages/settings/settings';
+import { Profile } from './auth-pages/profile/profile';
+import { Login } from './auth-pages/login/login';
+import { Register } from './auth-pages/register/register';
 
 const routeConfig: Routes = [
   {
@@ -60,6 +63,21 @@ const routeConfig: Routes = [
     path: 'settings',
     component: Settings,
     title: 'Settings',
+  },
+  {
+    path: 'profile',
+    component: Profile,
+    title: 'Profile',
+  },
+  {
+    path: 'login',
+    component: Login,
+    title: 'Login',
+  },
+  {
+    path: 'register',
+    component: Register,
+    title: 'Register',
   }
 ];
 export default routeConfig;
