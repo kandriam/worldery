@@ -1,0 +1,30 @@
+.auth-box {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid var(--b1-color);
+    border-radius: 8px;
+    background-color: var(--g5-color);
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid var(--b1-color);
+    border-radius: 4px;
+}
+
+.redirect {
+    text-align: center;
+    margin: 15px;
+    border: 1px solid var(--b1-color);
+    border-radius: 4px;
+    padding: 10px;
+    background-color: var(--g4-color);
+    transition: 0.5s;
+
+    &:hover {
+        background-color: var(--g5-color);
+    }
+}

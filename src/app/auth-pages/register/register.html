@@ -1,6 +1,23 @@
 <article>
     <div class="page-layout">
-        <h1>Register</h1>
-        <p>test</p>
+        <div class="auth-box">
+            <h1>Create an Account</h1>
+            <div [routerLink]="'/login'" class="redirect">Already have an account? Login</div>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <label for="username">Username:</label>
+                <input id="username" formControlName="username" type="text" />
+                
+                <label for="email">Email:</label>
+                <input id="email" formControlName="email" type="email" />
+                
+                <label for="password">Password:</label>
+                <input id="password" formControlName="password" type="password" />
+                
+                <label for="confirmPassword">Confirm Password:</label>
+                <input id="confirmPassword" formControlName="confirmPassword" type="password">
+                <button type="submit">Register</button>
+                <div *ngIf="error" class="error">{{ error }}</div>
+            </form>
+        </div>
     </div>
 </article>

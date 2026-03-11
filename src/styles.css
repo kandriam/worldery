@@ -293,12 +293,7 @@ input[type="checkbox"] {
 textarea, input[type="text"] {
   display: block;
   background-color: inherit;
-  border: none;
-  border-bottom: solid 1px var(--g3-color);
-  /* margin-bottom: 15px; */
   border-radius: 8px;
-
-  /* font-family: var(--input-font-family); */
   font-family: var(--headings-font-family);
 
   &::placeholder {
@@ -328,7 +323,7 @@ h1 > input[type="text"], h2 > input[type="text"] {
 input[type="text"] {
   padding: 10px;
   /* width: 100%; */
-  width: calc(100% - 20px);
+  /* width: calc(100% - 20px); */
   &:required::after {
     content: "*";
     color: red;

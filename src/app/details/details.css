@@ -105,3 +105,9 @@
   box-sizing: border-box;
   /* font-family: inherit; */
 }
+
+input {
+  width: calc(100% - 20px);
+  border: none;
+  border-bottom: solid 1px var(--g3-color);
+}
