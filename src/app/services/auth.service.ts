@@ -36,6 +36,7 @@ export class AuthService {
     registerUrl = `${this.baseUrl}/register/`;
     loginUrl = `${this.baseUrl}/login/`;
     profileUrl = `${this.baseUrl}/profile/`;
+    userUrl = `${this.baseUrl}/user/`;
 
     constructor(private router: Router, private http: HttpClient) {}
 
@@ -55,6 +56,16 @@ export class AuthService {
         const token = localStorage.getItem('access_token');
         if (!token) return of(null);
         return this.http.get<UserInfo>(this.profileUrl, {
+            headers: { Authorization: `Bearer ${token}` }
+        }).pipe(
+            catchError(() => of(null))
+        );
+    }
+
+    getCurrentUser(): Observable<UserInfo | null> {
+        const token = localStorage.getItem('access_token');
+        if (!token) return of(null);
+        return this.http.get<UserInfo>(this.userUrl, {
             headers: { Authorization: `Bearer ${token}` }
         }).pipe(
             catchError(() => of(null))

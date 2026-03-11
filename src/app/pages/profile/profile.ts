@@ -17,7 +17,7 @@ export class Profile implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.authService.getProfile().subscribe(user => {
+    this.authService.getCurrentUser().subscribe(user => {
       this.user = user;
       if (!user) {
         this.router.navigate(['/login']);
