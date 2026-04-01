@@ -20,7 +20,18 @@
   
   <div class="home-row-results">
     @if (filteredEntities.length) {
-      @if (isEventList(filteredEntities)) {
+      @if (isWorldList(filteredEntities)) {
+        @for(worldEvent of filteredEntities; track worldEvent.id) {
+          <app-world-thumbnail
+            [world]="worldEvent"
+            [showOwner]="showLocation"
+            [showGenres]="showCharacters"
+            [showDescription]="showStories"
+            (tagClicked)="onTagClick($event)">
+          </app-world-thumbnail>
+        }
+      }
+       @else if (isEventList(filteredEntities)) {
         @for(worldEvent of filteredEntities; track worldEvent.id) {
           <app-event-thumbnail 
             [worldEvent]="worldEvent"
@@ -31,7 +42,8 @@
             (tagClicked)="onTagClick($event)">
           </app-event-thumbnail>
         }
-      } @else if (isLocationList(filteredEntities)) {
+      }
+       @else if (isLocationList(filteredEntities)) {
         @for(worldLocation of filteredEntities; track worldLocation.id) {
           <app-location-thumbnail 
             [worldLocation]="worldLocation"

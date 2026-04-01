@@ -34,7 +34,7 @@
 
 /* Thumbnail Components */
 
-.world-thumbnail {
+.home-row-thumbnail {
   background: var(--g4-color);
   border-radius: 15px;
   margin: 5px;
@@ -49,19 +49,19 @@
   box-sizing: border-box;
 }
 
-.world-thumbnail:hover {
+.home-row-thumbnail:hover {
   box-shadow: 2px 2px 15px var(--shadow-color);
 }
-.world-thumbnail.event:hover {
+.home-row-thumbnail.event:hover {
   box-shadow: 2px 2px 5px var(--event-color) !important;
 }
-.world-thumbnail.location:hover {
+.home-row-thumbnail.location:hover {
   box-shadow: 2px 2px 5px var(--location-color) !important;
 }
-.world-thumbnail.character:hover {
+.home-row-thumbnail.character:hover {
   box-shadow: 2px 2px 5px var(--character-color) !important;
 }
-.world-thumbnail.story:hover {
+.home-row-thumbnail.story:hover {
   box-shadow: 2px 2px 5px var(--story-color) !important;
 }
 

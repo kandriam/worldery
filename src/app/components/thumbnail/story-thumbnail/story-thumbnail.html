@@ -1,4 +1,4 @@
-<div #root class="story-thumbnail world-thumbnail story" [ngClass]="{ 'hasSubstories': worldStory().substories && worldStory().substories.length > 0 }" [routerLink]="['/story', worldStory().id]">
+<div #root class="story-thumbnail home-row-thumbnail story" [ngClass]="{ 'hasSubstories': worldStory().substories && worldStory().substories.length > 0 }" [routerLink]="['/story', worldStory().id]">
     <div class="thumbnail-header">
         <h4 class="thumbnail-title">{{ worldStory().title }}</h4>
         <button class="thumbnail-delete-button" (click)="deleteStory(worldStory().id, $event)">Delete</button>

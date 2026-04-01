@@ -12,62 +12,74 @@ import { Settings } from './pages/settings/settings';
 import { Profile } from './pages/profile/profile';
 import { Login } from './auth-pages/login/login';
 import { Register } from './auth-pages/register/register';
+import { authGuard } from './guards/auth.guard';
 
 const routeConfig: Routes = [
   {
     path: '',
     component: Home,
     title: 'Home page',
+    canActivate: [authGuard],
   },
   {
     path: 'event',
     component: EventHome,
     title: 'Event Timeline',
+    canActivate: [authGuard],
   },
   {
     path: 'event/:id',
     component: WorldEventDetails,
     title: 'Event details',
+    canActivate: [authGuard],
   },
   {
     path: 'location',
     component: LocationHome,
     title: 'Locations',
+    canActivate: [authGuard],
   },
   {
     path: 'location/:id',
     component: WorldLocationDetails,
     title: 'Location details',
+    canActivate: [authGuard],
   },
   {
     path: 'character',
     component: CharacterHome,
     title: 'Characters',
+    canActivate: [authGuard],
   },
   {
     path: 'character/:id',
     component: WorldCharacterDetails,
     title: 'Character details',
+    canActivate: [authGuard],
   },
   {
     path: 'story',
     component: StoryHome,
     title: 'Stories',
+    canActivate: [authGuard],
   },
   {
     path: 'story/:id',
     component: WorldStoryDetails,
     title: 'Story details',
+    canActivate: [authGuard],
   },
   {
     path: 'settings',
     component: Settings,
     title: 'Settings',
+    canActivate: [authGuard],
   },
   {
     path: 'profile',
     component: Profile,
     title: 'Profile',
+    canActivate: [authGuard],
   },
   {
     path: 'login',

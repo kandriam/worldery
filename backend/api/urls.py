@@ -3,12 +3,12 @@ from rest_framework.routers import DefaultRouter
 from .views import WorldViewSet, CharacterViewSet, LocationViewSet, EventViewSet, StoryViewSet, RelationshipViewSet
 
 router = DefaultRouter()
-router.register(r'worlds', WorldViewSet)
-router.register(r'characters', CharacterViewSet)
-router.register(r'locations', LocationViewSet)
-router.register(r'events', EventViewSet)
-router.register(r'stories', StoryViewSet)
-router.register(r'relationships', RelationshipViewSet)
+router.register(r'worlds', WorldViewSet, basename='world')
+router.register(r'characters', CharacterViewSet, basename='character')
+router.register(r'locations', LocationViewSet, basename='location')
+router.register(r'events', EventViewSet, basename='event')
+router.register(r'stories', StoryViewSet, basename='story')
+router.register(r'relationships', RelationshipViewSet, basename='relationship')
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -29,17 +29,23 @@ export class Register implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    const data: RegisterData = this.registerForm.value;
-    console.log('Registering user with data:', data);
-    // this.authService.register(data).subscribe((res: any) => {
-    //   if (res && !res.error) {
-    //     this.success = 'Registration successful! You can now log in.';
-    //     this.error = '';
-    //     this.registerForm.reset();
-    //   } else {
-    //     this.error = res?.error || 'Registration failed.';
-    //     this.success = '';
-    //   }
-    // });
+    const formValue = this.registerForm.value;
+    const data: RegisterData = {
+      username: formValue.username,
+      email: formValue.email,
+      password: formValue.password,
+      password2: formValue.confirmPassword,
+    };
+    this.authService.register(data).subscribe((res: any) => {
+      if (res && !res.username && !res.email && !res.password) {
+        this.success = 'Registration successful! You can now log in.';
+        this.error = '';
+        this.registerForm.reset();
+        this.router.navigate(['/login']);
+      } else {
+        this.error = res?.username?.[0] || res?.email?.[0] || res?.password?.[0] || res?.detail || 'Registration failed.';
+        this.success = '';
+      }
+    });
   }
 }

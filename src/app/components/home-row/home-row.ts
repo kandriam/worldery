@@ -4,9 +4,11 @@ export interface HomeRowFilterIds {
   locationIds?: string[];
   eventIds?: string[];
 }
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { WorldThumbnail } from '../thumbnail/world-thumbnail/world-thumbnail';
 import { EventThumbnail } from '../thumbnail/event-thumbnail/event-thumbnail';
 import { LocationThumbnail } from '../thumbnail/location-thumbnail/location-thumbnail';
 import { CharacterThumbnail } from '../thumbnail/character-thumbnail/character-thumbnail';
@@ -15,14 +17,14 @@ import { WorldEventInfo } from '../../services/world-event.service';
 import { WorldLocationInfo } from '../../services/world-location.service';
 import { WorldCharacterInfo } from '../../services/world-character.service';
 import { WorldStoryInfo } from '../../services/world-story.service';
-
-export type EntityType = 'event' | 'location' | 'character' | 'story';
-export type EntityData = WorldEventInfo[] | WorldLocationInfo[] | WorldCharacterInfo[] | WorldStoryInfo[];
+import { WorldInfo } from '../../services/world.service';
+export type EntityType = 'world' | 'event' | 'location' | 'character' | 'story';
+export type EntityData = WorldInfo[] | WorldEventInfo[] | WorldLocationInfo[] | WorldCharacterInfo[] | WorldStoryInfo[];
 
 @Component({
   selector: 'app-home-row',
   standalone: true,
-  imports: [CommonModule, RouterLink, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
+  imports: [CommonModule, RouterLink, WorldThumbnail, EventThumbnail, LocationThumbnail, CharacterThumbnail, StoryThumbnail],
   templateUrl: './home-row.html',
   styleUrls: ['./home-row.css']
 })
@@ -119,6 +121,7 @@ export class HomeRow {
   
   getEntityDisplayName(): string {
     const displayNames: Record<EntityType, string> = {
+      'world': 'World',
       'event': 'Event',
       'location': 'Location', 
       'character': 'Character',
@@ -128,6 +131,10 @@ export class HomeRow {
   }
   
   // Type guards for template usage
+  isWorldList(entities: EntityData): entities is WorldInfo[] {
+    return this.entityType === 'world';
+  }
+
   isEventList(entities: EntityData): entities is WorldEventInfo[] {
     return this.entityType === 'event';
   }

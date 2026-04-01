@@ -4,7 +4,7 @@ import { WorldInfo, WorldInfoService } from '../../services/world.service';
 import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
-
+import { AuthService } from '../../services/auth.service';
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
 import { HomeRow, EntityType } from '../../components/home-row/home-row';
@@ -20,12 +20,16 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 export class Home {
   @ViewChild(SearchFilter) searchFilter!: SearchFilter;
+  authService: AuthService = inject(AuthService);
 
   worldInfoService: WorldInfoService = inject(WorldInfoService);
+  filteredWorldList: WorldInfo[] = [];
   allWorlds: WorldInfo[] = [];
-  currentWorldId: string = "1"; // Default to first world
+  
+  // currentWorldId: string = "1"; // Default to first world
   world: WorldInfo | null = null;
   
+
   eventService: WorldEventService = inject(WorldEventService);
   filteredEventList: WorldEventInfo[] = [];
   worldEventList: WorldEventInfo[] = [];
@@ -77,17 +81,10 @@ export class Home {
     ]).then(([events, locations, characters, stories]) => {
       this.worldInfoService.getWorlds().subscribe(worlds => {
         this.allWorlds = worlds;
-        // Select the first available world, or set to null if none
-        console.log('Hello');
-        console.log('Worlds loaded:', this.allWorlds);
-        if (this.allWorlds.length > 0) {
-          this.currentWorldId = this.allWorlds[0].id;
-          this.selectWorldForm.patchValue({ selectedWorld: this.currentWorldId });
-        } else {
-          this.currentWorldId = '';
-          this.world = null;
-        }
+        this.filteredWorldList = worlds;
       });
+
+      this.filteredWorldList = this.allWorlds;
 
       this.worldEventList = events.sort((a, b) => (a.date > b.date ? 1 : -1));
       this.filteredEventList = this.worldEventList;
@@ -109,8 +106,8 @@ export class Home {
       this.allStories = stories;
       this.allLocations = locations;
 
-      this.currentWorldId = this.allWorlds.length > 0 ? this.allWorlds[0].id : "1";
-      this.loadWorldInfo(this.currentWorldId);
+      // this.currentWorldId = this.allWorlds.length > 0 ? this.allWorlds[0].id : "1";
+      // this.loadWorldInfo(this.currentWorldId);
     });
   }
 

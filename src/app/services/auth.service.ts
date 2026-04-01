@@ -13,6 +13,7 @@ export interface RegisterData {
     username: string;
     email: string;
     password: string;
+    password2: string;
 }
 
 export interface LoginData {
@@ -34,7 +35,7 @@ export class AuthService {
     
     // Specific endpoints
     registerUrl = `${this.baseUrl}/register/`;
-    loginUrl = `${this.baseUrl}/login/`;
+    loginUrl = 'http://localhost:8000/auth/login/';
     profileUrl = `${this.baseUrl}/profile/`;
     userUrl = `${this.baseUrl}/user/`;
 
@@ -70,6 +71,10 @@ export class AuthService {
         }).pipe(
             catchError(() => of(null))
         );
+    }
+
+    isLoggedIn(): boolean {
+        return !!localStorage.getItem('access_token');
     }
 
     logout(): void {

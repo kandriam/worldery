@@ -9,6 +9,7 @@ export interface WorldInfo {
     timeSystem: string;
     description: string;
     genres: string[];
+    owner: string; // User ID of the owner
     // tags: string[];
     // characters: string[]; // Array of character IDs
     // locations: string[]; // Array of location IDs
@@ -33,6 +34,24 @@ export class WorldInfoService {
                 console.error('Error fetching worlds:', error);
                 return of([]);
             }));
+    }
+
+    getAllWorlds(): Observable<WorldInfo[]> {
+        return this.http.get<WorldInfo[]>(`${this.API_URL}/`)
+            .pipe(catchError(error => {
+                console.error('Error fetching all worlds:', error);
+                return of([]);
+            }
+        ));
+    }
+
+    getWorldsByOwner(ownerId: string): Observable<WorldInfo[]> {
+        return this.http.get<WorldInfo[]>(`${this.API_URL}/?owner=${ownerId}/`)
+            .pipe(catchError(error => {
+                console.error('Error fetching worlds by owner:', error);
+                return of([]);
+            }
+        ));
     }
 
     getWorld(id: string): Observable<WorldInfo | null> {
