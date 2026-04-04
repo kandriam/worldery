@@ -7,7 +7,7 @@ import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
 import { Timeline } from "src/app/components/timeline/timeline/timeline";
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 
@@ -41,6 +41,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   locationList = Array<WorldLocationInfo>();
   filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
+  private autoSaveSubscription?: Subscription;
 
   // Date dropdown options
   months = [
@@ -76,6 +77,13 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     
     // Load character list
     this.loadSharedData();
+
+    // Auto-save on form changes
+    this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
+      if (this.settingsService.getCurrentSettings().autoSave) {
+        this.saveEvent();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -83,6 +91,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+    this.autoSaveSubscription?.unsubscribe();
   }
 
   private loadSharedData() {
@@ -148,7 +157,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         eventCharacters: worldEvent?.characters?.join(', ') || '',
         eventStories: worldEvent?.stories?.join(', ') || '',
         eventTags: worldEvent?.tags?.join(', ') || '',
-      });
+      }, { emitEvent: false });
     });
 
     console.log("Event data loaded for ID:", worldEventId);

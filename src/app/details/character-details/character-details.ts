@@ -8,9 +8,10 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { EventThumbnail } from "src/app/components/thumbnail/event-thumbnail/event-thumbnail";
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-details',
@@ -26,6 +27,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   worldEventService = inject(WorldEventService);
   worldLocationService = inject(WorldLocationService);
   worldCharacter: WorldCharacterInfo | undefined;
+  settingsService = inject(SettingsService);
+  private autoSaveSubscription?: Subscription;
   characterList = Array<WorldCharacterInfo>();
   filteredCharacterList = Array<WorldCharacterInfo>();
   storyFilter: string = 'all';
@@ -74,6 +77,13 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     // Load shared data that doesn't depend on the current character
     this.loadSharedData();
 
+    // Auto-save on form changes
+    this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
+      if (this.settingsService.getCurrentSettings().autoSave) {
+        this.updateCharacter();
+      }
+    });
+
     // Resolve story IDs to titles for display
     const allStories = await import('../../services/world-story.service').then(m => m.WorldStoryService.prototype.getAllWorldStories.call({url: '/worldstories'}));
     if (this.worldCharacter && this.worldCharacter.stories) {
@@ -89,6 +99,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+    this.autoSaveSubscription?.unsubscribe();
   }
 
   private loadCharacterData(worldCharacterId: string) {
@@ -137,7 +148,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         characterNonPhysicalDescription: worldCharacter?.non_physical_description || '',
         characterStories: worldCharacter?.stories?.join(', ') || '',
         characterTags: worldCharacter?.tags?.join(', ') || '',
-      });
+      }, { emitEvent: false });
       
 
       this.updateFilteredEvents();

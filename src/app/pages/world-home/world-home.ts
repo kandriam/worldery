@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, OnInit } from '@angular/core';
+import { Component, inject, ViewChild, OnInit, OnDestroy } from '@angular/core';
 
 import { WorldInfo, WorldInfoService } from '../../services/world.service';
 import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
@@ -10,6 +10,8 @@ import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../
 import { HomeRow, EntityType } from '../../components/home-row/home-row';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { SettingsService } from '../../services/settings.service';
+import { Subscription, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-world-home',
@@ -18,7 +20,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
   styleUrls: ['./world-home.css', '../pages.css', '../../../styles.css'],
 })
 
-export class WorldHome implements OnInit {
+export class WorldHome implements OnInit, OnDestroy {
   @ViewChild(SearchFilter) searchFilter!: SearchFilter;
   authService: AuthService = inject(AuthService);
 
@@ -47,6 +49,8 @@ export class WorldHome implements OnInit {
 
   router: Router = inject(Router);
   route: ActivatedRoute = inject(ActivatedRoute);
+  settingsService: SettingsService = inject(SettingsService);
+  private autoSaveSubscription?: Subscription;
 
   allCharacters: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
@@ -79,6 +83,16 @@ export class WorldHome implements OnInit {
       const id = params['id'];
       if (id) this.loadWorldInfo(id);
     });
+
+    this.autoSaveSubscription = this.worldInfoForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
+      if (this.settingsService.getCurrentSettings().autoSave) {
+        this.saveWorldInfo();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.autoSaveSubscription?.unsubscribe();
   }
 
   constructor() {
@@ -104,7 +118,7 @@ export class WorldHome implements OnInit {
         description: world.description || '',
         timeSystem: world.timeSystem || '',
         genres: world.genres ? world.genres.join(', ') : '',
-      });
+      }, { emitEvent: false });
     });
     Promise.all([
       this.eventService.getAllWorldEvents(worldId),

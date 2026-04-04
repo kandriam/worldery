@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterModule, RouterOutlet} from '@angular/router';
 import { WorldInfo, WorldInfoService } from '../services/world.service';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,9 @@ export class App {
   world: WorldInfo | undefined;
   worldInfoService: WorldInfoService;
 
-  constructor(worldInfoService: WorldInfoService) {
+  constructor(worldInfoService: WorldInfoService, settingsService: SettingsService) {
     this.worldInfoService = worldInfoService;
-    // this.worldInfoService.getWorld('1').subscribe(world => {
-    //   this.world = world || undefined;
-    // });
+    settingsService.applyColors();
+    settingsService.applyFontSize();
   }
 }

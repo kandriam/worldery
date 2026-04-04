@@ -7,7 +7,8 @@ import { WorldLocationInfo, WorldLocationService } from '../../services/world-lo
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
+import { SettingsService } from '../../services/settings.service';
 import { SubstoryList } from "src/app/components/substory-list/substory-list";
 
 @Component({
@@ -25,6 +26,8 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
   worldCharacterService = inject(WorldCharacterService);
   worldLocationService = inject(WorldLocationService);
   worldStory: WorldStoryInfo | undefined;
+  settingsService = inject(SettingsService);
+  private autoSaveSubscription?: Subscription;
   characterList = Array<WorldCharacterInfo>();
   locationList = Array<WorldLocationInfo>();
   eventList = Array<WorldEventInfo>();
@@ -54,6 +57,13 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     
     // Load character list
     this.loadSharedData();
+
+    // Auto-save on form changes
+    this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
+      if (this.settingsService.getCurrentSettings().autoSave) {
+        this.submitApplication();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -61,6 +71,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+    this.autoSaveSubscription?.unsubscribe();
   }
 
   private loadSharedData() {
@@ -100,7 +111,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         storyCharacters: worldStory?.characters?.join(', ') || '',
         storyLocations: worldStory?.locations?.join(', ') || '',
         storyTags: worldStory?.tags?.join(', ') || ''
-      });
+      }, { emitEvent: false });
       
       // Update filtered events after story data loads
       this.updateFilteredEvents();

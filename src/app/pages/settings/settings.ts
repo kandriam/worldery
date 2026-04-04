@@ -59,6 +59,7 @@ export class Settings implements OnInit, OnDestroy {
     
     // Apply colors on init
     this.settingsService.applyColors();
+    this.settingsService.applyFontSize();
     let worldName = 'worldery';
     this.worldInfoService.getWorld('0').subscribe(world => {
       if (world?.title) {
@@ -117,6 +118,7 @@ export class Settings implements OnInit, OnDestroy {
     };
     this.settingsService.saveSettings(settings);
     this.settingsService.applyColors(settings);
+    this.settingsService.applyFontSize(settings);
   }
   
   resetSettings() {

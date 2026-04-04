@@ -106,6 +106,8 @@ export class SettingsService {
 
   constructor(private http: HttpClient) {
     this.loadSettings();
+    this.applyColors();
+    this.applyFontSize();
   }
 
   // Get current settings synchronously
@@ -120,51 +122,29 @@ export class SettingsService {
 
   // Save settings
   saveSettings(settings: SettingsData): void {
-    this.http.put(this.SETTINGS_ENDPOINT, settings)
-      .pipe(
-        catchError(error => {
-          console.error('Error saving settings:', error);
-          return of(null);
-        })
-      )
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.settingsSubject.next(settings);
-            console.log('Settings saved successfully');
-          }
-        },
-        error: (error) => {
-          console.error('Error saving settings:', error);
-        }
-      });
+    try {
+      localStorage.setItem('worldery_settings', JSON.stringify(settings));
+      this.settingsSubject.next(settings);
+    } catch (error) {
+      console.error('Error saving settings:', error);
+    }
   }
 
-  // Load settings from JSON server
+  // Load settings from localStorage
   private loadSettings(): void {
-    this.http.get<SettingsData>(this.SETTINGS_ENDPOINT)
-      .pipe(
-        catchError(error => {
-          console.error('Error loading settings:', error);
-          return of(null);
-        })
-      )
-      .subscribe({
-        next: (settings) => {
-          if (settings) {
-            const mergedSettings = { ...this.defaultSettings, ...settings };
-            this.settingsSubject.next(mergedSettings);
-          } else {
-            // If no settings found, save and use defaults
-            this.settingsSubject.next(this.defaultSettings);
-            this.saveSettings(this.defaultSettings);
-          }
-        },
-        error: (error) => {
-          console.error('Error loading settings:', error);
-          this.settingsSubject.next(this.defaultSettings);
-        }
-      });
+    try {
+      const stored = localStorage.getItem('worldery_settings');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        const mergedSettings = { ...this.defaultSettings, ...parsed };
+        this.settingsSubject.next(mergedSettings);
+      } else {
+        this.settingsSubject.next(this.defaultSettings);
+      }
+    } catch (error) {
+      console.error('Error loading settings:', error);
+      this.settingsSubject.next(this.defaultSettings);
+    }
   }
 
   // Reset to default settings
@@ -207,6 +187,22 @@ export class SettingsService {
       'purple': '#d9c2db'
     };
     return highlightColorMap[colorName] || highlightColorMap['blue'];
+  }
+
+  // Apply font size to CSS custom properties
+  applyFontSize(settings?: SettingsData): void {
+    const currentSettings = settings || this.getCurrentSettings();
+    const root = document.documentElement;
+    const fontSizeMap: Record<string, [string, string, string]> = {
+      'small':       ['0.875rem', '0.75rem',  '0.625rem'],
+      'medium':      ['1rem',     '0.875rem', '0.75rem'],
+      'large':       ['1.25rem',  '1rem',     '0.875rem'],
+      'extra-large': ['1.5rem',   '1.25rem',  '1rem'],
+    };
+    const sizes = fontSizeMap[currentSettings.fontSize] || fontSizeMap['medium'];
+    root.style.setProperty('--header-font-size', sizes[0]);
+    root.style.setProperty('--content-font-size', sizes[1]);
+    root.style.setProperty('--thumbnail-font-size', sizes[2]);
   }
 
   // Apply colors to CSS custom properties

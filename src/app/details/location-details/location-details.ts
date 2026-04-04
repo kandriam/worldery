@@ -7,7 +7,8 @@ import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.se
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-details',
@@ -24,6 +25,8 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   worldCharacterService = inject(WorldCharacterService);
   worldStoryService = inject(WorldStoryService);
   worldLocation: WorldLocationInfo | undefined;
+  settingsService = inject(SettingsService);
+  private autoSaveSubscription?: Subscription;
   characterList = Array<WorldCharacterInfo>();
   storyList = Array<WorldStoryInfo>();
   locationList = Array<WorldLocationInfo>();
@@ -54,6 +57,13 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     
     // Load character list
     this.loadSharedData();
+
+    // Auto-save on form changes
+    this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
+      if (this.settingsService.getCurrentSettings().autoSave) {
+        this.updateLocation();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -61,6 +71,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+    this.autoSaveSubscription?.unsubscribe();
   }
 
   private loadSharedData() {
@@ -100,7 +111,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
         locationCharacters: worldLocation?.characters?.join(', ') || '',
         locationStories: worldLocation?.stories?.join(', ') || '',
         locationTags: worldLocation?.tags?.join(', ') || '',
-      });
+      }, { emitEvent: false });
       
       // Update filtered events after location data loads
       this.updateFilteredEvents();
