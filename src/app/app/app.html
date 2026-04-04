@@ -5,14 +5,26 @@
             Worldery
         </button>
         <button class="nav-button page" [routerLink]="['/']">
-            Home
+            <img class="nav-icon" src="assets/icons/home.svg" alt="">Home
         </button>
-        <button class="nav-button page event" [routerLink]="['/event']">Timeline</button>
-        <button class="nav-button page location" [routerLink]="['/location']">World</button>
-        <button class="nav-button page character" [routerLink]="['/character']">Characters</button>
-        <button class="nav-button page story" [routerLink]="['/story']">Stories</button>
-        <button class="nav-button page" [routerLink]="['/settings']">Settings</button>
-        <button class="nav-button page" [routerLink]="['/profile']">Profile</button>
+        <button class="nav-button page event" [routerLink]="['/event']">
+            <img class="nav-icon" src="assets/icons/calendar-minimalistic.svg" alt="">Timeline
+        </button>
+        <button class="nav-button page location" [routerLink]="['/location']">
+            <img class="nav-icon" src="assets/icons/globe.svg" alt="">World
+        </button>
+        <button class="nav-button page character" [routerLink]="['/character']">
+            <img class="nav-icon" src="assets/icons/user.svg" alt="">Characters
+        </button>
+        <button class="nav-button page story" [routerLink]="['/story']">
+            <img class="nav-icon" src="assets/icons/book-open.svg" alt="">Stories
+        </button>
+        <button class="nav-button page" [routerLink]="['/settings']">
+            <img class="nav-icon" src="assets/icons/gear.svg" alt="">Settings
+        </button>
+        <button class="nav-button page" [routerLink]="['/profile']">
+            <img class="nav-icon" src="assets/icons/circle-user.svg" alt="">Profile
+        </button>
     </header>
     <section class="content">
     <router-outlet></router-outlet>

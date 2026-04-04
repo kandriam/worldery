@@ -114,6 +114,18 @@
     }
 }
 
+.display-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  pointer-events: none;
+  filter: brightness(0.2);
+}
+
+.display-container button.active .display-icon {
+  filter: brightness(0) invert(1);
+}
+
 .toggle-button::after {
   content: '+';
   display: inline-block;
@@ -138,19 +150,6 @@
 
 .display-button {
     background-color: var(--g5-color) !important;
-
-    &.date::after {
-        content: '📅';
-    }
-    &.location::after {
-        content: '📍';
-    }
-    &.characters::after {
-        content: '👤';
-    }
-    &.stories::after {
-        content: '📖';
-    }
 
     &:hover {
         background-color: var(--g4-color) !important;

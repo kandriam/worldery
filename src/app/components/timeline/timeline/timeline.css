@@ -83,21 +83,7 @@
   }
 }
 
-.display-button.date::after {
-  content: '📅';
-}
 
-.display-button.location::after {
-  content: '📍';
-}
-
-.display-button.characters::after {
-  content: '👤';
-}
-
-.display-button.stories::after {
-  content: '📖';
-}
 
 /* Timeline Structure - Default Horizontal */
 .timeline-content {

@@ -51,6 +51,10 @@ export class WorldHome implements OnInit {
   allCharacters: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
   allLocations: WorldLocationInfo[] = [];
+
+  selectedCharacters: string[] = [];
+  selectedStories: string[] = [];
+  selectedLocations: string[] = [];
   
   filterConfig: FilterConfig = {
     showCharacters: true,
@@ -171,6 +175,9 @@ export class WorldHome implements OnInit {
     this.filteredLocationList = filteredLocations;
     this.filteredCharacterList = filteredCharacters;
     this.filteredStoryList = filteredStories;
+    this.selectedCharacters = filterState.selectedCharacters;
+    this.selectedStories = filterState.selectedStories;
+    this.selectedLocations = filterState.selectedLocations;
   }
 
   saveWorldInfo() {

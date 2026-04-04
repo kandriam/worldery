@@ -47,7 +47,7 @@
       title="Timeline"
       routePath="/event"
       [entities]="filteredEventList"
-      [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories, locationIds: searchFilter?.selectedLocations }"
+      [filterIds]="{ characterIds: selectedCharacters, storyIds: selectedStories, locationIds: selectedLocations }"
       noResultsMessage="No events found. Try adjusting your search or add a new event."
       (addElement)="addWorldElement($event)"
       (tagClicked)="onTagClick($event)">
@@ -58,7 +58,7 @@
       title="Locations"
       routePath="/location"
       [entities]="filteredLocationList"
-      [filterIds]="{ locationIds: searchFilter?.selectedLocations }"
+      [filterIds]="{ locationIds: selectedLocations }"
       noResultsMessage="No locations found. Try adjusting your search or add a new location."
       (addElement)="addWorldElement($event)"
       (tagClicked)="onTagClick($event)">
@@ -69,7 +69,7 @@
       title="Characters"
       routePath="/character"
       [entities]="filteredCharacterList"
-      [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories }"
+      [filterIds]="{ characterIds: selectedCharacters, storyIds: selectedStories }"
       noResultsMessage="No characters found. Try adjusting your search or add a new character."
       (addElement)="addWorldElement($event)"
       (tagClicked)="onTagClick($event)">
@@ -80,7 +80,7 @@
       title="Stories"
       routePath="/story"
       [entities]="filteredStoryList"
-      [filterIds]="{ storyIds: searchFilter?.selectedStories, characterIds: searchFilter?.selectedCharacters, locationIds: searchFilter?.selectedLocations }"
+      [filterIds]="{ storyIds: selectedStories, characterIds: selectedCharacters, locationIds: selectedLocations }"
       noResultsMessage="No stories found. Try adjusting your search or add a new story."
       (addElement)="addWorldElement($event)"
       (tagClicked)="onTagClick($event)">

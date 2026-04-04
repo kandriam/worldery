@@ -5,31 +5,67 @@
 
 /* Thumbnail Icon Styles */
 .thumbnail-location::before {
-  content: '📍';
+  content: '';
   display: inline-block;
-  margin-right: 2px;
+  width: 13px;
+  height: 13px;
+  margin-right: 3px;
   vertical-align: middle;
+  background-color: currentColor;
+  mask-image: url('/assets/icons/location-point.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('/assets/icons/location-point.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
 }
 
 .thumbnail-characters::before {
-  content: '👥';
+  content: '';
   display: inline-block;
-  margin-right: 2px;
+  width: 13px;
+  height: 13px;
+  margin-right: 3px;
   vertical-align: middle;
+  background-color: currentColor;
+  mask-image: url('/assets/icons/user.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('/assets/icons/user.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
 }
 
 .thumbnail-stories::before {
-  content: '📖';
+  content: '';
   display: inline-block;
-  margin-right: 2px;
+  width: 13px;
+  height: 13px;
+  margin-right: 3px;
   vertical-align: middle;
+  background-color: currentColor;
+  mask-image: url('/assets/icons/book-open.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('/assets/icons/book-open.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
 }
 
 .thumbnail-date::before {
-  content: '📅';
+  content: '';
   display: inline-block;
-  margin-right: 2px;
+  width: 13px;
+  height: 13px;
+  margin-right: 3px;
   vertical-align: middle;
+  background-color: currentColor;
+  mask-image: url('/assets/icons/calendar-minimalistic.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('/assets/icons/calendar-minimalistic.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
 }
 
 /* Thumbnail Components */
