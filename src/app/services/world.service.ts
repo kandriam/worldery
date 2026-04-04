@@ -63,7 +63,7 @@ export class WorldInfoService {
     }
 
     createWorld(world: WorldInfo): Observable<WorldInfo | null> {
-        return this.http.post<WorldInfo>(this.API_URL, world)
+        return this.http.post<WorldInfo>(`${this.API_URL}/`, world)
             .pipe(catchError(error => {
                 console.error('Error creating world:', error);
                 return of(null);

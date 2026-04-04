@@ -1,0 +1,14 @@
+.home-page-container {
+  display: flex;
+}
+.world-info-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.world-info-header {
+  display: flex;
+  justify-content: space-between;
+}

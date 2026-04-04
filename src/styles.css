@@ -295,6 +295,7 @@ textarea, input[type="text"] {
   background-color: inherit;
   border-radius: 8px;
   font-family: var(--headings-font-family);
+  
 
   &::placeholder {
     opacity: 1; /* Firefox */
@@ -303,6 +304,30 @@ textarea, input[type="text"] {
   &:focus {
     outline: none;
     background-color: var(--b5-color);
+  }
+}
+
+.editable-title {
+  font: inherit;
+  background-color: inherit;
+  color: var(--b1-color);
+  border: 1px solid transparent;
+  transition: 0.25s ease-in-out;
+  line-height: 150%;
+
+  
+  &:hover {
+    transform: translateY(-5px);
+    /* border: 1px solid var(--b5-color); */
+    color: var(--b3-color);
+    text-decoration: underline wavy 1px var(--b2-color);
+  }
+
+  &:focus {
+    color: var(--b3-color);
+    text-decoration: underline wavy 1px var(--b2-color);
+    outline: none;
+    /* outline: 0.5px solid var(--blue-d); */
   }
 }
 

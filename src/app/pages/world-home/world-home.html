@@ -1,0 +1,89 @@
+<!-- <form [formGroup]="selectWorldForm">
+  <select id="selectWorld" (change)="onWorldSelect()" formControlName="selectedWorld">
+    <option value="">Select World</option>
+  </select>
+</form> -->
+
+<form [formGroup]="worldInfoForm" (ngSubmit)="saveWorldInfo()" class="world-info-form">
+  <div class="world-info-container">
+    <div class="world-info-header">
+        <h2>
+          <input class="editable-title" id="worldName" formControlName="name" placeholder="Enter world name" />
+        </h2>
+        <div class="world-info-actions" style="display: flex; flex-direction: column;">
+            <button>Delete World</button>
+            <button type="submit">Save</button>
+            @if (saveSuccess) { <span class="save-success">Saved!</span> }
+        </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px;">
+        <div class="world-field">
+            <label for="worldDescription">Description</label>
+            <textarea id="worldDescription" formControlName="description" placeholder="Enter world description"></textarea>
+        </div>
+        <div class="world-field">
+            <label for="worldGenres">Genres <span class="hint">(comma-separated)</span></label>
+            <textarea id="worldGenres" formControlName="genres" placeholder="e.g. Fantasy, Sci-Fi" ></textarea>
+        </div>
+    </div>
+  </div>
+</form>
+
+<div class="home-page-container">
+  <aside class="side-menu">
+    <app-search-filter 
+      searchLabel="Search World"
+      searchPlaceholder="Search"
+      [filterConfig]="filterConfig"
+      [allCharacters]="allCharacters"
+      [allStories]="allStories"
+      [allLocations]="allLocations"
+      (filterChange)="onFilterChange($event)">
+    </app-search-filter>
+  </aside>
+  <article class="main-article">
+    <app-home-row
+      entityType="event"
+      title="Timeline"
+      routePath="/event"
+      [entities]="filteredEventList"
+      [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories, locationIds: searchFilter?.selectedLocations }"
+      noResultsMessage="No events found. Try adjusting your search or add a new event."
+      (addElement)="addWorldElement($event)"
+      (tagClicked)="onTagClick($event)">
+    </app-home-row>
+
+    <app-home-row
+      entityType="location"
+      title="Locations"
+      routePath="/location"
+      [entities]="filteredLocationList"
+      [filterIds]="{ locationIds: searchFilter?.selectedLocations }"
+      noResultsMessage="No locations found. Try adjusting your search or add a new location."
+      (addElement)="addWorldElement($event)"
+      (tagClicked)="onTagClick($event)">
+    </app-home-row>
+
+    <app-home-row
+      entityType="character"
+      title="Characters"
+      routePath="/character"
+      [entities]="filteredCharacterList"
+      [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories }"
+      noResultsMessage="No characters found. Try adjusting your search or add a new character."
+      (addElement)="addWorldElement($event)"
+      (tagClicked)="onTagClick($event)">
+    </app-home-row>
+
+    <app-home-row
+      entityType="story"
+      title="Stories"
+      routePath="/story"
+      [entities]="filteredStoryList"
+      [filterIds]="{ storyIds: searchFilter?.selectedStories, characterIds: searchFilter?.selectedCharacters, locationIds: searchFilter?.selectedLocations }"
+      noResultsMessage="No stories found. Try adjusting your search or add a new story."
+      (addElement)="addWorldElement($event)"
+      (tagClicked)="onTagClick($event)">
+    </app-home-row>
+  </article>
+</div>

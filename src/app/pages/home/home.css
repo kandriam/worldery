@@ -1,52 +1,86 @@
-/* Search Styling - these can be removed once SearchFilter component styles are finalized */
-
-.collapsible-header {
+﻿.worlds-article {
+  width: 100%;
+}
+.worlds-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--g4-color);
-  margin-bottom: 15px;
-  transition: all 0.3s ease;
+  justify-content: flex-end;
+  margin-bottom: 16px;
 }
-
-.collapsible-header:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding-left: 10px;
-  border-radius: 4px;
-}
-
-.filter-header {
-  margin: 0;
-  font-size: var(--header-font-size);
-  color: var(--b2-color);
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.toggle-icon {
-  font-size: var(--header-font-size);
-  color: var(--g2-color);
-  transition: transform 0.3s ease;
-  user-select: none;
-}
-
-.home-page-container {
-  display: flex;
-}
-
-/* World Info Styling */
-.world-info-container {
+.create-form {
+  background: var(--g5-color, #1e1e2e);
+  border-radius: 10px;
+  padding: 16px;
   margin-bottom: 20px;
-  /* background-color: var(--g4-color); */
-  padding: 10px;
-  border-radius: 15px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
-
-.world-info-header {
+.create-form input,
+.create-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--g3-color, #444);
+  background: var(--g4-color, #2a2a3e);
+  color: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.create-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.form-actions {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+}
+.worlds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.world-card {
+  display: block;
+  background: var(--g5-color, #1e1e2e);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, transform 0.2s;
+  border: 1px solid var(--g4-color, #333);
+}
+.world-card:hover {
+  background: var(--g4-color, #2a2a3e);
+  transform: translateY(-2px);
+}
+.world-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--b2-color, #aad4f5);
+}
+.world-card p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.world-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.genre-tag {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--g3-color, #3a3a5e);
+  opacity: 0.85;
+}
+.no-results {
+  opacity: 0.6;
+  font-style: italic;
 }

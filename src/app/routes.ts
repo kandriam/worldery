@@ -13,12 +13,19 @@ import { Profile } from './pages/profile/profile';
 import { Login } from './auth-pages/login/login';
 import { Register } from './auth-pages/register/register';
 import { authGuard } from './guards/auth.guard';
+import { WorldHome } from './pages/world-home/world-home';
 
 const routeConfig: Routes = [
   {
     path: '',
     component: Home,
     title: 'Home page',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'world',
+    component: WorldHome,
+    title: 'World Home',
     canActivate: [authGuard],
   },
   {

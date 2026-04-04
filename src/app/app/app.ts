@@ -16,8 +16,8 @@ export class App {
 
   constructor(worldInfoService: WorldInfoService) {
     this.worldInfoService = worldInfoService;
-    this.worldInfoService.getWorld('1').subscribe(world => {
-      this.world = world || undefined;
-    });
+    // this.worldInfoService.getWorld('1').subscribe(world => {
+    //   this.world = world || undefined;
+    // });
   }
 }

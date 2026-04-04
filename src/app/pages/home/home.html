@@ -1,103 +1,31 @@
-<form [formGroup]="selectWorldForm">
-  <select id="selectWorld" (change)="onWorldSelect()" formControlName="selectedWorld">
-    <option value="">Select World</option>
-    <!-- @for (let world of allWorlds; track world.id) {
-      <option [value]="world.id">{{ world.name }}</option>
-    } -->
-  </select>
-</form>
-<!-- <form [formGroup]="worldForm" (ngSubmit)="saveWorldInfo()">
-  <div class="world-info-container secondary-section">
-    <div class="world-info-header">
-      <h1>
-        <input type="text" formControlName="worldName" placeholder="World Name" class="world-name-input">
-      </h1>
-      <button type="submit" class="save-world-button primary">Save World Info</button>
+﻿<h1>Worlds</h1>
+<div class="page-container">
+  <article class="main-article worlds-article">
+    <div class="worlds-header">
+      <button class="add-button" (click)="toggleCreateForm()">+ New World</button>
     </div>
-    
-    <div style ="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-      <div class="details-section">
-        <h3>World Description:</h3>
-        <textarea formControlName="worldDescription" placeholder="World Description" class="world-description-input">
-        </textarea>
-      </div>
-    
-      <div class="details-section">
-        <h3>Genres:</h3>
-        <textarea formControlName="worldGenres" placeholder="Genres, separated by commas" class="world-genre-input">
-        </textarea>
-      </div>
-      
+
+    <div class="create-form" *ngIf="showCreateForm">
+      <form [formGroup]="createForm" (ngSubmit)="createWorld()">
+        <input formControlName="title" placeholder="World name" />
+        <textarea formControlName="description" placeholder="Description"></textarea>
+        <div class="form-actions">
+          <button type="submit">Create</button>
+          <button type="button" (click)="toggleCreateForm()">Cancel</button>
+        </div>
+      </form>
     </div>
-  </div>
-</form> -->
 
-<div class="home-page-container">
-  <aside class="side-menu">
-    <app-search-filter 
-      searchLabel="Search World"
-      searchPlaceholder="Search"
-      [filterConfig]="filterConfig"
-      [allCharacters]="allCharacters"
-      [allStories]="allStories"
-      [allLocations]="allLocations"
-      (filterChange)="onFilterChange($event)">
-    </app-search-filter>
-  </aside>
-  <article class="main-article">
-    <app-home-row
-      entityType="world"
-      title="Worlds"
-      routePath="/world"
-      [entities]="filteredWorldList"
-      [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories, locationIds: searchFilter?.selectedLocations }"
-      noResultsMessage="No worlds found. Try adjusting your search or add a new world."
-      (addElement)="addWorldElement($event)"
-      (tagClicked)="onTagClick($event)">
-    </app-home-row>
-
-    <app-home-row
-      entityType="event"
-      title="Timeline"
-      routePath="/event"
-      [entities]="filteredEventList"
-      [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories, locationIds: searchFilter?.selectedLocations }"
-      noResultsMessage="No events found. Try adjusting your search or add a new event."
-      (addElement)="addWorldElement($event)"
-      (tagClicked)="onTagClick($event)">
-    </app-home-row>
-
-    <app-home-row
-    entityType="location"
-    title="World"
-    routePath="/location"
-    [entities]="filteredLocationList"
-    [filterIds]="{ locationIds: searchFilter?.selectedLocations }"
-    noResultsMessage="No locations found. Try adjusting your search or add a new location."
-    (addElement)="addWorldElement($event)"
-    (tagClicked)="onTagClick($event)">
-    </app-home-row>
-
-    <app-home-row
-    entityType="character"
-    title="Characters"
-    routePath="/character"
-    [entities]="filteredCharacterList"
-    [filterIds]="{ characterIds: searchFilter?.selectedCharacters, storyIds: searchFilter?.selectedStories }"
-    noResultsMessage="No characters found. Try adjusting your search or add a new character."
-    (addElement)="addWorldElement($event)"
-    (tagClicked)="onTagClick($event)">
-    </app-home-row>
-
-    <app-home-row
-    entityType="story"
-    title="Stories"
-    routePath="/story"
-    [entities]="filteredStoryList"
-    [filterIds]="{ storyIds: searchFilter?.selectedStories, characterIds: searchFilter?.selectedCharacters, locationIds: searchFilter?.selectedLocations }"
-    noResultsMessage="No stories found. Try adjusting your search or add a new story."
-    (addElement)="addWorldElement($event)"
-    (tagClicked)="onTagClick($event)">
-    </app-home-row>
+    <div class="worlds-grid">
+      <a class="world-card" *ngFor="let world of worlds" [routerLink]="['/world']"
+        [queryParams]="{ id: world.id }">
+        <h2>{{ world.title || 'Untitled World' }}</h2>
+        <p>{{ world.description }}</p>
+        <div class="world-genres" *ngIf="world.genres?.length">
+          <span class="genre-tag" *ngFor="let genre of world.genres">{{ genre }}</span>
+        </div>
+      </a>
+      <p class="no-results" *ngIf="worlds.length === 0">No worlds yet. Create your first world above!</p>
+    </div>
   </article>
 </div>
