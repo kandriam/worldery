@@ -14,6 +14,7 @@ export interface WorldEventInfo {
   characters: string[];
   stories: string[];
   tags: string[];
+  world?: string;
 }
 
 @Injectable({
@@ -25,8 +26,9 @@ export class WorldEventService {
   
   constructor(private http: HttpClient, private router: Router) {}
 
-  async getAllWorldEvents(): Promise<WorldEventInfo[]> {
-    const data = await fetch(this.url)
+  async getAllWorldEvents(worldId?: string): Promise<WorldEventInfo[]> {
+    const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
+    const data = await fetch(url);
     return await data.json() ?? [];
   }
 

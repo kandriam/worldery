@@ -22,6 +22,7 @@ export interface WorldCharacterInfo {
     // locations: string[];
     stories: string[];
     tags: string[];
+    world?: string;
 }
 
 @Injectable({
@@ -34,9 +35,9 @@ export class WorldCharacterService {
     
     constructor(private router: Router, private http: HttpClient) {}
 
-    async getAllWorldCharacters(): Promise<WorldCharacterInfo[]> {
-      const data = await this.http.get<WorldCharacterInfo[]>(this.url).toPromise();
-      console.log('Fetched characters:', data);
+    async getAllWorldCharacters(worldId?: string): Promise<WorldCharacterInfo[]> {
+      const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
+      const data = await this.http.get<WorldCharacterInfo[]>(url).toPromise();
       return data ?? [];
     }
 

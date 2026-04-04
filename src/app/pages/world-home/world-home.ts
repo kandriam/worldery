@@ -78,29 +78,9 @@ export class WorldHome implements OnInit {
   }
 
   constructor() {
-    Promise.all([
-      this.eventService.getAllWorldEvents(),
-      this.locationService.getAllWorldLocations(), 
-      this.characterService.getAllWorldCharacters(),
-      this.storyService.getAllWorldStories()
-    ]).then(([events, locations, characters, stories]) => {
-      this.worldInfoService.getWorlds().subscribe(worlds => {
-        this.allWorlds = worlds;
-        this.filteredWorldList = worlds;
-      });
-
-      this.filteredWorldList = this.allWorlds;
-      this.worldEventList = events.sort((a, b) => (a.date > b.date ? 1 : -1));
-      this.filteredEventList = this.worldEventList;
-      this.worldLocationList = locations;
-      this.filteredLocationList = locations;
-      this.worldCharacterList = characters;
-      this.filteredCharacterList = characters;
-      this.worldStoryList = stories;
-      this.filteredStoryList = stories;
-      this.allCharacters = characters;
-      this.allStories = stories;
-      this.allLocations = locations;
+    this.worldInfoService.getWorlds().subscribe(worlds => {
+      this.allWorlds = worlds;
+      this.filteredWorldList = worlds;
     });
   }
 
@@ -121,6 +101,24 @@ export class WorldHome implements OnInit {
         timeSystem: world.timeSystem || '',
         genres: world.genres ? world.genres.join(', ') : '',
       });
+    });
+    Promise.all([
+      this.eventService.getAllWorldEvents(worldId),
+      this.locationService.getAllWorldLocations(worldId),
+      this.characterService.getAllWorldCharacters(worldId),
+      this.storyService.getAllWorldStories(worldId)
+    ]).then(([events, locations, characters, stories]) => {
+      this.worldEventList = events.sort((a, b) => (a.date > b.date ? 1 : -1));
+      this.filteredEventList = this.worldEventList;
+      this.worldLocationList = locations;
+      this.filteredLocationList = locations;
+      this.worldCharacterList = characters;
+      this.filteredCharacterList = characters;
+      this.worldStoryList = stories;
+      this.filteredStoryList = stories;
+      this.allCharacters = characters;
+      this.allStories = stories;
+      this.allLocations = locations;
     });
   }
 
@@ -211,7 +209,7 @@ export class WorldHome implements OnInit {
   }
   
   private async createEventAndGetId(): Promise<string> {
-    const newEvent = { id: '', name: 'New Event', description: '', date: new Date().toISOString().split('T')[0], location: [], characters: [], stories: [], tags: [] } as WorldEventInfo;
+    const newEvent = { id: '', name: 'New Event', description: '', date: new Date().toISOString().split('T')[0], location: [], characters: [], stories: [], tags: [], world: this.world?.id } as WorldEventInfo;
     return this.eventService.createWorldEvent(newEvent, false).toPromise().then(event => {
       if (event) return event.id;
       else throw new Error('Failed to create event');
@@ -219,7 +217,7 @@ export class WorldHome implements OnInit {
   }
   
   private async createLocationAndGetId(): Promise<string> {
-    const newLocation = { id: '', name: 'New Location', description: '', characters: [], stories: [], related_locations: [], tags: [] } as WorldLocationInfo;
+    const newLocation = { id: '', name: 'New Location', description: '', characters: [], stories: [], related_locations: [], tags: [], world: this.world?.id } as WorldLocationInfo;
     return this.locationService.createWorldLocation(newLocation, false).toPromise().then(location => {
       if (location) return location.id;
       else throw new Error('Failed to create location');
@@ -227,7 +225,7 @@ export class WorldHome implements OnInit {
   }
   
   private async createCharacterAndGetId(): Promise<string> {
-    const newChar = { id: '', personal_name: 'New', family_name: 'Character', alt_names: [], physical_description: '', non_physical_description: '', pronouns: '', roles: [], affiliations: [], relationships: [], stories: [], tags: [] } as WorldCharacterInfo;
+    const newChar = { id: '', personal_name: 'New', family_name: 'Character', alt_names: [], physical_description: '', non_physical_description: '', pronouns: '', roles: [], affiliations: [], relationships: [], stories: [], tags: [], world: this.world?.id } as WorldCharacterInfo;
     return this.characterService.createWorldCharacter(newChar, false).toPromise().then(character => {
       if (character) return character.id;
       else throw new Error('Failed to create character');
@@ -235,7 +233,7 @@ export class WorldHome implements OnInit {
   }
   
   private async createStoryAndGetId(): Promise<string> {
-    const newStory = { id: '', title: 'New Story', description: '', characters: [], locations: [], substories: [], genre: [], tags: [] } as WorldStoryInfo;
+    const newStory = { id: '', title: 'New Story', description: '', characters: [], locations: [], substories: [], genre: [], tags: [], world: this.world?.id } as WorldStoryInfo;
     return this.storyService.createWorldStory(newStory, false).toPromise().then(story => {
       if (story) return story.id;
       else throw new Error('Failed to create story');

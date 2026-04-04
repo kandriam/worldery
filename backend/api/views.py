@@ -18,7 +18,11 @@ class CharacterViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Character.objects.filter(owner=self.request.user)
+        qs = Character.objects.filter(owner=self.request.user)
+        world_id = self.request.query_params.get('world')
+        if world_id:
+            qs = qs.filter(world_id=world_id)
+        return qs
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -28,7 +32,11 @@ class LocationViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Location.objects.filter(owner=self.request.user)
+        qs = Location.objects.filter(owner=self.request.user)
+        world_id = self.request.query_params.get('world')
+        if world_id:
+            qs = qs.filter(world_id=world_id)
+        return qs
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -38,7 +46,11 @@ class EventViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Event.objects.filter(owner=self.request.user)
+        qs = Event.objects.filter(owner=self.request.user)
+        world_id = self.request.query_params.get('world')
+        if world_id:
+            qs = qs.filter(world_id=world_id)
+        return qs
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -48,7 +60,11 @@ class StoryViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Story.objects.filter(owner=self.request.user)
+        qs = Story.objects.filter(owner=self.request.user)
+        world_id = self.request.query_params.get('world')
+        if world_id:
+            qs = qs.filter(world_id=world_id)
+        return qs
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

@@ -13,6 +13,7 @@ export interface WorldStoryInfo {
     parentStoryId?: string;
     genre: string[];
     tags: string[];
+    world?: string;
 }
 
 @Injectable({
@@ -24,8 +25,9 @@ export class WorldStoryService {
   
   constructor(private http: HttpClient, private router: Router) {}
 
-  async getAllWorldStories(): Promise<WorldStoryInfo[]> {
-    const data = await fetch(this.url);
+  async getAllWorldStories(worldId?: string): Promise<WorldStoryInfo[]> {
+    const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
+    const data = await fetch(url);
     return await data.json() ?? [];
   }
 

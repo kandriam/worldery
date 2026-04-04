@@ -28,6 +28,7 @@ class Story(models.Model):
     tags = models.JSONField(default=list, blank=True)
     # tags = models.ManyToManyField(Tag, blank=True)
     genres = models.JSONField(default=list, blank=True)
+    world = models.ForeignKey('World', null=True, blank=True, on_delete=models.SET_NULL, related_name='story_members')
     owner = models.ForeignKey('auth.User', related_name='stories', on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.title
@@ -40,6 +41,7 @@ class Location(models.Model):
     related_locations = models.ManyToManyField('self', symmetrical=True, related_name='related_locations', blank=True)
     tags = models.JSONField(default=list, blank=True)
     # tags = models.ManyToManyField(Tag, blank=True)
+    world = models.ForeignKey('World', null=True, blank=True, on_delete=models.SET_NULL, related_name='location_members')
     owner = models.ForeignKey('auth.User', related_name='locations', on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.name
@@ -55,6 +57,7 @@ class Event(models.Model):
     stories = models.ManyToManyField(Story, related_name='event_stories', blank=True)
     tags = models.JSONField(default=list, blank=True)
     # tags = models.ManyToManyField(Tag, blank=True)
+    world = models.ForeignKey('World', null=True, blank=True, on_delete=models.SET_NULL, related_name='event_members')
     owner = models.ForeignKey('auth.User', related_name='events', on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.name
@@ -75,6 +78,7 @@ class Character(models.Model):
     stories = models.ManyToManyField(Story, related_name='character_set', blank=True)
     tags = models.JSONField(default=list, blank=True)
     # tags = models.ManyToManyField(Tag, blank=True)
+    world = models.ForeignKey('World', null=True, blank=True, on_delete=models.SET_NULL, related_name='character_members')
     owner = models.ForeignKey('auth.User', related_name='characters', on_delete=models.CASCADE, null=True)
     def __str__(self):
         return f"{self.personal_name} {self.family_name}"

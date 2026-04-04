@@ -11,6 +11,7 @@ export interface WorldLocationInfo {
     stories: string[];
     related_locations: string[];
     tags: string[];
+    world?: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,9 @@ export class WorldLocationService {
   
   constructor(private http: HttpClient, private router: Router) {}
 
-  async getAllWorldLocations(): Promise<WorldLocationInfo[]> {
-    const data = await fetch(this.url);
+  async getAllWorldLocations(worldId?: string): Promise<WorldLocationInfo[]> {
+    const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
+    const data = await fetch(url);
     return await data.json() ?? [];
   }
 
