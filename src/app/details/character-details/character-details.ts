@@ -232,35 +232,51 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   }
 
   onStoryToggle(event: {id: string, isChecked: boolean}) {
-    const story = this.storyList.find(s => s.id === event.id);
-    if (story && this.worldCharacter) {
-      this.worldStoryService.getWorldStoryById(event.id).then((storyData) => {
-        if (storyData) {
-          let updatedCharacters = storyData.characters || [];
-          if (event.isChecked) {
-            if (!updatedCharacters.includes(this.worldCharacter!.id)) {
-              updatedCharacters.push(this.worldCharacter!.id);
-            }
-          } else {
-            updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
-          }
-          this.worldStoryService.updateWorldStory(
-            storyData.id,
-            storyData.title,
-            storyData.description,
-            updatedCharacters,
-            storyData.locations || [],
-            storyData.substories || [],
-            storyData.tags || []
-          );
-        }
-      });
+    if (!this.worldCharacter) return;
+    // Update in-memory state immediately so the checkbox doesn't flip back
+    if (event.isChecked) {
+      if (!this.worldCharacter.stories.includes(event.id)) {
+        this.worldCharacter.stories = [...this.worldCharacter.stories, event.id];
+      }
+    } else {
+      this.worldCharacter.stories = this.worldCharacter.stories.filter(id => id !== event.id);
     }
+    // Persist: update Story.characters (backend will also sync Character.stories)
+    this.worldStoryService.getWorldStoryById(event.id).then((storyData) => {
+      if (storyData) {
+        let updatedCharacters = storyData.characters || [];
+        if (event.isChecked) {
+          if (!updatedCharacters.includes(this.worldCharacter!.id)) {
+            updatedCharacters.push(this.worldCharacter!.id);
+          }
+        } else {
+          updatedCharacters = updatedCharacters.filter(id => id !== this.worldCharacter!.id);
+        }
+        this.worldStoryService.updateWorldStory(
+          storyData.id,
+          storyData.title,
+          storyData.description,
+          updatedCharacters,
+          storyData.locations || [],
+          storyData.substories || [],
+          storyData.tags || []
+        );
+      }
+    });
   }
 
   onLocationToggle(event: {id: string, isChecked: boolean}) {
     const location = this.locationList.find(l => l.id === event.id);
     if (location && this.worldCharacter) {
+      // Update in-memory state immediately so the checkbox doesn't flip back
+      if (event.isChecked) {
+        if (!location.characters.includes(this.worldCharacter.id)) {
+          location.characters = [...location.characters, this.worldCharacter.id];
+        }
+      } else {
+        location.characters = location.characters.filter(id => id !== this.worldCharacter!.id);
+      }
+      // Persist: update Location.characters
       this.worldLocationService.getWorldLocationById(event.id).then((locationData) => {
         if (locationData) {
           let updatedCharacters = locationData.characters || [];

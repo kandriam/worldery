@@ -194,6 +194,14 @@ export class WorldHome implements OnInit, OnDestroy {
     this.selectedLocations = filterState.selectedLocations;
   }
 
+  deleteWorld() {
+    if (!this.world?.id) return;
+    if (!confirm(`Are you sure you want to delete "${this.world.title}"? This cannot be undone.`)) return;
+    this.worldInfoService.deleteWorld(this.world.id).subscribe(() => {
+      this.router.navigate(['/home']);
+    });
+  }
+
   saveWorldInfo() {
     if (this.world) {
       const formValues = this.worldInfoForm.value;

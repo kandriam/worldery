@@ -1,0 +1,22 @@
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 6rem;
+  box-sizing: border-box;
+}
+
+.field-error {
+  color: var(--danger-color, #e55);
+  font-size: var(--thumbnail-font-size);
+  margin: 2px 0 6px;
+}
+
+.save-feedback {
+  font-size: var(--content-font-size);
+  color: var(--character-color);
+  margin-left: 12px;
+}
+
+.save-feedback.error {
+  color: var(--danger-color, #e55);
+}

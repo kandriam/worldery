@@ -1,9 +1,66 @@
 <article>
-    <div class="page-layout">
-        <h1>Profile</h1>
-        <p>test</p>
-        <p>Username: {{ user?.username }}</p>
-        <p>Email: {{ user?.email }}</p>
-        <button (click)="logout()">Logout</button>
+  <div class="details-heading">
+    <h1>{{ profile?.display_name || profile?.username || 'Profile' }}</h1>
+    <button class="secondary" (click)="logout()">Log Out</button>
+  </div>
+
+  <div class="page-layout">
+    <div class="main-content">
+      <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+
+        <section class="details-section primary-section">
+          <h2>Identity</h2>
+          <div class="details-section secondary-section details-grid-section">
+
+            <div class="details-section secondary-section">
+              <label class="primary-label" for="display-name">Display Name</label>
+              <input id="display-name" type="text" formControlName="display_name" placeholder="How you appear to others..." />
+
+              <label class="primary-label" for="pronouns">Pronouns</label>
+              <input id="pronouns" type="text" formControlName="pronouns" placeholder="e.g. she/her, they/them..." />
+            </div>
+
+            <div class="details-section secondary-section">
+              <label class="primary-label" for="first-name">First Name</label>
+              <input id="first-name" type="text" formControlName="first_name" placeholder="First name" />
+
+              <label class="primary-label" for="last-name">Last Name</label>
+              <input id="last-name" type="text" formControlName="last_name" placeholder="Last name" />
+            </div>
+
+          </div>
+
+          <label class="primary-label" for="bio">Author Bio</label>
+          <textarea id="bio" formControlName="bio" rows="5" placeholder="Tell readers about yourself..."></textarea>
+        </section>
+
+        <section class="details-section primary-section">
+          <h2>Account</h2>
+
+          <label class="primary-label" for="username">Username</label>
+          <input id="username" type="text" formControlName="username" placeholder="Username" />
+          @if (profileForm.get('username')?.errors?.['required'] && profileForm.get('username')?.touched) {
+            <p class="field-error">Username is required.</p>
+          }
+
+          <label class="primary-label" for="email">Email</label>
+          <input id="email" type="email" formControlName="email" placeholder="Email address" />
+          @if (profileForm.get('email')?.errors?.['email'] && profileForm.get('email')?.touched) {
+            <p class="field-error">Please enter a valid email address.</p>
+          }
+        </section>
+
+        <section class="save-buttons">
+          <button type="submit" class="primary" [disabled]="profileForm.invalid">Save Profile</button>
+          @if (saveSuccess) {
+            <span class="save-feedback">Saved!</span>
+          }
+          @if (saveError) {
+            <span class="save-feedback error">{{ saveError }}</span>
+          }
+        </section>
+
+      </form>
     </div>
+  </div>
 </article>

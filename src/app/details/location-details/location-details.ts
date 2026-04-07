@@ -170,6 +170,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       const character = this.characterList.find(c => c.id === event.id);
       const characterName = character ? `${character.personal_name} ${character.family_name}` : event.id;
       console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} location`);
+      this.updateLocation();
     }
   }
 
@@ -185,6 +186,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       const story = this.storyList.find(s => s.id === event.id);
       const storyTitle = story ? story.title : event.id;
       console.log(`Story ${storyTitle} ${event.isChecked ? 'added to' : 'removed from'} location`);
+      this.updateLocation();
     }
   }
 
@@ -200,18 +202,8 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       const location = this.locationList.find(l => l.id === event.id);
       const locationName = location ? location.name : event.id;
       console.log(`Related location ${locationName} ${event.isChecked ? 'added to' : 'removed from'} location`);
+      this.updateLocation();
     }
-  }
-
-  getFormCharacters(): string[] {
-    const characters: string[] = [];
-    for (let character of this.characterList) {
-      const checkbox = document.getElementById(`character-checkbox-${character.id}`) as HTMLInputElement;
-      if (checkbox && checkbox.checked) {
-        characters.push(character.id);
-      }
-    }
-    return characters;
   }
 
   getFormStories(): string[] {
@@ -239,25 +231,19 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   async updateLocation() {
     if (this.worldLocation?.id !== undefined) {
       try {
-        // Use the form's checked associations (by ID) for update
-        const updatedCharacters = this.getFormCharacters();
-        const updatedStories = this.getFormStories();
-        const updatedRelatedLocations = this.getFormRelatedLocations();
         await this.worldLocationService.updateWorldLocation(
           this.worldLocation.id,
           this.applyForm.value.locationTitle ?? '',
           this.applyForm.value.locationDescription ?? '',
-          updatedCharacters || [],
-          updatedStories || [],
-          updatedRelatedLocations || [],
+          this.worldLocation.characters,
+          this.worldLocation.stories,
+          this.worldLocation.related_locations,
           this.applyForm.value.locationTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
         );
         console.log('Location updated successfully');
-        // Optionally refresh the data or show a success message
         this.loadLocationData(this.worldLocation.id);
       } catch (error) {
         console.error('Failed to update location:', error);
-        // Optionally show an error message to the user
       }
     }
   }

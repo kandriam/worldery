@@ -99,6 +99,11 @@ export class RelationshipList {
     this.applyFilters();
   }
 
+  viewCharacterDetails(characterId: string) {
+    // Navigate to character details page
+    window.location.href = `/character/${characterId}`;
+  }
+
   updateRelationship(secondaryCharacterId: string) {
     console.log('updateRelationship called for characters:', this.primaryCharacterId, secondaryCharacterId);
     const hasRelationship = (document.getElementById(`relationship-checkbox-${secondaryCharacterId}`) as HTMLInputElement)?.checked || false;

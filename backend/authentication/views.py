@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer
+from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer, UserProfileSerializer
 
 # User Registration View
 class RegisterView(generics.CreateAPIView):
@@ -25,13 +25,30 @@ class LoginView(APIView):
 			'user': UserSerializer(user).data
 		})
 
-# User Profile View
-class ProfileView(generics.RetrieveAPIView):
+# Basic user identity endpoint (used for auth guard)
+class UserView(generics.RetrieveAPIView):
 	serializer_class = UserSerializer
 	permission_classes = [permissions.IsAuthenticated]
 
 	def get_object(self):
 		return self.request.user
-from django.shortcuts import render
 
-# Create your views here.
+# Full profile view — GET + PATCH
+class ProfileView(APIView):
+	permission_classes = [permissions.IsAuthenticated]
+
+	def get(self, request):
+		serializer = UserProfileSerializer(request.user, context={'request': request})
+		return Response(serializer.data)
+
+	def patch(self, request):
+		serializer = UserProfileSerializer(
+			request.user,
+			data=request.data,
+			partial=True,
+			context={'request': request}
+		)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

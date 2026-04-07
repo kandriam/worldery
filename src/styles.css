@@ -383,8 +383,9 @@ textarea {
 
 .date-selector {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
+  flex-wrap: nowrap;
 
   input[type="number"], select {
     display: block;
@@ -394,13 +395,29 @@ textarea {
     border-bottom: solid 1px var(--g3-color);
     margin-bottom: 15px;
     border-radius: 5px;
-
+    min-width: 0;
     font-family: var(--headings-font-family);
 
     &:focus {
       outline: none;
       background-color: var(--b5-color);
     }
+  }
+
+  /* Year: wider, Month: flex, Day: narrow */
+  input[type="number"]:first-child {
+    width: 5rem;
+    flex-shrink: 0;
+  }
+
+  select {
+    flex: 1;
+    min-width: 4rem;
+  }
+
+  input[type="number"]:last-child {
+    width: 3rem;
+    flex-shrink: 0;
   }
   
   button {

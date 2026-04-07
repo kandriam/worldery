@@ -32,6 +32,7 @@
           (change)="toggleRelationship(secondaryCharacter.id)"
           />
           {{secondaryCharacter.personal_name}} {{secondaryCharacter.family_name}}
+          <button class="secondary" (click)="viewCharacterDetails(secondaryCharacter.id)">View</button>
         </div>
         @if(secondaryCharacter.alt_names && secondaryCharacter.alt_names.length > 0) {           
           <p class="alt-names">{{ secondaryCharacter.alt_names.join(', ') }}</p>

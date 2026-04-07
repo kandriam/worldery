@@ -172,6 +172,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     } else {
       this.worldStory.substories = this.worldStory.substories.filter(id => id !== subId);
     }
+    this.submitApplication();
   }
 
   onCharacterToggle(event: {id: string, isChecked: boolean}) {
@@ -185,6 +186,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         this.worldStory.characters = this.worldStory.characters.filter(id => id !== character.id);
       }
       console.log(`Character ${character.personal_name} ${character.family_name} (${character.id}) ${event.isChecked ? 'added to' : 'removed from'} story`);
+      this.submitApplication();
     }
   }
 
@@ -199,6 +201,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         this.worldStory.locations = this.worldStory.locations.filter(id => id !== location.id);
       }
       console.log(`Location ${location.name} (${location.id}) ${event.isChecked ? 'added to' : 'removed from'} story`);
+      this.submitApplication();
     }
   }
 

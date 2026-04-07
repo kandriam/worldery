@@ -9,6 +9,17 @@ export interface UserInfo {
     email: string;
 }
 
+export interface UserProfile {
+    id: string;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    display_name: string;
+    pronouns: string;
+    bio: string;
+}
+
 export interface RegisterData {
     username: string;
     email: string;
@@ -75,6 +86,26 @@ export class AuthService {
 
     isLoggedIn(): boolean {
         return !!localStorage.getItem('access_token');
+    }
+
+    getFullProfile(): Observable<UserProfile | null> {
+        const token = localStorage.getItem('access_token');
+        if (!token) return of(null);
+        return this.http.get<UserProfile>(this.profileUrl, {
+            headers: { Authorization: `Bearer ${token}` }
+        }).pipe(
+            catchError(() => of(null))
+        );
+    }
+
+    updateProfile(data: Partial<UserProfile>): Observable<UserProfile | null> {
+        const token = localStorage.getItem('access_token');
+        if (!token) return of(null);
+        return this.http.patch<UserProfile>(this.profileUrl, data, {
+            headers: { Authorization: `Bearer ${token}` }
+        }).pipe(
+            catchError(() => of(null))
+        );
     }
 
     logout(): void {

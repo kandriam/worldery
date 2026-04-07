@@ -111,3 +111,7 @@ input {
   border: none;
   border-bottom: solid 1px var(--g3-color);
 }
+
+.date-selector input {
+  width: auto;
+}

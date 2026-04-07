@@ -213,6 +213,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       const character = this.characterList.find(c => c.id === event.id);
       const characterName = character ? `${character.personal_name} ${character.family_name}` : event.id;
       console.log(`Character ${characterName} ${event.isChecked ? 'added to' : 'removed from'} event`);
+      this.saveEvent();
     }
   }
 
@@ -228,6 +229,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       const story = this.storyList.find(s => s.id === event.id);
       const storyTitle = story ? story.title : event.id;
       console.log(`Story ${storyTitle} ${event.isChecked ? 'added to' : 'removed from'} event`);
+      this.saveEvent();
     }
   }
 
@@ -243,6 +245,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
       const location = this.locationList.find(l => l.id === event.id);
       const locationName = location ? location.name : event.id;
       console.log(`Location ${locationName} ${event.isChecked ? 'added to' : 'removed from'} event`);
+      this.saveEvent();
     }
   }
 
@@ -280,9 +283,9 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   }
 
   saveEvent() {
-    const selectedCharacters = this.getFormCharacters();
-    const selectedStories = this.getFormStories();
-    const selectedLocations = this.getFormLocations();
+    const selectedCharacters = this.worldEvent?.characters ?? [];
+    const selectedStories = this.worldEvent?.stories ?? [];
+    const selectedLocations = this.worldEvent?.location ?? [];
     if (this.worldEvent?.id !== undefined) {
       const formattedDate = this.formatEventDate(
         this.applyForm.value.eventYear || '',
