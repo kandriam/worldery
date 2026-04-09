@@ -5,7 +5,9 @@ export interface HomeRowFilterIds {
   eventIds?: string[];
 }
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { CurrentWorldService } from '../../services/current-world.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { WorldThumbnail } from '../thumbnail/world-thumbnail/world-thumbnail';
@@ -30,6 +32,26 @@ export type EntityData = WorldInfo[] | WorldEventInfo[] | WorldLocationInfo[] | 
 })
 export class HomeRow {
   @Input() filterIds?: HomeRowFilterIds;
+  
+  @Input() entityType!: EntityType;
+  @Input() title!: string;
+  @Input() routePath!: string;
+  @Input() entities!: EntityData;
+  // @Input() routePath: string = '';
+
+  router = inject(Router);
+  currentWorldService = inject(CurrentWorldService);
+
+  onRowTitleClick() {
+    const worldId = this.currentWorldService.getCurrentWorldId();
+    if (this.routePath) {
+      if (worldId) {
+        this.router.navigate([this.routePath], { queryParams: { world: worldId } });
+      } else {
+        this.router.navigate([this.routePath]);
+      }
+    }
+  }
 
   get filteredEntities(): EntityData {
     if (!this.filterIds) return this.entities;
@@ -61,10 +83,6 @@ export class HomeRow {
     }
     return this.entities;
   }
-  @Input() entityType!: EntityType;
-  @Input() title!: string;
-  @Input() routePath!: string;
-  @Input() entities!: EntityData;
 
   get filteredStories(): WorldStoryInfo[] {
     const stories = this.filteredEntities as WorldStoryInfo[];

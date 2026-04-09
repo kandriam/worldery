@@ -1,4 +1,5 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { WorldLocationInfo, WorldLocationService} from '../../services/world-location.service';
@@ -15,7 +16,8 @@ import { Home } from "../home/home";
 })
 
 
-export class LocationHome {
+export class LocationHome implements OnInit {
+    route: ActivatedRoute = inject(ActivatedRoute);
   @ViewChild('searchFilterCmp') searchFilter!: SearchFilter;
   locationService: WorldLocationService = inject(WorldLocationService);
   characterService: WorldCharacterService = inject(WorldCharacterService);
@@ -34,17 +36,34 @@ export class LocationHome {
     showDateRange: false
   };
 
-  constructor() {
-    Promise.all([
-      this.locationService.getAllWorldLocations(),
-      this.characterService.getAllWorldCharacters(),
-      this.storyService.getAllWorldStories()
-    ]).then(([locations, characters, stories]) => {
-      this.worldLocationList = locations;
-      this.filteredLocationList = locations;
-      this.allCharacters = characters;
-      this.allLocations = locations;
-      this.allStories = stories;
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const worldId = params['world'];
+      if (worldId) {
+        this.locationService.getAllWorldLocations(worldId).then(locations => {
+          this.worldLocationList = locations;
+          this.filteredLocationList = locations;
+          this.allLocations = locations;
+        });
+        this.characterService.getAllWorldCharacters(worldId).then(characters => {
+          this.allCharacters = characters;
+        });
+        this.storyService.getAllWorldStories(worldId).then(stories => {
+          this.allStories = stories;
+        });
+      } else {
+        Promise.all([
+          this.locationService.getAllWorldLocations(),
+          this.characterService.getAllWorldCharacters(),
+          this.storyService.getAllWorldStories()
+        ]).then(([locations, characters, stories]) => {
+          this.worldLocationList = locations;
+          this.filteredLocationList = locations;
+          this.allCharacters = characters;
+          this.allLocations = locations;
+          this.allStories = stories;
+        });
+      }
     });
   }
 

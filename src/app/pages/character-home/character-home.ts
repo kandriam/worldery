@@ -1,4 +1,5 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
@@ -14,7 +15,8 @@ import { Router } from '@angular/router';
 })
 
 
-export class CharacterHome {
+export class CharacterHome implements OnInit {
+    route: ActivatedRoute = inject(ActivatedRoute);
   @ViewChild('searchFilterCmp') searchFilter!: SearchFilter;
   characterService: WorldCharacterService = inject(WorldCharacterService);
   storyService: WorldStoryService = inject(WorldStoryService);
@@ -32,14 +34,27 @@ export class CharacterHome {
 
   router: Router = inject(Router);
 
-  constructor() {
-    Promise.all([
-      this.characterService.getAllWorldCharacters(),
-      this.storyService.getAllWorldStories()
-    ]).then(([characters, stories]) => {
-      this.worldCharacterList = characters;
-      this.filteredCharacterList = characters;
-      this.allStories = stories;
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const worldId = params['world'];
+      if (worldId) {
+        this.characterService.getAllWorldCharacters(worldId).then(characters => {
+          this.worldCharacterList = characters;
+          this.filteredCharacterList = characters;
+        });
+        this.storyService.getAllWorldStories(worldId).then(stories => {
+          this.allStories = stories;
+        });
+      } else {
+        Promise.all([
+          this.characterService.getAllWorldCharacters(),
+          this.storyService.getAllWorldStories()
+        ]).then(([characters, stories]) => {
+          this.worldCharacterList = characters;
+          this.filteredCharacterList = characters;
+          this.allStories = stories;
+        });
+      }
     });
   }
 

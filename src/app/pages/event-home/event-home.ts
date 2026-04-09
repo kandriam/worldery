@@ -1,4 +1,5 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { Timeline } from '../../components/timeline/timeline/timeline';
@@ -14,7 +15,8 @@ import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../
   templateUrl: 'event-home.html',
   styleUrls: ['../pages.css', 'event-home.css', '../../../styles.css'],
 })
-export class EventHome {
+export class EventHome implements OnInit {
+    route: ActivatedRoute = inject(ActivatedRoute);
   @ViewChild('searchFilterCmp') searchFilter!: SearchFilter;
   eventService = inject(WorldEventService);
   characterService = inject(WorldCharacterService);
@@ -36,19 +38,37 @@ export class EventHome {
     showDateRange: true
   };
 
-  constructor() {
-    // Load all data
-    Promise.all([
-      this.eventService.getAllWorldEvents(),
-      this.characterService.getAllWorldCharacters(),
-      this.storyService.getAllWorldStories(),
-      this.locationService.getAllWorldLocations()
-    ]).then(([events, characters, stories, locations]) => {
-      this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
-      this.allCharacters = characters;
-      this.allStories = stories;
-      this.allLocations = locations;
-      this.filteredEventList = this.worldEventList;
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const worldId = params['world'];
+      if (worldId) {
+        this.eventService.getAllWorldEvents(worldId).then(events => {
+          this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
+          this.filteredEventList = this.worldEventList;
+        });
+        this.characterService.getAllWorldCharacters(worldId).then(characters => {
+          this.allCharacters = characters;
+        });
+        this.storyService.getAllWorldStories(worldId).then(stories => {
+          this.allStories = stories;
+        });
+        this.locationService.getAllWorldLocations(worldId).then(locations => {
+          this.allLocations = locations;
+        });
+      } else {
+        Promise.all([
+          this.eventService.getAllWorldEvents(),
+          this.characterService.getAllWorldCharacters(),
+          this.storyService.getAllWorldStories(),
+          this.locationService.getAllWorldLocations()
+        ]).then(([events, characters, stories, locations]) => {
+          this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
+          this.allCharacters = characters;
+          this.allStories = stories;
+          this.allLocations = locations;
+          this.filteredEventList = this.worldEventList;
+        });
+      }
     });
   }
 
