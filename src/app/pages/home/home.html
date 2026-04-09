@@ -17,8 +17,7 @@
     </div>
 
     <div class="worlds-grid">
-      <a class="world-card" *ngFor="let world of worlds" [routerLink]="['/world']"
-        [queryParams]="{ id: world.id }">
+      <a class="world-card" *ngFor="let world of worlds" (click)="setCurrentWorldAndNavigate(world)">
         <h2>{{ world.title || 'Untitled World' }}</h2>
         <p>{{ world.description }}</p>
         <div class="world-genres" *ngIf="world.genres?.length">

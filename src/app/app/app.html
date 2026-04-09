@@ -4,19 +4,20 @@
         <!-- <img class="header-icon" src="assets/worldery-tab-icon.png" alt="Worldery icon"> -->
             Worldery
         </button>
-        <button class="nav-button page" [routerLink]="['/']">
-            <img class="nav-icon" src="assets/icons/home.svg" alt="">Home
+        <button class="nav-button page" (click)="goToCurrentWorld()">
+            <img class="nav-icon" src="assets/icons/globe.svg" alt="">
+            {{ currentWorldName || 'World' }}
         </button>
-        <button class="nav-button page event" [routerLink]="['/event']">
+        <button class="nav-button page event" (click)="goToPage('event')">
             <img class="nav-icon" src="assets/icons/calendar-minimalistic.svg" alt="">Timeline
         </button>
-        <button class="nav-button page location" [routerLink]="['/location']">
-            <img class="nav-icon" src="assets/icons/globe.svg" alt="">World
+        <button class="nav-button page location" (click)="goToPage('location')">
+            <img class="nav-icon" src="assets/icons/location.svg" alt="">Locations
         </button>
-        <button class="nav-button page character" [routerLink]="['/character']">
+        <button class="nav-button page character" (click)="goToPage('character')">
             <img class="nav-icon" src="assets/icons/user.svg" alt="">Characters
         </button>
-        <button class="nav-button page story" [routerLink]="['/story']">
+        <button class="nav-button page story" (click)="goToPage('story')">
             <img class="nav-icon" src="assets/icons/book-open.svg" alt="">Stories
         </button>
         <button class="nav-button page" [routerLink]="['/settings']">

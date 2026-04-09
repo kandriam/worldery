@@ -21,10 +21,12 @@ window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
   return _originalFetch(input, init);
 };
 
+import { withRouterConfig } from '@angular/router';
+
 bootstrapApplication(App, {
   providers: [
-    provideProtractorTestingSupport(), 
-    provideRouter(routeConfig),
+    provideProtractorTestingSupport(),
+    provideRouter(routeConfig, withRouterConfig({ onSameUrlNavigation: 'reload' })),
     provideHttpClient(withInterceptors([authInterceptor]))
   ],
 }).catch((err) => console.error(err));

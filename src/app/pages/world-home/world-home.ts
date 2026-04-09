@@ -11,6 +11,7 @@ import { HomeRow, EntityType } from '../../components/home-row/home-row';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { SettingsService } from '../../services/settings.service';
+import { CurrentWorldService } from '../../services/current-world.service';
 import { Subscription, debounceTime } from 'rxjs';
 
 @Component({
@@ -95,6 +96,8 @@ export class WorldHome implements OnInit, OnDestroy {
     this.autoSaveSubscription?.unsubscribe();
   }
 
+  currentWorldService: CurrentWorldService = inject(CurrentWorldService);
+
   constructor() {
     this.worldInfoService.getWorlds().subscribe(worlds => {
       this.allWorlds = worlds;
@@ -113,6 +116,7 @@ export class WorldHome implements OnInit, OnDestroy {
     this.worldInfoService.getWorld(worldId).subscribe((world) => {
       if (!world) { this.world = null; this.worldInfoForm.reset(); return; }
       this.world = world;
+      this.currentWorldService.setCurrentWorld(world); // Set current world
       this.worldInfoForm.patchValue({
         name: world.title || '',
         description: world.description || '',

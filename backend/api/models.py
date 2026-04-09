@@ -38,7 +38,7 @@ class Location(models.Model):
     description = models.TextField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='location_set', blank=True)
     stories = models.ManyToManyField(Story, related_name='location_stories', blank=True)
-    related_locations = models.ManyToManyField('self', symmetrical=True, related_name='related_locations', blank=True)
+    related_locations = models.ManyToManyField('self', symmetrical=True, blank=True)
     tags = models.JSONField(default=list, blank=True)
     # tags = models.ManyToManyField(Tag, blank=True)
     world = models.ForeignKey('World', null=True, blank=True, on_delete=models.SET_NULL, related_name='location_members')

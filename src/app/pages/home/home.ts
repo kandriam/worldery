@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WorldInfo, WorldInfoService } from '../../services/world.service';
+import { CurrentWorldService } from '../../services/current-world.service';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,17 @@ import { WorldInfo, WorldInfoService } from '../../services/world.service';
 })
 export class Home {
   worldInfoService: WorldInfoService = inject(WorldInfoService);
+  currentWorldService: CurrentWorldService = inject(CurrentWorldService);
   router: Router = inject(Router);
 
   worlds: WorldInfo[] = [];
   showCreateForm = false;
+
+  setCurrentWorldAndNavigate(world: WorldInfo) {
+    this.currentWorldService.setCurrentWorld(world);
+    this.router.navigate(['/world'], { queryParams: { id: world.id } });
+  }
+
 
   createForm = new FormGroup({
     title: new FormControl(''),
