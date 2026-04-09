@@ -12,28 +12,13 @@ import { CurrentWorldService } from '../services/current-world.service';
   styleUrls: ['./app.css'],
 })
 export class App implements OnInit {
-    goToCurrentWorld() {
-      if (this.currentWorldId) {
-        this.router.navigate(['/world-home'], { queryParams: { id: this.currentWorldId } });
-      } else {
-        this.router.navigate(['/']);
-      }
-    }
-
-    goToPage(page: string) {
-      if (this.currentWorldId) {
-        this.router.navigate([`/${page}`], { queryParams: { world: this.currentWorldId } });
-      } else {
-        this.router.navigate([`/${page}`]);
-      }
-    }
   title = 'App';
   currentWorldName: string | null = null;
-
+  
   get currentWorldId(): string | null {
     return this.currentWorldService.getCurrentWorldId();
   }
-
+  
   constructor(
     private worldInfoService: WorldInfoService,
     private settingsService: SettingsService,
@@ -43,7 +28,22 @@ export class App implements OnInit {
     settingsService.applyColors();
     settingsService.applyFontSize();
   }
+  
+  goToCurrentWorld() {
+    if (this.currentWorldId) {
+      this.router.navigate(['/world'], { queryParams: { id: this.currentWorldId } });
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
 
+  goToPage(page: string) {
+    if (this.currentWorldId) {
+      this.router.navigate([`/${page}`], { queryParams: { world: this.currentWorldId } });
+    } else {
+      this.router.navigate([`/${page}`]);
+    }
+  }
   ngOnInit() {
     this.updateCurrentWorldName();
     // Update current world name on every navigation end
