@@ -1,5 +1,5 @@
 import { Component, inject, ViewChild, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { Timeline } from '../../components/timeline/timeline/timeline';
@@ -28,8 +28,10 @@ export class EventHome implements OnInit {
   allCharacters: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
   allLocations: WorldLocationInfo[] = [];
+  worldId: string | null = null;
 
   viewMode: 'timeline' | 'grid' = 'timeline';
+  router = inject(Router);
 
   filterConfig = {
     showCharacters: true,
@@ -41,6 +43,7 @@ export class EventHome implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const worldId = params['world'];
+      this.worldId = worldId ?? null;
       if (worldId) {
         this.eventService.getAllWorldEvents(worldId).then(events => {
           this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
@@ -126,20 +129,27 @@ export class EventHome implements OnInit {
   }
 
   addWorldEvent() {
-    console.log('Adding new event');
     this.eventService.createWorldEvent(
       {
         id: '',
         name: 'New Event',
-        date: new Date().toISOString().split('T')[0], // Default to today
+        date: new Date().toISOString().split('T')[0],
         description: '',
         location: [],
         characters: [],
         stories: [],
-        tags: []
+        tags: [],
+        world: this.worldId ?? undefined
       } as WorldEventInfo,
-      true         // goToPage
-    );
+      true
+    ).subscribe({
+      next: (event) => {
+        if (event) {
+          this.router.navigate(['/event', event.id]);
+        }
+      },
+      error: (err) => console.error('Failed to create event:', err)
+    });
   }
 
   onTagClicked(tag: string) {

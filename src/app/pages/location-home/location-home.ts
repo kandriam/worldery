@@ -1,5 +1,5 @@
 import { Component, inject, ViewChild, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { WorldLocationInfo, WorldLocationService} from '../../services/world-location.service';
@@ -18,6 +18,7 @@ import { Home } from "../home/home";
 
 export class LocationHome implements OnInit {
     route: ActivatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
   @ViewChild('searchFilterCmp') searchFilter!: SearchFilter;
   locationService: WorldLocationService = inject(WorldLocationService);
   characterService: WorldCharacterService = inject(WorldCharacterService);
@@ -28,6 +29,7 @@ export class LocationHome implements OnInit {
   allCharacters: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
   allLocations: WorldLocationInfo[] = [];
+  worldId: string | null = null;
   
   filterConfig: FilterConfig = {
     showCharacters: true,
@@ -39,6 +41,7 @@ export class LocationHome implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const worldId = params['world'];
+      this.worldId = worldId ?? null;
       if (worldId) {
         this.locationService.getAllWorldLocations(worldId).then(locations => {
           this.worldLocationList = locations;
@@ -111,24 +114,27 @@ export class LocationHome implements OnInit {
     this.filteredLocationList = filtered;
   }
 
-  async addWorldLocation() {
-    console.log('Adding new location');
-    try {
-      await this.locationService.createWorldLocation(
-        {
-          id: '',
-          name: 'New Location',
-          description: '',
-          characters: [],
-          stories: [],
-          related_locations: [],
-          tags: []
-        } as WorldLocationInfo, // Pass an empty object or default values as needed
-        true);
-      console.log('Location created successfully');
-    } catch (error) {
-      console.error('Failed to create location:', error);
-    }
+  addWorldLocation() {
+    this.locationService.createWorldLocation(
+      {
+        id: '',
+        name: 'New Location',
+        description: '',
+        characters: [],
+        stories: [],
+        related_locations: [],
+        tags: [],
+        world: this.worldId ?? undefined
+      } as WorldLocationInfo,
+      true
+    ).subscribe({
+      next: (location) => {
+        if (location) {
+          this.router.navigate(['/location', location.id]);
+        }
+      },
+      error: (err) => console.error('Failed to create location:', err)
+    });
   }
 
   onTagClicked(tag: string) {

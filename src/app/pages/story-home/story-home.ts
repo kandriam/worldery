@@ -1,10 +1,11 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, OnInit } from '@angular/core';
 import { HomeRow} from '../../components/home-row/home-row';
 import { HomeGrid} from '../../components/home-grid/home-grid';
 import { WorldStoryInfo, WorldStoryService} from '../../services/world-story.service';
 import { WorldLocationInfo, WorldLocationService} from '../../services/world-location.service';
 import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
 import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../../components/search-filter/search-filter';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-story-home',
@@ -14,16 +15,19 @@ import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms} from '../.
 })
 
 
-export class StoryHome {
+export class StoryHome implements OnInit {
   @ViewChild('searchFilterCmp') searchFilter!: SearchFilter;
   storyService: WorldStoryService = inject(WorldStoryService);
   characterService: WorldCharacterService = inject(WorldCharacterService);
   locationService: WorldLocationService = inject(WorldLocationService);
+  route = inject(ActivatedRoute);
+  router = inject(Router);
   
   filteredStoryList: WorldStoryInfo[] = [];
   worldStoryList: WorldStoryInfo[] = [];
   allCharacters: WorldCharacterInfo[] = [];
   allLocations: WorldLocationInfo[] = [];
+  worldId: string | null = null;
   
   filterConfig: FilterConfig = {
     showCharacters: true,
@@ -32,16 +36,33 @@ export class StoryHome {
     showDateRange: false
   };
 
-  constructor() {
-    Promise.all([
-      this.storyService.getAllWorldStories(),
-      this.characterService.getAllWorldCharacters(),
-      this.locationService.getAllWorldLocations()
-    ]).then(([stories, characters, locations]) => {
-      this.worldStoryList = stories;
-      this.filteredStoryList = stories;
-      this.allCharacters = characters;
-      this.allLocations = locations;
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const worldId = params['world'];
+      this.worldId = worldId ?? null;
+      if (worldId) {
+        Promise.all([
+          this.storyService.getAllWorldStories(worldId),
+          this.characterService.getAllWorldCharacters(worldId),
+          this.locationService.getAllWorldLocations(worldId)
+        ]).then(([stories, characters, locations]) => {
+          this.worldStoryList = stories;
+          this.filteredStoryList = stories;
+          this.allCharacters = characters;
+          this.allLocations = locations;
+        });
+      } else {
+        Promise.all([
+          this.storyService.getAllWorldStories(),
+          this.characterService.getAllWorldCharacters(),
+          this.locationService.getAllWorldLocations()
+        ]).then(([stories, characters, locations]) => {
+          this.worldStoryList = stories;
+          this.filteredStoryList = stories;
+          this.allCharacters = characters;
+          this.allLocations = locations;
+        });
+      }
     });
   }
 
@@ -79,25 +100,28 @@ export class StoryHome {
     this.filteredStoryList = filtered;
   }
 
-  async addWorldStory() {
-    console.log('Adding new story');
-    try {
-      await this.storyService.createWorldStory(
-        {
-          id: '',
-          title: 'New Story',
-          description: '',
-          characters: [],
-          locations: [],
-          substories: [],
-          genre: [],
-          tags: []
-        } as WorldStoryInfo,
-        true);
-      console.log('Story created successfully');
-    } catch (error) {
-      console.error('Failed to create story:', error);
-    }
+  addWorldStory() {
+    this.storyService.createWorldStory(
+      {
+        id: '',
+        title: 'New Story',
+        description: '',
+        characters: [],
+        locations: [],
+        substories: [],
+        genre: [],
+        tags: [],
+        world: this.worldId ?? undefined
+      } as WorldStoryInfo,
+      true
+    ).subscribe({
+      next: (story) => {
+        if (story) {
+          this.router.navigate(['/story', story.id]);
+        }
+      },
+      error: (err) => console.error('Failed to create story:', err)
+    });
   }
 
   onTagClicked(tag: string) {

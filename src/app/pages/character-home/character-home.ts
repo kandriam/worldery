@@ -24,6 +24,7 @@ export class CharacterHome implements OnInit {
   filteredCharacterList: WorldCharacterInfo[] = [];
   worldCharacterList: WorldCharacterInfo[] = [];
   allStories: WorldStoryInfo[] = [];
+  worldId: string | null = null;
   
   filterConfig: FilterConfig = {
     showCharacters: false,
@@ -37,6 +38,7 @@ export class CharacterHome implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const worldId = params['world'];
+      this.worldId = worldId ?? null;
       if (worldId) {
         this.characterService.getAllWorldCharacters(worldId).then(characters => {
           this.worldCharacterList = characters;
@@ -85,21 +87,30 @@ export class CharacterHome implements OnInit {
   }
 
   addWorldCharacter() {
-    console.log('Adding new character');
     this.characterService.createWorldCharacter(
-      {id: '',
-      personal_name: 'New',
-      family_name: 'Character',
-      alt_names: [],
-      physical_description: '',
-      non_physical_description: '',
-      pronouns: '',
-      roles: [],
-      affiliations: [],
-      relationships: [],
-      stories: [],
-      tags: []
-    } as WorldCharacterInfo, true);
+      {
+        id: '',
+        personal_name: 'New',
+        family_name: 'Character',
+        alt_names: [],
+        physical_description: '',
+        non_physical_description: '',
+        pronouns: '',
+        roles: [],
+        affiliations: [],
+        relationships: [],
+        stories: [],
+        tags: [],
+        world: this.worldId ?? undefined
+      } as WorldCharacterInfo, true
+    ).subscribe({
+      next: (character) => {
+        if (character) {
+          this.router.navigate(['/character', character.id]);
+        }
+      },
+      error: (err) => console.error('Failed to create character:', err)
+    });
   }
 
   onTagClicked(tag: string) {
