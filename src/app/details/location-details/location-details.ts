@@ -9,6 +9,7 @@ import { AssociationList, AssociationItem, EntityType } from '../../components/a
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription, debounceTime } from 'rxjs';
 import { SettingsService } from '../../services/settings.service';
+import { CurrentWorldService } from '../../services/current-world.service';
 
 @Component({
   selector: 'app-details',
@@ -26,6 +27,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
   worldStoryService = inject(WorldStoryService);
   worldLocation: WorldLocationInfo | undefined;
   settingsService = inject(SettingsService);
+  currentWorldService = inject(CurrentWorldService);
   private autoSaveSubscription?: Subscription;
   characterList = Array<WorldCharacterInfo>();
   storyList = Array<WorldStoryInfo>();
@@ -56,7 +58,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     });
     
     // Load character list
-    this.loadSharedData();
+    // (called from loadLocationData once entity world is known)
 
     // Auto-save on form changes
     this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
@@ -74,20 +76,20 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
     this.autoSaveSubscription?.unsubscribe();
   }
 
-  private loadSharedData() {
-    this.worldCharacterService.getAllWorldCharacters().then((characters) => {
+  private loadSharedData(worldId?: string) {
+    this.worldCharacterService.getAllWorldCharacters(worldId).then((characters) => {
       this.characterList = characters;
     });
     
-    this.worldStoryService.getAllWorldStories().then((stories) => {
+    this.worldStoryService.getAllWorldStories(worldId).then((stories) => {
       this.storyList = stories;
     });
     
-    this.worldLocationService.getAllWorldLocations().then((locations) => {
+    this.worldLocationService.getAllWorldLocations(worldId).then((locations) => {
       this.locationList = locations;
     });
 
-    this.worldEventService.getAllWorldEvents().then((events) => {
+    this.worldEventService.getAllWorldEvents(worldId).then((events) => {
       this.eventList = events;
       this.updateFilteredEvents();
     });
@@ -115,6 +117,7 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       
       // Update filtered events after location data loads
       this.updateFilteredEvents();
+      this.loadSharedData(this.currentWorldService.getCurrentWorldId() ?? undefined);
     });
 
     console.log("Location data loaded for ID:", worldLocationId);

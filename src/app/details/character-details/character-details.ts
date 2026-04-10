@@ -12,6 +12,7 @@ import { Subscription, debounceTime } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { EventThumbnail } from "src/app/components/thumbnail/event-thumbnail/event-thumbnail";
 import { SettingsService } from '../../services/settings.service';
+import { CurrentWorldService } from '../../services/current-world.service';
 
 @Component({
   selector: 'app-details',
@@ -28,6 +29,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   worldLocationService = inject(WorldLocationService);
   worldCharacter: WorldCharacterInfo | undefined;
   settingsService = inject(SettingsService);
+  currentWorldService = inject(CurrentWorldService);
   private autoSaveSubscription?: Subscription;
   characterList = Array<WorldCharacterInfo>();
   filteredCharacterList = Array<WorldCharacterInfo>();
@@ -75,7 +77,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     });
 
     // Load shared data that doesn't depend on the current character
-    this.loadSharedData();
+    // (called from loadCharacterData once entity world is known)
 
     // Auto-save on form changes
     this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
@@ -152,27 +154,28 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       
 
       this.updateFilteredEvents();
+      this.loadSharedData(this.currentWorldService.getCurrentWorldId() ?? undefined);
     });
 
     console.log("Character data loaded for ID:", worldCharacterId);
     console.log("Current character state:", this.worldCharacter);
   }
 
-  private loadSharedData() {
-    this.worldCharacterService.getAllWorldCharacters().then((characters) => {
+  private loadSharedData(worldId?: string) {
+    this.worldCharacterService.getAllWorldCharacters(worldId).then((characters) => {
       this.characterList = characters;
       // this.applyFilters();
     });
 
-    this.worldStoryService.getAllWorldStories().then((stories) => {
+    this.worldStoryService.getAllWorldStories(worldId).then((stories) => {
       this.storyList = stories;
     });
 
-    this.worldLocationService.getAllWorldLocations().then((locations) => {
+    this.worldLocationService.getAllWorldLocations(worldId).then((locations) => {
       this.locationList = locations;
     });
 
-    this.worldEventService.getAllWorldEvents().then((events) => {
+    this.worldEventService.getAllWorldEvents(worldId).then((events) => {
       this.eventList = events;
       this.updateFilteredEvents();
     });

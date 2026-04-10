@@ -14,6 +14,7 @@ import { RelationshipInfo, RelationshipService } from '../../services/relationsh
 export class RelationshipList {
   @Input() primaryCharacterId: string = '';
   @Input() availableStories: string[] = [];
+  @Input() worldId?: string;
   characterService: WorldCharacterService = inject(WorldCharacterService);
   characterList: WorldCharacterInfo[] = [];
   filteredCharacterList: WorldCharacterInfo[] = [];
@@ -29,8 +30,8 @@ export class RelationshipList {
   }
   
   async loadRelationshipData() {
-    // Load all characters
-    this.characterList = await this.characterService.getAllWorldCharacters();
+    // Load characters filtered by world
+    this.characterList = await this.characterService.getAllWorldCharacters(this.worldId);
     this.filteredCharacterList = this.characterList.filter(character => character.id !== this.primaryCharacterId);
     // Load all relationships and build relationship map for fast lookup
 

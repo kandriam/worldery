@@ -10,6 +10,7 @@ import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Subscription, debounceTime } from 'rxjs';
 import { Timeline } from "src/app/components/timeline/timeline/timeline";
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
+import { CurrentWorldService } from '../../services/current-world.service';
 
 @Component({
   selector: 'app-details',
@@ -27,6 +28,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   worldLocationService = inject(WorldLocationService);
   worldEvent: WorldEventInfo | undefined;
   settingsService = inject(SettingsService);
+  currentWorldService = inject(CurrentWorldService);
     getFormattedEventDate(): string {
       if (!this.worldEvent?.date) return '';
       return this.settingsService.formatDate(this.worldEvent.date);
@@ -76,7 +78,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     });
     
     // Load character list
-    this.loadSharedData();
+    // (called from loadEventData once entity world is known)
 
     // Auto-save on form changes
     this.autoSaveSubscription = this.applyForm.valueChanges.pipe(debounceTime(1500)).subscribe(() => {
@@ -94,21 +96,21 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     this.autoSaveSubscription?.unsubscribe();
   }
 
-  private loadSharedData() {
-    this.worldCharacterService.getAllWorldCharacters().then((characters) => {
+  private loadSharedData(worldId?: string) {
+    this.worldCharacterService.getAllWorldCharacters(worldId).then((characters) => {
       this.characterList = characters;
     });
     
-    this.worldStoryService.getAllWorldStories().then((stories) => {
+    this.worldStoryService.getAllWorldStories(worldId).then((stories) => {
       this.storyList = stories;
     });
     
-    this.worldLocationService.getAllWorldLocations().then((locations) => {
+    this.worldLocationService.getAllWorldLocations(worldId).then((locations) => {
       this.locationList = locations;
     });
     
     // Load all events for timeline
-    this.worldEventService.getAllWorldEvents().then((events) => {
+    this.worldEventService.getAllWorldEvents(worldId).then((events) => {
       this.filteredEventList = events;
     });
   }
@@ -158,6 +160,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         eventStories: worldEvent?.stories?.join(', ') || '',
         eventTags: worldEvent?.tags?.join(', ') || '',
       }, { emitEvent: false });
+      this.loadSharedData(this.currentWorldService.getCurrentWorldId() ?? undefined);
     });
 
     console.log("Event data loaded for ID:", worldEventId);

@@ -86,6 +86,7 @@
                 <app-relationship-list
                     [primaryCharacterId]="worldCharacter?.id || ''"
                     [availableStories]="getUniqueStories()"
+                    [worldId]="currentWorldService.getCurrentWorldId() ?? undefined"
                 ></app-relationship-list>
                 
                 <div class="details-section primary-section association-list-section">
