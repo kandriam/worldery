@@ -113,6 +113,7 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         storyCharacters: worldStory?.characters?.join(', ') || '',
         storyLocations: worldStory?.locations?.join(', ') || '',
         storyTags: worldStory?.tags?.join(', ') || ''
+    
       }, { emitEvent: false });
       
       // Update filtered events after story data loads

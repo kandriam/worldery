@@ -1,20 +1,29 @@
 ﻿<h1>Worlds</h1>
 <div class="page-container">
-  <article class="main-article worlds-article">
-    <div class="worlds-header">
+  <div class="worlds-article">
+    <!-- <div class="worlds-header">
       <button class="add-button" (click)="toggleCreateForm()">New World</button>
-    </div>
+    </div> -->
 
-    <div class="create-form" *ngIf="showCreateForm">
-      <form [formGroup]="createForm" (ngSubmit)="createWorld()">
-        <input formControlName="title" placeholder="World name" />
-        <textarea formControlName="description" placeholder="Description"></textarea>
+    <!-- <div class="create-form"> -->
+      <form class="create-form" [formGroup]="createForm" (ngSubmit)="createWorld()">
+        <h3>Create New World</h3>
+        <div class="create-form-content">
+          <div>
+            <label for="title">World Name</label>
+            <input id="title" type="text" formControlName="title" placeholder="World name" />
+          </div>
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" placeholder="Description"></textarea>
+          </div>
+        </div>
         <div class="form-actions">
-          <button type="submit">Create</button>
-          <button type="button" (click)="toggleCreateForm()">Cancel</button>
+          <button class="primary" type="submit">Create</button>
+          <button class="primary" type="button" (click)="toggleCreateForm()">Cancel</button>
         </div>
       </form>
-    </div>
+    <!-- </div> -->
 
     <div class="worlds-grid">
       <a class="world-card" *ngFor="let world of worlds" (click)="setCurrentWorldAndNavigate(world)">
@@ -26,5 +35,5 @@
       </a>
       <p class="no-results" *ngIf="worlds.length === 0">No worlds yet. Create your first world above!</p>
     </div>
-  </article>
+  </div>
 </div>

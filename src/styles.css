@@ -347,12 +347,23 @@ h1 > input[type="text"], h2 > input[type="text"] {
 
 input[type="text"] {
   padding: 10px;
+  background-color: transparent;
   /* width: 100%; */
   /* width: calc(100% - 20px); */
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+
   &:required::after {
     content: "*";
     color: red;
     margin-left: 5px;
+  }
+
+  &:autofill {
+    background-color: transparent;
   }
 }
 
@@ -362,7 +373,7 @@ textarea {
   resize: none;
   display: block;
   width: 100%;
-  max-width: 600px;
+  /* max-width: 600px; */
   min-height: 150px;
   height: auto;
   box-sizing: border-box;

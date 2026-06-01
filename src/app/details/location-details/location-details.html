@@ -9,14 +9,14 @@
         <div class="main-content">
             <form [formGroup]="applyForm" (submit)="updateLocation()">
             <section class="edit-location-form location-page-body">
-                <div class="details-section primary-section horizontal-section">
+                <div class="details-section primary-section">
                     <div class="details-section secondary-section">
                         <label class="primary-label" for="location-title">Location Title</label>
                         <input id="location-title" type="text" formControlName="locationTitle" placeholder="Enter location name..." />
                     </div>
-                </div>
+                <!-- </div>
                 
-                <div class="details-section primary-section spanning-section">
+                <div class="details-section primary-section spanning-section"> -->
                     <div class="details-section secondary-section">
                         <label class="primary-label" for="location-description">Location Description</label>
                         <textarea id="location-description" class="details-description" formControlName="locationDescription" placeholder="Describe this location, its appearance, atmosphere, and significance..."></textarea>

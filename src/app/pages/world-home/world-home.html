@@ -10,10 +10,12 @@
         <h2>
           <input class="editable-title" id="worldName" formControlName="name" placeholder="Enter world name" />
         </h2>
+        @if (saveSuccess) { <span class="save-success">Saved!
+          <img class="display-icon" src="assets/icons/circle-check.svg" alt="characters">  
+        </span> }
         <div class="world-info-actions" style="display: flex; flex-direction: column;">
             <button type="button" class="danger secondary" (click)="deleteWorld()">Delete World</button>
             <button type="submit" class="secondary">Save</button>
-            @if (saveSuccess) { <span class="save-success">Saved!</span> }
         </div>
     </div>
     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5px;">

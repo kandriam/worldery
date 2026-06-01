@@ -12,3 +12,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.display-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  pointer-events: none;
+  filter: brightness(0.2);
+}

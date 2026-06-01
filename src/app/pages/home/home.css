@@ -1,5 +1,6 @@
 ﻿.worlds-article {
   width: 100%;
+  /* border: 1px solid var(--b2-color); */
 }
 .worlds-header {
   display: flex;
@@ -7,51 +8,68 @@
   margin-bottom: 16px;
 }
 .create-form {
-  background: var(--g5-color, #1e1e2e);
+  /* width: 100%; */
   border-radius: 10px;
   padding: 16px;
+  border: 1px solid var(--b2-color);
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  /* display: grid;
+  grid-template-columns: 2fr 1fr; */
 }
+
+.create-form-content {
+  border-radius: 10px;
+  /* display: flex;
+  flex-direction: row; */
+  gap: 10px;
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  
+}
+
 .create-form input,
 .create-form textarea {
-  width: 100%;
+  width: 100% !important;
   padding: 8px 10px;
   border-radius: 6px;
-  border: 1px solid var(--g3-color, #444);
-  background: var(--g4-color, #2a2a3e);
-  color: inherit;
+  border: 1px solid var(--g3-color);
+  background: var(--g5-color);
   font-size: 1rem;
   box-sizing: border-box;
 }
 .create-form textarea {
   min-height: 80px;
-  resize: vertical;
+  /* resize: vertical; */
 }
 .form-actions {
   display: flex;
+  /* flex-direction: column; */
   gap: 8px;
 }
 .worlds-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); */
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
+  padding: 10px;
+  /* border: 1px solid var(--b2-color); */
 }
 .world-card {
   display: block;
-  background: var(--g5-color, #1e1e2e);
+  background: var(--g5-color);
   border-radius: 10px;
   padding: 16px;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   transition: background 0.2s, transform 0.2s;
-  border: 1px solid var(--g4-color, #333);
+  border: 1px solid var(--g4-color);
+  height: 100%;
 }
 .world-card:hover {
-  background: var(--g4-color, #2a2a3e);
+  background: var(--g4-color);
   transform: translateY(-2px);
 }
 .world-card h2 {

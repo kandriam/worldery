@@ -7,8 +7,9 @@ title: "Worldery Roadmap"
 ## Current Roadmap
 
 ### Features
-- [ ] Multiple worlds!
-- [ ] Current world date
+- [x] Multiple worlds!
+- [ ] Current date attribute/world (or story? If story, will also need 'current story')
+- [ ] Non gregorean calendar
 
 ### World Home
 - [x] Layout (Filter and search on one side)
@@ -23,23 +24,24 @@ title: "Worldery Roadmap"
 ### Timeline
 - [ ] Calendar view
 - [ ] On a selected day... calculate days between it and another day
+- [ ] Current Date (see Features)
 
 ### Characters
-- [ ] Age
-- [ ] Birthday
+- [ ] Age (as of Current Date/Story 'current date')
+- [?] Birthday
 - [ ] Importance
 
 ### Locations
-- [ ] Sub-locations
+- [ ] Sub-locations/Location relationship
 
 ### Stories
 - [x] Sub-Stories
+- [ ] Story events as Freytag Pyramid
 
 ### General
 - [ ] Importance
-- [ ] Layout (vertical timeline)
-- [ ] Accounts/Users
-- [ ] Settings (per user)
+- [x] Accounts/Users
+- [?] Settings (per user)
 - [ ] Feedback page
 
 ## Distant Roadmap

@@ -1,20 +1,31 @@
 <section class="home-grid" [class]="entityType">
   <div class="home-grid-header">
     <button class="home-grid-title" [class]="entityType" [routerLink]="[routePath]">{{ title }}</button>
-    <div class="display-container">
+    @if (shouldShowCharactersButton() || shouldShowLocationButton() || shouldShowCharactersButton() || shouldShowStoriesButton()) {
+      <div class="display-container">
         @if (shouldShowDateButton()) {
-          <button [class.active]="showDate" class="display-button date" (click)="toggleDate()"></button>
+          <button [class.active]="showDate" class="display-button date" (click)="toggleDate()">
+            <img class="display-icon" src="assets/icons/calendar-minimalistic.svg" alt="date">
+          </button>
+
         }
         @if (shouldShowLocationButton()) {
-          <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()"></button>
+          <button [class.active]="showLocation" class="display-button location" (click)="toggleLocation()">
+            <img class="display-icon" src="assets/icons/location-point.svg" alt="location">
+          </button>
         }
         @if (shouldShowCharactersButton()) {
-          <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()"></button>
+          <button [class.active]="showCharacters" class="display-button characters" (click)="toggleCharacters()">
+            <img class="display-icon" src="assets/icons/user.svg" alt="characters">
+          </button>
         }
         @if (shouldShowStoriesButton()) {
-          <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
+          <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()">
+            <img class="display-icon" src="assets/icons/book-open.svg" alt="stories">
+          </button>
         }
-    </div>
+      </div>
+    }
     <button class="primary add-button" [class]="entityType" (click)="onAddElement()">Add {{ getEntityDisplayName() }}</button>
   </div>
   <div class="home-grid-results">

@@ -184,8 +184,38 @@
 
 .event-info {
   border-radius: 4px;
-  /* padding: 8px; */
   font-size: var(--thumbnail-font-size);
+}
+
+.event-location::before,
+.event-characters::before,
+.event-stories::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 3px;
+  vertical-align: middle;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.event-location::before {
+  mask-image: url('/assets/icons/location-point.svg');
+  -webkit-mask-image: url('/assets/icons/location-point.svg');
+}
+
+.event-characters::before {
+  mask-image: url('/assets/icons/user.svg');
+  -webkit-mask-image: url('/assets/icons/user.svg');
+}
+
+.event-stories::before {
+  mask-image: url('/assets/icons/book-open.svg');
+  -webkit-mask-image: url('/assets/icons/book-open.svg');
 }
 
 .event-description {
