@@ -14,6 +14,8 @@ export interface WorldStoryInfo {
     genre: string[];
     tags: string[];
     world?: string;
+    start_date?: string | null;
+    end_date?: string | null;
 }
 
 @Injectable({
@@ -48,7 +50,9 @@ export class WorldStoryService {
     storyCharacters: string[],
     storyLocations: string[],
     storyTags: string[],
-    substories: string[] = []
+    substories: string[] = [],
+    startDate?: string | null,
+    endDate?: string | null,
   ) {
     // Map property names to Django model
     const payload = {
@@ -57,8 +61,9 @@ export class WorldStoryService {
       characters: storyCharacters,
       locations: storyLocations,
       tags: storyTags,
-      substories: substories
-      // relationships: characterRelationships // Only if your serializer supports it
+      substories: substories,
+      start_date: startDate ?? null,
+      end_date: endDate ?? null,
     };
     return this.http.put(`${this.url}/${storyID}/`, payload)
       .pipe(catchError(error => {

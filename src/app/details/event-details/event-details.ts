@@ -11,6 +11,7 @@ import { Subscription, debounceTime } from 'rxjs';
 import { Timeline } from "src/app/components/timeline/timeline/timeline";
 import { AssociationList, AssociationItem, EntityType } from '../../components/association-list/association-list';
 import { CurrentWorldService } from '../../services/current-world.service';
+import { CurrentWorldDateService } from '../../services/current-world-date.service';
 
 @Component({
   selector: 'app-details',
@@ -29,6 +30,14 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   worldEvent: WorldEventInfo | undefined;
   settingsService = inject(SettingsService);
   currentWorldService = inject(CurrentWorldService);
+  currentWorldDateService = inject(CurrentWorldDateService);
+
+  setAsCurrentDate() {
+    if (this.worldEvent?.date) {
+      this.currentWorldDateService.set(this.worldEvent.date);
+    }
+  }
+  // currentWorldService = inject(CurrentWorldService);
     getFormattedEventDate(): string {
       if (!this.worldEvent?.date) return '';
       return this.settingsService.formatDate(this.worldEvent.date);

@@ -46,8 +46,9 @@ export class StoryHome implements OnInit {
           this.characterService.getAllWorldCharacters(worldId),
           this.locationService.getAllWorldLocations(worldId)
         ]).then(([stories, characters, locations]) => {
-          this.worldStoryList = stories;
-          this.filteredStoryList = stories;
+          const substoryIds = new Set(stories.flatMap(s => s.substories ?? []));
+          this.worldStoryList = stories.filter(s => !substoryIds.has(s.id));
+          this.filteredStoryList = [...this.worldStoryList];
           this.allCharacters = characters;
           this.allLocations = locations;
         });
@@ -57,8 +58,9 @@ export class StoryHome implements OnInit {
           this.characterService.getAllWorldCharacters(),
           this.locationService.getAllWorldLocations()
         ]).then(([stories, characters, locations]) => {
-          this.worldStoryList = stories;
-          this.filteredStoryList = stories;
+          const substoryIds = new Set(stories.flatMap(s => s.substories ?? []));
+          this.worldStoryList = stories.filter(s => !substoryIds.has(s.id));
+          this.filteredStoryList = [...this.worldStoryList];
           this.allCharacters = characters;
           this.allLocations = locations;
         });

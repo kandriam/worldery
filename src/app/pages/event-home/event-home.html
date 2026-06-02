@@ -17,13 +17,20 @@
       <button [class.active]="viewMode === 'timeline'" (click)="setViewMode('timeline')" class="view-button primary">
         📅 Timeline View
       </button>
-      <button [class.active]="viewMode === 'grid'" (click)="setViewMode('grid')" class="view-button">
-        📋 Grid View
-      </button>
       @if (isGregorianCalendar) {
         <button [class.active]="viewMode === 'calendar'" (click)="setViewMode('calendar')" class="view-button">
           🗓️ Calendar View
         </button>
+      }
+    </div>
+
+    <div class="current-date-bar">
+      <span class="current-date-pin"><img src="assets/icons/pin.svg" class="pin-icon" alt="pin"></span>
+      @if (currentWorldDateService.isSet()) {
+        <span class="current-date-label">World date: <strong>{{ currentWorldDateService.getFormatted() }}</strong></span>
+        <button class="clear-date-btn" title="Clear world date" (click)="clearCurrentDate()">✕ Clear</button>
+      } @else {
+        <span class="current-date-label using-today">Using today's date — click <img src="assets/icons/pin.svg" class="pin-icon" alt="pin"> on any event to set the world date</span>
       }
     </div>
     
@@ -38,16 +45,6 @@
         (addElement)="addWorldEvent()"
         (tagClicked)="onTagClicked($event)">
       </app-timeline>
-    } @else if (viewMode === 'grid') {
-      <app-home-grid
-        entityType="event"
-        title="Events"
-        routePath="/events"
-        [entities]="filteredEventList"
-        noResultsMessage="No events found. Try adjusting your search or add a new event."
-        (addElement)="addWorldEvent()"
-        (tagClicked)="onTagClicked($event)">
-      </app-home-grid>
     } @else if (viewMode === 'calendar') {
       <app-calendar
         [events]="filteredEventList"

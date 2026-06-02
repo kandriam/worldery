@@ -1,4 +1,4 @@
-import { Component, input, output, inject } from '@angular/core';
+import { Component, input, output, inject, OnDestroy } from '@angular/core';
 import { SettingsService } from '../../../services/settings.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -6,6 +6,8 @@ import { WorldEventInfo } from '../../../services/world-event.service';
 import { WorldStoryService } from 'src/app/services/world-story.service';
 import { WorldCharacterService } from 'src/app/services/world-character.service';
 import { WorldLocationService } from 'src/app/services/world-location.service';
+import { CurrentWorldDateService } from '../../../services/current-world-date.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timeline-event',
@@ -14,11 +16,13 @@ import { WorldLocationService } from 'src/app/services/world-location.service';
   templateUrl: './timeline-event.html',
   styleUrls: ['./timeline-event.css', '../../../../styles.css']
 })
-export class TimelineEvent {
+export class TimelineEvent implements OnDestroy {
   settingsService = inject(SettingsService);
+  currentWorldDateService = inject(CurrentWorldDateService);
   event = input.required<WorldEventInfo>();
   index = input.required<number>();
   currentEventId = input<string | undefined>();
+  referenceDate = input<string | undefined>();
   showDate = input<boolean>(true);
   showLocation = input<boolean>(true);
   showCharacters = input<boolean>(true);
@@ -33,8 +37,17 @@ export class TimelineEvent {
   characterNames: string[] = [];
   storyTitles: string[] = [];
   locationNames: string[] = [];
+  relativeLabel = '';
+  private dateSub?: Subscription;
 
   async ngOnInit() {
+    // Compute relative label; use referenceDate when provided, otherwise track the world date service
+    this.relativeLabel = this.currentWorldDateService.relativeLabel(this.event().date, this.referenceDate());
+    if (!this.referenceDate()) {
+      this.dateSub = this.currentWorldDateService.date$.subscribe(() => {
+        this.relativeLabel = this.currentWorldDateService.relativeLabel(this.event().date);
+      });
+    }
     // Resolve character IDs to names
     const allCharacters = await this.characterService.getAllWorldCharacters();
     this.characterNames = (this.event().characters || []).map(id => {
@@ -56,7 +69,17 @@ export class TimelineEvent {
   }
 
   tagClicked = output<string>();
-  
+
+  ngOnDestroy() {
+    this.dateSub?.unsubscribe();
+  }
+
+  setAsCurrentDate() {
+    if (this.event().date) {
+      this.currentWorldDateService.set(this.event().date);
+    }
+  }
+
   onTagClick(tag: string) {
     this.tagClicked.emit(tag);
   }

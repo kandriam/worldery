@@ -1,7 +1,5 @@
 import { Component, inject, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HomeRow } from '../../components/home-row/home-row';
-import { HomeGrid } from '../../components/home-grid/home-grid';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { Calendar } from '../../components/calendar/calendar';
 import { WorldEventInfo, WorldEventService, generateBirthdayGhosts } from '../../services/world-event.service';
@@ -10,10 +8,11 @@ import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.se
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { WorldInfoService } from '../../services/world.service';
 import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
+import { CurrentWorldDateService } from '../../services/current-world-date.service';
 
 @Component({
   selector: 'app-event-home',
-  imports: [SearchFilter, HomeGrid, Timeline, Calendar],
+  imports: [SearchFilter, Timeline, Calendar],
   templateUrl: 'event-home.html',
   styleUrls: ['../pages.css', 'event-home.css', '../../../styles.css'],
 })
@@ -34,8 +33,14 @@ export class EventHome implements OnInit {
   worldId: string | null = null;
   isGregorianCalendar = false;
 
-  viewMode: 'timeline' | 'grid' | 'calendar' = 'timeline';
+  private readonly VIEW_MODE_KEY = 'eventHomeViewMode';
+  viewMode: 'timeline' | 'calendar' = 'timeline';
   router = inject(Router);
+  currentWorldDateService = inject(CurrentWorldDateService);
+
+  clearCurrentDate() {
+    this.currentWorldDateService.clear();
+  }
 
   filterConfig = {
     showCharacters: true,
@@ -45,6 +50,9 @@ export class EventHome implements OnInit {
   };
 
   ngOnInit() {
+    const saved = localStorage.getItem(this.VIEW_MODE_KEY);
+    if (saved === 'calendar') this.viewMode = 'calendar';
+
     this.route.queryParams.subscribe(params => {
       const worldId = params['world'];
       this.worldId = worldId ?? null;
@@ -195,7 +203,8 @@ export class EventHome implements OnInit {
     }
   }
 
-  setViewMode(mode: 'timeline' | 'grid' | 'calendar') {
+  setViewMode(mode: 'timeline' | 'calendar') {
     this.viewMode = mode;
+    localStorage.setItem(this.VIEW_MODE_KEY, mode);
   }
 }

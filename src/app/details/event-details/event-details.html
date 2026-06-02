@@ -5,7 +5,12 @@
         <ng-container *ngIf="getFormattedEventDate() && getFormattedEventEndDate()"> – </ng-container>
         <ng-container *ngIf="getFormattedEventEndDate()">{{ getFormattedEventEndDate() }}</ng-container>
     </h3>
-    <button class="delete-button secondary" (click)="deleteEvent()">Delete Event</button>
+    <div class="heading-actions">
+        <button class="pin-date-btn" title="Set as current world date" (click)="setAsCurrentDate()">
+            <img src="assets/icons/pin.svg" class="pin-icon" alt="Set world date">
+        </button>
+        <button class="delete-button secondary" (click)="deleteEvent()">Delete Event</button>
+    </div>
 </div>
 
 <div class="page-layout">
@@ -94,6 +99,7 @@
         <app-timeline
           [events]="filteredEventList"
           [currentEventId]="worldEvent?.id?.toString()"
+          [referenceDate]="worldEvent?.date"
           title="Events Timeline"
           [allowAddElement]="false"
           [showDisplayToggles]="false"

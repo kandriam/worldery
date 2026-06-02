@@ -129,12 +129,14 @@
 .cal-cell {
   background: var(--g5-color);
   min-height: 68px;
+  min-width: 0;
   padding: 4px;
   display: flex;
   flex-direction: column;
   gap: 2px;
   transition: background 0.15s;
   position: relative;
+  overflow: hidden;
 }
 
 .cal-cell-header {
@@ -266,96 +268,10 @@
   padding-left: 5px;
 }
 
-/* ── Year View (mini-calendar grid) ─────────────────────────────────────── */
+/* ── Year View (full-year grid, same structure as month view) ────────────── */
 
-.year-view-scroll {
-  overflow-x: auto;
-}
-
-.year-mini-grid {
-  display: grid;
-  grid-template-columns: 52px repeat(12, minmax(80px, 1fr));
-  gap: 3px;
-  min-width: 1040px;
-}
-
-.ym-corner {
-  /* empty top-left corner cell */
-}
-
-.ym-month-header {
-  text-align: center;
-  font-weight: bold;
-  font-size: var(--thumbnail-font-size);
-  background: var(--g3-color);
-  color: var(--g5-color);
-  padding: 4px 2px;
-  border-radius: 4px;
-}
-
-.ym-year-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: var(--thumbnail-font-size);
-  color: var(--g2-color);
-}
-
-.ym-cell {
-  background: var(--g5-color);
-  border: 1px solid var(--g4-color);
-  border-radius: 5px;
-  padding: 4px 3px;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-}
-
-.ym-cell:hover {
-  background: var(--g4-color);
-  border-color: var(--g3-color);
-}
-
-.ym-cell.has-events {
-  border-color: var(--event-color);
-}
-
-.ym-cell.has-events:hover {
-  background: var(--event-highlight-color);
-}
-
-/* Mini calendar inside each year-view cell */
-
-.mini-cal {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.mini-week {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-}
-
-.mini-day {
-  height: 11px;
-  font-size: 7px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2px;
-  color: var(--g2-color);
-}
-
-.mini-day.has-event {
-  background: var(--event-color);
-  color: var(--g1-color);
-  border-radius: 50%;
-  font-weight: bold;
-}
-
-.mini-day.empty {
-  /* transparent placeholder */
+.cal-year-scroll {
+  max-height: 72vh;
+  overflow-y: auto;
+  border-radius: 8px;
 }

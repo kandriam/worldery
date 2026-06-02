@@ -48,6 +48,16 @@
                         <label class="primary-label" for="story-tags">Story Tags</label>
                         <textarea class="small-textarea" id="story-tags" formControlName="storyTags" placeholder="Enter tags separated by commas..."></textarea>
                     </div>
+                    <div class="details-section secondary-section horizontal-section">
+                        <div>
+                            <label class="primary-label" for="story-start-date">Start Date (Optional)</label>
+                            <input type="date" id="story-start-date" formControlName="storyStartDate" />
+                        </div>
+                        <div>
+                            <label class="primary-label" for="story-end-date">End Date (Optional)</label>
+                            <input type="date" id="story-end-date" formControlName="storyEndDate" />
+                        </div>
+                    </div>
                     <button type="submit" class="save-button primary">Save</button>
                 </section>
             </form>
@@ -55,14 +65,26 @@
         
         <!-- Timeline Sidebar -->
         <div class="side-timeline">
-            <app-timeline 
-                [events]="filteredEventList" 
-                [title]="'Events in ' + (worldStory?.title || '')"
-                [noResultsMessage]="'No events found for this story'"
-                [allowAddElement]="false"
-                [showDisplayToggles]="false"orientation="vertical"
-                (tagClicked)="onTimelineTagClicked($event)">
-            </app-timeline>
+            <div class="side-view-toggle">
+                <button [class.active]="sideView === 'timeline'" (click)="sideView = 'timeline'">Timeline</button>
+                <button [class.active]="sideView === 'calendar'" (click)="sideView = 'calendar'"
+                        [disabled]="!worldStory?.start_date">Story Calendar</button>
+            </div>
+            @if (sideView === 'timeline') {
+                <app-timeline 
+                    [events]="filteredEventList" 
+                    [title]="'Events in ' + (worldStory?.title || '')"
+                    [noResultsMessage]="'No events found for this story'"
+                    [allowAddElement]="false"
+                    [showDisplayToggles]="false"orientation="vertical"
+                    (tagClicked)="onTimelineTagClicked($event)">
+                </app-timeline>
+            } @else {
+                <app-calendar 
+                    [events]="filteredEventList" 
+                    [initialDate]="worldStory?.start_date">
+                </app-calendar>
+            }
         </div>
     </div>
 </article>

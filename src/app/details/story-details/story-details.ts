@@ -11,10 +11,11 @@ import { Subscription, debounceTime } from 'rxjs';
 import { SettingsService } from '../../services/settings.service';
 import { SubstoryList } from "src/app/components/substory-list/substory-list";
 import { CurrentWorldService } from '../../services/current-world.service';
+import { Calendar } from '../../components/calendar/calendar';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, Timeline, AssociationList, SubstoryList],
+  imports: [ReactiveFormsModule, Timeline, AssociationList, SubstoryList, Calendar],
   templateUrl: 'story-details.html',
   styleUrls: ["story-details.css", "../details.css", "../../../styles.css"],
 })
@@ -44,7 +45,11 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
     storyCharacters: new FormControl(''),
     storyLocations: new FormControl(''),
     storyTags: new FormControl(''),
+    storyStartDate: new FormControl(''),
+    storyEndDate: new FormControl(''),
   });
+
+  sideView: 'timeline' | 'calendar' = 'timeline';
 
   constructor() {
     // Moved initialization logic to ngOnInit
@@ -112,8 +117,9 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
         storyDescription: worldStory?.description || '',
         storyCharacters: worldStory?.characters?.join(', ') || '',
         storyLocations: worldStory?.locations?.join(', ') || '',
-        storyTags: worldStory?.tags?.join(', ') || ''
-    
+        storyTags: worldStory?.tags?.join(', ') || '',
+        storyStartDate: worldStory?.start_date || '',
+        storyEndDate: worldStory?.end_date || '',
       }, { emitEvent: false });
       
       // Update filtered events after story data loads
@@ -325,7 +331,9 @@ export class WorldStoryDetails implements OnInit, OnDestroy {
           this.worldStory.characters,
           this.worldStory.locations,
           this.worldStory.substories ?? [],
-          this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? []
+          this.applyForm.value.storyTags?.split(', ').filter(tag => tag.trim() !== '') ?? [],
+          this.applyForm.value.storyStartDate || null,
+          this.applyForm.value.storyEndDate || null,
         );
         
         console.log('Story updated successfully');

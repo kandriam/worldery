@@ -9,10 +9,16 @@
   <div class="timeline-content-wrapper">
     <div class="timeline-date">
       {{ formatDateRange() }}
+      @if (relativeLabel) {
+        <span class="relative-date-label" [class.is-current]="relativeLabel === 'Current date'">{{ relativeLabel }}</span>
+      }
     </div>
-    <div class="timeline-event" [routerLink]="event().isGhost ? null : ['/event', event().id]">
+    <div class="timeline-event"  [routerLink]="event().isGhost ? null : ['/event', event().id]">
       <div class="event-header">
         <h3 class="event-title">{{ event().name }}</h3>
+        @if (!event().isGhost) {
+          <button class="set-date-btn" title="Set as current world date" (click)="$event.stopPropagation(); setAsCurrentDate()"><img src="assets/icons/pin.svg" class="pin-icon" alt="Set world date"></button>
+        }
       </div>
 
       <div class="event-details">

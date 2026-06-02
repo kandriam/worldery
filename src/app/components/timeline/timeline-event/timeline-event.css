@@ -9,6 +9,52 @@
   scroll-snap-align: start;
 }
 
+/* Relative date label */
+.relative-date-label {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.65;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.relative-date-label.is-current {
+  opacity: 1;
+  font-style: normal;
+  font-weight: bold;
+  color: var(--event-color, #f0a);
+}
+
+/* Set-as-current-date pin button */
+.event-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.set-date-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  opacity: 0.35;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.set-date-btn .pin-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.set-date-btn:hover {
+  opacity: 1;
+}
+
 /* Ghost (birthday anniversary) events */
 .timeline-item.ghost-event .timeline-content-wrapper {
   opacity: 0.55;

@@ -11,3 +11,31 @@
   border: 1px solid var(--g1-color);
 }
 
+.heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pin-date-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 4px 6px;
+  cursor: pointer;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+
+.pin-date-btn:hover {
+  opacity: 1;
+  border-color: var(--g3-color);
+}
+
+.pin-date-btn .pin-icon {
+  width: 16px;
+  height: 16px;
+}
+

@@ -30,6 +30,8 @@ class World(models.Model):
 class Story(models.Model):
     title = models.CharField(max_length=100, blank=True)
     description = models.TextField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     characters = models.ManyToManyField('Character', related_name='story_set', blank=True)
     locations = models.ManyToManyField('Location', related_name='story_set', blank=True)
     substories = models.ManyToManyField('self', symmetrical=False, related_name='parent_stories', blank=True)

@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, OnInit, OnDestroy, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorldEventInfo } from '../../services/world-event.service';
 import { Router } from '@angular/router';
+import { CurrentWorldDateService } from '../../services/current-world-date.service';
+import { Subscription } from 'rxjs';
 
 type CalendarView = 'month' | 'year';
 
@@ -14,25 +16,7 @@ interface CalendarDay {
 interface CalendarRow {
   days: CalendarDay[];
   monthBannerLabel?: string;
-  monthLabelRowSpan?: number; // how many week-rows this month label spans
-}
-
-interface MiniDay {
-  day: number;
-  hasEvents: boolean;
-}
-
-interface YearViewCell {
-  year: number;
-  month: number;
-  monthAbbr: string;
-  weeks: (MiniDay | null)[][];
-  hasEvents: boolean;
-}
-
-interface YearViewRow {
-  year: number;
-  months: YearViewCell[];
+  monthLabelRowSpan?: number;
 }
 
 @Component({
@@ -42,43 +26,57 @@ interface YearViewRow {
   templateUrl: './calendar.html',
   styleUrls: ['./calendar.css'],
 })
-export class Calendar implements OnChanges {
+export class Calendar implements OnInit, OnChanges, OnDestroy {
   @Input() events: WorldEventInfo[] = [];
   @Input() worldId?: string | null;
+  @Input() initialDate?: string | null;
   @Output() addEventOnDate = new EventEmitter<Date>();
+
+  private currentWorldDateService = inject(CurrentWorldDateService);
+  private dateSub?: Subscription;
 
   view: CalendarView = 'month';
 
   currentYear = new Date().getFullYear();
   currentMonth = new Date().getMonth(); // 0-based
 
-  yearViewStartYear = new Date().getFullYear();
-  readonly yearViewCount = 3;
-
   readonly MONTH_NAMES = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December',
   ];
-  readonly MONTH_ABBRS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   readonly DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor(private router: Router) {}
 
+  ngOnInit() {
+    // Jump to current world date when it changes (unless an explicit initialDate is set)
+    this.dateSub = this.currentWorldDateService.date$.subscribe(() => {
+      if (!this.initialDate) this.goToCurrentWorldDate();
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['events'] && this.events.length > 0) {
-      this.goToEarliestEvent();
+      this.initialDate ? this.goToInitialDate() : this.goToCurrentWorldDate();
     }
   }
 
-  private goToEarliestEvent() {
-    const dated = this.events.filter(e => e.date);
-    if (dated.length === 0) return;
-    const earliest = dated.reduce((a, b) => (a.date < b.date ? a : b));
-    const d = new Date(earliest.date + 'T00:00:00');
+  ngOnDestroy() {
+    this.dateSub?.unsubscribe();
+  }
+
+  private goToCurrentWorldDate() {
+    const d = this.currentWorldDateService.getDate();
     this.currentYear = d.getFullYear();
     this.currentMonth = d.getMonth();
-    this.yearViewStartYear = d.getFullYear();
+  }
+
+  private goToInitialDate() {
+    if (!this.initialDate) return;
+    const d = new Date(this.initialDate + 'T00:00:00');
+    this.currentYear = d.getFullYear();
+    this.currentMonth = d.getMonth();
   }
 
   // ── Month view ────────────────────────────────────────────────────────────
@@ -192,65 +190,68 @@ export class Calendar implements OnChanges {
     if (!isNaN(val) && val > 0) this.currentYear = val;
   }
 
-  // ── Year view (mini calendar grid) ───────────────────────────────────────
+  // ── Year view (same grid as month, full year) ─────────────────────────────
 
-  get yearViewLabel(): string {
-    return `${this.yearViewStartYear} – ${this.yearViewStartYear + this.yearViewCount - 1}`;
-  }
+  get yearCalendarRows(): CalendarRow[] {
+    const days: CalendarDay[] = [];
 
-  get yearViewRows(): YearViewRow[] {
-    const rows: YearViewRow[] = [];
-    for (let y = this.yearViewStartYear; y < this.yearViewStartYear + this.yearViewCount; y++) {
-      rows.push({
-        year: y,
-        months: this.MONTH_ABBRS.map((abbr, i) => this.buildYearViewCell(y, i, abbr)),
-      });
+    // Leading: complete the first week back to Sunday if Jan 1 isn't one
+    const jan1 = new Date(this.currentYear, 0, 1);
+    const leadingDays = jan1.getDay();
+    for (let i = leadingDays; i > 0; i--) {
+      const date = new Date(this.currentYear, 0, 1 - i);
+      days.push({ date, isCurrentMonth: false, events: this.eventsOnDate(date) });
     }
+
+    // All days of the current year
+    const dec31 = new Date(this.currentYear, 11, 31);
+    const totalDays = Math.round((dec31.getTime() - jan1.getTime()) / 86_400_000) + 1;
+    for (let d = 0; d < totalDays; d++) {
+      const date = new Date(this.currentYear, 0, 1 + d);
+      days.push({ date, isCurrentMonth: true, events: this.eventsOnDate(date) });
+    }
+
+    // Trailing: complete the last week to Saturday
+    const trailingDays = dec31.getDay() < 6 ? 6 - dec31.getDay() : 0;
+    for (let d = 1; d <= trailingDays; d++) {
+      const date = new Date(this.currentYear + 1, 0, d);
+      days.push({ date, isCurrentMonth: false, events: this.eventsOnDate(date) });
+    }
+
+    // Group into rows of 7 and label each row when a new month starts
+    const rows: CalendarRow[] = [];
+    for (let i = 0; i < days.length; i += 7) {
+      const rowDays = days.slice(i, i + 7);
+      const row: CalendarRow = { days: rowDays };
+
+      if (i === 0) {
+        const d = rowDays[0].date;
+        row.monthBannerLabel = `${this.MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`;
+      } else {
+        const firstOfMonth = rowDays.find(d => d.date.getDate() === 1);
+        if (firstOfMonth) {
+          const d = firstOfMonth.date;
+          row.monthBannerLabel = `${this.MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`;
+        }
+      }
+
+      rows.push(row);
+    }
+
+    // Compute spanning for side month labels
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].monthBannerLabel) {
+        let span = 1;
+        while (i + span < rows.length && !rows[i + span].monthBannerLabel) span++;
+        rows[i].monthLabelRowSpan = span;
+      }
+    }
+
     return rows;
   }
 
-  private buildYearViewCell(year: number, month: number, monthAbbr: string): YearViewCell {
-    const weeks = this.getMiniCalendarWeeks(year, month);
-    const hasEvents = this.events.some(e => {
-      if (!e.date) return false;
-      const d = new Date(e.date + 'T00:00:00');
-      return d.getFullYear() === year && d.getMonth() === month;
-    });
-    return { year, month, monthAbbr, weeks, hasEvents };
-  }
-
-  private getMiniCalendarWeeks(year: number, month: number): (MiniDay | null)[][] {
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const cells: (MiniDay | null)[] = [];
-
-    for (let i = 0; i < firstDay.getDay(); i++) cells.push(null);
-
-    for (let d = 1; d <= lastDay.getDate(); d++) {
-      const date = new Date(year, month, d);
-      cells.push({ day: d, hasEvents: this.eventsOnDate(date).length > 0 });
-    }
-
-    while (cells.length < 42) cells.push(null);
-
-    const weeks: (MiniDay | null)[][] = [];
-    for (let i = 0; i < 42; i += 7) weeks.push(cells.slice(i, i + 7));
-    return weeks;
-  }
-
-  prevYears() {
-    this.yearViewStartYear -= this.yearViewCount;
-  }
-
-  nextYears() {
-    this.yearViewStartYear += this.yearViewCount;
-  }
-
-  selectMonth(year: number, month: number) {
-    this.currentYear = year;
-    this.currentMonth = month;
-    this.view = 'month';
-  }
+  prevYear() { this.currentYear--; }
+  nextYear() { this.currentYear++; }
 
   // ── Navigation & Misc ────────────────────────────────────────────────────
 

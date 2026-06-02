@@ -1,5 +1,56 @@
 /* Event Home Page-Specific Styles */
 
+/* Current world date indicator */
+.current-date-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  margin: 0 0 14px;
+  background: color-mix(in srgb, var(--g4-color) 60%, transparent);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.current-date-pin {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.current-date-pin .pin-icon,
+.current-date-label .pin-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+.current-date-label {
+  flex: 1;
+}
+
+.current-date-label.using-today {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.clear-date-btn {
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  padding: 2px 8px;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.clear-date-btn:hover {
+  opacity: 1;
+}
+
 /* View Toggle Buttons */
 .view-toggle {
   display: flex;

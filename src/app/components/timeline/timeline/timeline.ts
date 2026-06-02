@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorldEventInfo } from '../../../services/world-event.service';
 import { TimelineEvent } from '../timeline-event/timeline-event';
+import { CurrentWorldDateService } from '../../../services/current-world-date.service';
 
 @Component({
   selector: 'app-timeline',
@@ -11,8 +12,10 @@ import { TimelineEvent } from '../timeline-event/timeline-event';
   styleUrls: ['./timeline.css', '../../../../styles.css'],
 })
 export class Timeline implements AfterViewInit {
+  private currentWorldDateService = inject(CurrentWorldDateService);
   @Input() events!: WorldEventInfo[];
   @Input() currentEventId?: string;
+  @Input() referenceDate?: string;
   @ViewChild('timelineContainer', { static: false }) timelineContainer!: ElementRef<HTMLElement>;
   @Input() title: string = 'Timeline';
   @Input() noResultsMessage: string = 'No events found';
@@ -76,10 +79,36 @@ export class Timeline implements AfterViewInit {
   ngAfterViewInit() {
     // Try to scroll on initial load if data is already available
     setTimeout(() => {
-      if (this.currentEventId && this.events.length > 0 && !this.hasScrolledToCurrentEvent) {
-        this.scrollToCurrentEvent();
+      if (this.events.length > 0 && !this.hasScrolledToCurrentEvent) {
+        if (this.currentEventId) {
+          this.scrollToCurrentEvent();
+        } else {
+          this.scrollToNearestToCurrentDate();
+        }
       }
     }, 300);
+  }
+
+  private scrollToNearestToCurrentDate() {
+    if (!this.timelineContainer || this.hasScrolledToCurrentEvent) return;
+    const targetTime = this.currentWorldDateService.getDate().getTime();
+    const datedEvents = this.sortedEvents.filter(e => e.date);
+    if (datedEvents.length === 0) return;
+    const closest = datedEvents.reduce((prev, curr) =>
+      Math.abs(new Date(curr.date).getTime() - targetTime) <
+      Math.abs(new Date(prev.date).getTime() - targetTime) ? curr : prev
+    );
+    const el = this.timelineContainer.nativeElement.querySelector(`[data-event-id="${closest.id}"]`);
+    if (el) {
+      this.hasScrolledToCurrentEvent = true;
+      const container = this.timelineContainer.nativeElement;
+      const containerRect = container.getBoundingClientRect();
+      const eventRect = el.getBoundingClientRect();
+      container.scrollTo({
+        left: container.scrollLeft + (eventRect.left - containerRect.left) - (containerRect.width / 2) + (eventRect.width / 2),
+        behavior: 'smooth',
+      });
+    }
   }
 
   scrollToCurrentEvent() {
