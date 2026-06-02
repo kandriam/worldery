@@ -46,7 +46,7 @@ export class Home {
       id: '',
       title: title || 'New World',
       description: description || '',
-      timeSystem: '',
+      time_system: '',
       genres: [],
       owner: '',
     } as WorldInfo;

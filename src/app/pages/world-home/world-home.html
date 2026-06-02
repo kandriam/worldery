@@ -23,9 +23,18 @@
             <label for="worldDescription">Description</label>
             <textarea id="worldDescription" formControlName="description" placeholder="Enter world description"></textarea>
         </div>
-        <div class="world-field">
-            <label for="worldGenres">Genres <span class="hint">(comma-separated)</span></label>
-            <textarea id="worldGenres" formControlName="genres" placeholder="e.g. Fantasy, Sci-Fi" ></textarea>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div class="world-field">
+              <label for="worldGenres">Genres <span class="hint">(comma-separated)</span></label>
+              <textarea id="worldGenres" formControlName="genres" placeholder="e.g. Fantasy, Sci-Fi" ></textarea>
+          </div>
+          <div class="world-field">
+              <label for="worldTimeSystem">Calendar System</label>
+              <select id="worldTimeSystem" formControlName="timeSystem">
+                <option value="gregorian">Gregorian</option>
+                <option value="custom">Custom</option>
+              </select>
+          </div>
         </div>
     </div>
   </div>

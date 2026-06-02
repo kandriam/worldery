@@ -155,7 +155,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
         eventEndMonth: endMonth,
         eventEndDay: endDay,
         eventDescription: worldEvent?.description || '',
-        eventLocation: worldEvent?.location?.join(', ') || '',
+        eventLocation: worldEvent?.locations?.join(', ') || '',
         eventCharacters: worldEvent?.characters?.join(', ') || '',
         eventStories: worldEvent?.stories?.join(', ') || '',
         eventTags: worldEvent?.tags?.join(', ') || '',
@@ -175,7 +175,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   }
 
   isLocationInEvent(locationId: string): boolean {
-    return this.worldEvent?.location?.includes(locationId) || false;
+    return this.worldEvent?.locations?.map(String).includes(String(locationId)) || false;
   }
 
   getCharactersAssociationList(): AssociationItem[] {
@@ -239,11 +239,11 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   onLocationToggle(event: {id: string, isChecked: boolean}) {
     if (this.worldEvent) {
       if (event.isChecked) {
-        if (!this.worldEvent.location.includes(event.id)) {
-          this.worldEvent.location.push(event.id);
+        if (!this.worldEvent.locations.includes(event.id)) {
+          this.worldEvent.locations.push(event.id);
         }
       } else {
-        this.worldEvent.location = this.worldEvent.location.filter(id => id !== event.id);
+        this.worldEvent.locations = this.worldEvent.locations.filter(id => id !== event.id);
       }
       const location = this.locationList.find(l => l.id === event.id);
       const locationName = location ? location.name : event.id;
@@ -288,7 +288,7 @@ export class WorldEventDetails implements OnInit, OnDestroy {
   saveEvent() {
     const selectedCharacters = this.worldEvent?.characters ?? [];
     const selectedStories = this.worldEvent?.stories ?? [];
-    const selectedLocations = this.worldEvent?.location ?? [];
+    const selectedLocations = this.worldEvent?.locations ?? [];
     if (this.worldEvent?.id !== undefined) {
       const formattedDate = this.formatEventDate(
         this.applyForm.value.eventYear || '',

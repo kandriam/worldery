@@ -10,7 +10,7 @@ export interface WorldEventInfo {
   date: string;
   end_date?: string;
 
-  location: string[];
+  locations: string[];
   characters: string[];
   stories: string[];
   tags: string[];
@@ -28,19 +28,24 @@ export class WorldEventService {
 
   async getAllWorldEvents(worldId?: string): Promise<WorldEventInfo[]> {
     const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
-    const data = await fetch(url);
-    return await data.json() ?? [];
+    try {
+      const data = await this.http.get<WorldEventInfo[]>(url).toPromise();
+      console.log('[EventService] getAllWorldEvents url:', url, '→ count:', data?.length ?? 0, 'data:', data);
+      return data ?? [];
+    } catch (e: any) {
+      console.error('[EventService] getAllWorldEvents FAILED:', url, e?.status, e?.message, e);
+      return [];
+    }
   }
 
   async getWorldEventById(id: string): Promise<WorldEventInfo | undefined> {
-    // Use RESTful detail endpoint for correct event
-    const data = await fetch(`${this.url}/${id}/`);
-    if (!data.ok) {
+    try {
+      const data = await this.http.get<WorldEventInfo>(`${this.url}/${id}/`).toPromise();
+      return data ?? undefined;
+    } catch (e) {
       console.error('Failed to fetch event by id:', id);
       return undefined;
     }
-    const eventJson = await data.json();
-    return eventJson;
   }
 
   updateWorldEvent(
@@ -60,7 +65,7 @@ export class WorldEventService {
       date: eventDate,
       end_date: eventEndDate || undefined,
       description: eventDescription,
-      location: eventLocation,
+      locations: eventLocation,
       characters: eventCharacters,
       stories: eventStories,
       tags: eventTags,

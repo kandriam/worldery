@@ -7,8 +7,16 @@ class Tag(models.Model):
         return self.name
 
 class World(models.Model):
+    CALENDAR_GREGORIAN = 'gregorian'
+    CALENDAR_CUSTOM = 'custom'
+    CALENDAR_CHOICES = [
+        (CALENDAR_GREGORIAN, 'Gregorian'),
+        (CALENDAR_CUSTOM, 'Custom'),
+    ]
+
     title = models.CharField(max_length=100, blank=True)
     description = models.TextField(null=True, blank=True)
+    time_system = models.CharField(max_length=50, choices=CALENDAR_CHOICES, default=CALENDAR_GREGORIAN, blank=True)
     characters = models.ManyToManyField('Character', related_name='worlds', blank=True)
     locations = models.ManyToManyField('Location', related_name='worlds', blank=True)
     events = models.ManyToManyField('Event', related_name='worlds', blank=True)

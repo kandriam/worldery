@@ -24,19 +24,18 @@ export class WorldLocationService {
 
   async getAllWorldLocations(worldId?: string): Promise<WorldLocationInfo[]> {
     const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
-    const data = await fetch(url);
-    return await data.json() ?? [];
+    const data = await this.http.get<WorldLocationInfo[]>(url).toPromise();
+    return data ?? [];
   }
 
   async getWorldLocationById(id: string): Promise<WorldLocationInfo | undefined> {
-    // Use RESTful detail endpoint for correct location
-    const data = await fetch(`${this.url}/${id}/`);
-    if (!data.ok) {
+    try {
+      const data = await this.http.get<WorldLocationInfo>(`${this.url}/${id}/`).toPromise();
+      return data ?? undefined;
+    } catch (e) {
       console.error('Failed to fetch location by id:', id);
       return undefined;
     }
-    const locationJson = await data.json();
-    return locationJson;
   }
 
   async updateWorldLocation(

@@ -27,19 +27,18 @@ export class WorldStoryService {
 
   async getAllWorldStories(worldId?: string): Promise<WorldStoryInfo[]> {
     const url = worldId ? `${this.url}/?world=${worldId}` : `${this.url}/`;
-    const data = await fetch(url);
-    return await data.json() ?? [];
+    const data = await this.http.get<WorldStoryInfo[]>(url).toPromise();
+    return data ?? [];
   }
 
   async getWorldStoryById(id: string): Promise<WorldStoryInfo | undefined> {
-    // Use RESTful detail endpoint for correct story
-    const data = await fetch(`${this.url}/${id}/`);
-    if (!data.ok) {
+    try {
+      const data = await this.http.get<WorldStoryInfo>(`${this.url}/${id}/`).toPromise();
+      return data ?? undefined;
+    } catch (e) {
       console.error('Failed to fetch story by id:', id);
       return undefined;
     }
-    const storyJson = await data.json();
-    return storyJson;
   }
 
   async updateWorldStory(

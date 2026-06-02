@@ -20,9 +20,11 @@
       <button [class.active]="viewMode === 'grid'" (click)="setViewMode('grid')" class="view-button">
         📋 Grid View
       </button>
-      <button class="view-button disabled">
-        Calendar View (Coming Soon)
-      </button>
+      @if (isGregorianCalendar) {
+        <button [class.active]="viewMode === 'calendar'" (click)="setViewMode('calendar')" class="view-button">
+          🗓️ Calendar View
+        </button>
+      }
     </div>
     
     @if (viewMode === 'timeline') {
@@ -36,7 +38,7 @@
         (addElement)="addWorldEvent()"
         (tagClicked)="onTagClicked($event)">
       </app-timeline>
-    } @else {
+    } @else if (viewMode === 'grid') {
       <app-home-grid
         entityType="event"
         title="Events"
@@ -46,6 +48,12 @@
         (addElement)="addWorldEvent()"
         (tagClicked)="onTagClicked($event)">
       </app-home-grid>
+    } @else if (viewMode === 'calendar') {
+      <app-calendar
+        [events]="filteredEventList"
+        [worldId]="worldId"
+        (addEventOnDate)="onAddEventOnDate($event)">
+      </app-calendar>
     }
   </article>
 </div>

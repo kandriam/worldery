@@ -16,7 +16,7 @@ import { CurrentWorldService } from '../../services/current-world.service';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, Timeline, AssociationList, RelationshipList, RouterLink, EventThumbnail],
+  imports: [ReactiveFormsModule, Timeline, AssociationList, RelationshipList, EventThumbnail],
   templateUrl: "character-details.html",
   styleUrls: ["character-details.css", "../details.css", "../../../styles.css"],
 })
@@ -40,6 +40,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   eventList = Array<WorldEventInfo>();
   filteredEventList = Array<WorldEventInfo>();
   private routeSubscription: Subscription | undefined;
+  private routeWorldId: string | undefined;
 
   // Date dropdown options
   months = [
@@ -71,6 +72,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
   async ngOnInit() {
     // Subscribe to route parameter changes
+    this.route.queryParams.subscribe(params => {
+      if (params['world']) this.routeWorldId = params['world'];
+    });
     this.routeSubscription = this.route.params.subscribe(params => {
       const worldCharacterId = params['id']; // Keep as string
       this.loadCharacterData(worldCharacterId);
@@ -183,9 +187,8 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
 
   getEvent(eventId: string | null): WorldEventInfo | null {
     if (!eventId || eventId == null) return null;
-    console.log('Looking for event with ID:', eventId);
-    const event = this.eventList.find(event => event.id === eventId) || null;
-    console.log('Found event:', event);
+    const id = String(eventId);
+    const event = this.eventList.find(event => String(event.id) === id) || null;
     return event;
   }
 
@@ -499,9 +502,9 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       return;
     }
 
-    const characterId = this.worldCharacter.id;
-    this.filteredEventList = this.eventList.filter(event => 
-      event.characters.includes(characterId)
+    const characterId = String(this.worldCharacter.id);
+    this.filteredEventList = this.eventList.filter(event =>
+      event.characters.map(String).includes(characterId)
     );
   }
 
@@ -556,7 +559,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           date,
           '',
           existingEvent?.description || eventDescription,
-          existingEvent?.location || [],
+          existingEvent?.locations || [],
           existingEvent?.characters || eventCharacters,
           existingEvent?.stories || eventStories,
           existingEvent?.tags || eventTags
@@ -586,17 +589,19 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         );
         console.log(`Updated ${eventType} event with id ${eventId} and updated character date.`);
       } else {
-        // Create new event
+        // Create new event(
+        const worldId = (this.routeWorldId ?? String(this.worldCharacter.world ?? '')) || (this.currentWorldService.getCurrentWorldId() ?? undefined);
         const newEvent = await this.worldEventService.createWorldEvent(
           {
             id: '',
             name: eventTitle,
             date: date,
             description: eventDescription,
-            location: [],
+            locations: [],
             characters: eventCharacters,
             stories: eventStories,
-            tags: eventTags
+            tags: eventTags,
+            world: worldId
           } as WorldEventInfo,
           true
         ).toPromise();
@@ -607,6 +612,11 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
         } else if (eventType === 'death') {
           this.worldCharacter.death_event = newEvent?.id;
           this.worldCharacter.deathdate = date;
+        }
+        // Add the new event to the local list immediately so the thumbnail shows
+        if (newEvent) {
+          this.eventList = [...this.eventList, newEvent];
+          this.updateFilteredEvents();
         }
         await this.worldCharacterService.updateWorldCharacter(
           this.worldCharacter.id,
@@ -626,7 +636,6 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
           this.worldCharacter.tags
         );
       }
-      this.updateFilteredEvents();
     } catch (error: any) {
       console.error('Failed to add/update event to timeline:', error);
       alert('Failed to add/update event to timeline: ' + error.message);
@@ -637,6 +646,41 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
     console.log('Timeline tag clicked:', tag);
     this.router.navigate(['/events'], { queryParams: { tag: tag } });
     // You can implement tag filtering logic here if needed
+  }
+
+  async removeBirthDeathEvent(type: 'birth' | 'death') {
+    if (!this.worldCharacter) return;
+    if (type === 'birth') {
+      this.worldCharacter.birth_event = undefined;
+      this.worldCharacter.birthdate = '';
+    } else {
+      this.worldCharacter.death_event = undefined;
+      this.worldCharacter.deathdate = '';
+    }
+    await this.worldCharacterService.updateWorldCharacter(
+      this.worldCharacter.id,
+      this.worldCharacter.personal_name,
+      this.worldCharacter.family_name,
+      this.worldCharacter.alt_names,
+      this.worldCharacter.birthdate || '',
+      this.worldCharacter.birth_event || null,
+      this.worldCharacter.deathdate || '',
+      this.worldCharacter.death_event || null,
+      this.worldCharacter.pronouns,
+      this.worldCharacter.roles,
+      this.worldCharacter.affiliations,
+      this.worldCharacter.physical_description,
+      this.worldCharacter.non_physical_description,
+      this.worldCharacter.stories,
+      this.worldCharacter.tags
+    );
+    // Clear date form fields
+    if (type === 'birth') {
+      this.applyForm.patchValue({ characterBirthYear: '', characterBirthMonth: '', characterBirthDay: '' }, { emitEvent: false });
+    } else {
+      this.applyForm.patchValue({ characterDeathYear: '', characterDeathMonth: '', characterDeathDay: '' }, { emitEvent: false });
+    }
+    this.updateFilteredEvents();
   }
 
   private formatBirthdate(year: string, monthName: string, day: string): string {

@@ -3,15 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { Timeline } from '../../components/timeline/timeline/timeline';
+import { Calendar } from '../../components/calendar/calendar';
 import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
 import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
+import { WorldInfoService } from '../../services/world.service';
 import { SearchFilter, FilterState, FilterConfig, matchesSearchTerms } from '../../components/search-filter/search-filter';
 
 @Component({
   selector: 'app-event-home',
-  imports: [SearchFilter, HomeGrid, Timeline],
+  imports: [SearchFilter, HomeGrid, Timeline, Calendar],
   templateUrl: 'event-home.html',
   styleUrls: ['../pages.css', 'event-home.css', '../../../styles.css'],
 })
@@ -22,6 +24,7 @@ export class EventHome implements OnInit {
   characterService = inject(WorldCharacterService);
   storyService = inject(WorldStoryService);
   locationService = inject(WorldLocationService);
+  worldInfoService = inject(WorldInfoService);
 
   filteredEventList: WorldEventInfo[] = [];
   worldEventList: WorldEventInfo[] = [];
@@ -29,8 +32,9 @@ export class EventHome implements OnInit {
   allStories: WorldStoryInfo[] = [];
   allLocations: WorldLocationInfo[] = [];
   worldId: string | null = null;
+  isGregorianCalendar = false;
 
-  viewMode: 'timeline' | 'grid' = 'timeline';
+  viewMode: 'timeline' | 'grid' | 'calendar' = 'timeline';
   router = inject(Router);
 
   filterConfig = {
@@ -45,10 +49,14 @@ export class EventHome implements OnInit {
       const worldId = params['world'];
       this.worldId = worldId ?? null;
       if (worldId) {
+        this.worldInfoService.getWorld(worldId).subscribe(world => {
+          this.isGregorianCalendar = world?.time_system === 'gregorian';
+        });
         this.eventService.getAllWorldEvents(worldId).then(events => {
+          console.log('[EventHome] loaded events for world', worldId, ':', events.length, events);
           this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
           this.filteredEventList = this.worldEventList;
-        });
+        }).catch(err => console.error('[EventHome] load error:', err));
         this.characterService.getAllWorldCharacters(worldId).then(characters => {
           this.allCharacters = characters;
         });
@@ -59,6 +67,7 @@ export class EventHome implements OnInit {
           this.allLocations = locations;
         });
       } else {
+        this.isGregorianCalendar = false;
         Promise.all([
           this.eventService.getAllWorldEvents(),
           this.characterService.getAllWorldCharacters(),
@@ -110,7 +119,7 @@ export class EventHome implements OnInit {
     if (filterState.selectedLocations.length > 0) {
       filtered = filtered.filter((worldEvent) =>
         filterState.selectedLocations.some(selectedLoc =>
-          worldEvent.location.some((eventLoc: string) => eventLoc === selectedLoc)
+          (worldEvent.locations || []).some((eventLoc: any) => String(eventLoc) === String(selectedLoc))
         )
       );
     }
@@ -135,7 +144,32 @@ export class EventHome implements OnInit {
         name: 'New Event',
         date: new Date().toISOString().split('T')[0],
         description: '',
-        location: [],
+        locations: [],
+        characters: [],
+        stories: [],
+        tags: [],
+        world: this.worldId ?? undefined
+      } as WorldEventInfo,
+      true
+    ).subscribe({
+      next: (event) => {
+        if (event) {
+          this.router.navigate(['/event', event.id]);
+        }
+      },
+      error: (err) => console.error('Failed to create event:', err)
+    });
+  }
+
+  onAddEventOnDate(date: Date) {
+    const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    this.eventService.createWorldEvent(
+      {
+        id: '',
+        name: 'New Event',
+        date: dateStr,
+        description: '',
+        locations: [],
         characters: [],
         stories: [],
         tags: [],
@@ -158,7 +192,7 @@ export class EventHome implements OnInit {
     }
   }
 
-  setViewMode(mode: 'timeline' | 'grid') {
+  setViewMode(mode: 'timeline' | 'grid' | 'calendar') {
     this.viewMode = mode;
   }
 }

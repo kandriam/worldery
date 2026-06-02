@@ -47,9 +47,9 @@ export class TimelineEvent {
       const s = allStories.find((story: any) => story.id === id);
       return s ? s.title : id;
     });
-    // Resolve location IDs to names (location: string[])
+    // Resolve location IDs to names
     const allLocations = await this.locationService.getAllWorldLocations();
-    this.locationNames = (this.event().location || []).map(id => {
+    this.locationNames = (this.event().locations || []).map(id => {
       const l = allLocations.find((loc: any) => loc.id === id);
       return l ? l.name : id;
     });

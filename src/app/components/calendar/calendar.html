@@ -1,0 +1,102 @@
+<div class="calendar-wrapper">
+
+  <!-- View Toggle -->
+  <div class="cal-view-toggle">
+    <button [class.active]="view === 'month'" (click)="setView('month')">Month</button>
+    <button [class.active]="view === 'year'" (click)="setView('year')">Year</button>
+  </div>
+
+  <!-- ── Month View ───────────────────────────────────────────────────── -->
+  @if (view === 'month') {
+    <div class="cal-nav">
+      <button class="nav-btn" (click)="prevMonth()">&#8249;</button>
+      <span class="cal-nav-label" (click)="setView('year')" title="Switch to year view">{{ monthLabel }}</span>
+      <button class="nav-btn" (click)="nextMonth()">&#8250;</button>
+    </div>
+
+    <div class="cal-grid">
+      <div class="cal-month-col-empty"></div>
+      @for (day of DAY_NAMES; track day) {
+        <div class="cal-day-name">{{ day }}</div>
+      }
+
+      @for (row of calendarRows; track row.days[0].date.toISOString()) {
+        @if (row.monthBannerLabel) {
+          <div class="cal-month-label"
+               [style.grid-column]="'1'"
+               [style.grid-row]="'span ' + row.monthLabelRowSpan">
+            {{ row.monthBannerLabel }}
+          </div>
+        }
+        @for (cell of row.days; track cell.date.toISOString()) {
+          <div class="cal-cell"
+               [class.other-month]="!cell.isCurrentMonth"
+               [class.today]="isToday(cell.date)"
+               [class.has-events]="cell.events.length > 0">
+            <div class="cal-cell-header">
+              <span class="cal-date-num">{{ cell.date.getDate() }}</span>
+              <button class="cal-add-btn" (click)="$event.stopPropagation(); addEventOnDate.emit(cell.date)" title="Add event on this date">+</button>
+            </div>
+            <div class="cal-events">
+              @for (event of cell.events.slice(0, 3); track event.id) {
+                <div class="cal-event-chip" (click)="navigateToEvent(event)" title="{{ event.name }}">
+                  {{ event.name }}
+                </div>
+              }
+              @if (cell.events.length > 3) {
+                <div class="cal-event-more">+{{ cell.events.length - 3 }} more</div>
+              }
+            </div>
+          </div>
+        }
+      }
+    </div>
+  }
+
+  <!-- ── Year View ────────────────────────────────────────────────────── -->
+  @if (view === 'year') {
+    <div class="cal-nav">
+      <button class="nav-btn" (click)="prevYears()">&#8249;</button>
+      <span class="cal-nav-label">{{ yearViewLabel }}</span>
+      <button class="nav-btn" (click)="nextYears()">&#8250;</button>
+    </div>
+
+    <div class="year-view-scroll">
+      <div class="year-mini-grid">
+
+        <!-- Header row: empty corner + 12 month abbreviations -->
+        <div class="ym-corner"></div>
+        @for (abbr of MONTH_ABBRS; track abbr) {
+          <div class="ym-month-header">{{ abbr }}</div>
+        }
+
+        <!-- One row per year -->
+        @for (row of yearViewRows; track row.year) {
+          <div class="ym-year-label">{{ row.year }}</div>
+          @for (cell of row.months; track cell.month) {
+            <div class="ym-cell"
+                 [class.has-events]="cell.hasEvents"
+                 (click)="selectMonth(cell.year, cell.month)"
+                 title="{{ cell.monthAbbr }} {{ cell.year }}">
+              <div class="mini-cal">
+                @for (week of cell.weeks; track $index) {
+                  <div class="mini-week">
+                    @for (day of week; track $index) {
+                      @if (day) {
+                        <span class="mini-day" [class.has-event]="day.hasEvents">{{ day.day }}</span>
+                      } @else {
+                        <span class="mini-day empty"></span>
+                      }
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        }
+
+      </div>
+    </div>
+  }
+
+</div>

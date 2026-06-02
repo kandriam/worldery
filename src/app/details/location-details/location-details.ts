@@ -269,10 +269,8 @@ export class WorldLocationDetails implements OnInit, OnDestroy {
       return;
     }
     // Filter events by location ID
-    this.filteredEventList = this.eventList.filter(event => 
-      event.location && (Array.isArray(event.location)
-        ? event.location.includes(this.worldLocation?.id || '')
-        : event.location === this.worldLocation?.id)
+    this.filteredEventList = this.eventList.filter(event =>
+      Array.isArray(event.locations) && event.locations.map(String).includes(String(this.worldLocation?.id || ''))
     );
   }
 

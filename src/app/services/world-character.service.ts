@@ -42,14 +42,13 @@ export class WorldCharacterService {
     }
 
     async getWorldCharacterById(id: string): Promise<WorldCharacterInfo | undefined> {
-      // Use RESTful detail endpoint for correct character
-      const data = await fetch(`${this.url}/${id}/`);
-      if (!data.ok) {
+      try {
+        const data = await this.http.get<WorldCharacterInfo>(`${this.url}/${id}/`).toPromise();
+        return data ?? undefined;
+      } catch (e) {
         console.error('Failed to fetch character by id:', id);
         return undefined;
       }
-      const characterJson = await data.json();
-      return characterJson;
     }
 
     async getWorldCharactersByName(firstName: string, lastName: string): Promise<WorldCharacterInfo[]> {

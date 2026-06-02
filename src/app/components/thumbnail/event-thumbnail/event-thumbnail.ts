@@ -44,9 +44,9 @@ export class EventThumbnail {
       const s = allStories.find((story: any) => story.id === id);
       return s ? s.title : id;
     });
-    // Resolve location IDs to names (location: string[])
+    // Resolve location IDs to names
     const allLocations = await this.worldLocationService.getAllWorldLocations();
-    this.locationNames = (this.worldEvent().location || []).map(id => {
+    this.locationNames = (this.worldEvent().locations || []).map(id => {
       const l = allLocations.find((loc: any) => loc.id === id);
       return l ? l.name : id;
     });

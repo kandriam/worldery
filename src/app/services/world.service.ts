@@ -6,7 +6,7 @@ import { Observable, catchError, of } from 'rxjs';
 export interface WorldInfo {
     id: string;
     title: string;
-    timeSystem: string;
+    time_system: string;
     description: string;
     genres: string[];
     owner: string; // User ID of the owner

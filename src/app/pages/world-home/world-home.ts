@@ -120,7 +120,7 @@ export class WorldHome implements OnInit, OnDestroy {
       this.worldInfoForm.patchValue({
         name: world.title || '',
         description: world.description || '',
-        timeSystem: world.timeSystem || '',
+        timeSystem: world.time_system || '',
         genres: world.genres ? world.genres.join(', ') : '',
       }, { emitEvent: false });
     });
@@ -177,7 +177,7 @@ export class WorldHome implements OnInit, OnDestroy {
     }
     if (filterState.selectedLocations.length > 0) {
       filteredEvents = filteredEvents.filter((worldEvent) =>
-        filterState.selectedLocations.some(selectedLoc => worldEvent.location.some(eventLoc => eventLoc === selectedLoc))
+        filterState.selectedLocations.some(selectedLoc => (worldEvent.locations || []).some((eventLoc: any) => String(eventLoc) === String(selectedLoc)))
       );
     }
     if (filterState.startDate || filterState.endDate) {
@@ -211,7 +211,7 @@ export class WorldHome implements OnInit, OnDestroy {
       const formValues = this.worldInfoForm.value;
       this.world.title = formValues.name || '';
       this.world.description = formValues.description || '';
-      this.world.timeSystem = formValues.timeSystem || '';
+      this.world.time_system = formValues.timeSystem || '';
       this.world.genres = (formValues.genres || '').split(',').map((g: string) => g.trim()).filter((g: string) => g);
       this.worldInfoService.updateWorld(this.world.id, { ...this.world }).subscribe(updatedWorld => {
         if (updatedWorld) {
@@ -242,7 +242,7 @@ export class WorldHome implements OnInit, OnDestroy {
   }
   
   private async createEventAndGetId(): Promise<string> {
-    const newEvent = { id: '', name: 'New Event', description: '', date: new Date().toISOString().split('T')[0], location: [], characters: [], stories: [], tags: [], world: this.world?.id } as WorldEventInfo;
+    const newEvent = { id: '', name: 'New Event', description: '', date: new Date().toISOString().split('T')[0], locations: [], characters: [], stories: [], tags: [], world: this.world?.id } as WorldEventInfo;
     return this.eventService.createWorldEvent(newEvent, false).toPromise().then(event => {
       if (event) return event.id;
       else throw new Error('Failed to create event');
