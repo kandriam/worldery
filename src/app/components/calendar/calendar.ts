@@ -183,6 +183,15 @@ export class Calendar implements OnChanges {
     }
   }
 
+  onMonthChange(event: Event) {
+    this.currentMonth = +(event.target as HTMLSelectElement).value;
+  }
+
+  onYearChange(event: Event) {
+    const val = +(event.target as HTMLInputElement).value;
+    if (!isNaN(val) && val > 0) this.currentYear = val;
+  }
+
   // ── Year view (mini calendar grid) ───────────────────────────────────────
 
   get yearViewLabel(): string {
@@ -250,7 +259,9 @@ export class Calendar implements OnChanges {
   }
 
   navigateToEvent(event: WorldEventInfo) {
-    this.router.navigate(['/event', event.id]);
+    if (!event.isGhost) {
+      this.router.navigate(['/event', event.id]);
+    }
   }
 
   isToday(date: Date): boolean {

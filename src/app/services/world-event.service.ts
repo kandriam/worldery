@@ -15,6 +15,66 @@ export interface WorldEventInfo {
   stories: string[];
   tags: string[];
   world?: string;
+  isGhost?: boolean;
+}
+
+export function ordinalSuffix(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+/** Generate virtual birthday-anniversary events for the given characters.
+ *  Each ghost event appears every year from age 1 up to the character's death
+ *  OR the date of the last real event in the world, whichever comes first. */
+export function generateBirthdayGhosts(
+  characters: { id: string; personal_name: string; family_name: string; birthdate?: string; deathdate?: string; world?: string }[],
+  realEvents: WorldEventInfo[]
+): WorldEventInfo[] {
+  const realDates = realEvents
+    .filter(e => e.date && !e.isGhost)
+    .map(e => new Date(e.date + 'T00:00:00'))
+    .filter(d => !isNaN(d.getTime()));
+  const lastRealDate = realDates.length > 0
+    ? new Date(Math.max(...realDates.map(d => d.getTime())))
+    : null;
+
+  const ghosts: WorldEventInfo[] = [];
+
+  for (const char of characters) {
+    if (!char.birthdate) continue;
+    const birth = new Date(char.birthdate + 'T00:00:00');
+    if (isNaN(birth.getTime())) continue;
+
+    const capDate = char.deathdate
+      ? new Date(char.deathdate + 'T00:00:00')
+      : lastRealDate;
+    if (!capDate) continue;
+
+    const name = `${char.personal_name} ${char.family_name}`.trim();
+    const mm = String(birth.getMonth() + 1).padStart(2, '0');
+    const dd = String(birth.getDate()).padStart(2, '0');
+
+    for (let age = 1; ; age++) {
+      const year = birth.getFullYear() + age;
+      const ghostDate = new Date(year, birth.getMonth(), birth.getDate());
+      if (ghostDate > capDate) break;
+      ghosts.push({
+        id: `ghost-birthday-${char.id}-${year}`,
+        name: `${name}'s ${ordinalSuffix(age)} Birthday`,
+        description: '',
+        date: `${year}-${mm}-${dd}`,
+        locations: [],
+        characters: [String(char.id)],
+        stories: [],
+        tags: ['birthday'],
+        world: char.world != null ? String(char.world) : undefined,
+        isGhost: true,
+      });
+    }
+  }
+
+  return ghosts;
 }
 
 @Injectable({

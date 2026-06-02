@@ -10,7 +10,14 @@
   @if (view === 'month') {
     <div class="cal-nav">
       <button class="nav-btn" (click)="prevMonth()">&#8249;</button>
-      <span class="cal-nav-label" (click)="setView('year')" title="Switch to year view">{{ monthLabel }}</span>
+      <div class="cal-nav-selectors">
+        <select class="cal-month-select" (change)="onMonthChange($event)">
+          @for (month of MONTH_NAMES; track month; let i = $index) {
+            <option [value]="i" [selected]="i === currentMonth">{{ month }}</option>
+          }
+        </select>
+        <input class="cal-year-input" type="number" [value]="currentYear" (change)="onYearChange($event)" />
+      </div>
       <button class="nav-btn" (click)="nextMonth()">&#8250;</button>
     </div>
 
@@ -39,7 +46,7 @@
             </div>
             <div class="cal-events">
               @for (event of cell.events.slice(0, 3); track event.id) {
-                <div class="cal-event-chip" (click)="navigateToEvent(event)" title="{{ event.name }}">
+                <div class="cal-event-chip" [class.ghost-chip]="event.isGhost" (click)="navigateToEvent(event)" title="{{ event.name }}">
                   {{ event.name }}
                 </div>
               }

@@ -1,4 +1,4 @@
-<div class="timeline-item" [class.current-event]="isCurrentEvent()" [class.horizontal]="orientation() === 'horizontal'" [class.vertical]="orientation() === 'vertical'">
+<div class="timeline-item" [class.current-event]="isCurrentEvent()" [class.horizontal]="orientation() === 'horizontal'" [class.vertical]="orientation() === 'vertical'" [class.ghost-event]="event().isGhost">
   @if (shouldShowYear()) {
     <div class="year-marker">
       <span class="year-label">{{ getYear(event().date) }}</span>
@@ -10,7 +10,7 @@
     <div class="timeline-date">
       {{ formatDateRange() }}
     </div>
-    <div class="timeline-event"  [routerLink]="['/event', event().id]">
+    <div class="timeline-event" [routerLink]="event().isGhost ? null : ['/event', event().id]">
       <div class="event-header">
         <h3 class="event-title">{{ event().name }}</h3>
       </div>

@@ -4,7 +4,7 @@ import { HomeRow } from '../../components/home-row/home-row';
 import { HomeGrid } from '../../components/home-grid/home-grid';
 import { Timeline } from '../../components/timeline/timeline/timeline';
 import { Calendar } from '../../components/calendar/calendar';
-import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
+import { WorldEventInfo, WorldEventService, generateBirthdayGhosts } from '../../services/world-event.service';
 import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
@@ -52,14 +52,16 @@ export class EventHome implements OnInit {
         this.worldInfoService.getWorld(worldId).subscribe(world => {
           this.isGregorianCalendar = world?.time_system === 'gregorian';
         });
-        this.eventService.getAllWorldEvents(worldId).then(events => {
+        Promise.all([
+          this.eventService.getAllWorldEvents(worldId),
+          this.characterService.getAllWorldCharacters(worldId),
+        ]).then(([events, characters]) => {
           console.log('[EventHome] loaded events for world', worldId, ':', events.length, events);
-          this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
+          this.allCharacters = characters;
+          const ghosts = generateBirthdayGhosts(characters, events);
+          this.worldEventList = [...events, ...ghosts].sort((a, b) => (a.date > b.date ? 1 : -1));
           this.filteredEventList = this.worldEventList;
         }).catch(err => console.error('[EventHome] load error:', err));
-        this.characterService.getAllWorldCharacters(worldId).then(characters => {
-          this.allCharacters = characters;
-        });
         this.storyService.getAllWorldStories(worldId).then(stories => {
           this.allStories = stories;
         });
@@ -74,10 +76,11 @@ export class EventHome implements OnInit {
           this.storyService.getAllWorldStories(),
           this.locationService.getAllWorldLocations()
         ]).then(([events, characters, stories, locations]) => {
-          this.worldEventList = events.sort((a: any, b: any) => (a.date > b.date ? 1 : -1));
           this.allCharacters = characters;
           this.allStories = stories;
           this.allLocations = locations;
+          const ghosts = generateBirthdayGhosts(characters, events);
+          this.worldEventList = [...events, ...ghosts].sort((a, b) => (a.date > b.date ? 1 : -1));
           this.filteredEventList = this.worldEventList;
         });
       }

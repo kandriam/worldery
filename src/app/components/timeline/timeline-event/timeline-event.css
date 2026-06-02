@@ -9,6 +9,22 @@
   scroll-snap-align: start;
 }
 
+/* Ghost (birthday anniversary) events */
+.timeline-item.ghost-event .timeline-content-wrapper {
+  opacity: 0.55;
+  border-style: dashed;
+  cursor: default;
+}
+
+.timeline-item.ghost-event .timeline-event {
+  cursor: default;
+  pointer-events: none;
+}
+
+.timeline-item.ghost-event .event-title::before {
+  content: '🎂 ';
+}
+
 /* Current Event Highlighting */
 .timeline-item.current-event .timeline-content-wrapper {
   border-color: var(--event-color);

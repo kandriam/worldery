@@ -2,7 +2,7 @@ import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RelationshipList } from 'src/app/components/relationship-list/relationship-list';
 import { WorldCharacterInfo, WorldCharacterService } from '../../services/world-character.service';
-import { WorldEventInfo, WorldEventService } from '../../services/world-event.service';
+import { WorldEventInfo, WorldEventService, generateBirthdayGhosts } from '../../services/world-event.service';
 import { WorldLocationInfo, WorldLocationService } from '../../services/world-location.service';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { WorldStoryInfo, WorldStoryService } from '../../services/world-story.service';
@@ -90,14 +90,7 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
       }
     });
 
-    // Resolve story IDs to titles for display
-    const allStories = await import('../../services/world-story.service').then(m => m.WorldStoryService.prototype.getAllWorldStories.call({url: '/worldstories'}));
-    if (this.worldCharacter && this.worldCharacter.stories) {
-      this.storyTitles = this.worldCharacter.stories.map(id => {
-        const s = allStories.find((story: any) => story.id === id);
-        return s ? s.title : id;
-      });
-    }
+
   }
 
   ngOnDestroy() {
@@ -497,15 +490,18 @@ export class WorldCharacterDetails implements OnInit, OnDestroy {
   }
 
   private updateFilteredEvents() {
-    if (!this.worldCharacter || this.eventList.length === 0) {
+    if (!this.worldCharacter) {
       this.filteredEventList = [];
       return;
     }
 
     const characterId = String(this.worldCharacter.id);
-    this.filteredEventList = this.eventList.filter(event =>
-      event.characters.map(String).includes(characterId)
+    const realFiltered = this.eventList.filter(event =>
+      !event.isGhost && event.characters.map(String).includes(characterId)
     );
+    const ghosts = generateBirthdayGhosts([this.worldCharacter], this.eventList);
+    this.filteredEventList = [...realFiltered, ...ghosts]
+      .sort((a, b) => (a.date > b.date ? 1 : -1));
   }
 
   async addCharacterEvent(eventType: string) {

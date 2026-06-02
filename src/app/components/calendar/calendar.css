@@ -46,16 +46,43 @@
   padding: 0 4px;
 }
 
-.cal-nav-label {
-  font-size: var(--header-font-size);
-  font-weight: bold;
-  color: var(--g1-color);
-  cursor: pointer;
-  user-select: none;
+.cal-nav-selectors {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.cal-nav-label:hover {
-  text-decoration: underline;
+.cal-month-select,
+.cal-year-input {
+  background: var(--g4-color);
+  color: var(--g1-color);
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: var(--header-font-size);
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+.cal-month-select:hover,
+.cal-year-input:hover {
+  background: var(--g3-color);
+}
+
+.cal-month-select:focus,
+.cal-year-input:focus {
+  background: var(--g3-color);
+}
+
+.cal-year-input {
+  width: 80px;
+  -moz-appearance: textfield;
+}
+
+.cal-year-input::-webkit-inner-spin-button,
+.cal-year-input::-webkit-outer-spin-button {
+  opacity: 1;
 }
 
 .nav-btn {
@@ -221,6 +248,16 @@
 
 .cal-event-chip:hover {
   background: var(--event-color);
+}
+
+.cal-event-chip.ghost-chip {
+  opacity: 0.55;
+  border-left-style: dashed;
+  cursor: default;
+}
+
+.cal-event-chip.ghost-chip:hover {
+  background: var(--event-highlight-color);
 }
 
 .cal-event-more {
