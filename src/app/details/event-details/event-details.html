@@ -97,12 +97,14 @@
     <!-- Timeline Sidebar -->
     <div class="side-timeline">
         <app-timeline
-          [events]="filteredEventList"
+          [events]="getRelevantEvents()"
+          [allEvents]="filteredEventList"
           [currentEventId]="worldEvent?.id?.toString()"
           [referenceDate]="worldEvent?.date"
           title="Events Timeline"
           [allowAddElement]="false"
           [showDisplayToggles]="false"
+          [showFilterToggles]="true"
           orientation="vertical"
           noResultsMessage="No events found. Try adjusting your search or add a new event."
           (addElement)="addWorldEvent()"

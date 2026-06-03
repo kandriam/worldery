@@ -1,7 +1,13 @@
 <div class="association-list-container">
-    <label class="primary-label">{{ label }}</label>
+    <div class="association-list-header">
+        <label class="primary-label">{{ label }}</label>
+        <div class="association-filter-group">
+            <button type="button" class="filter-btn" [class.active]="!showAssociatedOnly" (click)="showAssociatedOnly = false">All</button>
+            <button type="button" class="filter-btn" [class.active]="showAssociatedOnly" (click)="showAssociatedOnly = true">Related</button>
+        </div>
+    </div>
     <div class="association-list">
-        @for(item of items; track item.id) {
+        @for(item of visibleItems; track item.id) {
             <div class="form-field" [routerLink]="['/'+routePrefix, item.id]">
                 <input 
                     type="checkbox" 
@@ -16,9 +22,12 @@
                     type="button"
                 >
                     <label class="secondary-label">{{ item.name }}</label>
-                    <!-- @if (item.altNames && item.altNames?.length > 0) {
-                        <span class="alt-names">( {{ item.altNames?.join(', ') }} )</span>
-                    } -->
+                    @if (item.altNames && item.altNames.length > 0) {
+                        <span class="alt-names">( {{ item.altNames.join(', ') }} )</span>
+                    }
+                    @if (item.ageAtEvent !== undefined) {
+                        <span class="age-at-event">Age {{ item.ageAtEvent }}</span>
+                    }
                 </button>
             </div>
         }

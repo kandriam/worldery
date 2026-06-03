@@ -9,31 +9,43 @@
         <button [class.active]="showStories" class="display-button stories" (click)="toggleStories()"></button>
       </div>
     }
-    <!-- <div class="display-container"> -->
+    @if(showFilterToggles) {
+      <div class="timeline-filter-group">
+        <button type="button" class="tl-filter-btn" [class.active]="showGhostEvents" (click)="showGhostEvents = !showGhostEvents" title="Show/hide birthday events">
+          <img src="assets/icons/circle-user.svg" class="tl-filter-icon" alt="">Birthdays
+        </button>
+        @if(allEvents) {
+          <button type="button" class="tl-filter-btn" [class.active]="showAllEvents" (click)="showAllEvents = !showAllEvents" title="Toggle all / relevant events">All</button>
+        }
+      </div>
+    }
     @if(allowAddElement) {
       <button class="primary add-button event" (click)="onAddElement()">Add Event</button>
     }
-    <!-- </div> -->
   </div>
-  <div class="timeline-content">
-    @if (sortedEvents.length > 0) {
-      <div class="timeline-line"></div>
+  <div class="timeline-content" #timelineContent>
+    @if (groupedSortedEvents.length > 0) {
       <div class="timeline" #timelineContainer>
-        @for (event of sortedEvents; track event.id; let i = $index) {
-          <app-timeline-event 
-            [attr.data-event-id]="event.id.toString()"
-            [event]="event"
-            [index]="i"
-            [currentEventId]="currentEventId"
-            [referenceDate]="referenceDate"
-            [showDate]="showDate"
-            [showLocation]="showLocation"
-            [showCharacters]="showCharacters"
-            [showStories]="showStories"
-            [shouldShowYear]="shouldShowYearMarker(event, i)"
-            [orientation]="orientation"
-            (tagClicked)="onTagClick($event)">
-          </app-timeline-event>
+        <div class="timeline-line"></div>
+        @for (group of groupedSortedEvents; track group.date; let gi = $index) {
+          <div class="event-date-group">
+            @for (event of group.events; track event.id; let i = $index) {
+              <app-timeline-event
+                [attr.data-event-id]="event.id.toString()"
+                [event]="event"
+                [index]="gi"
+                [currentEventId]="currentEventId"
+                [referenceDate]="referenceDate"
+                [showDate]="showDate"
+                [showLocation]="showLocation"
+                [showCharacters]="showCharacters"
+                [showStories]="showStories"
+                [shouldShowYear]="i === 0 && shouldShowYearMarkerForGroup(group, gi)"
+                [orientation]="orientation"
+                (tagClicked)="onTagClick($event)">
+              </app-timeline-event>
+            }
+          </div>
         }
       </div>
     } @else {

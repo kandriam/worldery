@@ -73,10 +73,13 @@
             @if (sideView === 'timeline') {
                 <app-timeline 
                     [events]="filteredEventList" 
+                    [allEvents]="eventList"
                     [title]="'Events in ' + (worldStory?.title || '')"
                     [noResultsMessage]="'No events found for this story'"
                     [allowAddElement]="false"
-                    [showDisplayToggles]="false"orientation="vertical"
+                    [showDisplayToggles]="false"
+                    [showFilterToggles]="true"
+                    orientation="vertical"
                     (tagClicked)="onTimelineTagClicked($event)">
                 </app-timeline>
             } @else {

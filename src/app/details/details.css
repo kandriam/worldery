@@ -74,6 +74,11 @@
   max-width: 35rem;
   padding: 10px;
   box-sizing: border-box;
+  position: sticky;
+  top: 3.75rem;
+  align-self: flex-start;
+  height: calc(100vh - 3.75rem);
+  overflow: hidden;
 }
 
 

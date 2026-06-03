@@ -66,10 +66,12 @@
         <div class="side-timeline">
             <app-timeline 
                 [events]="filteredEventList" 
+                [allEvents]="eventList"
                 [title]="'Events at ' + (worldLocation?.name || '')"
                 [noResultsMessage]="'No events found at this location'"
                 [allowAddElement]="false"
                 [showDisplayToggles]="false"
+                [showFilterToggles]="true"
                 orientation="vertical"
                 (tagClicked)="onTimelineTagClicked($event)">
             </app-timeline>

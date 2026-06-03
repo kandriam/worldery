@@ -127,10 +127,12 @@
     <div class="side-timeline">
         <app-timeline 
             [events]="filteredEventList" 
+            [allEvents]="eventList"
             [title]="'Relevant Events'"
             [noResultsMessage]="'No events found for this character'"
             [allowAddElement]="false"
             [showDisplayToggles]="false"
+            [showFilterToggles]="true"
             orientation="vertical"
             (tagClicked)="onTimelineTagClicked($event)">
         </app-timeline>

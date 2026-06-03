@@ -187,12 +187,50 @@ export class WorldEventDetails implements OnInit, OnDestroy {
     return this.worldEvent?.locations?.map(String).includes(String(locationId)) || false;
   }
 
+  getRelevantEvents(): WorldEventInfo[] {
+    if (!this.worldEvent) return this.filteredEventList;
+    const charIds = new Set(this.worldEvent.characters.map(String));
+    const locIds = new Set(this.worldEvent.locations.map(String));
+    const storyIds = new Set(this.worldEvent.stories.map(String));
+    return this.filteredEventList.filter(event => {
+      if (String(event.id) === String(this.worldEvent!.id)) return true;
+      return event.characters.some(c => charIds.has(String(c))) ||
+             event.locations.some(l => locIds.has(String(l))) ||
+             event.stories.some(s => storyIds.has(String(s)));
+    });
+  }
+
   getCharactersAssociationList(): AssociationItem[] {
     return this.characterList.map(character => ({
       id: character.id,
       name: `${character.personal_name} ${character.family_name}`,
-      isAssociated: this.isCharacterInEvent(character.id)
+      isAssociated: this.isCharacterInEvent(character.id),
+      altNames: character.alt_names?.length ? character.alt_names : undefined,
+      ageAtEvent: this.getCharacterAgeAtEvent(character),
     }));
+  }
+
+  private getCharacterAgeAtEvent(character: WorldCharacterInfo): number | undefined {
+    const eventDate = this.worldEvent?.date;
+    const birthdate = character.birthdate;
+    if (!eventDate || !birthdate) return undefined;
+
+    const eventD = new Date(eventDate + 'T00:00:00');
+    const birthD = new Date(birthdate + 'T00:00:00');
+
+    if (birthD > eventD) return undefined;
+
+    if (character.deathdate) {
+      const deathD = new Date(character.deathdate + 'T00:00:00');
+      if (deathD < eventD) return undefined;
+    }
+
+    let age = eventD.getFullYear() - birthD.getFullYear();
+    const monthDiff = eventD.getMonth() - birthD.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && eventD.getDate() < birthD.getDate())) {
+      age--;
+    }
+    return age;
   }
 
   getStoriesAssociationList(): AssociationItem[] {

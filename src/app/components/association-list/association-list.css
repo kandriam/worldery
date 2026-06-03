@@ -6,6 +6,36 @@
   border-radius: 5px;
 }
 
+.association-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.association-filter-group {
+  display: flex;
+  gap: 4px;
+}
+
+.filter-btn {
+  padding: 4px 10px;
+  border: 1px solid var(--g3-color);
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: var(--g5-color);
+}
+
+.filter-btn.active {
+  background-color: var(--g3-color);
+  color: white;
+}
+
 .linked-item {
   background: none;
   border: none;
@@ -52,4 +82,15 @@
   border-radius: 0.5rem;
   scrollbar-width: thin;
   scrollbar-color: var(--g3-color) transparent;
+}
+
+.alt-names {
+  font-size: 0.85em;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.age-at-event {
+  font-size: 0.8em;
+  opacity: 0.65;
 }

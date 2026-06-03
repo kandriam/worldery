@@ -5,6 +5,8 @@ export interface AssociationItem {
   id: string;
   name: string;
   isAssociated: boolean;
+  altNames?: string[];
+  ageAtEvent?: number;
 }
 
 export type EntityType = 'character' | 'event' | 'location' | 'story';
@@ -22,6 +24,12 @@ export class AssociationList {
   @Input() type: EntityType = 'story';
   
   @Output() itemToggled = new EventEmitter<{id: string, isChecked: boolean}>();
+
+  showAssociatedOnly: boolean = false;
+
+  get visibleItems(): AssociationItem[] {
+    return this.showAssociatedOnly ? this.items.filter(i => i.isAssociated) : this.items;
+  }
 
   get routePrefix(): string {
     return this.type;
