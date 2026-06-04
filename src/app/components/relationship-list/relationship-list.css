@@ -5,6 +5,14 @@
   /* gap: 15px; */
   /* width: 100%; */
 }
+
+
+.relationship-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .relationship-filters {
   display: flex;
   gap: 20px;

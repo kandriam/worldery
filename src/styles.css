@@ -292,13 +292,19 @@ input[type="checkbox"] {
 
 textarea, input[type="text"] {
   display: block;
-  background-color: inherit;
+  background-color: transparent;
   border-radius: 8px;
   font-family: var(--headings-font-family);
-  
+  outline: none;
+  border: none;
+  transition: all 0.3s ease;
 
   &::placeholder {
     opacity: 1; /* Firefox */
+  }
+  
+  &:hover {
+    background-color: var(--b5-color);
   }
 
   &:focus {
@@ -347,7 +353,6 @@ h1 > input[type="text"], h2 > input[type="text"] {
 
 input[type="text"] {
   padding: 10px;
-  background-color: transparent;
   /* width: 100%; */
   /* width: calc(100% - 20px); */
 
@@ -540,15 +545,16 @@ textarea {
 
 .primary-section {
   width: 100% !important;
-  border-bottom: 2px solid;
-  border-top: 2px solid;
+  /* border-bottom: 2px solid; */
+  /* border-top: 2px solid; */
   border-color: var(--g3-color);
 }
 
 .secondary-section {
   width: calc(100% - 15px) !important;
-  border-bottom: 2px solid;
-  border-top: 2px solid;
+  border: 2px solid var(--g3-color);
+  /* border-bottom: 2px solid;
+  border-top: 2px solid; */
   border-color: var(--g4-color);
 }
 

@@ -2,14 +2,23 @@
 
   <!-- View Toggle -->
   <div class="cal-view-toggle">
-    <button [class.active]="view === 'month'" (click)="setView('month')">Month</button>
-    <button [class.active]="view === 'year'" (click)="setView('year')">Year</button>
+    
+    <div>
+      today: 
+      
+    </div>
+    <div>
+      <button [class.active]="view === 'month'" (click)="setView('month')">Month</button>
+      <button [class.active]="view === 'year'" (click)="setView('year')">Year</button>
+    </div>
   </div>
 
   <!-- ── Month View ───────────────────────────────────────────────────── -->
   @if (view === 'month') {
     <div class="cal-nav">
-      <button class="nav-btn" (click)="prevMonth()">&#8249;</button>
+      <button class="nav-btn" (click)="prevMonth()">
+        <img src="assets/icons/alt-arrow-left.svg" class="nav-icon" alt="pin" title="Previous month">
+      </button>
       <div class="cal-nav-selectors">
         <select class="cal-month-select" (change)="onMonthChange($event)">
           @for (month of MONTH_NAMES; track month; let i = $index) {
@@ -18,7 +27,9 @@
         </select>
         <input class="cal-year-input" type="number" [value]="currentYear" (change)="onYearChange($event)" />
       </div>
-      <button class="nav-btn" (click)="nextMonth()">&#8250;</button>
+      <button class="nav-btn" (click)="nextMonth()">
+        <img src="assets/icons/alt-arrow-right.svg" class="nav-icon" alt="pin" title="Next month">
+      </button>
     </div>
 
     <div class="cal-grid">
@@ -63,9 +74,13 @@
   <!-- ── Year View ────────────────────────────────────────────────────── -->
   @if (view === 'year') {
     <div class="cal-nav">
-      <button class="nav-btn" (click)="prevYear()">&#8249;</button>
+      <button class="nav-btn" (click)="prevYear()">
+        <img src="assets/icons/alt-arrow-left.svg" class="nav-icon" alt="pin" title="Previous year">
+      </button>
       <span class="cal-nav-label">{{ currentYear }}</span>
-      <button class="nav-btn" (click)="nextYear()">&#8250;</button>
+      <button class="nav-btn" (click)="nextYear()">
+        <img src="assets/icons/alt-arrow-right.svg" class="nav-icon" alt="pin" title="Next year">
+      </button>
     </div>
 
     <div class="cal-year-scroll">

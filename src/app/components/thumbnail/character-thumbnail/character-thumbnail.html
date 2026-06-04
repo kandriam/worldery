@@ -26,4 +26,16 @@
         <div class="tag" (click)="onTagClick(tag, $event)">{{ tag }}</div>
     }
     </div>
+
+    <div class="thumbnail-description">
+        <p>
+            {{ worldCharacter().roles }}
+        </p>
+        <p>
+            {{ worldCharacter().non_physical_description }}
+        </p>
+        <p>
+            {{ worldCharacter().physical_description }}
+        </p>
+    </div>
 </div>

@@ -5,25 +5,32 @@
       <button class="add-button" (click)="toggleCreateForm()">New World</button>
     </div> -->
 
-    <!-- <div class="create-form"> -->
-      <form class="create-form" [formGroup]="createForm" (ngSubmit)="createWorld()">
-        <h3>Create New World</h3>
-        <div class="create-form-content">
-          <div>
-            <label for="title">World Name</label>
-            <input id="title" type="text" formControlName="title" placeholder="World name" />
-          </div>
-          <div>
-            <label for="description">Description</label>
-            <textarea id="description" formControlName="description" placeholder="Description"></textarea>
-          </div>
+    <form class="create-form" [formGroup]="createForm" (ngSubmit)="createWorld()">
+      <h3>Create New World</h3>
+      <div class="create-form-content">
+        <div>
+          <label for="title">World Name</label>
+          <input id="title" type="text" formControlName="title" placeholder="World name" />
+          <!--
+          <label for="calendar">Calendar System</label>
+          <select id="calendar" formControlName="calendar">
+            <option value="">Select calendar system</option>
+            <option value="gregorian">Gregorian</option>
+
+            <option value="fantasy">Fantasy (custom)</option>
+          </select>
+          -->
         </div>
-        <div class="form-actions">
-          <button class="primary" type="submit">Create</button>
-          <button class="primary" type="button" (click)="toggleCreateForm()">Cancel</button>
+        <div>
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" placeholder="Description"></textarea>
         </div>
-      </form>
-    <!-- </div> -->
+      </div>
+      <div class="form-actions">
+        <button class="primary" type="submit">Create</button>
+        <button class="primary" type="button" (click)="toggleCreateForm()">Cancel</button>
+      </div>
+    </form>
 
     <div class="worlds-grid">
       <a class="world-card" *ngFor="let world of worlds" (click)="setCurrentWorldAndNavigate(world)">

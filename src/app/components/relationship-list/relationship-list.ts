@@ -21,7 +21,7 @@ export class RelationshipList {
   relationshipService: RelationshipService = inject(RelationshipService);
   relationshipList: RelationshipInfo[] = [];
   relationshipMap: { [key: string]: RelationshipInfo } = {};
-  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'all';
+  relationshipFilter: 'all' | 'with-relationship' | 'without-relationship' = 'with-relationship';
 
   constructor() {}
 

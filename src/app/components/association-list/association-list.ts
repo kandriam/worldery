@@ -25,7 +25,7 @@ export class AssociationList {
   
   @Output() itemToggled = new EventEmitter<{id: string, isChecked: boolean}>();
 
-  showAssociatedOnly: boolean = false;
+  showAssociatedOnly: boolean = true;
 
   get visibleItems(): AssociationItem[] {
     return this.showAssociatedOnly ? this.items.filter(i => i.isAssociated) : this.items;
@@ -40,6 +40,16 @@ export class AssociationList {
     if (event.target instanceof HTMLInputElement) {
       const isChecked = event.target.checked;
       this.itemToggled.emit({ id: itemId, isChecked });
+    }
+  }
+
+  goToEntityHome() {
+    const baseRoute = this.type;
+    const worldId = this.items.length > 0 && this.items[0].id ? this.items[0].id.split('-')[0] : null;
+    if (worldId) {
+      window.location.href = `/${baseRoute}?world=${worldId}`;
+    } else {
+      window.location.href = `/${baseRoute}`;
     }
   }
 }

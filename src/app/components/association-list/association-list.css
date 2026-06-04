@@ -17,6 +17,23 @@
   gap: 4px;
 }
 
+.associated-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.associated-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.associated-item-details {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
 .filter-btn {
   padding: 4px 10px;
   border: 1px solid var(--g3-color);

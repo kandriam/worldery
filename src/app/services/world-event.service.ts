@@ -108,6 +108,19 @@ export class WorldEventService {
     }
   }
 
+  async getEventsForDate(date: Date, worldId?: string): Promise<WorldEventInfo[]> {
+    const dateStr = date.toISOString().split('T')[0];
+    const url = worldId ? `${this.url}/?date=${dateStr}&world=${worldId}` : `${this.url}/?date=${dateStr}`;
+    try {
+      const data = await this.http.get<WorldEventInfo[]>(url).toPromise();
+      console.log(`[EventService] getEventsForDate url: ${url} → count: ${data?.length ?? 0}`);
+      return data ?? [];
+    } catch (e) {
+      console.error('Failed to fetch events for date:', dateStr, 'url:', url, 'error:', e);
+      return [];
+    }
+  }
+
   updateWorldEvent(
     eventID: string,
     eventTitle: string,
@@ -140,24 +153,6 @@ export class WorldEventService {
       console.log('Event updated successfully', updatedEvent);
       return updatedEvent;
     });
-    // fetch(`${this.url}/${eventID}/`, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     id: eventID,
-    //     name: eventTitle,
-    //     date: eventDate,
-    //     end_date: eventEndDate || undefined,
-    //     description: eventDescription,
-    //     location: eventLocation,
-    //     characters: eventCharacters,
-    //     stories: eventStories,
-    //     tags: eventTags,
-    //   }),
-    // });
-    // window.location.reload();
   }
 
   createWorldEvent(event: WorldEventInfo, goToPage: boolean): Observable<WorldEventInfo | null> {

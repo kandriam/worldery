@@ -1,35 +1,42 @@
 <div class="association-list-container">
     <div class="association-list-header">
         <label class="primary-label">{{ label }}</label>
+        <!-- <button type="button" class="secondary" (click)="goToEntityHome()">{{ 'Go to ' + label }}</button> -->
         <div class="association-filter-group">
-            <button type="button" class="filter-btn" [class.active]="!showAssociatedOnly" (click)="showAssociatedOnly = false">All</button>
             <button type="button" class="filter-btn" [class.active]="showAssociatedOnly" (click)="showAssociatedOnly = true">Related</button>
+            <button type="button" class="filter-btn" [class.active]="!showAssociatedOnly" (click)="showAssociatedOnly = false">All</button>
         </div>
     </div>
     <div class="association-list">
         @for(item of visibleItems; track item.id) {
             <div class="form-field" [routerLink]="['/'+routePrefix, item.id]">
-                <input 
-                    type="checkbox" 
-                    id="{{routePrefix}}-checkbox-{{item.id}}" 
-                    [value]="item.id" 
-                    (change)="onItemChange($event, item.id)" 
-                    (click)="$event.stopPropagation()" 
-                    [checked]="item.isAssociated" 
-                />
-                <button 
-                    class="linked-item" 
-                    type="button"
-                >
+                <div class="associated-item">
+                    <div class="associated-item-header">
+                        <input 
+                        type="checkbox" 
+                        id="{{routePrefix}}-checkbox-{{item.id}}" 
+                        [value]="item.id" 
+                        (change)="onItemChange($event, item.id)" 
+                        (click)="$event.stopPropagation()" 
+                        [checked]="item.isAssociated" 
+                        />
+                        <button 
+                        class="linked-item" 
+                        type="button"
+                    >
                     <label class="secondary-label">{{ item.name }}</label>
-                    @if (item.altNames && item.altNames.length > 0) {
-                        <span class="alt-names">( {{ item.altNames.join(', ') }} )</span>
-                    }
-                    @if (item.ageAtEvent !== undefined) {
-                        <span class="age-at-event">Age {{ item.ageAtEvent }}</span>
-                    }
                 </button>
             </div>
+            <div class="associated-item-details">
+            @if (item.altNames && item.altNames.length > 0) {
+                <span class="alt-names">( {{ item.altNames.join(', ') }} )</span>
+            }
+            @if (item.ageAtEvent !== undefined) {
+                <span class="age-at-event">Age {{ item.ageAtEvent }}</span>
+            }
+            </div>
+            </div>
+        </div>
         }
     </div>
 </div>

@@ -46,6 +46,13 @@
   padding: 0 4px;
 }
 
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--g1-color);
+  transition: fill 0.2s;
+}
+
 .cal-nav-selectors {
   display: flex;
   align-items: center;
@@ -183,6 +190,11 @@
   opacity: 0.75;
 }
 
+.cal-cell.today {
+  background: red !important;
+  color: var(--g1-color);
+}
+
 .cal-cell.today .cal-date-num {
   background: var(--event-color);
   color: var(--g1-color);
@@ -226,7 +238,10 @@
 }
 
 /* ── Event chips inside cells ────────────────────────────────────────────── */
-
+.cal-cell .has-events {
+  background-color: pink !important;
+}
+  
 .cal-events {
   display: flex;
   flex-direction: column;

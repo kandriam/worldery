@@ -48,16 +48,5 @@ title: "Worldery ReadMe"
 - Python
 - Django (SQLite Database)
 
-
-
-# OUTDATED
-## How to Run FrontEnd (Angular App) Only Version
-1. In the terminal window, run
-    `yarn dev`
-OR
-1. In one terminal window, (to build and serve the application) run
-    `ng serve`
-2. In a separate terminal (to run the database servers), run
-    `json-server --watch db.json`
-2. Go to [http://localhost:4200/](http://localhost:4200/)
-
+### Icons
+- [Solar Linear Icons Collection](https://www.svgrepo.com/collection/solar-linear-icons/)

@@ -74,15 +74,15 @@
 /* Current Event Highlighting */
 .timeline-item.current-event .timeline-content-wrapper {
   border-color: var(--event-color);
-  box-shadow: 0 8px 25px var(--event-color);
+  box-shadow: 0 8px 25px var(--event-color) !important;
   transform: translateY(-4px);
 }
 
 .timeline-item.current-event .timeline-connector {
   background: var(--g1-color);
   border-color: var(--event-color);
-  box-shadow: 0 0 20px var(--event-color);
-  transform: translateX (-50%) scale(1.4);
+  box-shadow: 0 0 20px var(--event-color) !important;
+  transform: translateX(-50%) scale(1.5);
 }
 
 .timeline-item.current-event .event-title {
